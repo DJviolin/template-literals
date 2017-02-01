@@ -38,24 +38,12 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 
 // Routes
 app.use(ctx => {
-	//ctx.body = 'Hello Koa';
-
 	ctx.state = {
     title: 'Template Literals',
   };
 	ctx.body = index({
 		title: ctx.state.title,
 	});
-
-	/*ctx.state = {
-		title: 'Template Literals',
-	};
-	const render = `
-		<header>${ctx.state.title}</header>
-		<div class="content">Content</div>
-		<footer>Footer</footer>
-	`;
-	ctx.body = render;*/
 });
 
 // Error handling
