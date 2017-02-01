@@ -20,8 +20,14 @@
 /*const state = {
 	title: "Hello, World from state object!",
 };*/
-const state = {};
+//const state = {};
+//module.exports.state = state;
+const state = (obj) => {
+	return obj;
+};
 module.exports.state = state;
+
+//state.title = "Hello, World!";
 
 const render = `
 	<!doctype html>
