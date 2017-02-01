@@ -34,6 +34,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 
+// Templating - Must be used before any router
+
 // Routes
 app.use(ctx => {
 	//ctx.body = 'Hello Koa';
