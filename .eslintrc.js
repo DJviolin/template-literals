@@ -31,7 +31,7 @@ module.exports = {
 
 	parserOptions: {
 		ecmaVersion: 6,
-		sourceType: 'module', // "script" or "module"
+		sourceType: 'script', // "script" or "module"
 		ecmaFeatures: {
 			jsx: true,
 			generators: true,
