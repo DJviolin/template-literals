@@ -42,9 +42,9 @@ app.use(ctx => {
     title: 'Template Literals',
     description: 'Vanilla JS rendering',
   };
-  index.state({
+  index.state = {
   	foo: 'bar',
-  });
+  };
 	ctx.body = index.render({
 		title: ctx.state.title,
 		description: ctx.state.description,

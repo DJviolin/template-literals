@@ -6,15 +6,15 @@ const main = require('./layouts/main');
 //let state = {};
 //module.exports.state = state;
 
-const state = (obj) => {
+/*const state = (obj) => {
 	console.log(JSON.stringify(obj, null, 4));
 	return obj;
-};
+}*/
+let state = {};
 module.exports.state = state;
+console.log(state);
 
-console.log(state.foo);
-
-const render = (obj) => {
+module.exports.render = (obj) => {
 	return main.render(`
 		<!-- Add your site or application content here -->
 		<p>Hello world! This is HTML5 Boilerplate.</p>
@@ -23,4 +23,3 @@ const render = (obj) => {
 		${obj.title}
 	`);
 };
-module.exports.render = render;
