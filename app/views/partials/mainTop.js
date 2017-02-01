@@ -17,6 +17,11 @@
 		<![endif]-->
 `}*/
 
+const state = {
+	title: "Hello, World from state object!",
+};
+module.exports.state = state;
+
 const render = `
 	<!doctype html>
 	<html class="no-js" lang="">
@@ -35,4 +40,4 @@ const render = `
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
 	<![endif]-->
 `;
-module.exports = render;
+module.exports.render = render;

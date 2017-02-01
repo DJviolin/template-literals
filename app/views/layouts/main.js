@@ -3,7 +3,7 @@ const mainBottom = require('../partials/mainBottom');
 
 module.exports = (content) => {
 	return `
-		${mainTop}
+		${mainTop.render}
 
 		${content}
 
