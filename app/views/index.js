@@ -1,4 +1,4 @@
-const main = require('./layouts/main');
+const main = require('./layouts/main').render;
 
 module.exports = (obj) => {
 	return main(`
