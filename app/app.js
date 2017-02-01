@@ -40,9 +40,11 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 app.use(ctx => {
 	ctx.state = {
     title: 'Template Literals',
+    description: 'Vanilla JS rendering',
   };
 	ctx.body = index({
 		title: ctx.state.title,
+		description: ctx.state.description,
 	});
 });
 
