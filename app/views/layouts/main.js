@@ -1,11 +1,11 @@
 const mainTop = require('../partials/mainTop');
+//const index = require('../index');
 const mainBottom = require('../partials/mainBottom');
 
-module.exports = () => {return `
+module.exports = (content) => {return `
 ${mainTop()}
 
-		<!-- Add your site or application content here -->
-		<p>Hello world! This is HTML5 Boilerplate.</p>
+${content}
 
 ${mainBottom()}
 `}

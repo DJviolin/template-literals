@@ -1,6 +1,4 @@
-module.exports = () => {
-console.log(title);
-return `
+module.exports = () => {return `
 <!doctype html>
 <html class="no-js" lang="">
 	<head>

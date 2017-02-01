@@ -6,7 +6,7 @@ const path = require('path');
 const serve = require('koa-static');
 
 // Routes
-const main = require('./views/layouts/main');
+const index = require('./views/index');
 
 const app = new Koa();
 
@@ -40,18 +40,22 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 app.use(ctx => {
 	//ctx.body = 'Hello Koa';
 
-	/*ctx.state = {
-    title: 'app',
-  };*/
-	/*ctx.body = main({
-		title: 'Template Literals',
-	});*/
+	ctx.state = {
+    title: 'Template Literals',
+  };
+	ctx.body = index({
+		title: ctx.state.title,
+	});
 
-	ctx.body = `
-		<header>Header</header>
+	/*ctx.state = {
+		title: 'Template Literals',
+	};
+	const render = `
+		<header>${ctx.state.title}</header>
 		<div class="content">Content</div>
 		<footer>Footer</footer>
 	`;
+	ctx.body = render;*/
 });
 
 // Error handling
