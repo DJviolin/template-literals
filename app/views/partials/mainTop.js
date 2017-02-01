@@ -22,9 +22,11 @@
 };*/
 //const state = {};
 //module.exports.state = state;
-const state = (obj) => {
-	return obj;
+/*const state = (obj) => {
+	content: obj;
 };
+module.exports.state = state;*/
+let state = {};
 module.exports.state = state;
 
 //state.title = "Hello, World!";

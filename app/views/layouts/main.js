@@ -6,9 +6,10 @@ const mainBottom = require('../partials/mainBottom');
 
 //mainTop.state = {};
 //mainTop.state.title = "Hello, World!";
-mainTop.state({
+/*mainTop.state({
 	title: "Hello, World!",
-});
+});*/
+mainTop.state.title = "Hello, World!";
 
 module.exports.render = (content) => {
 	return `
