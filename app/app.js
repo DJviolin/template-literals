@@ -57,7 +57,16 @@ app.use(ctx => {
 	index.state.num2 = 3;
 	ctx.body = index.render();*/
 
-	ctx.body = index.render({
+	/*ctx.body = index.render({
+		foo: 'bar',
+		title: 'Template Literals',
+		description: 'Vanilla JS rendering',
+		num: 2,
+		num1: 2,
+		num2: 3,
+	}, { title: 'tit', description: 'desc' });*/
+
+	ctx.body = index({
 		foo: 'bar',
 		title: 'Template Literals',
 		description: 'Vanilla JS rendering',
@@ -65,6 +74,7 @@ app.use(ctx => {
 		num1: 2,
 		num2: 3,
 	}, { title: 'tit', description: 'desc' });
+
 });
 
 // Error handling
