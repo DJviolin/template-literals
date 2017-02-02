@@ -1,5 +1,3 @@
-'use strict';
-
 const main = require('./layouts/main');
 
 //const state = main.state;
