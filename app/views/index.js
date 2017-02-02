@@ -36,18 +36,20 @@ const test = require('./components/test');
 const test2 = require('./components/index');
 
 const render = () => main.render(`
-	<!-- Add your site or application content here -->
-	<p>Hello world! This is HTML5 Boilerplate.</p>
+		<!-- Add your site or application content here -->
+		<p>Hello world! This is HTML5 Boilerplate.</p>
 
-	${JSON.stringify(state, null, 4)}
+		${JSON.stringify(state, null, 4)}
 
-	${state.title}
+		${state.title}
 
-	<p>Numeric addition: ${state.num + 2}</p>
+		<p>Numeric addition: ${state.num + 2}</p>
 
-	${test.addition({ num1: 2, num2: 3 })}
-	${test2.addition2(state.num1, state.num2)}
-`);
+		${test.addition({ num1: 2, num2: 3 })}
+		${test2.addition2(state.num1, state.num2)}
+	`,
+	'foo',
+	'bar');
 
 module.exports = {
 	state,

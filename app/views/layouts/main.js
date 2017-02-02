@@ -20,8 +20,8 @@ mainTop.state.title = 'test';
 	title: 'test',
 });*/
 
-const render = content => `
-	${components.htmlHeadWrapper('Foo', 'Bar')}
+const render = (content, foo, bar) => `
+	${components.htmlHeadWrapper(foo, bar)}
 
 	${mainTop.render}
 
