@@ -32,18 +32,16 @@ const render = () => {
 
 const state = {};
 
-const render = () => {
-	main.render(`
-		<!-- Add your site or application content here -->
-		<p>Hello world! This is HTML5 Boilerplate.</p>
+const render = () => main.render(`
+	<!-- Add your site or application content here -->
+	<p>Hello world! This is HTML5 Boilerplate.</p>
 
-		${JSON.stringify(state, null, 4)}
+	${JSON.stringify(state, null, 4)}
 
-		${state.title}
+	${state.title}
 
-		<p>Numeric addition: ${state.num + 2}</p>
-	`);
-};
+	<p>Numeric addition: ${state.num + 2}</p>
+`);
 
 module.exports = {
 	state,
