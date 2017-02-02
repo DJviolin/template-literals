@@ -21,11 +21,14 @@ mainTop.state.title = 'test';
 	title: 'test',
 });*/
 
-const render = (content, foo, bar) => `
+/*
 	${htmlHead({ title: foo, description: bar })}
 	${components.htmlHeadWrapper(foo, bar)}
-
 	${mainTop.render}
+*/
+
+const render = (content, foo, bar) => `
+	${htmlHead({ title: foo, description: bar })}
 
 	${content}
 

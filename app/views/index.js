@@ -48,8 +48,8 @@ const render = () => main.render(`
 		${test.addition({ num1: 2, num2: 3 })}
 		${test2.addition2(state.num1, state.num2)}
 	`,
-	'foo',
-	'bar');
+	state.title,
+	state.description);
 
 module.exports = {
 	state,
