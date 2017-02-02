@@ -37,6 +37,8 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // Templating - Must be used before any router
 
 // Routes
+// https://www.keithcirkel.co.uk/es6-template-literals/
+// http://www.benmvp.com/learning-es6-template-literals-tagged-templates/
 app.use(ctx => {
 	ctx.state = {
     title: 'Template Literals',
