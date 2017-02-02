@@ -67,7 +67,8 @@ const test2 = require('./components/index');
 	state.title,
 	state.description);*/
 
-const render = (state, { obj }) => main.render(`
+//const render = (state, { obj }) => main.render(`
+const render = (state) => main.render(`
 		<!-- Add your site or application content here -->
 		<p>Hello world! This is HTML5 Boilerplate.</p>
 
@@ -80,7 +81,7 @@ const render = (state, { obj }) => main.render(`
 		${test.addition({ num1: 2, num2: 3 })}
 		${test2.addition2(state.num1, state.num2)}
 	`,
-	{ obj });
+	{ obj: { title: 'title', description: 'description' } });
 
 module.exports = {
 	//state,

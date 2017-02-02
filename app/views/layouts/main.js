@@ -34,8 +34,9 @@ const htmlBottom = require('../components/htmlBottom');
 //const render = (content, foo, bar) => `
 
 //module.exports = (content, { obj }) => `
-const render = (content) => `
-	${htmlHead({ obj: { title: 'title', description: 'description' } })}
+//${htmlHead({ obj: { title: 'title', description: 'description' } })}
+const render = (content, { obj }) => `
+	${htmlHead({ obj })}
 
 	${content}
 
