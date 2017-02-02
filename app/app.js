@@ -40,17 +40,20 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // https://www.keithcirkel.co.uk/es6-template-literals/
 // http://www.benmvp.com/learning-es6-template-literals-tagged-templates/
 app.use(ctx => {
-	ctx.state = {
+	/*ctx.state = {
     title: 'Template Literals',
     description: 'Vanilla JS rendering',
   };
-  index.state = {
-  	foo: 'bar',
-  };
-	ctx.body = index.render({
+  ctx.body = index.render({
 		title: ctx.state.title,
 		description: ctx.state.description,
-	});
+	});*/
+
+  index.state.foo = 'bar';
+  index.state.title = 'Template Literals';
+  index.state.description = 'Vanilla JS rendering';
+  index.state.num = 2;
+  ctx.body = index.render();
 });
 
 // Error handling

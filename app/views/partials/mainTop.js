@@ -26,8 +26,8 @@
 	content: obj;
 };
 module.exports.state = state;*/
-let state = {};
-module.exports.state = state;
+//let state = {};
+//module.exports.state = state;
 
 //state.title = "Hello, World!";
 
@@ -37,7 +37,7 @@ const render = `
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>${JSON.stringify(state, null, 4)}}</title>
+	<title></title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--<link rel="stylesheet" href="css/normalize.css">

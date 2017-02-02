@@ -9,7 +9,7 @@ const mainBottom = require('../partials/mainBottom');
 /*mainTop.state({
 	title: "Hello, World!",
 });*/
-mainTop.state.title = "Hello, World!";
+//mainTop.state.title = "Hello, World!";
 
 module.exports.render = (content) => {
 	return `
@@ -17,6 +17,7 @@ module.exports.render = (content) => {
 
 		${content}
 
-		${mainBottom()}
+		${mainBottom.render}
 	`;
+	//${mainBottom()}
 }

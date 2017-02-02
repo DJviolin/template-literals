@@ -10,16 +10,19 @@ const main = require('./layouts/main');
 	console.log(JSON.stringify(obj, null, 4));
 	return obj;
 }*/
-let state = {};
+
+const state = {};
 module.exports.state = state;
-console.log(state);
 
 module.exports.render = (obj) => {
 	return main.render(`
 		<!-- Add your site or application content here -->
 		<p>Hello world! This is HTML5 Boilerplate.</p>
 
-		${JSON.stringify(obj, null, 4)}}
-		${obj.title}
+		${JSON.stringify(state, null, 4)}}
+
+		${state.title}
+
+		<p>Numeric addition: ${state.num + 2}</p>
 	`);
 };
