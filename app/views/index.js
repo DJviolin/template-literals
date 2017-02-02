@@ -1,3 +1,5 @@
+'use strict';
+
 const main = require('./layouts/main');
 
 //const state = main.state;
@@ -15,10 +17,25 @@ const main = require('./layouts/main');
 	return console.log(JSON.stringify(obj, null, 4));
 };*/
 
+/*const state = {};
+
+const render = () => {
+	return main.render(`
+		<!-- Add your site or application content here -->
+		<p>Hello world! This is HTML5 Boilerplate.</p>
+
+		${JSON.stringify(state, null, 4)}
+
+		${state.title}
+
+		<p>Numeric addition: ${state.num + 2}</p>
+	`);
+};*/
+
 const state = {};
 
-const render = (obj) => {
-	return main.render(`
+const render = () => {
+	main.render(`
 		<!-- Add your site or application content here -->
 		<p>Hello world! This is HTML5 Boilerplate.</p>
 

@@ -8,7 +8,8 @@
 module.exports = {
 	"root": true,
 
-	"parser": "babel-eslint", // https://www.npmjs.com/package/babel-eslint
+	//"parser": "babel-eslint", // https://www.npmjs.com/package/babel-eslint
+	//"parser": "eslint-plugin-babel", // https://www.npmjs.com/package/eslint-plugin-babel
 	"plugins": [
 		"babel",
 	],
@@ -42,6 +43,8 @@ module.exports = {
 	"rules": {
 		"spaced-comment": "off",
 		"no-console": "off",
+		"no-tabs": "off",
+		"indent": "off",
 		"import/no-extraneous-dependencies": "off",
 		"react/jsx-filename-extension": "off",
 		"react/require-extension": "off", // Atom error
