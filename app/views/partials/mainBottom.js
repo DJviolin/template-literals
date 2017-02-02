@@ -27,4 +27,8 @@ const render = `
 	</body>
 	</html>
 `;
-module.exports.render = render;
+//module.exports.render = render;
+
+module.exports = {
+  render,
+};

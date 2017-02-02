@@ -11,7 +11,7 @@ const mainBottom = require('../partials/mainBottom');
 });*/
 //mainTop.state.title = "Hello, World!";
 
-module.exports.render = (content) => {
+const render = (content) => {
 	return `
 		${mainTop.render}
 
@@ -19,5 +19,8 @@ module.exports.render = (content) => {
 
 		${mainBottom.render}
 	`;
-	//${mainBottom()}
 }
+
+module.exports = {
+  render,
+};
