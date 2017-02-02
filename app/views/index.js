@@ -32,6 +32,9 @@ const render = () => {
 
 const state = {};
 
+//const test = require('./components/test');
+const test = require('./components/index');
+
 const render = () => main.render(`
 	<!-- Add your site or application content here -->
 	<p>Hello world! This is HTML5 Boilerplate.</p>
@@ -41,6 +44,8 @@ const render = () => main.render(`
 	${state.title}
 
 	<p>Numeric addition: ${state.num + 2}</p>
+
+	${test.addition({ num1: 2, num2: 3 })}
 `);
 
 module.exports = {
