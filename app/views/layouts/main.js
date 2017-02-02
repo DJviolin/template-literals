@@ -2,6 +2,7 @@ const mainTop = require('../partials/mainTop');
 const mainBottom = require('../partials/mainBottom');
 
 const components = require('../components/index');
+const htmlHead = require('../components/htmlHead');
 
 //const state = mainTop.state;
 //module.exports.state = state;
@@ -21,6 +22,7 @@ mainTop.state.title = 'test';
 });*/
 
 const render = (content, foo, bar) => `
+	${htmlHead({ title: foo, description: bar })}
 	${components.htmlHeadWrapper(foo, bar)}
 
 	${mainTop.render}
