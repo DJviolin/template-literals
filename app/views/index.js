@@ -46,7 +46,7 @@ const render = () => main.render(`
 	<p>Numeric addition: ${state.num + 2}</p>
 
 	${test.addition({ num1: 2, num2: 3 })}
-	${test2.addition2(2, 3)}
+	${test2.addition2(state.num1, state.num2)}
 `);
 
 module.exports = {
