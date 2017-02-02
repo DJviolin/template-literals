@@ -32,8 +32,8 @@ const render = () => {
 
 const state = {};
 
-//const test = require('./components/test');
-const test = require('./components/index');
+const test = require('./components/test');
+const test2 = require('./components/index');
 
 const render = () => main.render(`
 	<!-- Add your site or application content here -->
@@ -46,6 +46,7 @@ const render = () => main.render(`
 	<p>Numeric addition: ${state.num + 2}</p>
 
 	${test.addition({ num1: 2, num2: 3 })}
+	${test2.addition2(2, 3)}
 `);
 
 module.exports = {
