@@ -64,7 +64,7 @@ app.use(ctx => {
 		num: 2,
 		num1: 2,
 		num2: 3,
-	});
+	}, { title: 'tit', description: 'desc' });
 });
 
 // Error handling

@@ -1,11 +1,12 @@
-module.exports = ({ title, description }) => `
+//module.exports = ({ title, description }) => `
+module.exports = ({ obj }) => `
 	<!doctype html>
 	<html class="no-js" lang="">
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>${title}</title>
-	<meta name="description" content="${description}">
+	<title>${obj.title}</title>
+	<meta name="description" content="${obj.description}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/main.css">
