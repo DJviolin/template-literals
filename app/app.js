@@ -68,12 +68,14 @@ app.use(ctx => {
 
 	ctx.body = index({
 		foo: 'bar',
-		title: 'Template Literals',
-		description: 'Vanilla JS rendering',
 		num: 2,
 		num1: 2,
 		num2: 3,
-	}, { obj: { title: 'tit', description: 'desc' } });
+	}, {
+	obj: {
+		title: 'Template Literals',
+		description: 'Vanilla JS rendering',
+	} });
 
 });
 

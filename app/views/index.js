@@ -106,13 +106,12 @@ module.exports = {
 `,
 { obj });*/
 
+//module.exports = (state, { obj }) => main(`
 module.exports = (state, { obj }) => main(`
 	<!-- Add your site or application content here -->
 	<p>Hello world! This is HTML5 Boilerplate.</p>
 
 	${JSON.stringify(state, null, 4)}
-
-	${state.title}
 
 	<p>Numeric addition: ${state.num + 2}</p>
 
