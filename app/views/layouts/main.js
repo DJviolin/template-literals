@@ -3,6 +3,7 @@ const mainBottom = require('../partials/mainBottom');
 
 //const components = require('../components/index');
 const htmlHead = require('../components/htmlHead');
+const htmlBottom = require('../components/htmlBottom');
 
 //const state = mainTop.state;
 //module.exports.state = state;
@@ -25,6 +26,7 @@ const htmlHead = require('../components/htmlHead');
 	${htmlHead({ title: foo, description: bar })}
 	${components.htmlHeadWrapper(foo, bar)}
 	${mainTop.render}
+	${mainBottom.render}
 */
 
 const render = (content, foo, bar) => `
@@ -32,7 +34,7 @@ const render = (content, foo, bar) => `
 
 	${content}
 
-	${mainBottom.render}
+	${htmlBottom()}
 `;
 
 module.exports = {
