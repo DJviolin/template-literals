@@ -16,7 +16,6 @@ const main = require('./layouts/main');
 };*/
 
 const state = {};
-module.exports.state = state;
 
 const render = (obj) => {
 	return main.render(`
