@@ -35,7 +35,7 @@ const htmlBottom = require('../components/htmlBottom');
 
 //module.exports = (content, { obj }) => `
 //${htmlHead({ obj: { title: 'title', description: 'description' } })}
-const render = (content, { obj }) => `
+/*const render = (content, { obj }) => `
 	${htmlHead({ obj })}
 
 	${content}
@@ -46,4 +46,12 @@ const render = (content, { obj }) => `
 module.exports = {
 	//state,
 	render,
-};
+};*/
+
+module.exports = (content, { obj }) => `
+	${htmlHead({ obj })}
+
+	${content}
+
+	${htmlBottom()}
+`;

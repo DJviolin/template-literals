@@ -91,7 +91,7 @@ module.exports = {
 
 
 
-module.exports = (state) => main.render(`
+/*module.exports = (state, { obj }) => main.render(`
 	<!-- Add your site or application content here -->
 	<p>Hello world! This is HTML5 Boilerplate.</p>
 
@@ -104,4 +104,19 @@ module.exports = (state) => main.render(`
 	${test.addition({ num1: 2, num2: 3 })}
 	${test2.addition2(state.num1, state.num2)}
 `,
-{ obj: { title: 'title', description: 'description' } });
+{ obj });*/
+
+module.exports = (state, { obj }) => main(`
+	<!-- Add your site or application content here -->
+	<p>Hello world! This is HTML5 Boilerplate.</p>
+
+	${JSON.stringify(state, null, 4)}
+
+	${state.title}
+
+	<p>Numeric addition: ${state.num + 2}</p>
+
+	${test.addition({ num1: 2, num2: 3 })}
+	${test2.addition2(state.num1, state.num2)}
+`,
+{ obj });
