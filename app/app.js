@@ -54,14 +54,6 @@ app.use(ctx => {
   index.state.description = 'Vanilla JS rendering';
   index.state.num = 2;
 
-  //index.state2.foo = 'baz';
-  index.state2({
-  	foo: 'bar',
-  	title: 'Template Literals',
-		description: 'Vanilla JS rendering',
-		num: 2,
-  });
-
   /*index.state = {
   	foo: 'bar',
   	title: 'Template Literals',
