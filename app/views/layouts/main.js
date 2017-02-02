@@ -1,5 +1,5 @@
 //const mainTop = require('../partials/mainTop');
-const mainBottom = require('../partials/mainBottom');
+//const mainBottom = require('../partials/mainBottom');
 
 //const components = require('../components/index');
 const htmlHead = require('../components/htmlHead');
