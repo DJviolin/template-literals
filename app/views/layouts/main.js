@@ -1,7 +1,7 @@
-const mainTop = require('../partials/mainTop');
+//const mainTop = require('../partials/mainTop');
 const mainBottom = require('../partials/mainBottom');
 
-const components = require('../components/index');
+//const components = require('../components/index');
 const htmlHead = require('../components/htmlHead');
 
 //const state = mainTop.state;
@@ -14,9 +14,9 @@ const htmlHead = require('../components/htmlHead');
 });*/
 //mainTop.state.title = "Hello, World!";
 
-const state = {};
+//const state = {};
 
-mainTop.state.title = 'test';
+//mainTop.state.title = 'test';
 /*mainTop.state({
 	title: 'test',
 });*/
@@ -36,6 +36,6 @@ const render = (content, foo, bar) => `
 `;
 
 module.exports = {
-	state,
+	//state,
 	render,
 };

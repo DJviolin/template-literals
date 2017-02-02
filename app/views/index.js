@@ -30,7 +30,7 @@ const render = () => {
 	`);
 };*/
 
-const state = {};
+//const state = {};
 
 const test = require('./components/test');
 const test2 = require('./components/index');
@@ -51,7 +51,7 @@ const test2 = require('./components/index');
 	state.title,
 	state.description);*/
 
-const render = () => main.render(`
+const render = (state) => main.render(`
 		<!-- Add your site or application content here -->
 		<p>Hello world! This is HTML5 Boilerplate.</p>
 
@@ -68,6 +68,6 @@ const render = () => main.render(`
 	state.description);
 
 module.exports = {
-	state,
+	//state,
 	render,
 };
