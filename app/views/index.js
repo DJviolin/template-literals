@@ -113,9 +113,6 @@ module.exports = (state, { obj }) => main(`
 
 	${JSON.stringify(state, null, 4)}
 
-	<p>Numeric addition: ${state.num + 2}</p>
-
-	${test.addition({ num1: 2, num2: 3 })}
-	${test2.addition2(state.num1, state.num2)}
+	<p>Numeric addition: ${state.num1 + state.num2}</p>
 `,
 { obj });
