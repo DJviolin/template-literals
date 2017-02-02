@@ -52,5 +52,5 @@ const render = `
 //module.exports.render = render;
 
 module.exports = {
-  render,
+	render,
 };

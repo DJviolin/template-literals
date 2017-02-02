@@ -20,5 +20,5 @@ const render = content => `
 `;
 
 module.exports = {
-  render,
+	render,
 };

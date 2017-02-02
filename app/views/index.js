@@ -47,5 +47,5 @@ const render = () => {
 
 module.exports = {
 	state,
-  render,
+	render,
 };

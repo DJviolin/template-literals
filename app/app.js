@@ -21,16 +21,16 @@ const debugReq = debug('app:req');
 
 // Logger middleware
 app.use(async (ctx, next) => {
-  const start = new Date();
-  await next();
-  const ms = new Date() - start;
-  debugReq(`${ctx.method} ${ctx.originalUrl} ${ctx.status} - ${ms}ms`);
+	const start = new Date();
+	await next();
+	const ms = new Date() - start;
+	debugReq(`${ctx.method} ${ctx.originalUrl} ${ctx.status} - ${ms}ms`);
 });
 
 // Development
 if (process.env.NODE_ENV !== 'production') {
-  app.use(serve(path.join(__dirname, 'public'))); // Static files
-  debugLog('serveStatic is ON!');
+	app.use(serve(path.join(__dirname, 'public'))); // Static files
+	debugLog('serveStatic is ON!');
 }
 debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 
@@ -41,32 +41,32 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // http://www.benmvp.com/learning-es6-template-literals-tagged-templates/
 app.use(ctx => {
 	/*ctx.state = {
-    title: 'Template Literals',
-    description: 'Vanilla JS rendering',
-  };
-  ctx.body = index.render({
+		title: 'Template Literals',
+		description: 'Vanilla JS rendering',
+	};
+	ctx.body = index.render({
 		title: ctx.state.title,
 		description: ctx.state.description,
 	});*/
 
-  index.state.foo = 'bar';
-  index.state.title = 'Template Literals';
-  index.state.description = 'Vanilla JS rendering';
-  index.state.num = 2;
+	index.state.foo = 'bar';
+	index.state.title = 'Template Literals';
+	index.state.description = 'Vanilla JS rendering';
+	index.state.num = 2;
 
-  /*index.state = {
-  	foo: 'bar',
-  	title: 'Template Literals',
+	/*index.state = {
+		foo: 'bar',
+		title: 'Template Literals',
 		description: 'Vanilla JS rendering',
 		num: 2,
-  };*/
+	};*/
 
-  ctx.body = index.render();
+	ctx.body = index.render();
 });
 
 // Error handling
 app.on('error', (err, ctx) => {
-  debugErr('server error', err, ctx);
+	debugErr('server error', err, ctx);
 });
 
 app.listen(3000);
