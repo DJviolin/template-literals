@@ -38,16 +38,20 @@ monitor.setLog((msg, info) => {
 
 	if (info.event === 'error') {
 		//let logText = os.EOL + msg; // line break + next error message;
-		let logText = `${msg}`;
+		//let logText = `${msg}`;
+		let logText = `\n${msg}`;
 		if (info.time) {
 			// If it is a new error being reported,
 			// and not an additional error line;
 			//logText = os.EOL + logText; // add another line break in front;
-			logText = `${logText}`;
+			//logText = `${logText}`;
+			logText = `\n${logText}`;
 		}
 		//fs.appendFileSync(logFile, logText); // add error handling as required;
 		const wstream = fs.createWriteStream(logFile, { flags: 'a' });
-		wstream.write(`${logText}\n`);
+		//wstream.write(`${logText}\n`);
+		//wstream.write(`${logText}`);
+		wstream.write(logText);
 	}
 
 	// We absolutely must not let the monitor write anything into the console
