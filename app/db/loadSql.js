@@ -1,3 +1,5 @@
+'use strict';
+
 /*const QueryFile = require('pg-promise').QueryFile;
 
 module.exports = (file) => {
@@ -7,9 +9,9 @@ module.exports = (file) => {
 
 
 
-import path from 'path';
-//const QueryFile = require('pg-promise').QueryFile;
-import QueryFile, { QueryFile } from 'pg-promise';
+cons path = require('path');
+//import QueryFile, { QueryFile } from 'pg-promise';
+const QueryFile = require('pg-promise').QueryFile;
 
 // Helper for linking to external query files;
 function sql(file) {

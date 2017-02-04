@@ -1,5 +1,9 @@
-import Router from 'koa-router';
-import db, { pgp } from '../db/pgp';
+'use strict';
+
+const Router = require('koa-router');
+//import db, { pgp } from '../db/pgp';
+const db = require('../db/pgp').db;
+const pgp = require('../db/pgp').pgp;
 
 // http://stackoverflow.com/a/40949781/1442219
 // https://github.com/vitaly-t/pg-promise#sql-names
@@ -92,4 +96,4 @@ router.get('/hello/:id', async (ctx) => {
 	//ctx.body = 'Hello, World!';
 });
 
-export default router;
+module.exports = router;

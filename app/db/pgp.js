@@ -1,8 +1,11 @@
+'use strict';
+
 // https://github.com/vitaly-t/pg-promise-demo
 
-import promise from 'bluebird';
-//const diag = require('./diagnostics');
-import init, { done } from './diagnostics';
+const promise = require('bluebird');
+//import init, { done } from './diagnostics';
+const init = require('./diagnostics').init;
+const done = require('./diagnostics').done;
 
 // pg-promise initialization options:
 const options = {
@@ -37,4 +40,8 @@ init(options);
 // types and namespaces available within the library's root.
 // db => Database instance. Only one instance per database is needed
 // within any application.
-export { pgp, db as default };
+//export { pgp, db as default };
+module.exports = {
+	pgp,
+	db,
+};
