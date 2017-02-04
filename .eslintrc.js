@@ -8,8 +8,9 @@
 module.exports = {
 	"root": true,
 
-	"parser": "babel-eslint", // https://www.npmjs.com/package/babel-eslint
-	//"parser": "eslint-plugin-babel", // https://www.npmjs.com/package/eslint-plugin-babel
+	// https://www.npmjs.com/package/babel-eslint
+	// https://www.npmjs.com/package/eslint-plugin-babel
+	"parser": "babel-eslint",
 	"plugins": [
 		"babel",
 	],
