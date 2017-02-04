@@ -8,10 +8,10 @@
 // which may be a little better performing, but lacks all the nice formatting
 // provided by pg-monitor.
 
-import fs from 'fs';
-import monitor from 'pg-monitor';
-//import os from 'os';
-import path from 'path';
+const fs = require('fs');
+const monitor = require('pg-monitor');
+//const os = require('os');
+const path = require('path');
 
 monitor.setTheme('dimmed'); // changing the default theme;
 
@@ -26,7 +26,7 @@ const logFile = path.join(__dirname, '../logs/pg.error.log');
 // necessary details for that.
 //
 // see: https://github.com/vitaly-t/pg-monitor#log
-monitor.log = (msg, info) => {
+monitor.setLog((msg, info) => {
 	// In a PROD environment we will only receive event 'error',
 	// because this is how we set it up below.
 
@@ -34,7 +34,6 @@ monitor.log = (msg, info) => {
 	// errors only, or else the file will grow out of proportion in no time.
 
 	if (info.event === 'error') {
-	//if (info.event !== 'error') { // LANTI DEBUG
 		//let logText = os.EOL + msg; // line break + next error message;
 		let logText = `${msg}`;
 		if (info.time) {
@@ -57,11 +56,11 @@ monitor.log = (msg, info) => {
 		// If it is not a DEV environment:
 		info.display = false; // display nothing;
 	}
-};
+});
 
 let attached = false;
 
-/*module.exports = {
+module.exports = {
 	// Monitor initialization function;
 	init: (options) => {
 		// We are checking to avoid calling 'attach' more than once,
@@ -80,6 +79,7 @@ let attached = false;
 			monitor.attach(options, ['error']);
 		}
 	},
+
 	// This is one method that in practice we never really need. It is
 	// here just to show that it is possible, in case it is ever needed.
 	done: () => {
@@ -88,35 +88,4 @@ let attached = false;
 			monitor.detach(); // detach from all the events;
 		}
 	},
-};*/
-
-// https://gist.github.com/domenic/4748675
-// http://stackoverflow.com/questions/29844074/es6-export-all-values-from-object
-
-// Monitor initialization function;
-export default function init(options) {
-	// We are checking to avoid calling 'attach' more than once,
-	// without calling 'detach', as it will throw an error;
-	if (attached) {
-		return; // shouldn't call it more than once;
-	}
-	attached = true;
-
-	if ($DEV) {
-		// In a DEV environment, we attach to all supported events:
-		monitor.attach(options);
-	} else {
-		// In a PROD environment we should only attach to the type of events
-		// that we intend to log. And we are only logging event 'error' here:
-		monitor.attach(options, ['error']);
-	}
-}
-
-// This is one method that in practice we never really need. It is
-// here just to show that it is possible, in case it is ever needed.
-export function done() {
-	if (attached) {
-		attached = false;
-		monitor.detach(); // detach from all the events;
-	}
-}
+};
