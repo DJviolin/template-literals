@@ -9,7 +9,7 @@
 // provided by pg-monitor.
 
 const fs = require('fs');
-const os = require('os');
+//const os = require('os');
 const monitor = require('pg-monitor');
 const path = require('path');
 
@@ -34,15 +34,16 @@ monitor.setLog((msg, info) => {
 	// errors only, or else the file will grow out of proportion in no time.
 
 	if (info.event === 'error') {
-		let logText = os.EOL + msg; // line break + next error message;
-
+		//let logText = os.EOL + msg; // line break + next error message;
+		let logText = `${msg}`;
 		if (info.time) {
 			// If it is a new error being reported,
 			// and not an additional error line;
 			logText = os.EOL + logText; // add another line break in front;
 		}
-
-		fs.appendFileSync(logFile, logText); // add error handling as required;
+		//fs.appendFileSync(logFile, logText); // add error handling as required;
+		const wstream = fs.createWriteStream(logFile, { flags: 'a' });
+		wstream.write(`${logText}\n`);
 	}
 
 	// We absolutely must not let the monitor write anything into the console
@@ -52,7 +53,6 @@ monitor.setLog((msg, info) => {
 
 	if (!$DEV) {
 		// If it is not a DEV environment:
-
 		info.display = false; // display nothing;
 	}
 });
@@ -60,7 +60,6 @@ monitor.setLog((msg, info) => {
 let attached = false;
 
 module.exports = {
-
 	// Monitor initialization function;
 	init: (options) => {
 		// We are checking to avoid calling 'attach' more than once,

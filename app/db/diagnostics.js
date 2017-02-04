@@ -1,3 +1,5 @@
+'use strict';
+
 // In this example we are showing how to properly use pg-monitor to log
 // errors in a DEV and PROD environments.
 
@@ -35,14 +37,12 @@ monitor.log = (msg, info) => {
 	//if (info.event !== 'error') { // LANTI DEBUG
 		//let logText = os.EOL + msg; // line break + next error message;
 		let logText = `${msg}`;
-
 		if (info.time) {
 			// If it is a new error being reported,
 			// and not an additional error line;
 			//logText = os.EOL + logText; // add another line break in front;
 			logText = `${logText}`;
 		}
-
 		//fs.appendFileSync(logFile, logText); // add error handling as required;
 		const wstream = fs.createWriteStream(logFile, { flags: 'a' });
 		wstream.write(`${logText}\n`);
