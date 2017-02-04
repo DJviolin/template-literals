@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-    "node": ">= 7.0.0"
+    "node": ">= 7.5.0"
   },
   "author": "István Lantos <kerozin.joe@gmail.com>",
   "license": "ISC",
