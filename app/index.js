@@ -3,7 +3,7 @@
 // For airBnB, babel inserting strict mode
 'use strict';
 
-require('babel-register')({
+/*require('babel-register')({
 	presets: ['es2017-node7'],
-});
-require('./app');
+});*/
+require('./bin/www');

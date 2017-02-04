@@ -6,7 +6,7 @@ const path = require('path');
 const serve = require('koa-static');
 
 // Routes
-const index = require('./views/index');
+const index = require('./routes/index');
 
 const app = new Koa();
 
@@ -34,54 +34,15 @@ if (process.env.NODE_ENV !== 'production') {
 }
 debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 
-// Templating - Must be used before any router
+// Templating setup - Must be used before any router
+// Thanks to template literals, this part not needed
 
 // Routes
-// https://www.keithcirkel.co.uk/es6-template-literals/
-// http://www.benmvp.com/learning-es6-template-literals-tagged-templates/
-app.use(ctx => {
-	/*ctx.state = {
-		title: 'Template Literals',
-		description: 'Vanilla JS rendering',
-	};
-	ctx.body = index.render({
-		title: ctx.state.title,
-		description: ctx.state.description,
-	});*/
-
-	/*index.state.foo = 'bar';
-	index.state.title = 'Template Literals';
-	index.state.description = 'Vanilla JS rendering';
-	index.state.num = 2;
-	index.state.num1 = 2;
-	index.state.num2 = 3;
-	ctx.body = index.render();*/
-
-	/*ctx.body = index.render({
-		foo: 'bar',
-		title: 'Template Literals',
-		description: 'Vanilla JS rendering',
-		num: 2,
-		num1: 2,
-		num2: 3,
-	}, { title: 'tit', description: 'desc' });*/
-
-	ctx.body = index({
-		foo: 'bar',
-		num: 2,
-		num1: 2,
-		num2: 3,
-	}, {
-	obj: {
-		title: 'Template Literals',
-		description: 'Vanilla JS rendering',
-	} });
-
-});
+app.use(index.routes(), index.allowedMethods());
 
 // Error handling
 app.on('error', (err, ctx) => {
 	debugErr('server error', err, ctx);
 });
 
-app.listen(3000);
+module.exports = app;
