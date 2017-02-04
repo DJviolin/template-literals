@@ -1,3 +1,5 @@
+'use strict';
+
 // https://nodejs.org/api/console.html#console_console_time_label
 
 console.time('benchmark');

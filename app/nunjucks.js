@@ -1,3 +1,5 @@
+'use strict';
+
 // https://github.com/koajs/koa/blob/v2.x/docs/guide.md
 // https://github.com/ohomer/koa-nunjucks-render/blob/master/index.js
 // https://github.com/beliefgp/koa-nunjucks-next/blob/master/index.js
