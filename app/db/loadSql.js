@@ -8,10 +8,7 @@ module.exports = (file) => {
 	return new QueryFile(file, { minify: true });
 };*/
 
-
-
-
-cons path = require('path');
+const path = require('path');
 
 //import QueryFile, { QueryFile } from 'pg-promise';
 const QueryFile = require('pg-promise').QueryFile;
