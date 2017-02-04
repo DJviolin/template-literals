@@ -1,3 +1,5 @@
+'use strict';
+
 const htmlHead = require('../components/htmlHead');
 const htmlBottom = require('../components/htmlBottom');
 

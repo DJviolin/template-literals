@@ -1,3 +1,5 @@
+'use strict';
+
 const bodyParser = require('koa-bodyparser');
 const debug = require('debug');
 const json = require('koa-json');

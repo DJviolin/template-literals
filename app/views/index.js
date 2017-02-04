@@ -1,3 +1,5 @@
+'use strict';
+
 const main = require('./layouts/frontend');
 
 module.exports = (state, { obj }) => main(`

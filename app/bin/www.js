@@ -1,3 +1,5 @@
+'use strict';
+
 // Module dependencies
 const debug = require('debug');
 const http = require('http');

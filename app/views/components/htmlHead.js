@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = ({ obj }) => `
 	<!doctype html>
 	<html class="no-js" lang="">
