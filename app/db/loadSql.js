@@ -1,5 +1,7 @@
 'use strict';
 
+// https://github.com/vitaly-t/pg-promise-demo/blob/master/JavaScript/db/sql/index.js
+
 /*const QueryFile = require('pg-promise').QueryFile;
 
 module.exports = (file) => {
@@ -10,6 +12,7 @@ module.exports = (file) => {
 
 
 cons path = require('path');
+
 //import QueryFile, { QueryFile } from 'pg-promise';
 const QueryFile = require('pg-promise').QueryFile;
 
