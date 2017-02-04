@@ -1,6 +1,7 @@
 'use strict';
 
 // https://github.com/vitaly-t/pg-promise-demo/blob/master/JavaScript/db/diagnostics.js
+// 2017-02-04
 
 // In this example we are showing how to properly use pg-monitor to log
 // errors in a DEV and PROD environments.
