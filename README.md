@@ -14,4 +14,7 @@ run the app on linux:
 run the app on windows:
  > SET DEBUG=app:*,koa:*,koa-router*,koa-views* & npm start
  > SET DEBUG=app:*,koa:* & npm start
+
+Flow:
+ > npm run-script flow
 ```
