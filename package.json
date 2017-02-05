@@ -4,7 +4,7 @@
   "description": "Template literals as Viewing engine test",
   "main": "./app/index",
   "scripts": {
-    "start": "node --harmony_async_await ./app/index",
+    "start": "node --use_strict --harmony_async_await ./app/index",
     "flow": "flow",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
