@@ -16,5 +16,5 @@ run the app on windows:
  > SET DEBUG=app:*,koa:* & npm start
 
 Flow:
- > npm run-script flow
+ > npm run-script --silent flow
 ```

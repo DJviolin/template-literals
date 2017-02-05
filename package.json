@@ -14,6 +14,7 @@
   "author": "István Lantos <kerozin.joe@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-es2017-node7": "^0.4.1",
     "babel-register": "^6.22.0",
     "bluebird": "^3.4.7",
