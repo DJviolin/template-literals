@@ -6,7 +6,6 @@ const Router = require('koa-router');
 const db = require('../db/pgp').db;
 const pgp = require('../db/pgp').pgp;
 
-//const router = new Router();
 const router = new Router({ prefix: '/db' });
 
 // Viewing
