@@ -12,17 +12,6 @@ const pgp = require('../db/pgp').pgp;
 const router = new Router();
 //const router = new Router({ prefix: '/hello' })
 
-// http://127.0.0.1:3000/
-router.get('/', async (ctx) => {
-	ctx.state = {
-		//session: this.session,
-		title: 'app',
-	};
-	await ctx.render('index', {
-		//title: 'Koa',
-	});
-});
-
 /*// http://127.0.0.1:3000/sql/2
 router.get('/sql/:id', async (ctx) => {
 	const obj = {
@@ -83,17 +72,6 @@ router.get('/sql/:id', async (ctx) => {
 		.finally(pgp.end); // for immediate app exit, closing the connection pool
 
 	await ctx.render('index');
-});
-
-// http://127.0.0.1:3000/hello/lanti?num=123
-router.get('/hello/:id', async (ctx) => {
-	ctx.state = {
-		//session: this.session,
-		title: ctx.params.id,
-		number: ctx.query.num,
-	};
-	ctx.body = await { hello: ctx.state.title, querystring: ctx.state.number };
-	//ctx.body = 'Hello, World!';
 });
 
 module.exports = router;
