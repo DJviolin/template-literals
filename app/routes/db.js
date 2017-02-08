@@ -1,5 +1,6 @@
 'use strict';
 
+const util = require('util');
 const Router = require('koa-router');
 //import db, { pgp } from '../db/pgp';
 const db = require('../db/pgp').db;
@@ -59,8 +60,6 @@ router.get('/sql/:id', async (ctx) => {
 
 	await ctx.render('index');
 });*/
-
-const util = require('util');
 
 // http://127.0.0.1:3000/db/2
 router.get('/:id', async (ctx) => {
