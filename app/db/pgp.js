@@ -59,4 +59,8 @@ diag.init(options);
 // If you even need access to the library's root (pgp object),
 // you can do it via db.$config.pgp
 // See: http://vitaly-t.github.io/pg-promise/Database.html#.$config
-module.exports = db;
+//module.exports = db;
+module.exports = {
+	db,
+	pgp,
+};
