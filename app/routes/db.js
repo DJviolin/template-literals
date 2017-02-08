@@ -79,7 +79,6 @@ router.get('/:id', async (ctx) => {
 		.finally(pgp.end); // for immediate app exit, closing the connection pool
 		// for testing purposes only!
 
-	//await ctx.render('index');
 	ctx.body = await index({
 		welcome: ctx.state.title,
 	}, {
