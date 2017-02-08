@@ -5,12 +5,20 @@ const Router = require('koa-router');
 const db = require('../db/pgp').db;
 const pgp = require('../db/pgp').pgp;
 
+const router = new Router();
+//const router = new Router({ prefix: '/hello' })
+
+// Viewing
+const index = require('../views/index');
+
+const meta = {
+	title: 'Template Literals',
+	description: 'Vanilla JS rendering',
+};
+
 // http://stackoverflow.com/a/40949781/1442219
 // https://github.com/vitaly-t/pg-promise#sql-names
 // http://vitaly-t.github.io/pg-promise/formatting.html#.name
-
-const router = new Router();
-//const router = new Router({ prefix: '/hello' })
 
 /*// http://127.0.0.1:3000/sql/2
 router.get('/sql/:id', async (ctx) => {
@@ -71,7 +79,11 @@ router.get('/sql/:id', async (ctx) => {
 		})
 		.finally(pgp.end); // for immediate app exit, closing the connection pool
 
-	await ctx.render('index');
+	//await ctx.render('index');
+	ctx.body = await index({
+		welcome: ctx.state.title,
+	}, {
+	obj: meta });
 });
 
 module.exports = router;
