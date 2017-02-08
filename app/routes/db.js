@@ -79,6 +79,7 @@ router.get('/:id', async (ctx) => {
 			ctx.body = '::DATABASE CONNECTION ERROR::';
 		})
 		.finally(pgp.end); // for immediate app exit, closing the connection pool
+		// for testing purposes only!
 
 	//await ctx.render('index');
 	ctx.body = await index({
