@@ -70,8 +70,8 @@ router.get('/:id', async (ctx) => {
 	await db.one('SELECT version() as VALUE;', {}, v => v.value)
 		.then((value) => {
 			//console.log('VALUE:', value); //=> value: 4
-			//ctx.state = { title: value };
-			ctx.state.title = value;
+			ctx.state = { title: value }; // initialization (making sure it's empty)
+			//ctx.state.title = value;
 			console.log(`ctx.state: ${util.inspect(ctx.state, false, null)}`);
 		})
 		.catch((error) => {
