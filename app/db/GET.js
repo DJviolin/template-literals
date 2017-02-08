@@ -4,9 +4,13 @@
 // https://github.com/koajs/koa/blob/v2.x/docs/api/context.md
 // 2017-02-08
 
-const Koa = require('koa');
+//const Koa = require('koa');
+//const app = new Koa();
 
-const app = new Koa();
+const Router = require('koa-router');
+
+const router = new Router();
+//const router = new Router({ prefix: '/hello' })
 
 // Generic GET handler
 /*function GET(url, handler) {
@@ -29,7 +33,7 @@ const app = new Koa();
 
 // Generic GET handler
 const GET = (url, handler) => {
-	app.get(url, (ctx) => {
+	router.get(url, (ctx) => {
 		handler(ctx.request)
 			.then((data) => {
 				ctx.body = {
