@@ -36,7 +36,7 @@ const options = {
 const config = {
 	host: 'localhost',
 	port: process.env.PGPORT || 5432,
-	database: process.env.PGDATABASE || 'pg-promise-demo',
+	database: process.env.PGDATABASE || 'postgres',
 	user: process.env.PGUSER || 'postgres',
 	password: process.env.PGPASSWORD || 'password',
 };
