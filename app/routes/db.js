@@ -5,8 +5,8 @@ const Router = require('koa-router');
 const db = require('../db/pgp').db;
 const pgp = require('../db/pgp').pgp;
 
-const router = new Router();
-//const router = new Router({ prefix: '/hello' })
+//const router = new Router();
+const router = new Router({ prefix: '/db' });
 
 // Viewing
 const index = require('../views/index');
@@ -62,15 +62,16 @@ router.get('/sql/:id', async (ctx) => {
 
 const util = require('util');
 
-// http://127.0.0.1:3000/sql/2
-router.get('/sql/:id', async (ctx) => {
+// http://127.0.0.1:3000/db/2
+router.get('/:id', async (ctx) => {
 	/*await db.one('SELECT ${id} + ${id} as VALUE;', {
 		id: parseInt(ctx.params.id, 10),
 	}, v => v.value)*/
 	await db.one('SELECT version() as VALUE;', {}, v => v.value)
 		.then((value) => {
 			//console.log('VALUE:', value); //=> value: 4
-			ctx.state = { title: value };
+			//ctx.state = { title: value };
+			ctx.state.title = value;
 			console.log(`ctx.state: ${util.inspect(ctx.state, false, null)}`);
 		})
 		.catch((error) => {
