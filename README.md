@@ -18,3 +18,11 @@ run the app on windows:
 Flow:
  > npm run-script --silent flow
 ```
+
+#### Static site generators notes
+
+https://github.com/sintaxi/harp
+
+https://harpjs.com/recipes/blog-posts-list
+
+https://magician03.github.io/blog/2016/12/20/how-to-host-portfolio-and-blog-using-github-pages-harpjs/
