@@ -30,7 +30,7 @@ const app = new Koa();
 // Generic GET handler
 const GET = (url, handler) => {
 	app.get(url, (ctx) => {
-		handler(ctx.req)
+		handler(ctx.request)
 			.then((data) => {
 				ctx.body = {
 					success: true,
