@@ -4,9 +4,6 @@
 // https://github.com/koajs/koa/blob/v2.x/docs/api/context.md
 // 2017-02-08
 
-//const Koa = require('koa');
-//const app = new Koa();
-
 const Router = require('koa-router');
 
 const router = new Router();
