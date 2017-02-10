@@ -12,6 +12,12 @@ const loop = (elem) => {
 };
 
 const loop2 = (elem) => {
+	for (let i = 0; i < elem; i += 1) {
+		`<li>Number ${i}</li>\n`;
+	}
+};
+
+const loop3 = (elem) => {
 	let i = 0;
 	while (i < elem) {
 		`<li>Number ${i}</li>\n`;
@@ -40,6 +46,8 @@ module.exports = (state, { obj }) => main(`
 		${loop(5)}
 		<br />
 		${loop2(5)}
+		<br />
+		${loop3(5)}
 	</ul>
 
 	<p>if/else:</p>
