@@ -83,8 +83,8 @@ console.time('benchmark8');
 const loop8 = (elem) => {
 	let k = 0;
 	while (k < elem) {
-		k += 1;
 		`<li>Number ${k}</li>\n`;
+		k += 1;
 	}
 };
 loop8(5);
