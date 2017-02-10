@@ -20,7 +20,7 @@ const loop2 = (elem) => {
 	return results;
 };
 
-const array = [2, 4, 6, 8];
+//const array = [2, 4, 6, 8];
 const loop3 = (elem) => {
 	let results = '';
 	for (let i = 0; i < elem.length; i += 1) {
@@ -51,7 +51,7 @@ module.exports = (state, { obj }) => main(`
 		<br />
 		${loop2(5)}
 		<br />
-		${loop3(array)}
+		${loop3(state.array)}
 	</ul>
 
 	<p>if/else:</p>

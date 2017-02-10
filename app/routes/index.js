@@ -18,6 +18,7 @@ router.get('/', async (ctx) => {
 	ctx.body = await index({
 		welcome: 'User',
 		num: 2,
+		array: [1, 2, 4, 6, 8],
 	}, {
 	obj: meta });
 });
