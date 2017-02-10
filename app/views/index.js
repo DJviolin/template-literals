@@ -3,11 +3,14 @@
 const main = require('./layouts/frontend');
 
 const loop = (elem) => {
+	let results;
 	for (let i = 0; i < elem; i += 1) {
-		elem += 1;
-		`<li>I am item number ${elem}.</li>`;
+		results += `<li>I am item number ${i}.</li>\n`;
+		//console.log('Print this line 5 times.');
 	}
+	return results;
 };
+console.log(loop(5));
 
 module.exports = (state, { obj }) => main(`
 	<h1>Welcome ${state.welcome}</h1>
@@ -27,7 +30,6 @@ module.exports = (state, { obj }) => main(`
 			<div>I am item number ${i}.</div>
 		`).join('')}
 		<br />
-		${loop(5)}
 	</ul>
 
 	<p>if/else:</p>
