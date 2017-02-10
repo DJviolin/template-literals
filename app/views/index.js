@@ -11,21 +11,17 @@ const loop = (elem) => {
 };
 
 const loop2 = (elem) => {
-	for (let i = 0; i < elem; i += 1) {
-		`<li>Number ${i}</li>\n`;
-	}
-};
-
-const loop3 = (elem) => {
 	let i = 0;
+	let results = '';
 	while (i < elem) {
-		`<li>Number ${i}</li>\n`;
+		results += `<li>Number ${i}</li>\n`;
 		i += 1;
 	}
+	return results;
 };
 
 const array = [2, 4, 6, 8];
-const loop4 = (elem) => {
+const loop3 = (elem) => {
 	let results = '';
 	for (let i = 0; i < elem.length; i += 1) {
 		results += `<li>Number ${elem[i]}</li>\n`;
@@ -55,9 +51,7 @@ module.exports = (state, { obj }) => main(`
 		<br />
 		${loop2(5)}
 		<br />
-		${loop3(5)}
-		<br />
-		${loop4(array)}
+		${loop3(array)}
 	</ul>
 
 	<p>if/else:</p>
