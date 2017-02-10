@@ -78,3 +78,14 @@ const loop7 = (elem) => {
 };
 loop7(5);
 console.timeEnd('benchmark7');
+
+console.time('benchmark8');
+const loop8 = (elem) => {
+	let k = 0;
+	while (k < elem) {
+		k += 1;
+		`<li>Number ${k}</li>\n`;
+	}
+};
+loop8(5);
+console.timeEnd('benchmark8');
