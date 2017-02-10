@@ -66,3 +66,15 @@ const loop2 = (elem) => {
 };
 loop2(5);
 console.timeEnd('benchmark6');
+
+console.time('benchmark7');
+const loop7 = (elem) => {
+	let k = 0;
+	while (k < elem) {
+		;
+		k += 1;
+		return `<li>Number ${k}</li>\n`;
+	}
+};
+loop7(5);
+console.timeEnd('benchmark7');
