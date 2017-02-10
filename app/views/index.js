@@ -37,7 +37,12 @@ const loop3 = (elem) => {
 		}
 	} catch (err) {
 		//results = 'Err!';
-		results = `<span style="color: #f00; font-weight: bold;">Render error:\n${err}</span>`;
+		results = `
+			<span style="color: #f00; font-weight: bold; font-style: italic;">
+				Render error:
+				${err}
+			</span>
+		`;
 	}
 	return results;
 };
