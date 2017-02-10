@@ -21,10 +21,22 @@ const loop2 = (elem) => {
 };
 
 //const array = [2, 4, 6, 8];
-const loop3 = (elem) => {
+/*const loop3 = (elem) => {
 	let results = '';
 	for (let i = 0; i < elem.length; i += 1) {
 		results += `<li>Number ${elem[i]}</li>\n`;
+	}
+	return results;
+};*/
+
+const loop3 = (elem) => {
+	let results = '';
+	try {
+		for (let i = 0; i < elem.length; i += 1) {
+			results += `<li>Number ${elem[i]}</li>\n`;
+		}
+	} catch (err) {
+		results = 'Err!';
 	}
 	return results;
 };
@@ -55,7 +67,7 @@ module.exports = (state, { obj }) => main(`
 	</ul>
 
 	<p>if/else:</p>
-	<p>${true === true ? true : false}</p>
+	<p>${state.welcome.length === 4 ? true : false}</p>
 
 	<p>Full object: ${JSON.stringify(state, null, 4)}</p>
 `,
