@@ -3,7 +3,7 @@
 const main = require('./layouts/frontend');
 
 const loop = (elem) => {
-	let results;
+	let results = '';
 	for (let i = 0; i < elem; i += 1) {
 		results += `<li>Number ${i}</li>\n`;
 		//console.log('Print this line 5 times.');
