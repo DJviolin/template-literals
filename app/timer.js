@@ -32,11 +32,11 @@ Array(5).join(0).split(0).map((item, i) => `
 `).join('');
 console.timeEnd('benchmark2');
 
-console.time('benchmark3');
+/*console.time('benchmark3');
 for (let j = 0; j < 5; j += 1) {
 	`<div>I am item number ${j}.</div>`;
 }
-console.timeEnd('benchmark3');
+console.timeEnd('benchmark3');*/
 
 console.time('benchmark4');
 const loop = (elem) => {
