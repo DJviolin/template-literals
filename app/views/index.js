@@ -30,6 +30,7 @@ module.exports = (state, { obj }) => main(`
 			<div>I am item number ${i}.</div>
 		`).join('')}
 		<br />
+		${loop(5)}
 	</ul>
 
 	<p>if/else:</p>
