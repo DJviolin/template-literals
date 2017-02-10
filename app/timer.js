@@ -37,3 +37,23 @@ for (let j = 0; j < 5; j += 1) {
 	`<div>I am item number ${j}.</div>`;
 }
 console.timeEnd('benchmark3');
+
+console.time('benchmark4');
+const loop = (elem) => {
+	let results = '';
+	for (let j = 0; j < elem; j += 1) {
+		results += `<li>Number ${j}</li>\n`;
+	}
+	return results;
+};
+loop(5);
+console.timeEnd('benchmark4');
+
+console.time('benchmark5');
+const loop2 = (elem) => {
+	for (let j = 0; j < elem; j += 1) {
+		`<li>Number ${j}</li>\n`;
+	}
+};
+loop2(5);
+console.timeEnd('benchmark5');
