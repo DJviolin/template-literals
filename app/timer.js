@@ -50,10 +50,19 @@ loop(5);
 console.timeEnd('benchmark4');
 
 console.time('benchmark5');
+function loop3(elem) {
+	for (let j = 0; j < elem; j += 1) {
+		`<li>Number ${j}</li>\n`;
+	}
+}
+loop3(5);
+console.timeEnd('benchmark5');
+
+console.time('benchmark6');
 const loop2 = (elem) => {
 	for (let j = 0; j < elem; j += 1) {
 		`<li>Number ${j}</li>\n`;
 	}
 };
 loop2(5);
-console.timeEnd('benchmark5');
+console.timeEnd('benchmark6');
