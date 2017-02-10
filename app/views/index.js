@@ -6,11 +6,11 @@ const loop = (elem) => {
 	let results = '';
 	for (let i = 0; i < elem; i += 1) {
 		results += `<li>Number ${i}</li>\n`;
-		//console.log('Print this line 5 times.');
 	}
+	console.log(`results length: ${results.length}`);
 	return results;
 };
-console.log(loop(5));
+//console.log(loop(5));
 
 module.exports = (state, { obj }) => main(`
 	<h1>Welcome ${state.welcome}</h1>
