@@ -7,7 +7,6 @@ const loop = (elem) => {
 	for (let i = 0; i < elem; i += 1) {
 		results += `<li>Number ${i}</li>\n`;
 	}
-	console.log(`results length: ${results.length}`);
 	return results;
 };
 
@@ -23,6 +22,15 @@ const loop3 = (elem) => {
 		`<li>Number ${i}</li>\n`;
 		i += 1;
 	}
+};
+
+const array = [2, 4, 6, 8];
+const loop4 = (elem) => {
+	let results = '';
+	for (let i = 0; i < elem.length; i += 1) {
+		results += `<li>Number ${elem[i]}</li>\n`;
+	}
+	return results;
 };
 
 module.exports = (state, { obj }) => main(`
@@ -48,6 +56,8 @@ module.exports = (state, { obj }) => main(`
 		${loop2(5)}
 		<br />
 		${loop3(5)}
+		<br />
+		${loop4(array)}
 	</ul>
 
 	<p>if/else:</p>
