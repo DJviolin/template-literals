@@ -36,7 +36,8 @@ const loop3 = (elem) => {
 			results += `<li>Number ${elem[i]}</li>\n`;
 		}
 	} catch (err) {
-		results = 'Err!';
+		//results = 'Err!';
+		results = `<span style="color: #f00;">Render error: ${err}</span>`;
 	}
 	return results;
 };
