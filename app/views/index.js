@@ -10,7 +10,14 @@ const loop = (elem) => {
 	console.log(`results length: ${results.length}`);
 	return results;
 };
-//console.log(loop(5));
+
+const loop2 = (elem) => {
+	let i = 0;
+	while (i < elem) {
+		`<li>Number ${i}</li>\n`;
+		i += 1;
+	}
+};
 
 module.exports = (state, { obj }) => main(`
 	<h1>Welcome ${state.welcome}</h1>
@@ -31,6 +38,8 @@ module.exports = (state, { obj }) => main(`
 		`).join('')}
 		<br />
 		${loop(5)}
+		<br />
+		${loop2(5)}
 	</ul>
 
 	<p>if/else:</p>
