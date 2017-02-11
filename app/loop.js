@@ -97,6 +97,7 @@ const loop = (elem1, elem2, obj) => {
   try {
     for (let i = 0; i < obj.length; i += 1) {
       results += `${elem1}${obj[i]}${elem2}`;
+      //results += elem1 + obj[i] + elem2;
     }
   } catch (err) {
     if (process.env.NODE_ENV !== 'production') {
