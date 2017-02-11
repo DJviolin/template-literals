@@ -13,6 +13,11 @@ const meta = {
   description: 'Vanilla JS rendering',
 };
 
+const metaHu = {
+  title: 'Template Literals (magyar)',
+  description: 'Vanilla JS rendering (magyar)',
+};
+
 /*// http://127.0.0.1:3000/
 router.get('/', async (ctx) => {
   ctx.body = await index({
@@ -35,7 +40,7 @@ router.get('/', async (ctx) => {
     num: 2,
     array: [1, 2, 4, 6, 8],
   }, {
-    obj: meta,
+    obj: ctx.query.lang === 'hu' ? metaHu : meta,
   });
 });
 
