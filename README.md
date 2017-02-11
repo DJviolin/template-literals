@@ -7,6 +7,14 @@ $ npm install --save-optional eslint-config-airbnb@latest eslint@^3.13.0 eslint-
 
 $ curl -I -k https://wordpress-31043-67215-181802.cloudwaysapps.com
 
+#### Immutable
+
+https://www.youtube.com/watch?v=e-5obm1G_FY
+
+https://github.com/swannodette/mori
+
+https://github.com/facebook/immutable-js/
+
 #### RUN
 
 ```
