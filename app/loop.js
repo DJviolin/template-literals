@@ -1,6 +1,9 @@
 //const loop = (elem) => {
 const loop = (...args) => {
-  return args;
+  //return args;
+  console.log(`${args[0]} || ${args[1]}`);
+
+
   /*let results = '';
   try {
     //for (let i = 0; i < elem.length; i += 1) {
@@ -25,7 +28,7 @@ const loop = (...args) => {
 
 //console.log(loop([6, 7, 8]));
 
-console.log(loop(`<li>Number }</li>\n`, [6, 7, 8]));
+loop(`<li>Number }</li>`, [6, 7, 8]);
 //console.log(loop(6, 7, 8));
 
 function foo(...args) {
