@@ -23,11 +23,14 @@
 
 const loop = (...args) => {
   let results = '';
+  const split = args[0].split(/<<>>/);
+  //console.log(split);
   for (let i = 0; i < args[1].length; i += 1) {
     //results += `<li>Number ${args[1][i]}</li>\n`;
-    results += args[0];
+    //results += args[0];
+    results += `${split[0]}${args[1][i]}${split[1]}`;
   }
   return results;
 };
 
-console.log(loop(`<li>Number ${this}</li>\n`, [6, 7, 8]));
+console.log(loop('<li>Number <<>></li>\n', [6, 7, 8]));
