@@ -1,11 +1,6 @@
 console.time('benchmark');
 
-//const loop = (elem, obj) => {
-//const loop = (...args) => {
-//const loop = (elem1, obj, elem2) => {
-//const loop = (...args) => {
 const loop = (html, obj) => {
-  //console.log(args);
   let results = '';
   //const split = elem.split(/<<>>/); // '<li>Number <<>></li>'
   //console.log(split);
@@ -30,6 +25,5 @@ const loop = (html, obj) => {
 };
 
 console.log(loop('<li class="list-<<>>">Number <<>></li>', [6, 7, 8]));
-//console.log(loop('<li>Number ', [6, 7, 8], '</li>'));
 
 console.timeEnd('benchmark');
