@@ -20,4 +20,4 @@ const loop = (...args) => {
   return results;
 };
 
-console.log(loop(`<li>Number ${this}}</li>\n`, [6, 7, 8]));
+console.log(loop(`<li>Number ${this}</li>\n`, [6, 7, 8]));
