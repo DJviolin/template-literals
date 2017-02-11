@@ -20,7 +20,8 @@ router.get('/', async (ctx) => {
     num: 2,
     array: [1, 2, 4, 6, 8],
   }, {
-  obj: meta });
+    obj: meta,
+  });
 });
 
 // http://127.0.0.1:3000/hello/steve?num=27
@@ -33,7 +34,8 @@ router.get('/hello/:id', async (ctx) => {
     welcome: ctx.state.id,
     num: ctx.state.num,
   }, {
-  obj: meta });
+    obj: meta,
+  });
 });
 
 // http://127.0.0.1:3000/awesome
@@ -48,7 +50,8 @@ router.get('/awesome', async (ctx) => {
     `,
     num: 2,
   }, {
-  obj: meta });
+    obj: meta,
+  });
 });
 
 // http://127.0.0.1:3000/helpers
@@ -60,7 +63,8 @@ router.get('/helpers', async (ctx) => {
     welcome: `${randomName}!!!`, // Use TL in a router like if it was a helper
     num: 2,
   }, {
-  obj: meta });
+    obj: meta,
+  });
 });
 
 module.exports = router;
