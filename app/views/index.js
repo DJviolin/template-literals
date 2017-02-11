@@ -3,6 +3,12 @@
 const main = require('./layouts/frontend');
 const loop = require('./components/loop');
 
+/*
+${Array(5).join(0).split(0).map((item, i) => `
+  <div>I am item number ${i}.</div>
+`).join('')}
+*/
+
 /*const loop = (elem) => {
   let results = '';
   try {
@@ -38,10 +44,6 @@ module.exports = (state, { obj }) => main(`
     https://gist.github.com/wiledal<br />
   </p>
   <ul>
-    ${Array(5).join(0).split(0).map((item, i) => `
-      <div>I am item number ${i}.</div>
-    `).join('')}
-    <br />
     ${loop('<li>Number ', state.array, '</li>')}
   </ul>
 
