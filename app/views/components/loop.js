@@ -1,4 +1,4 @@
-console.time('benchmark');
+//console.time('benchmark');
 
 //const loop = (elem, obj) => {
 const loop = (elem1, obj, elem2) => {
@@ -27,6 +27,8 @@ const loop = (elem1, obj, elem2) => {
 };
 
 //loop('<li>Number <<>></li>\n', [6, 7, 8])
-loop('<li>Number ', [6, 7, 8], '</li>')
+//loop('<li>Number ', [6, 7, 8], '</li>')
 
-console.timeEnd('benchmark');
+//console.timeEnd('benchmark');
+
+module.exports = loop;

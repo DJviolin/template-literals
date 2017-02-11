@@ -1,8 +1,9 @@
 'use strict';
 
 const main = require('./layouts/frontend');
+const loop = require('./components/loop');
 
-const loop2 = (elem) => {
+/*const loop2 = (elem) => {
   let results = '';
   for (let i = 0; i < elem; i += 1) {
     results += `<li>Number ${i}</li>\n`;
@@ -18,7 +19,7 @@ const loop3 = (elem) => {
     i += 1;
   }
   return results;
-};
+};*/
 
 //const array = [2, 4, 6, 8];
 /*const loop3 = (elem) => {
@@ -29,7 +30,7 @@ const loop3 = (elem) => {
   return results;
 };*/
 
-const loop = (elem) => {
+/*const loop = (elem) => {
   let results = '';
   try {
     for (let i = 0; i < elem.length; i += 1) {
@@ -48,7 +49,7 @@ const loop = (elem) => {
     }
   }
   return results;
-};
+};*/
 
 module.exports = (state, { obj }) => main(`
   <h1>Welcome ${state.welcome}</h1>
@@ -68,9 +69,7 @@ module.exports = (state, { obj }) => main(`
       <div>I am item number ${i}.</div>
     `).join('')}
     <br />
-    ${loop(state.array)}
-    <br />
-    ${loop([1, 2, 3, 4, 5])}
+    ${loop('<li>Number ', state.array, '</li>')}
   </ul>
 
   <p>if/else:</p>
