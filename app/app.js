@@ -27,7 +27,16 @@ app.use(async (ctx, next) => {
   const start = new Date();
   await next();
   const ms = new Date() - start;
-  debugReq(`${ctx.method} ${ctx.originalUrl} ${ctx.status} - ${ms}ms`);
+
+  const str = new RegExp(ctx.originalUrl, 'g');
+  const match = '/css/';
+  const found = str.test(match);
+
+  if (found) {
+    debugReq('');
+  } else {
+    debugReq(`${ctx.method} ${ctx.originalUrl} ${ctx.status} - ${ms}ms`);
+  }
 });
 
 // Development
