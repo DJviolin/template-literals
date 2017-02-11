@@ -40,7 +40,7 @@ const loop = (elem) => {
       results = `
         <span style="color: #f00; font-weight: bold; font-style: italic;">
           Render error:<br />
-          ${err}
+          ${err}<br />
         </span>
       `;
     } else {
@@ -69,6 +69,8 @@ module.exports = (state, { obj }) => main(`
     `).join('')}
     <br />
     ${loop(state.array)}
+    <br />
+    ${loop([1, 2, 3, 4, 5])}
   </ul>
 
   <p>if/else:</p>
