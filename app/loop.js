@@ -60,6 +60,33 @@ const loop = (...args) => {
   }
   return results;
 };
+loop('<li>Number <<>></li>\n', [6, 7, 8])
 console.timeEnd('benchmark');
 
-console.log(loop('<li>Number <<>></li>\n', [6, 7, 8]));
+//console.log(loop('<li>Number <<>></li>\n', [6, 7, 8]));
+
+
+
+console.time('benchmark2');
+const loop2 = (elem) => {
+  let results = '';
+  try {
+    for (let i = 0; i < elem.length; i += 1) {
+      results += `<li>Number ${elem[i]}</li>\n`;
+    }
+  } catch (err) {
+    if (process.env.NODE_ENV !== 'production') {
+      results = `
+        <span style="color: #f00; font-weight: bold; font-style: italic;">
+          Render error:<br />
+          ${err}<br />
+        </span>
+      `;
+    } else {
+      results = '';
+    }
+  }
+  return results;
+};
+loop2([1, 2, 3, 4, 5])
+console.timeEnd('benchmark2');
