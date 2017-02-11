@@ -29,12 +29,7 @@ console.log(loop(`<li>Number }</li>\n`, [6, 7, 8]));
 //console.log(loop(6, 7, 8));
 
 function foo(...args) {
-  return arguments;
-}
-console.log(foo(1, 2, 3)); // { "0": 1, "1": 2, "2": 3 }
-
-const bar = (...args) => {
   //return arguments;
   return args;
 }
-console.log(bar(1, 2, 3));
+console.log(foo(1, 2, 3)); // { "0": 1, "1": 2, "2": 3 }
