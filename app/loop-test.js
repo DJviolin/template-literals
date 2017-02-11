@@ -4,21 +4,14 @@ console.time('benchmark');
 //const loop = (...args) => {
 //const loop = (elem1, obj, elem2) => {
 //const loop = (...args) => {
-const loop = (html, ...args) => {
+const loop = (html, obj) => {
   //console.log(args);
   let results = '';
   //const split = elem.split(/<<>>/); // '<li>Number <<>></li>'
   //console.log(split);
   try {
-    for (let i = 0; i < args[0].length; i += 1) {
-      //results += `${split[0]}${obj[i]}${split[1]}\n`;
-
-      //const str = args[0];
-      const obj = args[0][i];
-
-      const newstr = html.replace(/<<>>/ig, obj);
-
-      //results += `${args[0]}${obj}\n`;
+    for (let i = 0; i < obj.length; i += 1) {
+      const newstr = html.replace(/<<>>/g, obj[i]);
       results += `${newstr}\n`;
     }
   } catch (err) {
@@ -36,7 +29,7 @@ const loop = (html, ...args) => {
   return results;
 };
 
-console.log(loop('<li class="list-<<>>">Number <<>></li>\n', [6, 7, 8]));
+console.log(loop('<li class="list-<<>>">Number <<>></li>', [6, 7, 8]));
 //console.log(loop('<li>Number ', [6, 7, 8], '</li>'));
 
 console.timeEnd('benchmark');
