@@ -1,3 +1,9 @@
+/*
+${Array(5).join(0).split(0).map((item, i) => `
+  <div>I am item number ${i}.</div>
+`).join('')}
+*/
+
 //console.time('benchmark');
 
 //const loop = (elem, obj) => {
