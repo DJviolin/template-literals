@@ -1,4 +1,4 @@
-const loop = (...args) => {
+/*const loop = (...args) => {
   //console.log(args);
   let results = '';
   try {
@@ -17,6 +17,15 @@ const loop = (...args) => {
     } else {
       results = '';
     }
+  }
+  return results;
+};*/
+
+const loop = (...args) => {
+  let results = '';
+  for (let i = 0; i < args[1].length; i += 1) {
+    //results += `<li>Number ${args[1][i]}</li>\n`;
+    results += args[0];
   }
   return results;
 };
