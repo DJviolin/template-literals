@@ -35,7 +35,7 @@ const loop = (...args) => {
 };
 console.timeEnd('benchmark');*/
 
-console.time('benchmark');
+/*console.time('benchmark');
 const loop = (...args) => {
   //console.log(args);
   let results = '';
@@ -61,9 +61,35 @@ const loop = (...args) => {
   return results;
 };
 loop('<li>Number <<>></li>\n', [6, 7, 8])
+console.timeEnd('benchmark');*/
+
+console.time('benchmark');
+const loop = (elem, obj) => {
+  //console.log(args);
+  let results = '';
+  const split = elem.split(/<<>>/);
+  //console.log(split);
+  try {
+    for (let i = 0; i < obj.length; i += 1) {
+      results += `${split[0]}${obj[i]}${split[1]}`;
+    }
+  } catch (err) {
+    if (process.env.NODE_ENV !== 'production') {
+      results = `
+        <span style="color: #f00; font-weight: bold; font-style: italic;">
+          Render error:<br />
+          ${err}<br />
+        </span>
+      `;
+    } else {
+      results = '';
+    }
+  }
+  return results;
+};
+loop('<li>Number <<>></li>\n', [6, 7, 8])
 console.timeEnd('benchmark');
 
-//console.log(loop('<li>Number <<>></li>\n', [6, 7, 8]));
 
 
 
