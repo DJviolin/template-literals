@@ -94,10 +94,11 @@ console.time('benchmark');
 const loop = (elem1, obj, elem2) => {
   //console.log(args);
   let results = '';
+  //const split = elem.split(/<<>>/);
+  //console.log(split);
   try {
     for (let i = 0; i < obj.length; i += 1) {
       results += `${elem1}${obj[i]}${elem2}\n`;
-      //results += elem1 + obj[i] + elem2;
     }
   } catch (err) {
     if (process.env.NODE_ENV !== 'production') {
