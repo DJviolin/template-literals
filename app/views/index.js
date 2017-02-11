@@ -36,13 +36,16 @@ const loop3 = (elem) => {
 			results += `<li>Number ${elem[i]}</li>\n`;
 		}
 	} catch (err) {
-		results = `
-			<span style="color: #f00; font-weight: bold; font-style: italic;">
-				Render error:<br />
-				${err}
-			</span>
-		`;
-		//results = '';
+		if (process.env.NODE_ENV !== 'production') {
+			results = `
+				<span style="color: #f00; font-weight: bold; font-style: italic;">
+					Render error:<br />
+					${err}
+				</span>
+			`;
+		} else {
+			results = '';
+		}
 	}
 	return results;
 };
