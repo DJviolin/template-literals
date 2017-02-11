@@ -1,6 +1,6 @@
 //const loop = (elem) => {
 const loop = (...args) => {
-  return arguments;
+  return args;
   /*let results = '';
   try {
     //for (let i = 0; i < elem.length; i += 1) {
@@ -25,8 +25,8 @@ const loop = (...args) => {
 
 //console.log(loop([6, 7, 8]));
 
-//console.log(loop(`<li>Number }</li>\n`, [6, 7, 8]));
-console.log(loop(6, 7, 8));
+console.log(loop(`<li>Number }</li>\n`, [6, 7, 8]));
+//console.log(loop(6, 7, 8));
 
 function foo(...args) {
   return arguments;
