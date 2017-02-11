@@ -91,7 +91,7 @@ loop('<li>Number <<>></li>\n', [6, 7, 8])
 console.timeEnd('benchmark');*/
 
 console.time('benchmark');
-const loop = (elem1, elem2, obj) => {
+const loop = (elem1, obj, elem2) => {
   //console.log(args);
   let results = '';
   try {
@@ -113,7 +113,7 @@ const loop = (elem1, elem2, obj) => {
   }
   return results;
 };
-loop('<li>Number ', '</li>', [6, 7, 8])
+loop('<li>Number ', [6, 7, 8], '</li>')
 console.timeEnd('benchmark');
 
 
