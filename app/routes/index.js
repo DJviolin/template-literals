@@ -32,7 +32,6 @@ router.get('/', async (ctx) => {
 // http://127.0.0.1:3000/
 // http://127.0.0.1:3000/hu
 // http://127.0.0.1:3000/?lang=hu
-//router.get('/', async (ctx) => {
 //outer.get(['/', '/:lang'], async (ctx) => {
 router.get('/', async (ctx) => {
   ctx.body = await index({
