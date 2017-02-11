@@ -1,6 +1,7 @@
 console.time('benchmark');
 
 //const loop = (elem, obj) => {
+//const loop = (...args) => {
 const loop = (elem1, obj, elem2) => {
   //console.log(args);
   let results = '';
