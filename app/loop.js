@@ -34,6 +34,7 @@ function foo(...args) {
 console.log(foo(1, 2, 3)); // { "0": 1, "1": 2, "2": 3 }
 
 const bar = (...args) => {
-  return arguments;
+  //return arguments;
+  return args;
 }
 console.log(bar(1, 2, 3));
