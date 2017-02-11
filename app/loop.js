@@ -96,7 +96,7 @@ const loop = (elem1, elem2, obj) => {
   let results = '';
   try {
     for (let i = 0; i < obj.length; i += 1) {
-      results += `${elem1}${obj[i]}${elem2}`;
+      results += `${elem1}${obj[i]}${elem2}\n`;
       //results += elem1 + obj[i] + elem2;
     }
   } catch (err) {
@@ -113,7 +113,7 @@ const loop = (elem1, elem2, obj) => {
   }
   return results;
 };
-loop('<li>Number ', '</li>\n', [6, 7, 8])
+loop('<li>Number ', '</li>', [6, 7, 8])
 console.timeEnd('benchmark');
 
 
