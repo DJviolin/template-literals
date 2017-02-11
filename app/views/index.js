@@ -3,33 +3,6 @@
 const main = require('./layouts/frontend');
 const loop = require('./components/loop');
 
-/*const loop2 = (elem) => {
-  let results = '';
-  for (let i = 0; i < elem; i += 1) {
-    results += `<li>Number ${i}</li>\n`;
-  }
-  return results;
-};
-
-const loop3 = (elem) => {
-  let i = 0;
-  let results = '';
-  while (i < elem) {
-    results += `<li>Number ${i}</li>\n`;
-    i += 1;
-  }
-  return results;
-};*/
-
-//const array = [2, 4, 6, 8];
-/*const loop3 = (elem) => {
-  let results = '';
-  for (let i = 0; i < elem.length; i += 1) {
-    results += `<li>Number ${elem[i]}</li>\n`;
-  }
-  return results;
-};*/
-
 /*const loop = (elem) => {
   let results = '';
   try {
