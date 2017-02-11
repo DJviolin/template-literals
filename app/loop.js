@@ -21,6 +21,8 @@
   return results;
 };*/
 
+console.time('benchmark');
+
 const loop = (...args) => {
   let results = '';
   const split = args[0].split(/<<>>/);
@@ -32,5 +34,7 @@ const loop = (...args) => {
   }
   return results;
 };
+
+console.timeEnd('benchmark');
 
 console.log(loop('<li>Number <<>></li>\n', [6, 7, 8]));
