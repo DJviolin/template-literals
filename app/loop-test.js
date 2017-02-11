@@ -11,8 +11,8 @@ const loop = (html, obj) => {
   //console.log(split);
   try {
     for (let i = 0; i < obj.length; i += 1) {
-      const newstr = html.replace(/<<>>/g, obj[i]);
-      results += `${newstr}\n`;
+      const str = html.replace(/<<>>/g, obj[i]);
+      results += `${str}\n`;
     }
   } catch (err) {
     if (process.env.NODE_ENV !== 'production') {
