@@ -11,40 +11,40 @@ const router = new Router();
 
 // Generic GET handler
 /*function GET(url, handler) {
-	app.get(url, (req, res) => {
-		handler(req)
-			.then((data) => {
-				res.json({
-					success: true,
-					data,
-				});
-			})
-			.catch((error) => {
-				res.json({
-					success: false,
-					error: error.message || error,
-				});
-			});
-	});
+  app.get(url, (req, res) => {
+    handler(req)
+      .then((data) => {
+        res.json({
+          success: true,
+          data,
+        });
+      })
+      .catch((error) => {
+        res.json({
+          success: false,
+          error: error.message || error,
+        });
+      });
+  });
 };*/
 
 // Generic GET handler
 const GET = (url, handler) => {
-	router.get(url, (ctx) => {
-		handler(ctx.request)
-			.then((data) => {
-				ctx.body = {
-					success: true,
-					data,
-				};
-			})
-			.catch((err) => {
-				ctx.body = {
-					success: false,
-					error: err,
-				};
-			});
-	});
+  router.get(url, (ctx) => {
+    handler(ctx.request)
+      .then((data) => {
+        ctx.body = {
+          success: true,
+          data,
+        };
+      })
+      .catch((err) => {
+        ctx.body = {
+          success: false,
+          error: err,
+        };
+      });
+  });
 };
 
 module.exports = GET;

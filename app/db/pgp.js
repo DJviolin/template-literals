@@ -10,35 +10,35 @@ const promise = require('bluebird');
 // Loading all the database repositories separately,
 // because event 'extend' is called multiple times:
 /*const repos = {
-	users: require('./repos/users'),
-	products: require('./repos/products'),
+  users: require('./repos/users'),
+  products: require('./repos/products'),
 };*/
 
 // pg-promise initialization options:
 const options = {
-	// Use a custom promise library, instead of the default ES6 Promise:
-	promiseLib: promise,
-	// Extending the database protocol with our custom repositories:
-	/*extend: (obj) => {
-		// Do not use 'require()' here, because this event occurs for every task
-		// and transaction being executed, which should be as fast as possible.
-		obj.users = repos.users(obj, pgp);
-		obj.products = repos.products(obj, pgp);
-		// Alternatively, you can set all repositories in a loop:
-		//
-		// for (var r in repos) {
-		//    obj[r] = repos[r](obj, pgp);
-		// }
-	},*/
+  // Use a custom promise library, instead of the default ES6 Promise:
+  promiseLib: promise,
+  // Extending the database protocol with our custom repositories:
+  /*extend: (obj) => {
+    // Do not use 'require()' here, because this event occurs for every task
+    // and transaction being executed, which should be as fast as possible.
+    obj.users = repos.users(obj, pgp);
+    obj.products = repos.products(obj, pgp);
+    // Alternatively, you can set all repositories in a loop:
+    //
+    // for (var r in repos) {
+    //    obj[r] = repos[r](obj, pgp);
+    // }
+  },*/
 };
 
 // Database connection parameters:
 const config = {
-	host: 'localhost',
-	port: process.env.PGPORT || 5432,
-	database: process.env.PGDATABASE || 'postgres',
-	user: process.env.PGUSER || 'postgres',
-	password: process.env.PGPASSWORD || 'password',
+  host: 'localhost',
+  port: process.env.PGPORT || 5432,
+  database: process.env.PGDATABASE || 'postgres',
+  user: process.env.PGUSER || 'postgres',
+  password: process.env.PGPASSWORD || 'password',
 };
 
 // Load and initialize pg-promise:
@@ -61,6 +61,6 @@ diag.init(options);
 // See: http://vitaly-t.github.io/pg-promise/Database.html#.$config
 //module.exports = db;
 module.exports = {
-	db,
-	pgp,
+  db,
+  pgp,
 };

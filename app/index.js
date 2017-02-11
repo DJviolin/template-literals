@@ -4,10 +4,10 @@
 'use strict';
 
 /*require('babel-register')({
-	presets: ['es2017-node7'],
+  presets: ['es2017-node7'],
 });*/
 require('babel-register')({
-	presets: ['es2017-node7'],
-	plugins: ['transform-flow-strip-types'],
+  presets: ['es2017-node7'],
+  plugins: ['transform-flow-strip-types'],
 });
 require('./bin/www');

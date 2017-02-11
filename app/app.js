@@ -24,16 +24,16 @@ const debugReq = debug('app:req');
 
 // Logger middleware
 app.use(async (ctx, next) => {
-	const start = new Date();
-	await next();
-	const ms = new Date() - start;
-	debugReq(`${ctx.method} ${ctx.originalUrl} ${ctx.status} - ${ms}ms`);
+  const start = new Date();
+  await next();
+  const ms = new Date() - start;
+  debugReq(`${ctx.method} ${ctx.originalUrl} ${ctx.status} - ${ms}ms`);
 });
 
 // Development
 if (process.env.NODE_ENV !== 'production') {
-	app.use(serve(path.join(__dirname, 'public'))); // Static files
-	debugLog('serveStatic is ON!');
+  app.use(serve(path.join(__dirname, 'public'))); // Static files
+  debugLog('serveStatic is ON!');
 }
 debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 
@@ -46,7 +46,7 @@ app.use(db.routes(), db.allowedMethods());
 
 // Error handling
 app.on('error', (err, ctx) => {
-	debugErr('server error', err, ctx);
+  debugErr('server error', err, ctx);
 });
 
 module.exports = app;

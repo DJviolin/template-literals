@@ -4,9 +4,9 @@ const htmlHead = require('../partials/htmlHead');
 const htmlBottom = require('../partials/htmlBottom');
 
 module.exports = (content, { obj }) => `
-	${htmlHead({ obj })}
+  ${htmlHead({ obj })}
 
-	${content}
+  ${content}
 
-	${htmlBottom()}
+  ${htmlBottom()}
 `;
