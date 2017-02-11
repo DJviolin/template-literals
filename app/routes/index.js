@@ -12,7 +12,6 @@ const meta = {
   title: 'Template Literals',
   description: 'Vanilla JS rendering',
 };
-
 const metaHu = {
   title: 'Template Literals (magyar)',
   description: 'Vanilla JS rendering (magyar)',
