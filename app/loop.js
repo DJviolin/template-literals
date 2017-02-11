@@ -3,7 +3,8 @@ const loop = (...args) => {
   let results = '';
   try {
     for (let i = 0; i < args[1].length; i += 1) {
-      results += `<li>Number ${args[1][i]}</li>\n`;
+      //results += `<li>Number ${args[1][i]}</li>\n`;
+      results += args[0];
     }
   } catch (err) {
     if (process.env.NODE_ENV !== 'production') {
