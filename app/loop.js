@@ -63,7 +63,7 @@ const loop = (...args) => {
 loop('<li>Number <<>></li>\n', [6, 7, 8])
 console.timeEnd('benchmark');*/
 
-console.time('benchmark');
+/*console.time('benchmark');
 const loop = (elem, obj) => {
   //console.log(args);
   let results = '';
@@ -88,6 +88,31 @@ const loop = (elem, obj) => {
   return results;
 };
 loop('<li>Number <<>></li>\n', [6, 7, 8])
+console.timeEnd('benchmark');*/
+
+console.time('benchmark');
+const loop = (elem1, elem2, obj) => {
+  //console.log(args);
+  let results = '';
+  try {
+    for (let i = 0; i < obj.length; i += 1) {
+      results += `${elem1}${obj[i]}${elem2}`;
+    }
+  } catch (err) {
+    if (process.env.NODE_ENV !== 'production') {
+      results = `
+        <span style="color: #f00; font-weight: bold; font-style: italic;">
+          Render error:<br />
+          ${err}<br />
+        </span>
+      `;
+    } else {
+      results = '';
+    }
+  }
+  return results;
+};
+loop('<li>Number ', '</li>\n', [6, 7, 8])
 console.timeEnd('benchmark');
 
 
