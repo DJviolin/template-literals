@@ -1,8 +1,12 @@
-const loop = (elem) => {
-  let results = '';
+//const loop = (elem) => {
+const loop = (...args) => {
+  return arguments;
+  /*let results = '';
   try {
-    for (let i = 0; i < elem.length; i += 1) {
-      results += `<li>Number ${elem[i]}</li>\n`;
+    //for (let i = 0; i < elem.length; i += 1) {
+    for (let i = 0; i < 3; i += 1) {
+      //results += `<li>Number ${elem[i]}</li>\n`;
+      console.log(`${arguments[0]} || ${arguments[1]}`);
     }
   } catch (err) {
     if (process.env.NODE_ENV !== 'production') {
@@ -16,6 +20,10 @@ const loop = (elem) => {
       results = '';
     }
   }
-  return results;
+  return results;*/
 };
-console.log(loop([6, 7, 8]));
+
+//console.log(loop([6, 7, 8]));
+
+//console.log(loop(`<li>Number }</li>\n`, [6, 7, 8]));
+console.log(loop(6, 7, 8));
