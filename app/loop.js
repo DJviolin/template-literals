@@ -94,10 +94,11 @@ console.time('benchmark');
 const loop = (elem1, obj, elem2) => {
   //console.log(args);
   let results = '';
-  //const split = elem.split(/<<>>/);
+  //const split = elem.split(/<<>>/); // '<li>Number <<>></li>'
   //console.log(split);
   try {
     for (let i = 0; i < obj.length; i += 1) {
+      //results += `${split[0]}${obj[i]}${split[1]}\n`;
       results += `${elem1}${obj[i]}${elem2}\n`;
     }
   } catch (err) {
