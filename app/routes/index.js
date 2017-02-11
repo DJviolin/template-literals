@@ -3,7 +3,7 @@
 const Router = require('koa-router');
 
 const router = new Router();
-//const router = new Router({ prefix: '/hello' })
+//const router = new Router({ prefix: '/hello' });
 
 // Viewing
 const index = require('../views/index');
@@ -14,7 +14,8 @@ const meta = {
 };
 
 // http://127.0.0.1:3000/
-router.get('/', async (ctx) => {
+//router.get('/', async (ctx) => {
+router.get(['/', '/hu'], async (ctx) => {
   ctx.body = await index({
     welcome: 'User',
     num: 2,
