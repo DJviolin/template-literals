@@ -15,6 +15,7 @@ const meta = {
 const metaHu = {
   title: 'Template Literals (magyar)',
   description: 'Vanilla JS rendering (magyar)',
+  lang: 'hu',
 };
 
 /*// http://127.0.0.1:3000/

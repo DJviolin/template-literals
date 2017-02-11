@@ -2,7 +2,7 @@
 
 module.exports = ({ obj }) => `
   <!doctype html>
-  <html class="no-js" lang="">
+  <html class="no-js" lang="${obj.lang || 'en'}">
   <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
