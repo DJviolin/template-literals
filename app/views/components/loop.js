@@ -1,3 +1,5 @@
+'use strict';
+
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters
 // https://rainsoft.io/how-three-dots-changed-javascript/
 
