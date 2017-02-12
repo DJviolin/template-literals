@@ -2,9 +2,9 @@
   "name": "template-literals",
   "version": "1.0.0",
   "description": "Template literals as Viewing engine test",
-  "main": "./app/index",
+  "main": "./src/index",
   "scripts": {
-    "start": "node --use_strict --harmony_async_await ./app/index",
+    "start": "node --use_strict --harmony_async_await ./src/index",
     "flow": "flow",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
