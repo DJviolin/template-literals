@@ -9,5 +9,5 @@ function fibonacci(n) {
 
 module.exports = (n) => {
   if (typeof n !== 'number') throw new Error('Wrong arguments');
-  return fibonacci(n);
+  return fibonacci(n); // Functional programming
 };
