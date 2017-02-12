@@ -5,6 +5,14 @@ $ npm info "eslint-config-airbnb@latest" peerDependencies --json
 $ npm install --save-optional eslint-config-airbnb@latest eslint@^3.13.0 eslint-plugin-jsx-a11y@^3.0.2 eslint-plugin-import@^2.2.0 eslint-plugin-react@^6.9.0
 ```
 
+#### ORM
+
+Sequalize vs pg-promise:
+
+https://www.npmjs.com/package/sequelize
+
+#### Header
+
 $ curl -I -k https://wordpress-31043-67215-181802.cloudwaysapps.com
 
 #### Immutable
