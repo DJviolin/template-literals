@@ -3,6 +3,9 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters
 // https://rainsoft.io/how-three-dots-changed-javascript/
 
+// Proper module handling with type checking
+// https://gist.github.com/AoJ/547bc678347c18a4051c#file-fibonacci-js
+
 /*
 ${Array(5).join(0).split(0).map((item, i) => `
   <div>I am item number ${i}.</div>
