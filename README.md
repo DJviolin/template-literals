@@ -7,7 +7,7 @@ $ npm install --save-optional eslint-config-airbnb@latest eslint@^3.13.0 eslint-
 
 #### ORM
 
-Sequalize vs pg-promise:
+sequelize vs pg-promise:
 
 https://www.npmjs.com/package/sequelize
 
