@@ -19,7 +19,7 @@ class Polygon {
   // Simple class instance methods using short-hand method
   // declaration
   sayName() {
-    console.log('Hi, I am a ', this.name + '.');
+    console.log(`Hi, I am a ${this.name}.`);
   }
 
   sayHistory() {
