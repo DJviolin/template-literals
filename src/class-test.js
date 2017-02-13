@@ -33,7 +33,7 @@ class Polygon {
 // Classes are used just like ES5 constructor functions:
 let p = new Polygon(300, 400);
 p.sayName();
-console.log('The width of this polygon is ' + p.width);
+console.log(`The width of this polygon is ${p.width}`);
 
 // Example 2: Creating a new class (expression-form)
 // ===============================================================
