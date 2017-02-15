@@ -10,6 +10,7 @@ const serve = require('koa-static');
 // Routes
 const index = require('./routes/index');
 const db = require('./routes/db');
+const stream = require('./routes/stream');
 
 const app = new Koa();
 
@@ -51,6 +52,7 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // Routes
 app.use(index.routes(), index.allowedMethods());
 app.use(db.routes(), db.allowedMethods());
+app.use(stream.routes(), stream.allowedMethods());
 
 // Error handling
 app.on('error', (err, ctx) => {
