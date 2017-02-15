@@ -24,8 +24,5 @@ module.exports = (state, { obj }) => main(`
   <p>${state.welcome.length === 4 ? '4!' : 'NOT 4!'}</p>
 
   <p>Full object: ${JSON.stringify(state, null, 4)}</p>
-
-  <p>Universal rendering:</p>
-  <div id="main"></div>
 `,
 { obj });
