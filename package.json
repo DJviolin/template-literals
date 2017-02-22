@@ -4,12 +4,12 @@
   "description": "Template literals as Viewing engine test",
   "main": "./src/index",
   "scripts": {
-    "start": "node --use_strict --harmony_async_await ./src/index",
+    "start": "node --use_strict ./src/index",
     "flow": "flow",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-    "node": ">= 7.5.0"
+    "node": ">= 7.6.0"
   },
   "author": "István Lantos <kerozin.joe@gmail.com>",
   "license": "ISC",
