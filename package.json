@@ -31,7 +31,7 @@
   "devDependencies": {
     "flow-bin": "^0.38.0",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-clean-css": "^2.3.2",
+    "gulp-clean-css": "^2.4.0",
     "gulp-download": "0.0.1",
     "gulp-live-server": "0.0.30",
     "gulp-rename": "^1.2.2",
@@ -48,8 +48,8 @@
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
     "htmlhint": "^0.9.13",
-    "postcss": "^5.2.11",
-    "stylelint": "^7.7.1",
+    "postcss": "^5.2.15",
+    "stylelint": "^7.9.0",
     "stylus": "^0.54.5",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^1.16.3"
