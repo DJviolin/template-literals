@@ -29,9 +29,9 @@
     "pg-promise": "^5.5.8"
   },
   "devDependencies": {
-    "flow-bin": "^0.38.0",
+    "flow-bin": "^0.40.0",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-clean-css": "^2.4.0",
+    "gulp-clean-css": "^3.0.3",
     "gulp-download": "0.0.1",
     "gulp-live-server": "0.0.30",
     "gulp-rename": "^1.2.2",
@@ -52,6 +52,6 @@
     "stylelint": "^7.9.0",
     "stylus": "^0.54.5",
     "webpack": "^2.2.1",
-    "webpack-dev-server": "^1.16.3"
+    "webpack-dev-server": "^2.4.1"
   }
 }
