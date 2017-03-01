@@ -7,6 +7,9 @@ $ npm install --save-optional eslint-config-airbnb@latest eslint@^3.13.0 eslint-
 
 #### ORM
 
+Example (Sequalize.js):
+https://github.com/fadliawan/django-express-bench/tree/master/express/exbench-mysql
+
 ORMs vs pg-promise:
 https://www.reddit.com/r/node/comments/3wiy6j/what_do_you_think_is_the_best_way_to_use/
 
