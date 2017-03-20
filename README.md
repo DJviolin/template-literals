@@ -75,6 +75,9 @@ run the app on windows:
 
 Flow:
  > npm run-script --silent flow
+
+Eslint:
+ > npm run-script --silent eslint
 ```
 
 #### Static site generators notes
