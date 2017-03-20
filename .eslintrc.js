@@ -43,6 +43,6 @@ module.exports = {
 
   "rules": {
     "spaced-comment": "off",
-    "no-param-reassign": "off",
+    "no-param-reassign": ["error", { "props": false }],
   },
 }
