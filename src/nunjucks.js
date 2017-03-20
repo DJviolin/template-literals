@@ -12,8 +12,10 @@
 // http://jsben.ch/#/AUPq5
 // https://jsfiddle.net/basickarl/e6gzk91h/
 
-import Promise from 'bluebird';
-import nunjucks from 'nunjucks';
+//import Promise from 'bluebird';
+//import nunjucks from 'nunjucks';
+const Promise = require('bluebird');
+const nunjucks = require('nunjucks');
 
 function njk(path, opts) {
   const env = nunjucks.configure(path, opts);
@@ -86,4 +88,5 @@ function njk(path, opts) {
   };
 }
 
-export default njk;
+//export default njk;
+module.exports = njk;
