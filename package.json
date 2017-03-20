@@ -5,7 +5,7 @@
   "main": "./src/index",
   "scripts": {
     "start": "node --use_strict ./src/index",
-    "eslint": "node ./node_modules/eslint/bin/eslint.js --ignore-pattern \"src/.ignore/**/*\" --ignore-pattern \"src/nunjucks.js\" \"src/**/*.js*\"",
+    "eslint": "node ./node_modules/eslint/bin/eslint.js --ignore-pattern \"src/.ignore/**/*\" --ignore-pattern \"src/include/nunjucks.js\" \"src/**/*.js*\"",
     "flow": "flow",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
