@@ -15,6 +15,7 @@ const db = require('./routes/db');
 const app = new Koa();
 
 // Middlewares
+// https://blog.risingstack.com/node-js-security-checklist/
 app.use(bodyParser());
 app.use(helmet());
 app.use(json({ pretty: false, param: 'pretty' }));
