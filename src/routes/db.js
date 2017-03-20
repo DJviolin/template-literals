@@ -82,7 +82,8 @@ router.get('/:id', async (ctx) => {
   ctx.body = await index({
     welcome: ctx.state.title,
   }, {
-  obj: meta });
+    obj: meta,
+  });
 });
 
 module.exports = router;
