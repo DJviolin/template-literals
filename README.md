@@ -7,6 +7,8 @@ $ npm install --save-optional eslint-config-airbnb@latest eslint@^3.13.0 eslint-
 
 #### ORM
 
+https://medium.freecodecamp.com/i-analyzed-every-book-ever-mentioned-on-stack-overflow-here-are-the-most-popular-ones-eee0891f1786#.6denka72u
+
 Example (Sequalize.js):
 https://github.com/fadliawan/django-express-bench/tree/master/express/exbench-mysql
 
