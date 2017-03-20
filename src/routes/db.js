@@ -1,6 +1,6 @@
 'use strict';
 
-const util = require('util');
+//const util = require('util');
 const Router = require('koa-router');
 //import db, { pgp } from '../db/pgp';
 const db = require('../db/pgp').db;
@@ -70,11 +70,11 @@ router.get('/:id', async (ctx) => {
       //console.log('VALUE:', value); //=> value: 4
       ctx.state = { title: value }; // initialization (making sure it's empty)
       //ctx.state.title = value;
-      console.log(`ctx.state: ${util.inspect(ctx.state, false, null)}`);
+      //console.log(`ctx.state: ${util.inspect(ctx.state, false, null)}`);
     })
     .catch((error) => {
-      console.log('ERROR:', error); // print the error
-      ctx.body = '::DATABASE CONNECTION ERROR::';
+      //console.log('ERROR:', error); // print the error
+      ctx.body = `::DATABASE CONNECTION ERROR::<br>ERROR: ${error}`;
     })
     .finally(pgp.end); // for immediate app exit, closing the connection pool
     // for testing purposes only!
