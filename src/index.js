@@ -1,11 +1,6 @@
-#!/usr/bin/env node
-
-// For airBnB, babel inserting strict mode
 'use strict';
 
-/*require('babel-register')({
-  presets: ['es2017-node7'],
-});*/
+// For airBnB, babel inserting strict mode
 require('babel-register')({
   presets: ['es2017-node7'],
   plugins: ['transform-flow-strip-types'],
