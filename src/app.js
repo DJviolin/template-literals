@@ -48,6 +48,12 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // Templating setup - Must be used before any router
 // Thanks to template literals, this part not needed
 
+// Session
+// https://github.com/rkusa/koa-passport/issues/54
+// https://github.com/Secbone/koa-session2
+// https://github.com/koajs/session
+// https://github.com/koajs/generic-session
+
 // Routes
 app.use(index.routes(), index.allowedMethods());
 app.use(db.routes(), db.allowedMethods());
