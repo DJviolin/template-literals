@@ -43,15 +43,15 @@ module.exports = {
 
   "rules": {
     "spaced-comment": "off",
-    "no-console": "off",
+    //"no-console": "off",
     //"no-tabs": "off",
     //"indent": "off",
-    "import/no-extraneous-dependencies": "off",
-    "react/jsx-filename-extension": "off",
-    "react/require-extension": "off", // Atom error
+    //"import/no-extraneous-dependencies": "off",
+    //"react/jsx-filename-extension": "off",
+    //"react/require-extension": "off", // Atom error
     //"react/prefer-es6-class": ["error", "never"],
     //"react/prefer-stateless-function": "off",
     "no-param-reassign": "off",
-    "no-template-curly-in-string": "off",
+    //"no-template-curly-in-string": "off",
   },
 }
