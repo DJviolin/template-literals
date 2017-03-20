@@ -59,6 +59,7 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // https://blog.risingstack.com/node-hero-node-js-authentication-passport-js/
 // https://github.com/RisingStack/nodehero-authentication
 // Koa v2 tutorials:
+// https://github.com/mapmeld/koa-passport-example
 // http://www.zev23.com/2014/03/koajs-tutorial-authenticate-with_7.html
 // http://ghost-dozoisch.rhcloud.com/integrating-passportjs-with-koa/
 // Redis session store:
