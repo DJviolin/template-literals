@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node --use_strict ./src/index",
     "flow": "flow",
-    "eslint": "node ./node_modules/eslint/bin/eslint.js --ext .jsx,.js src/",
+    "eslint": "node ./node_modules/eslint/bin/eslint.js --ignore-path src/ignore --ext .jsx,.js src/",
+    "eslint2": "node ./node_modules/eslint/bin/eslint.js \"src/**/*.js*\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
