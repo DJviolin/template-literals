@@ -2,6 +2,7 @@
 
 const bodyParser = require('koa-bodyparser');
 const debug = require('debug');
+const helmet = require('koa-helmet');
 const json = require('koa-json');
 const Koa = require('koa');
 const path = require('path');
@@ -15,6 +16,7 @@ const app = new Koa();
 
 // Middlewares
 app.use(bodyParser());
+app.use(helmet());
 app.use(json({ pretty: false, param: 'pretty' }));
 
 // Debug
