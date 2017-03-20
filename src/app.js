@@ -53,6 +53,7 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // https://github.com/Secbone/koa-session2
 // https://github.com/koajs/session
 // https://github.com/koajs/generic-session
+// https://github.com/TMiguelT/koa-pg-session
 
 // Routes
 app.use(index.routes(), index.allowedMethods());
