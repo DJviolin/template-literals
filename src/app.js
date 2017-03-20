@@ -56,14 +56,19 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // https://github.com/koajs/session
 // https://github.com/koajs/generic-session
 // https://github.com/TMiguelT/koa-pg-session
+
 // in-memory or server store is good practice:
 // http://wonko.com/post/why-you-probably-shouldnt-use-cookies-to-store-session-data
 // https://blog.risingstack.com/node-hero-node-js-authentication-passport-js/
 // https://github.com/RisingStack/nodehero-authentication
+
 // Koa v2 tutorials:
+// https://blog.risingstack.com/web-authentication-methods-explained/
+// https://blog.risingstack.com/node-js-security-checklist/
 // https://github.com/mapmeld/koa-passport-example
 // http://www.zev23.com/2014/03/koajs-tutorial-authenticate-with_7.html
 // http://ghost-dozoisch.rhcloud.com/integrating-passportjs-with-koa/
+
 // Redis session store:
 // http://stackoverflow.com/questions/10278683/how-safe-it-is-to-store-session-with-redis
 // https://www.digitalocean.com/community/tutorials/how-to-set-up-a-redis-server-as-a-session-handler-for-php-on-ubuntu-14-04
