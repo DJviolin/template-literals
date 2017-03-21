@@ -1,20 +1,21 @@
 'use strict';
 
 const bodyParser = require('koa-bodyparser');
+const convert = require('koa-convert');
 //const csrf = require('koa-csrf');
 const debug = require('debug');
 const helmet = require('koa-helmet');
 const json = require('koa-json');
-const jwt = require('jsonwebtoken');
+//const jwt = require('jsonwebtoken');
 const Koa = require('koa');
-const koajwt = require('koa-jwt');
+//const koajwt = require('koa-jwt');
 const path = require('path');
 //const ratelimit = require('koa-ratelimit');
 const serve = require('koa-static');
-//const session = require('koa-session');
+const session = require('koa-generic-session');
 
 // koa-jwt + jsonwebtoken
-const profile = {
+/*const profile = {
   id: 123,
 };
 const TOKEN = jwt.sign(profile, 'secret', { expiresIn: 60 * 5 });
@@ -25,7 +26,11 @@ console.log('');
 console.log('  curl http://localhost:3000/public/foo            # should succeed (return "unprotected")');
 console.log('  curl http://localhost:3000/api/foo               # should fail (return "401 Unauthorized ...")');
 console.log(`  curl -H "Authorization: Bearer ' + ${TOKEN} + '" http://localhost:3000/api/foo   # should succeed (return "protected")`);
-console.log('');
+console.log('');*/
+
+// Sessions
+app.keys = ['your-session-secret']
+app.use(convert(session()))
 
 // Routes
 const index = require('./routes/index');
@@ -128,7 +133,7 @@ app.use(async (ctx, next) => {
   });
 });
 // Middleware below this line is only reached if JWT token is valid
-app.use(koajwt({ secret: 'secret' }));
+//app.use(koajwt({ secret: 'secret' }));
 
 app.use(test.routes(), test.allowedMethods());
 
