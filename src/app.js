@@ -79,6 +79,13 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // sessions vs. JWT and cookies vs. Local Storage:
 // http://cryto.net/~joepie91/blog/2016/06/13/stop-using-jwt-for-sessions/
 // http://cryto.net/%7Ejoepie91/blog/2016/06/19/stop-using-jwt-for-sessions-part-2-why-your-solution-doesnt-work/
+// https://www.slideshare.net/derekperkins/authentication-cookies-vs-jwts-and-why-youre-doing-it-wrong
+// https://stormpath.com/blog/where-to-store-your-jwts-cookies-vs-html5-web-storage
+// https://ponyfoo.com/articles/json-web-tokens-vs-session-cookies
+// https://auth0.com/learn/json-web-tokens/
+// https://jwt.io/
+// https://www.npmjs.com/package/jws
+// https://www.npmjs.com/package/jsonwebtoken
 
 // Routes
 app.use(index.routes(), index.allowedMethods());
