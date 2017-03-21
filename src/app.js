@@ -76,6 +76,10 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // http://stackoverflow.com/questions/10278683/how-safe-it-is-to-store-session-with-redis
 // https://www.digitalocean.com/community/tutorials/how-to-set-up-a-redis-server-as-a-session-handler-for-php-on-ubuntu-14-04
 
+// sessions vs. JWT and cookies vs. Local Storage:
+// http://cryto.net/~joepie91/blog/2016/06/13/stop-using-jwt-for-sessions/
+// http://cryto.net/%7Ejoepie91/blog/2016/06/19/stop-using-jwt-for-sessions-part-2-why-your-solution-doesnt-work/
+
 // Routes
 app.use(index.routes(), index.allowedMethods());
 app.use(db.routes(), db.allowedMethods());
