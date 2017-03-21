@@ -94,6 +94,9 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // https://matoski.com/article/jwt-express-node-mongoose/
 // https://github.com/auth0-blog/angular-token-auth
 
+// https://github.com/koajs/jwt/blob/koa-v2/test/test.js
+// https://github.com/koajs/jwt/blob/koa-v2/test/test-server.js
+
 // Routes
 app.use(index.routes(), index.allowedMethods());
 app.use(db.routes(), db.allowedMethods());
