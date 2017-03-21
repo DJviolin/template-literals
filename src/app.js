@@ -89,6 +89,9 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // https://www.npmjs.com/package/jsonwebtoken
 // https://github.com/koajs/jwt/tree/koa-v2
 
+// https://matoski.com/article/jwt-express-node-mongoose/
+// https://github.com/auth0-blog/angular-token-auth
+
 // Routes
 app.use(index.routes(), index.allowedMethods());
 app.use(db.routes(), db.allowedMethods());
