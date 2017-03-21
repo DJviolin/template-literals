@@ -87,6 +87,7 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // https://jwt.io/introduction/
 // https://www.npmjs.com/package/jws
 // https://www.npmjs.com/package/jsonwebtoken
+// https://github.com/koajs/jwt/tree/koa-v2
 
 // Routes
 app.use(index.routes(), index.allowedMethods());
