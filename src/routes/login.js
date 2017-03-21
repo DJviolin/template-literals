@@ -27,8 +27,8 @@ router.get('/app', async (ctx) => {
   ctx.body = { success: 'Authentication success' };
 });
 
-// POST /login
-router.post('/login',
+// POST /post
+router.post('/post',
   passport.authenticate('local', {
     successRedirect: '/app',
     failureRedirect: '/',

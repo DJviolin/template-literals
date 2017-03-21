@@ -4,7 +4,7 @@ const main = require('./layouts/frontend');
 //const loop = require('./components/loop');
 
 module.exports = (state, { obj }) => main(`
-  <form action="/login" method="post">
+  <form action="/post" method="post">
     <p>
       <label>Username:
         <input type="text" name="username" value="test" />
