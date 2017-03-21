@@ -84,6 +84,7 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // https://ponyfoo.com/articles/json-web-tokens-vs-session-cookies
 // https://auth0.com/learn/json-web-tokens/
 // https://jwt.io/
+// https://jwt.io/introduction/
 // https://www.npmjs.com/package/jws
 // https://www.npmjs.com/package/jsonwebtoken
 
