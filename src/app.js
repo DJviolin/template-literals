@@ -145,12 +145,12 @@ app.use(login.routes(), login.allowedMethods());
 
 //app.use(test.routes(), test.allowedMethods());
 
-app.use((ctx) => {
+/*app.use((ctx) => {
   if (ctx.url.match(/^\/test/)) {
     ctx.type = 'html';
     ctx.body = '<h1>route test</h1>';
   }
-});
+});*/
 
 // https://github.com/rkusa/koa-passport-example/blob/master/server.js
 // Require authentication for now
