@@ -13,6 +13,12 @@ const path = require('path');
 const serve = require('koa-static');
 //const session = require('koa-session');
 
+// koa-jwt + jsonwebtoken
+const profile = {
+  id: 123,
+};
+const TOKEN = jwt.sign(profile, 'secret', { expiresIn: 60 * 5 });
+
 // Routes
 const index = require('./routes/index');
 const db = require('./routes/db');
@@ -100,6 +106,34 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // Routes
 app.use(index.routes(), index.allowedMethods());
 app.use(db.routes(), db.allowedMethods());
+
+// koa-jwt + jsonwebtoken
+// Custom 401 handling
+app.use((ctx, next) => {
+  next().catch((err) => {
+    if (err.status === 401) {
+      ctx.status = 401;
+      ctx.body = '401 Unauthorized - Protected resource, use Authorization header to get access\n';
+    } else {
+      throw err;
+    }
+  });
+});
+// Unprotected middleware
+app.use((ctx, next) => {
+  if (ctx.url.match(/^\/public/)) {
+    ctx.body = 'unprotected\n';
+  } else {
+    next();
+  }
+});
+// Middleware below this line is only reached if JWT token is valid
+app.use(koajwt({ secret: 'secret' }));
+app.use((ctx) => {
+  if (ctx.url.match(/^\/api/)) {
+    ctx.body = 'protected\n';
+  }
+});
 
 // Error handling
 app.on('error', (err, ctx) => {
