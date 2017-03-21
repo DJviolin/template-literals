@@ -1,6 +1,7 @@
 'use strict';
 
 const passport = require('koa-passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 const fetchUser = (() => {
   // This is an example! Use password hashing in yours
@@ -23,7 +24,6 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-const LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy((username, password, done) => {
   fetchUser()
     .then((user) => {
