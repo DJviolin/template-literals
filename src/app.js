@@ -118,7 +118,7 @@ app.use(db.routes(), db.allowedMethods());
 // koa-jwt + jsonwebtoken
 // Custom 401 handling
 app.use((ctx, next) => {
-  next().catch((err) => {
+  return next().catch((err) => {
     if (err.status === 401) {
       ctx.status = 401;
       ctx.body = '401 Unauthorized - Protected resource, use Authorization header to get access\n';
@@ -132,7 +132,7 @@ app.use((ctx, next) => {
   if (ctx.url.match(/^\/public/)) {
     ctx.body = 'unprotected\n';
   } else {
-    next();
+    return next();
   }
 });
 // Middleware below this line is only reached if JWT token is valid
