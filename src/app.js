@@ -32,7 +32,7 @@ console.log('');*/
 // Routes
 const index = require('./routes/index');
 const db = require('./routes/db');
-const admin = require('./routes/admin');
+const login = require('./routes/login');
 //const test = require('./routes/test');
 
 const app = new Koa();
@@ -127,7 +127,7 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // Routes
 app.use(index.routes(), index.allowedMethods());
 app.use(db.routes(), db.allowedMethods());
-app.use(admin.routes(), admin.allowedMethods());
+app.use(login.routes(), login.allowedMethods());
 
 // Custom 401 handling
 app.use(async (ctx, next) => {
@@ -152,7 +152,8 @@ app.use(async (ctx, next) => {
   if (ctx.isAuthenticated()) {
     await next();
   } else {
-    ctx.redirect('/');
+    //ctx.redirect('/');
+    ctx.body = { error: 'Authentication failed' };
   }
 });
 

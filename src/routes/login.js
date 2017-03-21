@@ -1,11 +1,13 @@
 'use strict';
 
+const passport = require('koa-passport');
+
 const Router = require('koa-router');
 
-const router = new Router({ prefix: '/admin' });
+const router = new Router({ prefix: '/login' });
 
 // Viewing
-const index = require('../views/admin');
+const login = require('../views/login');
 
 const meta = {
   title: 'Admin',
@@ -14,13 +16,19 @@ const meta = {
 };
 
 router.get('/', async (ctx) => {
-  ctx.body = await index({
+  ctx.body = await login({
     welcome: ctx.query.lang === 'hu' ? 'Felhasználó' : 'User',
-    num: 2,
-    array: [1, 2, 4, 6, 8],
   }, {
     obj: meta,
   });
 });
+
+// POST /login
+router.post('/login',
+  passport.authenticate('local', {
+    successRedirect: '/app',
+    failureRedirect: '/',
+  }),
+);
 
 module.exports = router;
