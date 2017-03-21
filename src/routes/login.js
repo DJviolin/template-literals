@@ -4,7 +4,8 @@ const passport = require('koa-passport');
 
 const Router = require('koa-router');
 
-const router = new Router({ prefix: '/login' });
+const router = new Router();
+//const router = new Router({ prefix: '/login' });
 
 // Viewing
 const login = require('../views/login');
@@ -15,10 +16,8 @@ const meta = {
   lang: 'en-US',
 };
 
-router.get('/', async (ctx) => {
-  ctx.body = await login({
-    welcome: ctx.query.lang === 'hu' ? 'Felhasználó' : 'User',
-  }, {
+router.get('/login', async (ctx) => {
+  ctx.body = await login({}, {
     obj: meta,
   });
 });
