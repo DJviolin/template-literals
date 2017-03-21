@@ -157,6 +157,13 @@ app.use(async (ctx, next) => {
   }
 });
 
+app.use((ctx) => {
+  if (ctx.url.match(/^\/test/)) {
+    ctx.type = 'html';
+    ctx.body = '<h1>route test</h1>';
+  }
+});
+
 // Error handling
 app.on('error', (err, ctx) => {
   debugErr('server error', err, ctx);
