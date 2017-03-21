@@ -8,8 +8,8 @@ const router = new Router({ prefix: '/admin' });
 const index = require('../views/admin');
 
 const meta = {
-  title: 'Template Literals',
-  description: 'Vanilla JS rendering',
+  title: 'Admin',
+  description: 'admin page',
   lang: 'en-US',
 };
 
