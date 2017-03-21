@@ -35,4 +35,9 @@ router.post('/login',
   }),
 );
 
+router.get('/logout', (ctx) => {
+  ctx.logout();
+  ctx.redirect('/');
+});
+
 module.exports = router;

@@ -34,6 +34,7 @@ router.get('/', async (ctx) => {
 // http://127.0.0.1:3000/?lang=hu
 //router.get(['/', '/:lang'], async (ctx) => {
 router.get('/', async (ctx) => {
+  ctx.type = 'html';
   ctx.body = await index({
     welcome: ctx.query.lang === 'hu' ? 'Felhasználó' : 'User',
     num: 2,
