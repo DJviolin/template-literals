@@ -3,7 +3,7 @@
 const passport = require('koa-passport');
 
 const fetchUser = (() => {
-  // This is an example! Use password hashing in your
+  // This is an example! Use password hashing in yours
   const user = { id: 1, username: 'test', password: 'test' };
   return async () => {
     return user;
