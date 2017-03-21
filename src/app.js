@@ -145,8 +145,14 @@ app.use(login.routes(), login.allowedMethods());
 
 //app.use(test.routes(), test.allowedMethods());
 
-// https://github.com/rkusa/koa-passport-example/blob/master/server.js
+app.use((ctx) => {
+  if (ctx.url.match(/^\/test/)) {
+    ctx.type = 'html';
+    ctx.body = '<h1>route test</h1>';
+  }
+});
 
+// https://github.com/rkusa/koa-passport-example/blob/master/server.js
 // Require authentication for now
 app.use(async (ctx, next) => {
   if (ctx.isAuthenticated()) {
@@ -154,13 +160,6 @@ app.use(async (ctx, next) => {
   } else {
     //ctx.redirect('/');
     ctx.body = { error: 'Authentication failed' };
-  }
-});
-
-app.use((ctx) => {
-  if (ctx.url.match(/^\/test/)) {
-    ctx.type = 'html';
-    ctx.body = '<h1>route test</h1>';
   }
 });
 
