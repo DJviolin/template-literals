@@ -30,6 +30,7 @@ console.log('');
 // Routes
 const index = require('./routes/index');
 const db = require('./routes/db');
+const test = require('./routes/test');
 
 const app = new Koa();
 
@@ -115,6 +116,17 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 app.use(index.routes(), index.allowedMethods());
 app.use(db.routes(), db.allowedMethods());
 
+app.use(test.callback());
+
+app.use(async (ctx, next) => {
+  if (ctx.url.match(/^\/test/)) {
+    //ctx.body = 'Hello World';
+    test();
+  } else {
+    await next();
+  }
+});
+
 // koa-jwt + jsonwebtoken
 // Custom 401 handling
 /*app.use(async (ctx, next) => {
@@ -142,30 +154,6 @@ app.use((ctx) => {
     ctx.body = 'protected\n';
   }
 });*/
-
-const index2 = require('./views/index');
-const meta = {
-  title: 'Template Literals',
-  description: 'Vanilla JS rendering',
-};
-const metaHu = {
-  title: 'Template Literals (magyar)',
-  description: 'Vanilla JS rendering (magyar)',
-  lang: 'hu-HU',
-};
-app.use(async (ctx, next) => {
-  if (ctx.url.match(/^\/index/)) {
-    ctx.body = await index2({
-      welcome: ctx.query.lang === 'hu' ? 'Felhasználó' : 'User',
-      num: 2,
-      array: [1, 2, 4, 6, 8],
-    }, {
-      obj: ctx.query.lang === 'hu' ? metaHu : meta,
-    });
-  } else {
-    await next();
-  }
-});
 
 // Error handling
 app.on('error', (err, ctx) => {
