@@ -117,7 +117,7 @@ app.use(db.routes(), db.allowedMethods());
 
 // koa-jwt + jsonwebtoken
 // Custom 401 handling
-app.use(async (ctx, next) => {
+/*app.use(async (ctx, next) => {
   await next().catch((err) => {
     if (err.status === 401) {
       ctx.status = 401;
@@ -140,6 +140,30 @@ app.use(koajwt({ secret: 'secret' }));
 app.use((ctx) => {
   if (ctx.url.match(/^\/api/)) {
     ctx.body = 'protected\n';
+  }
+});*/
+
+const index2 = require('./views/index');
+const meta = {
+  title: 'Template Literals',
+  description: 'Vanilla JS rendering',
+};
+const metaHu = {
+  title: 'Template Literals (magyar)',
+  description: 'Vanilla JS rendering (magyar)',
+  lang: 'hu-HU',
+};
+app.use(async (ctx, next) => {
+  if (ctx.url.match(/^\/index/)) {
+    ctx.body = await index2({
+      welcome: ctx.query.lang === 'hu' ? 'Felhasználó' : 'User',
+      num: 2,
+      array: [1, 2, 4, 6, 8],
+    }, {
+      obj: ctx.query.lang === 'hu' ? metaHu : meta,
+    });
+  } else {
+    await next();
   }
 });
 

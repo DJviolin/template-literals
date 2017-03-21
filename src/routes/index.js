@@ -33,7 +33,7 @@ router.get('/', async (ctx) => {
 // http://127.0.0.1:3000/hu
 // http://127.0.0.1:3000/?lang=hu
 //outer.get(['/', '/:lang'], async (ctx) => {
-router.get('/', async (ctx) => {
+/*router.get('/', async (ctx) => {
   ctx.body = await index({
     welcome: ctx.query.lang === 'hu' ? 'Felhasználó' : 'User',
     num: 2,
@@ -41,7 +41,7 @@ router.get('/', async (ctx) => {
   }, {
     obj: ctx.query.lang === 'hu' ? metaHu : meta,
   });
-});
+});*/
 
 // http://127.0.0.1:3000/hello/steve?num=27
 router.get('/hello/:id', async (ctx) => {
