@@ -22,15 +22,19 @@ router.get('/login', async (ctx) => {
   });
 });
 
-router.get('/app', async (ctx) => {
+router.get('/admin', async (ctx) => {
   ctx.body = { success: 'Authentication success' };
+});
+
+router.get('/fail', async (ctx) => {
+  ctx.body = { error: 'Authentication failed' };
 });
 
 // POST /post
 router.post('/post',
   passport.authenticate('local', {
-    successRedirect: '/app',
-    failureRedirect: '/',
+    successRedirect: '/admin',
+    //failureRedirect: '/',
   }),
 );
 

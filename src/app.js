@@ -130,7 +130,7 @@ app.use(db.routes(), db.allowedMethods());
 app.use(login.routes(), login.allowedMethods());
 
 // Custom 401 handling
-app.use(async (ctx, next) => {
+/*app.use(async (ctx, next) => {
   await next().catch((err) => {
     if (err.status === 401) {
       ctx.status = 401;
@@ -139,7 +139,7 @@ app.use(async (ctx, next) => {
       throw err;
     }
   });
-});
+});*/
 // Middleware below this line is only reached if JWT token is valid
 //app.use(koajwt({ secret: 'secret' }));
 
