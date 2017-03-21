@@ -23,7 +23,13 @@ router.get('/login', async (ctx) => {
 });
 
 router.get('/admin', async (ctx) => {
-  ctx.body = { success: 'Authentication success' };
+  //ctx.body = { success: 'Authentication success' };
+  if (ctx.isAuthenticated()) {
+    ctx.body = { success: 'Authentication success' };
+  } else {
+    //ctx.redirect('/');
+    ctx.body = { error: 'Authentication failed' };
+  }
 });
 
 router.get('/fail', async (ctx) => {
