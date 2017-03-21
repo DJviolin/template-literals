@@ -23,6 +23,10 @@ router.get('/', async (ctx) => {
   });
 });
 
+router.get('/app', async (ctx) => {
+  ctx.body = { success: 'Authentication success' };
+});
+
 // POST /login
 router.post('/login',
   passport.authenticate('local', {
