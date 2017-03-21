@@ -10,6 +10,7 @@ const json = require('koa-json');
 const Koa = require('koa');
 //const koajwt = require('koa-jwt');
 const path = require('path');
+const passport = require('koa-passport');
 //const ratelimit = require('koa-ratelimit');
 const serve = require('koa-static');
 const session = require('koa-generic-session');
@@ -28,21 +29,26 @@ console.log('  curl http://localhost:3000/api/foo               # should fail (r
 console.log(`  curl -H "Authorization: Bearer ' + ${TOKEN} + '" http://localhost:3000/api/foo   # should succeed (return "protected")`);
 console.log('');*/
 
-// Sessions
-app.keys = ['your-session-secret']
-app.use(convert(session()))
-
 // Routes
 const index = require('./routes/index');
 const db = require('./routes/db');
-const test = require('./routes/test');
+//const test = require('./routes/test');
 
 const app = new Koa();
+
+// Sessions
+app.keys = ['your-session-secret'];
+app.use(convert(session()));
 
 // Middlewares
 app.use(bodyParser());
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(json({ pretty: false, param: 'pretty' }));
+
+// authentication
+require('./auth');
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Debug
 const debugErr = debug('app:err');
@@ -135,7 +141,18 @@ app.use(async (ctx, next) => {
 // Middleware below this line is only reached if JWT token is valid
 //app.use(koajwt({ secret: 'secret' }));
 
-app.use(test.routes(), test.allowedMethods());
+//app.use(test.routes(), test.allowedMethods());
+
+// https://github.com/rkusa/koa-passport-example/blob/master/server.js
+
+// Require authentication for now
+app.use(async (ctx, next) => {
+  if (ctx.isAuthenticated()) {
+    await next();
+  } else {
+    ctx.redirect('/');
+  }
+});
 
 // Error handling
 app.on('error', (err, ctx) => {
