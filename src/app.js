@@ -116,20 +116,8 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 app.use(index.routes(), index.allowedMethods());
 app.use(db.routes(), db.allowedMethods());
 
-app.use(test.callback());
-
-app.use(async (ctx, next) => {
-  if (ctx.url.match(/^\/test/)) {
-    //ctx.body = 'Hello World';
-    test();
-  } else {
-    await next();
-  }
-});
-
-// koa-jwt + jsonwebtoken
 // Custom 401 handling
-/*app.use(async (ctx, next) => {
+app.use(async (ctx, next) => {
   await next().catch((err) => {
     if (err.status === 401) {
       ctx.status = 401;
@@ -139,21 +127,10 @@ app.use(async (ctx, next) => {
     }
   });
 });
-// Unprotected middleware
-app.use(async (ctx, next) => {
-  if (ctx.url.match(/^\/public/)) {
-    ctx.body = 'unprotected\n';
-  } else {
-    await next();
-  }
-});
 // Middleware below this line is only reached if JWT token is valid
 app.use(koajwt({ secret: 'secret' }));
-app.use((ctx) => {
-  if (ctx.url.match(/^\/api/)) {
-    ctx.body = 'protected\n';
-  }
-});*/
+
+app.use(test.routes(), test.allowedMethods());
 
 // Error handling
 app.on('error', (err, ctx) => {
