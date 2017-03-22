@@ -26,10 +26,13 @@ const app = new Koa();
 
 // Sessions
 // https://github.com/longztian/koa-session-minimal
+// https://github.com/koajs/koa-redis
+// https://github.com/TMiguelT/koa-pg-session
 app.keys = ['your-session-secret'];
 //app.use(session());
 //
-//const RedisStore = require('koa-redis')
+//const RedisStore = require('koa-redis');
+//const PgStore = require('koa-pg-session');
 //const ONE_DAY = 24 * 3600 * 1000;
 const ONE_MONTH = 30 * 24 * 3600 * 1000;
 app.use(session({
