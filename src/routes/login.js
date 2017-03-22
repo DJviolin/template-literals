@@ -36,7 +36,7 @@ router.get('/fail', async (ctx) => {
   ctx.body = { error: 'Authentication failed' };
 });
 
-router.post('/post',
+router.post('/auth',
   passport.authenticate('local', {
     successRedirect: '/admin',
     //failureRedirect: '/',

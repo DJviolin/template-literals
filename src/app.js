@@ -47,7 +47,8 @@ app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(json({ pretty: false, param: 'pretty' }));
 
 // authentication
-require('./auth');
+require('./include/auth'); // include
+//
 app.use(passport.initialize());
 app.use(passport.session());
 
