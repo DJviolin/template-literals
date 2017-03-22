@@ -23,6 +23,7 @@ module.exports = state => main(`
     </p>
   </form>-->
 
+  <p>ctx.isAuthenticated(): ${state.login ? true : false}</p>
   <p>Full object: ${JSON.stringify(state, null, 4)}</p>
 `,
 { state });
