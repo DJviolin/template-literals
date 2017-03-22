@@ -55,6 +55,7 @@ app.use(clearSession);*/
 };
 app.use(clearSession);*/
 
+// http://stackoverflow.com/a/20056529/1442219
 app.use(async (ctx, next) => {
   ctx.state.login = ctx.isAuthenticated();
   await next();
