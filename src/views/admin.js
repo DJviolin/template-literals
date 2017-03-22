@@ -8,8 +8,5 @@ module.exports = state => main(`
   <p>Hello world! This is HTML5 Boilerplate.</p>
 
   <a href="/logout">Logout</a>
-
-  <p>ctx.isAuthenticated(): ${state.login ? true : false}</p>
-  <p>Full object: ${JSON.stringify(state, null, 4)}</p>
 `,
 { state });
