@@ -45,9 +45,9 @@ router.post('/auth',
   }),
 );
 
-router.get('/logout', (ctx) => {
+/*router.get('/logout', (ctx) => {
   ctx.logout();
   ctx.redirect('/');
-});
+});*/
 
 module.exports = router;
