@@ -18,17 +18,6 @@ const metaHu = {
   lang: 'hu-HU',
 };
 
-/*// http://127.0.0.1:3000/
-router.get('/', async (ctx) => {
-  ctx.body = await index({
-    welcome: 'User',
-    num: 2,
-    array: [1, 2, 4, 6, 8],
-  }, {
-    obj: meta,
-  });
-});*/
-
 // http://127.0.0.1:3000/
 // http://127.0.0.1:3000/hu
 // http://127.0.0.1:3000/?lang=hu
