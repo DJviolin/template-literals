@@ -27,13 +27,13 @@ router.get('/login', async (ctx) => {
 });
 
 // http://127.0.0.1:3000/401
-router.get('/401', async (ctx) => {
+/*router.get('/401', async (ctx) => {
   ctx.body = { error: 'Authentication failed' };
-});
+});*/
 
 // http://127.0.0.1:3000/admin
 router.get('/admin', async (ctx, next) => {
-  ctx.isAuthenticated() ? await next() : ctx.redirect('/401');
+  ctx.isAuthenticated() ? await next() : ctx.redirect('/login');
   ctx.state.meta = meta;
   ctx.state.welcome = 'Authentication success';
   ctx.type = 'html';
