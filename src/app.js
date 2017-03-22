@@ -33,10 +33,22 @@ app.keys = ['your-session-secret'];
 app.use(session());
 
 // Clear session
-const clearSession = async (ctx, next) => {
+/*const clearSession = async (ctx, next) => {
   if (ctx.path === '/clear') {
     ctx.session = {}; // or = null
     ctx.body = 'counter session data is cleared';
+  }
+  await next();
+};
+app.use(clearSession);*/
+
+// Clear session
+const clearSession = async (ctx, next) => {
+  if (ctx.path === '/logout') {
+    ctx.session = {}; // or = null
+    ctx.logout();
+    ctx.redirect('/');
+    //ctx.body = 'counter session data is cleared';
   }
   await next();
 };
