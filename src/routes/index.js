@@ -27,11 +27,13 @@ router.get('/', async (ctx) => {
     welcome: ctx.query.lang === 'hu' ? 'Felhasználó' : 'User',
     num: 2,
     array: [1, 2, 4, 6, 8],
+    meta: ctx.query.lang === 'hu' ? meta : metaHu,
   };
   ctx.type = 'html';
-  ctx.body = await index(ctx.state, {
+  /*ctx.body = await index(ctx.state, {
     obj: ctx.query.lang === 'hu' ? metaHu : meta,
-  });
+  });*/
+  ctx.body = await index(ctx.state);
 });
 
 // http://127.0.0.1:3000/hello/steve?num=27
