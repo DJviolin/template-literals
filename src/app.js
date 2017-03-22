@@ -6,34 +6,17 @@ const convert = require('koa-convert');
 const debug = require('debug');
 const helmet = require('koa-helmet');
 const json = require('koa-json');
-//const jwt = require('jsonwebtoken');
 const Koa = require('koa');
-//const koajwt = require('koa-jwt');
 const path = require('path');
 const passport = require('koa-passport');
 //const ratelimit = require('koa-ratelimit');
 const serve = require('koa-static');
 const session = require('koa-generic-session');
 
-// koa-jwt + jsonwebtoken
-/*const profile = {
-  id: 123,
-};
-const TOKEN = jwt.sign(profile, 'secret', { expiresIn: 60 * 5 });
-console.log('Starting koa-jwt test server on http://localhost:3000/');
-console.log('');
-console.log('You can test the server by issuing curl commands like the following:');
-console.log('');
-console.log('  curl http://localhost:3000/public/foo            # should succeed (return "unprotected")');
-console.log('  curl http://localhost:3000/api/foo               # should fail (return "401 Unauthorized ...")');
-console.log(`  curl -H "Authorization: Bearer ' + ${TOKEN} + '" http://localhost:3000/api/foo   # should succeed (return "protected")`);
-console.log('');*/
-
 // Routes
 const index = require('./routes/index');
 const db = require('./routes/db');
 const login = require('./routes/login');
-//const test = require('./routes/test');
 
 const app = new Koa();
 
@@ -128,6 +111,8 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // Routes
 app.use(index.routes(), index.allowedMethods());
 app.use(db.routes(), db.allowedMethods());
+
+// Routes (authorized)
 app.use(login.routes(), login.allowedMethods());
 
 // Custom 401 handling
@@ -155,14 +140,14 @@ app.use(login.routes(), login.allowedMethods());
 
 // https://github.com/rkusa/koa-passport-example/blob/master/server.js
 // Require authentication for now
-app.use(async (ctx, next) => {
+/*app.use(async (ctx, next) => {
   if (ctx.isAuthenticated()) {
     await next();
   } else {
-    //ctx.redirect('/');
-    ctx.body = { error: 'Authentication failed' };
+    ctx.redirect('/');
+    //ctx.body = { error: 'Authentication failed' };
   }
-});
+});*/
 
 // Error handling
 app.on('error', (err, ctx) => {

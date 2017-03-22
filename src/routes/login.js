@@ -32,14 +32,14 @@ router.get('/admin', async (ctx) => {
   }
 });
 
-router.get('/fail', async (ctx) => {
+router.get('/401', async (ctx) => {
   ctx.body = { error: 'Authentication failed' };
 });
 
 router.post('/auth',
   passport.authenticate('local', {
     successRedirect: '/admin',
-    //failureRedirect: '/',
+    failureRedirect: '/401',
   }),
 );
 
