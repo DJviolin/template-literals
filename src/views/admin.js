@@ -7,6 +7,8 @@ module.exports = (state, { obj }) => main(`
 
   <p>Hello world! This is HTML5 Boilerplate.</p>
 
+  <p>${state.login ? 'login is true' : 'login is false'}</p>
+
   <a href="/logout">Logout</a>
 `,
 { obj });
