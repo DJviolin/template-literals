@@ -29,6 +29,7 @@ const app = new Koa();
 // Sessions
 app.keys = ['your-session-secret'];
 //app.use(convert(session()));
+// https://github.com/longztian/koa-session-minimal
 app.use(session());
 
 // Clear session
