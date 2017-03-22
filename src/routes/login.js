@@ -22,18 +22,20 @@ router.get('/login', async (ctx) => {
   });
 });
 
-router.get('/admin', async (ctx) => {
-  //ctx.body = { success: 'Authentication success' };
-  if (ctx.isAuthenticated()) {
-    ctx.body = { success: 'Authentication success' };
-  } else {
-    //ctx.redirect('/');
-    ctx.body = { error: 'Authentication failed' };
-  }
-});
-
 router.get('/401', async (ctx) => {
   ctx.body = { error: 'Authentication failed' };
+});
+
+router.get('/admin', async (ctx, next) => {
+  /*if (ctx.isAuthenticated()) {
+    await next();
+  } else {
+    ctx.redirect('/');
+    ctx.body = { error: 'Authentication failed' };
+  }*/
+  ctx.isAuthenticated() ? await next() : ctx.redirect('/401');
+
+  ctx.body = { success: 'Authentication success' };
 });
 
 router.post('/auth',
