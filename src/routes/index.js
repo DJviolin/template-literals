@@ -45,7 +45,7 @@ router.get('/', async (ctx) => {
 });
 
 // http://127.0.0.1:3000/hello/steve?num=27
-router.get('/hello/:id', async (ctx) => {
+/*router.get('/hello/:id', async (ctx) => {
   ctx.state = {
     id: ctx.params.id,
     num: parseInt(ctx.query.num, 10),
@@ -54,6 +54,15 @@ router.get('/hello/:id', async (ctx) => {
     welcome: ctx.state.id,
     num: ctx.state.num,
   }, {
+    obj: meta,
+  });
+});*/
+router.get('/hello/:id', async (ctx) => {
+  ctx.state = {
+    welcome: ctx.params.id,
+    num: parseInt(ctx.query.num, 10),
+  };
+  ctx.body = await index(ctx.state, {
     obj: meta,
   });
 });
