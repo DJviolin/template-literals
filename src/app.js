@@ -6,7 +6,7 @@
 // https://github.com/dslomov/typed-objects-es7
 
 const bodyParser = require('koa-bodyparser');
-const convert = require('koa-convert');
+//const convert = require('koa-convert');
 //const csrf = require('koa-csrf');
 const debug = require('debug');
 const helmet = require('koa-helmet');
