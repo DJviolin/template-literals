@@ -9,7 +9,7 @@ module.exports = (state, { obj }) => main(`
 
   <a href="/logout">Logout</a>
 
-  <p>${state.login ? 'login is true' : 'login is false'}</p>
+  <p>ctx.isAuthenticated(): ${state.login ? true : false}</p>
   <p>Full object: ${JSON.stringify(state, null, 4)}</p>
 `,
 { obj });
