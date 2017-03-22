@@ -44,7 +44,8 @@ router.get('/admin', async (ctx, next) => {
 router.post('/auth',
   passport.authenticate('local', {
     successRedirect: '/admin',
-    failureRedirect: '/401',
+    //failureRedirect: '/401',
+    failureRedirect: '/login', // authentication failed
   }),
 );
 
