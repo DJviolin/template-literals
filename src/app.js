@@ -55,12 +55,6 @@ app.use(clearSession);*/
 };
 app.use(clearSession);*/
 
-// http://stackoverflow.com/a/20056529/1442219
-app.use(async (ctx, next) => {
-  ctx.state.login = ctx.isAuthenticated();
-  await next();
-});
-
 // Middlewares
 app.use(bodyParser());
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
@@ -185,6 +179,12 @@ app.use(login.routes(), login.allowedMethods());
     //ctx.body = { error: 'Authentication failed' };
   }
 });*/
+
+// http://stackoverflow.com/a/20056529/1442219
+app.use(async (ctx, next) => {
+  ctx.state.login = ctx.isAuthenticated();
+  await next();
+});
 
 // Error handling
 app.on('error', (err, ctx) => {

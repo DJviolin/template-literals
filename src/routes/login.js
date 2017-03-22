@@ -9,6 +9,7 @@ const router = new Router();
 
 // Viewing
 const login = require('../views/login');
+const admin = require('../views/admin');
 
 const meta = {
   title: 'Admin',
@@ -26,16 +27,26 @@ router.get('/401', async (ctx) => {
   ctx.body = { error: 'Authentication failed' };
 });
 
-router.get('/admin', async (ctx, next) => {
-  /*if (ctx.isAuthenticated()) {
+/*router.get('/admin', async (ctx, next) => {
+  if (ctx.isAuthenticated()) {
     await next();
   } else {
     ctx.redirect('/');
     ctx.body = { error: 'Authentication failed' };
-  }*/
+  }
   ctx.isAuthenticated() ? await next() : ctx.redirect('/401');
 
   ctx.body = { success: 'Authentication success' };
+});*/
+
+router.get('/admin', async (ctx, next) => {
+  ctx.isAuthenticated() ? await next() : ctx.redirect('/401');
+  ctx.type = 'html';
+  ctx.body = await admin({
+    welcome: 'Authentication success',
+  }, {
+    obj: meta,
+  });
 });
 
 router.post('/auth',
