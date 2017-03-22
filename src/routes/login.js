@@ -53,7 +53,7 @@ router.post('/auth',
 router.get('/logout', (ctx) => {
   ctx.session = {}; // or = null
   ctx.logout();
-  ctx.redirect('/');
+  ctx.redirect('/login');
 });
 
 module.exports = router;
