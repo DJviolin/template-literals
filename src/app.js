@@ -3,6 +3,7 @@
 
 // https://github.com/sirisian/ecmascript-use-stricter
 // https://github.com/sirisian/ecmascript-types
+// https://github.com/dslomov/typed-objects-es7
 
 const bodyParser = require('koa-bodyparser');
 const convert = require('koa-convert');
