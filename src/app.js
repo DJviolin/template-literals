@@ -27,7 +27,18 @@ const app = new Koa();
 // Sessions
 // https://github.com/longztian/koa-session-minimal
 app.keys = ['your-session-secret'];
-app.use(session());
+//app.use(session());
+//const ONE_DAY = 24 * 3600 * 1000;
+const ONE_MONTH = 30 * 24 * 3600 * 1000;
+app.use(session({
+  //key: 'koa:sess',
+  key: 'SESSID',
+  //store: new RedisStore(),
+  cookie: ctx => ({
+    maxAge: ctx.session.user ? ONE_MONTH : 0,
+    httpOnly: false,
+  }),
+}));
 
 // Middlewares
 app.use(bodyParser());
@@ -122,6 +133,7 @@ app.use(db.routes(), db.allowedMethods());
 app.use(login.routes(), login.allowedMethods());
 
 /*app.use((ctx) => {
+  //if (ctx.path === '/test') {
   if (ctx.url.match(/^\/test/)) {
     ctx.type = 'html';
     ctx.body = '<h1>route test</h1>';
