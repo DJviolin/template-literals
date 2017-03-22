@@ -18,11 +18,11 @@ const meta = {
 };
 
 router.get('/login', async (ctx) => {
-  ctx.state = {};
+  ctx.state = {
+    meta,
+  };
   ctx.type = 'html';
-  ctx.body = await login(ctx.state, {
-    obj: meta,
-  });
+  ctx.body = await login(ctx.state);
 });
 
 router.get('/401', async (ctx) => {
@@ -31,14 +31,10 @@ router.get('/401', async (ctx) => {
 
 router.get('/admin', async (ctx, next) => {
   ctx.isAuthenticated() ? await next() : ctx.redirect('/401');
-  /*ctx.state = {
-    welcome: 'Authentication success',
-  };*/
+  ctx.state.meta = meta;
   ctx.state.welcome = 'Authentication success';
   ctx.type = 'html';
-  ctx.body = await admin(ctx.state, {
-    obj: meta,
-  });
+  ctx.body = await admin(ctx.state);
 });
 
 router.post('/auth',

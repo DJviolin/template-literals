@@ -68,7 +68,10 @@ router.get('/:id', async (ctx) => {
   await db.one('SELECT version() as VALUE;', {}, v => v.value)
     .then((value) => {
       //console.log('VALUE:', value); //=> value: 4
-      ctx.state = { welcome: value }; // initialization (making sure it's empty)
+      ctx.state = {
+        meta,
+        welcome: value,
+      }; // initialization (making sure it's empty)
       //ctx.state.title = value;
       //console.log(`ctx.state: ${util.inspect(ctx.state, false, null)}`);
     })
@@ -79,9 +82,7 @@ router.get('/:id', async (ctx) => {
     .finally(pgp.end); // for immediate app exit, closing the connection pool
     // for testing purposes only!
 
-  ctx.body = await index(ctx.state, {
-    obj: meta,
-  });
+  ctx.body = await index(ctx.state);
 });
 
 module.exports = router;
