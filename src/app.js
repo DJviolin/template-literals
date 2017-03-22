@@ -1,6 +1,6 @@
 'use strict';
-'use stricter';
 
+//'use stricter';
 // https://github.com/sirisian/ecmascript-use-stricter
 // https://github.com/sirisian/ecmascript-types
 // https://github.com/dslomov/typed-objects-es7
