@@ -6,7 +6,6 @@
 // https://github.com/dslomov/typed-objects-es7
 
 const bodyParser = require('koa-bodyparser');
-//const convert = require('koa-convert');
 //const csrf = require('koa-csrf');
 const debug = require('debug');
 const helmet = require('koa-helmet');
@@ -16,7 +15,6 @@ const path = require('path');
 const passport = require('koa-passport');
 //const ratelimit = require('koa-ratelimit');
 const serve = require('koa-static');
-//const session = require('koa-generic-session');
 const session = require('koa-session-minimal');
 
 // Routes
@@ -27,33 +25,9 @@ const login = require('./routes/login');
 const app = new Koa();
 
 // Sessions
-app.keys = ['your-session-secret'];
-//app.use(convert(session()));
 // https://github.com/longztian/koa-session-minimal
+app.keys = ['your-session-secret'];
 app.use(session());
-
-// Clear session
-/*const clearSession = async (ctx, next) => {
-  if (ctx.path === '/clear') {
-    ctx.session = {}; // or = null
-    ctx.body = 'counter session data is cleared';
-  }
-  await next();
-};
-app.use(clearSession);*/
-
-// Clear session
-/*const clearSession = async (ctx, next) => {
-  //if (ctx.path === '/logout') {
-  if (ctx.url.match(/^\/logout/)) {
-    ctx.session = {}; // or = null
-    //ctx.logout();
-    ctx.redirect('/');
-    //ctx.body = 'counter session data is cleared';
-  }
-  await next();
-};
-app.use(clearSession);*/
 
 // Middlewares
 app.use(bodyParser());
@@ -144,7 +118,15 @@ app.use(index.routes(), index.allowedMethods());
 app.use(db.routes(), db.allowedMethods());
 
 // Routes (authorized)
+// https://github.com/rkusa/koa-passport-example/blob/master/server.js
 app.use(login.routes(), login.allowedMethods());
+
+/*app.use((ctx) => {
+  if (ctx.url.match(/^\/test/)) {
+    ctx.type = 'html';
+    ctx.body = '<h1>route test</h1>';
+  }
+});*/
 
 // Custom 401 handling
 /*app.use(async (ctx, next) => {
@@ -159,26 +141,6 @@ app.use(login.routes(), login.allowedMethods());
 });*/
 // Middleware below this line is only reached if JWT token is valid
 //app.use(koajwt({ secret: 'secret' }));
-
-//app.use(test.routes(), test.allowedMethods());
-
-/*app.use((ctx) => {
-  if (ctx.url.match(/^\/test/)) {
-    ctx.type = 'html';
-    ctx.body = '<h1>route test</h1>';
-  }
-});*/
-
-// https://github.com/rkusa/koa-passport-example/blob/master/server.js
-// Require authentication for now
-/*app.use(async (ctx, next) => {
-  if (ctx.isAuthenticated()) {
-    await next();
-  } else {
-    ctx.redirect('/');
-    //ctx.body = { error: 'Authentication failed' };
-  }
-});*/
 
 // http://stackoverflow.com/a/20056529/1442219
 app.use(async (ctx, next) => {
