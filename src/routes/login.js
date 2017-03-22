@@ -17,6 +17,7 @@ const meta = {
   lang: 'en-US',
 };
 
+// http://127.0.0.1:3000/login
 router.get('/login', async (ctx) => {
   ctx.state = {
     meta,
@@ -29,6 +30,7 @@ router.get('/401', async (ctx) => {
   ctx.body = { error: 'Authentication failed' };
 });
 
+// http://127.0.0.1:3000/admin
 router.get('/admin', async (ctx, next) => {
   ctx.isAuthenticated() ? await next() : ctx.redirect('/401');
   ctx.state.meta = meta;
@@ -46,6 +48,7 @@ router.post('/auth',
 );
 
 // Clear session
+// http://127.0.0.1:3000/logout
 router.get('/logout', (ctx) => {
   ctx.session = {}; // or = null
   ctx.logout();
