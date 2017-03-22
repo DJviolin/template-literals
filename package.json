@@ -21,7 +21,7 @@
     "bluebird": "^3.5.0",
     "debug": "^2.6.3",
     "koa": "^2.2.0",
-    "koa-bodyparser": "^4.1.0",
+    "koa-bodyparser": "^4.2.0",
     "koa-convert": "^1.2.0",
     "koa-csrf": "^3.0.5",
     "koa-generic-session": "^1.11.5",
@@ -46,21 +46,21 @@
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-stylus": "^2.6.0",
-    "gulp-uglify": "^2.1.1"
+    "gulp-uglify": "^2.1.2"
   },
   "optionalDependencies": {
-    "babel-eslint": "^7.1.1",
+    "babel-eslint": "^7.2.0",
     "eslint": "^3.18.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-babel": "^4.1.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.2",
+    "eslint-plugin-react": "^6.10.3",
     "htmlhint": "^0.9.13",
     "postcss": "^5.2.16",
     "stylelint": "^7.9.0",
     "stylus": "^0.54.5",
-    "webpack": "^2.2.1",
+    "webpack": "^2.3.0",
     "webpack-dev-server": "^2.4.2"
   }
 }

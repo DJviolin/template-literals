@@ -1,4 +1,8 @@
 'use strict';
+'use stricter';
+
+// https://github.com/sirisian/ecmascript-use-stricter
+// https://github.com/sirisian/ecmascript-types
 
 const bodyParser = require('koa-bodyparser');
 const convert = require('koa-convert');
