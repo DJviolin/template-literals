@@ -26,6 +26,7 @@ router.get('/login', async (ctx) => {
   ctx.body = await login(ctx.state);
 });
 
+// http://127.0.0.1:3000/401
 router.get('/401', async (ctx) => {
   ctx.body = { error: 'Authentication failed' };
 });
