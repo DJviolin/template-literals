@@ -10,5 +10,7 @@ module.exports = (state, { obj }) => main(`
   <p>${state.login ? 'login is true' : 'login is false'}</p>
 
   <a href="/logout">Logout</a>
+
+  <p>Full object: ${JSON.stringify(state, null, 4)}</p>
 `,
 { obj });

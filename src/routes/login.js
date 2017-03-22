@@ -31,9 +31,10 @@ router.get('/401', async (ctx) => {
 
 router.get('/admin', async (ctx, next) => {
   ctx.isAuthenticated() ? await next() : ctx.redirect('/401');
-  ctx.state = {
+  /*ctx.state = {
     welcome: 'Authentication success',
-  };
+  };*/
+  ctx.state.welcome = 'Authentication success';
   ctx.type = 'html';
   ctx.body = await admin(ctx.state, {
     obj: meta,

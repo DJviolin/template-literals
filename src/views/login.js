@@ -22,5 +22,7 @@ module.exports = (state, { obj }) => main(`
       <a href="/auth/facebook">Sign in with Facebook</a> <a href="/auth/twitter">Sign in with Twitter</a> <a href="/auth/google">Sign in with Google</a>
     </p>
   </form>-->
+
+  <p>Full object: ${JSON.stringify(state, null, 4)}</p>
 `,
 { obj });
