@@ -31,14 +31,15 @@ app.keys = ['your-session-secret'];
 //app.use(convert(session()));
 app.use(session());
 
-// Session count
-/*const counter = (ctx) => {
-  if (ctx.path === '/favicon.ico') return; // ignore favicon
-  if (!('count' in ctx.session)) ctx.session.count = 0; // init counter
-  ctx.session.count += 1;
-  ctx.body = ctx.session.count;
+// Clear session
+const clearSession = async (ctx, next) => {
+  if (ctx.path === '/clear') {
+    ctx.session = {}; // or = null
+    ctx.body = 'counter session data is cleared';
+  }
+  await next();
 };
-app.use(counter);*/
+app.use(clearSession);
 
 // Middlewares
 app.use(bodyParser());
