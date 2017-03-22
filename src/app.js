@@ -43,16 +43,22 @@ app.use(session());
 app.use(clearSession);*/
 
 // Clear session
-const clearSession = async (ctx, next) => {
-  if (ctx.path === '/logout') {
+/*const clearSession = async (ctx, next) => {
+  //if (ctx.path === '/logout') {
+  if (ctx.url.match(/^\/logout/)) {
     ctx.session = {}; // or = null
-    ctx.logout();
+    //ctx.logout();
     ctx.redirect('/');
     //ctx.body = 'counter session data is cleared';
   }
   await next();
 };
-app.use(clearSession);
+app.use(clearSession);*/
+
+app.use(async (ctx, next) => {
+  ctx.state.login = ctx.isAuthenticated();
+  await next();
+});
 
 // Middlewares
 app.use(bodyParser());

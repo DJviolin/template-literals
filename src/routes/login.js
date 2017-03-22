@@ -45,9 +45,11 @@ router.post('/auth',
   }),
 );
 
-/*router.get('/logout', (ctx) => {
+// Clear session
+router.get('/logout', (ctx) => {
+  ctx.session = {}; // or = null
   ctx.logout();
   ctx.redirect('/');
-});*/
+});
 
 module.exports = router;
