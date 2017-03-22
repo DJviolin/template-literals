@@ -3,7 +3,7 @@
 const main = require('./layouts/frontend');
 //const loop = require('./components/loop');
 
-module.exports = (state, { obj }) => main(`
+module.exports = state => main(`
   <form action="/auth" method="post">
     <p>
       <label>Username:
@@ -25,4 +25,4 @@ module.exports = (state, { obj }) => main(`
 
   <p>Full object: ${JSON.stringify(state, null, 4)}</p>
 `,
-{ obj });
+{ state });
