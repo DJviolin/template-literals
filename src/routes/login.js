@@ -18,7 +18,9 @@ const meta = {
 };
 
 router.get('/login', async (ctx) => {
-  ctx.body = await login({}, {
+  ctx.state = {};
+  ctx.type = 'html';
+  ctx.body = await login(ctx.state, {
     obj: meta,
   });
 });
@@ -27,24 +29,13 @@ router.get('/401', async (ctx) => {
   ctx.body = { error: 'Authentication failed' };
 });
 
-/*router.get('/admin', async (ctx, next) => {
-  if (ctx.isAuthenticated()) {
-    await next();
-  } else {
-    ctx.redirect('/');
-    ctx.body = { error: 'Authentication failed' };
-  }
-  ctx.isAuthenticated() ? await next() : ctx.redirect('/401');
-
-  ctx.body = { success: 'Authentication success' };
-});*/
-
 router.get('/admin', async (ctx, next) => {
   ctx.isAuthenticated() ? await next() : ctx.redirect('/401');
-  ctx.type = 'html';
-  ctx.body = await admin({
+  ctx.state = {
     welcome: 'Authentication success',
-  }, {
+  };
+  ctx.type = 'html';
+  ctx.body = await admin(ctx.state, {
     obj: meta,
   });
 });
