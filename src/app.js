@@ -16,7 +16,8 @@ const path = require('path');
 const passport = require('koa-passport');
 //const ratelimit = require('koa-ratelimit');
 const serve = require('koa-static');
-const session = require('koa-generic-session');
+//const session = require('koa-generic-session');
+const session = require('koa-session-minimal');
 
 // Routes
 const index = require('./routes/index');
@@ -27,7 +28,17 @@ const app = new Koa();
 
 // Sessions
 app.keys = ['your-session-secret'];
-app.use(convert(session()));
+//app.use(convert(session()));
+app.use(session());
+
+// Session count
+/*const counter = (ctx) => {
+  if (ctx.path === '/favicon.ico') return; // ignore favicon
+  if (!('count' in ctx.session)) ctx.session.count = 0; // init counter
+  ctx.session.count += 1;
+  ctx.body = ctx.session.count;
+};
+app.use(counter);*/
 
 // Middlewares
 app.use(bodyParser());
