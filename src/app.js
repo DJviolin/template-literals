@@ -129,7 +129,7 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // https://github.com/koajs/jwt/blob/koa-v2/test/test.js
 // https://github.com/koajs/jwt/blob/koa-v2/test/test-server.js
 
-// Global data sharing middleware
+// Global data sharing middleware initialization
 app.use(async (ctx, next) => {
   // res.locals.global = {}; // Express 4+
   ctx.state.global = {
