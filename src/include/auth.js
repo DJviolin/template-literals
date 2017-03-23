@@ -25,6 +25,15 @@ function pwdHash(password) {
   return pwd;
 }
 
+function pwdCheck(password, hash) {
+  let val;
+  bcrypt.compare(password, hash, (err, res) => {
+    // res == true
+    val = res;
+  });
+  return val;
+}
+
 /*const fetchUser = (() => {
   // This is an example! Use password hashing in yours
   const user = { id: 1, username: 'test', password: 'test' };
@@ -33,9 +42,15 @@ function pwdHash(password) {
   };
 })();*/
 
-const fetchUser = (() => {
+/*const fetchUser = (() => {
   // This is an example! Use password hashing in yours
   const user = { id: 1, username: 'test', password: 'test' };
+  return async () => user;
+})();*/
+
+const fetchUser = (() => {
+  // This is an example! Use password hashing in yours
+  const user = { id: 1, username: 'test', password: '$2y$10$xtzDnpVSoyv4wn1GeI5dXePFa9fPMM6nWjjcNushC6epGL1BIdnzG' };
   return async () => user;
 })();
 
