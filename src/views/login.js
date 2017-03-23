@@ -5,7 +5,7 @@ const main = require('./layouts/frontend');
 
 module.exports = state => main(`
   <form action="/auth" method="POST">
-    <input type="hidden" name="_csrf" value="<%= csrf %>" />
+    <input type="hidden" name="_csrf" value="${state.global.csrf}" />
     <p>
       <label>Username:
         <input type="text" name="username" placeholder="Username" value="test" />

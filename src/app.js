@@ -6,7 +6,7 @@
 // https://github.com/dslomov/typed-objects-es7
 
 const bodyParser = require('koa-bodyparser');
-const CSRF = require('koa-csrf'); // https://github.com/koajs/csrf
+const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf
 const debug = require('debug');
 const helmet = require('koa-helmet');
 const json = require('koa-json');
@@ -54,32 +54,45 @@ app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(json({ pretty: false, param: 'pretty' }));
 
 // add the CSRF middleware
-/*app.use(CSRF({
+app.use(new CSRF({
   invalidSessionSecretMessage: 'Invalid session secret',
   invalidSessionSecretStatusCode: 403,
   invalidTokenMessage: 'Invalid CSRF token',
   invalidTokenStatusCode: 403,
   excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
   disableQuery: false,
-}));*/
-app.use(new CSRF());
-// your middleware here (e.g. parse a form submit)
-app.use(async (ctx, next) => {
-  if (!['GET', 'POST'].includes(ctx.method)) {
-    await next();
-  }
-  if (ctx.method === 'GET') {
-    ctx.body = ctx.csrf;
-    return;
-  }
-  ctx.body = 'OK';
-});
+}));
+//app.use(new CSRF());
 
 // authentication
 require('./include/auth'); // include
 //
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Global data sharing middleware initialization
+app.use(async (ctx, next) => {
+  // res.locals.global = {}; // Express 4+
+  ctx.state.global = {
+    sitename: 'Sitename',
+    login: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219
+  };
+  await next();
+});
+
+// your middleware here (e.g. parse a form submit)
+app.use(async (ctx, next) => {
+  if (!['GET', 'POST'].includes(ctx.method)) {
+    await next();
+  }
+  if (ctx.method === 'GET') {
+    //ctx.body = ctx.csrf;
+    //return;
+    ctx.state.global.csrf = await ctx.csrf;
+  }
+  //ctx.body = 'OK';
+  await next();
+});
 
 // Debug
 const debugErr = debug('app:err');
@@ -153,16 +166,6 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 
 // https://github.com/koajs/jwt/blob/koa-v2/test/test.js
 // https://github.com/koajs/jwt/blob/koa-v2/test/test-server.js
-
-// Global data sharing middleware initialization
-app.use(async (ctx, next) => {
-  // res.locals.global = {}; // Express 4+
-  ctx.state.global = {
-    sitename: 'Sitename',
-    login: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219
-  };
-  await next();
-});
 
 // Routes
 app.use(index.routes(), index.allowedMethods());
