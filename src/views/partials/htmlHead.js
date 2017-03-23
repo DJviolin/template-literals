@@ -6,7 +6,7 @@ module.exports = ({ state }) => `
   <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>${state.meta.title + ' | ' || ''}${state.global.sitename || ''}</title>
+  <title>${state.meta.title + ' | ' || ''}${state.global.sitename}</title>
   <meta name="description" content="${state.meta.description}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/css/style.css">
