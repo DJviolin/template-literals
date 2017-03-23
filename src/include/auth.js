@@ -3,6 +3,28 @@
 const passport = require('koa-passport');
 const LocalStrategy = require('passport-local').Strategy;
 
+// https://www.npmjs.com/package/bcrypt
+/*const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const myPlaintextPassword = 's0/\/\P4$$w0rD';
+const someOtherPlaintextPassword = 'not_bacon';*/
+
+const bcrypt = require('bcrypt');
+
+function pwdHash(password) {
+  const saltRounds = 10;
+  let pwd;
+  bcrypt.hash(password, saltRounds, (err, hash) => {
+    // Store hash in your password DB.
+    if (err) {
+      console.log(`bcrypt.hash error: ${err}`);
+    }
+    pwd = hash;
+  });
+  console.log(`pwd == ${pwd}`);
+  return pwd;
+}
+
 /*const fetchUser = (() => {
   // This is an example! Use password hashing in yours
   const user = { id: 1, username: 'test', password: 'test' };
