@@ -23,9 +23,23 @@ const pwdHash = (password) => {
   console.log(`3 == ${result}`);
   return result;
 };
-
 //pwdHash('test');
 console.log(`1 == ${pwdHash('test')}`);
+
+const pwdHash2 = (password) => {
+  let result;
+  const saltRounds = 10;
+  bcrypt.genSalt(saltRounds, (err, salt) => {
+    bcrypt.hash(password, salt, (err, hash) => {
+      // Store hash in your password DB.
+      if (err) throw err;
+      result = hash;
+    });
+  });
+  return result;
+};
+
+console.log(`4 == ${pwdHash2('test')}`);
 
 function pwdCheck(password, hash) {
   let val;
