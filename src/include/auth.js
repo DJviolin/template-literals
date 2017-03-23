@@ -15,8 +15,8 @@ const pwdHash = (password) => {
   let result;
   const saltRounds = 10;
   bcrypt.hash(password, saltRounds, (err, hash) => {
+    if (err) return; //handle error
     // Store hash in your password DB.
-    if (err) throw err;
     result = hash;
     console.log(`2 == ${result}`);
   });
@@ -26,13 +26,16 @@ const pwdHash = (password) => {
 //pwdHash('test');
 console.log(`1 == ${pwdHash('test')}`);
 
-const pwdHash2 = (password) => {
+const pwdHash2 = function (password) {
   let result;
   const saltRounds = 10;
-  bcrypt.hash(password, saltRounds, (err, hash) => {
-    // Store hash in your password DB.
-    if (err) throw err;
-    result = hash;
+  bcrypt.genSalt(saltRounds, function (err, salt) {
+    if (err) return; //handle error
+    bcrypt.hash(password, salt, function (err, hash) {
+      if (err) return; //handle error
+      // Store hash in your password DB.
+      result = hash;
+    });
   });
   return result;
 };
