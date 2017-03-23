@@ -131,8 +131,11 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 
 // Global data sharing middleware
 app.use(async (ctx, next) => {
-  ctx.state.global.sitename = 'Sitename';
-  ctx.state.global.login = ctx.isAuthenticated();
+  // res.locals.global = {}; // Express 4+
+  ctx.state.global = {
+    sitename: 'Sitename',
+    login: ctx.isAuthenticated(),
+  };
   await next();
 });
 
@@ -165,14 +168,6 @@ app.use(login.routes(), login.allowedMethods());
 });*/
 // Middleware below this line is only reached if JWT token is valid
 //app.use(koajwt({ secret: 'secret' }));
-
-// Global data sharing middleware
-// http://stackoverflow.com/a/20056529/1442219
-/*app.use(async (ctx, next) => {
-  //ctx.state.sitename = 'Sitename';
-  ctx.state.login = ctx.isAuthenticated();
-  await next();
-});*/
 
 // Error handling
 app.on('error', (err, ctx) => {
