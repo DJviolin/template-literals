@@ -30,7 +30,7 @@ const app = new Koa();
 // https://github.com/TMiguelT/koa-pg-session
 //app.keys = ['your-session-secret'];
 // set the session keys
-app.keys = ['your-session-secret-a', 'your-session-secret-b'];
+app.keys = ['your-session-secret', 'another-session-secret'];
 
 //app.use(session());
 //
@@ -59,8 +59,8 @@ app.use(new CSRF({
   invalidSessionSecretStatusCode: 403,
   invalidTokenMessage: 'Invalid CSRF token',
   invalidTokenStatusCode: 403,
-  excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
-  disableQuery: false,
+  //excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
+  //disableQuery: false,
 }));
 
 // authentication
