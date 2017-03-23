@@ -13,17 +13,13 @@ const bcrypt = require('bcrypt');
 
 function pwdHash(password) {
   const saltRounds = 10;
-  //let pwd;
   bcrypt.hash(password, saltRounds, (err, hash) => {
     // Store hash in your password DB.
     if (err) {
       console.log(`bcrypt.hash error: ${err}`);
     }
-    //pwd = hash;
     return hash;
   });
-  //console.log(`pwd == ${pwd}`);
-  //return pwd;
 }
 
 console.log(pwdHash('test'));
