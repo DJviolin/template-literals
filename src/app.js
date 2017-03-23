@@ -131,7 +131,8 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 
 // Global data sharing middleware
 app.use(async (ctx, next) => {
-  ctx.state.sitename = 'Sitename';
+  ctx.state.global.sitename = 'Sitename';
+  ctx.state.global.login = ctx.isAuthenticated();
   await next();
 });
 
@@ -167,11 +168,11 @@ app.use(login.routes(), login.allowedMethods());
 
 // Global data sharing middleware
 // http://stackoverflow.com/a/20056529/1442219
-app.use(async (ctx, next) => {
+/*app.use(async (ctx, next) => {
   //ctx.state.sitename = 'Sitename';
   ctx.state.login = ctx.isAuthenticated();
   await next();
-});
+});*/
 
 // Error handling
 app.on('error', (err, ctx) => {
