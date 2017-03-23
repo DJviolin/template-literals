@@ -11,18 +11,21 @@ const someOtherPlaintextPassword = 'not_bacon';*/
 
 const bcrypt = require('bcrypt');
 
-function pwdHash(password) {
+const pwdHash = async (password) => {
+  let val;
   const saltRounds = 10;
   bcrypt.hash(password, saltRounds, (err, hash) => {
     // Store hash in your password DB.
     if (err) {
       console.log(`bcrypt.hash error: ${err}`);
     }
-    return hash;
+    console.log(hash);
+    val = hash;
   });
-}
+  await val;
+};
 
-console.log(pwdHash('test'));
+pwdHash('test');
 
 function pwdCheck(password, hash) {
   let val;
@@ -32,6 +35,14 @@ function pwdCheck(password, hash) {
   });
   return val;
 }
+
+//const bcrypt = require('./bcrypt');
+//const salt = bcrypt.genSalt(10);
+//const hash = bcrypt.hash('test', salt);
+//console.log(bcrypt.hash('test', bcrypt.genSalt(10)));
+/*if (bcrypt.compare('B4c0/\/', hash)) {
+  ...
+}*/
 
 /*const fetchUser = (() => {
   // This is an example! Use password hashing in yours
