@@ -11,7 +11,7 @@ const someOtherPlaintextPassword = 'not_bacon';*/
 
 const bcrypt = require('bcrypt');
 
-const pwdHash = async (password) => {
+const pwdHash = (password) => {
   let val;
   const saltRounds = 10;
   bcrypt.hash(password, saltRounds, (err, hash) => {
@@ -19,13 +19,15 @@ const pwdHash = async (password) => {
     if (err) {
       console.log(`bcrypt.hash error: ${err}`);
     }
-    console.log(hash);
+    console.log(`2 == ${hash}`);
     val = hash;
+    //return val;
   });
-  await val;
+  console.log(`3 == ${val}`);
+  return val;
 };
 
-pwdHash('test');
+console.log(`1 == ${pwdHash('test')}`);
 
 function pwdCheck(password, hash) {
   let val;
