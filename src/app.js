@@ -62,11 +62,9 @@ app.use(new CSRF({
   excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
   disableQuery: false,
 }));
-//app.use(new CSRF());
 
 // authentication
 require('./include/auth'); // include
-//
 app.use(passport.initialize());
 app.use(passport.session());
 
