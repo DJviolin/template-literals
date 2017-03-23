@@ -4,23 +4,21 @@ const main = require('./layouts/frontend');
 //const loop = require('./components/loop');
 
 module.exports = state => main(`
-  <form action="/auth" method="post">
+  <form action="/auth" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrf %>" />
     <p>
       <label>Username:
-        <input type="text" name="username" value="test" />
+        <input type="text" name="username" placeholder="Username" value="test" />
       </label>
     </p>
     <p>
       <label>Password:
-        <input type="password" name="password" value="test" />
+        <input type="password" name="password" placeholder="Password" value="test" />
       </label>
     </p>
     <p>
       <button type="submit">Log In</button>
     </p>
-    <!--<p>
-      <a href="/auth/facebook">Sign in with Facebook</a> <a href="/auth/twitter">Sign in with Twitter</a> <a href="/auth/google">Sign in with Google</a>
-    </p>
-  </form>-->
+  </form>
 `,
 { state });

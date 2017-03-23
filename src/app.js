@@ -166,8 +166,6 @@ app.use(login.routes(), login.allowedMethods());
     }
   });
 });*/
-// Middleware below this line is only reached if JWT token is valid
-//app.use(koajwt({ secret: 'secret' }));
 
 // Error handling
 app.on('error', (err, ctx) => {
