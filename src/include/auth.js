@@ -29,17 +29,14 @@ console.log(`1 == ${pwdHash('test')}`);
 const pwdHash2 = (password) => {
   let result;
   const saltRounds = 10;
-  bcrypt.genSalt(saltRounds, (err, salt) => {
-    bcrypt.hash(password, salt, (err, hash) => {
-      // Store hash in your password DB.
-      if (err) throw err;
-      result = hash;
-    });
+  bcrypt.hash(password, saltRounds, (err, hash) => {
+    // Store hash in your password DB.
+    if (err) throw err;
+    result = hash;
   });
   return result;
 };
-
-console.log(`4 == ${pwdHash2('test')}`);
+console.log(`4 == ${JSON.stringify(pwdHash2('test'), null, 4)}`);
 
 function pwdCheck(password, hash) {
   let val;
