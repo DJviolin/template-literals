@@ -12,7 +12,7 @@ const someOtherPlaintextPassword = 'not_bacon';*/
 const bcrypt = require('bcrypt');
 
 const pwdHash = (password) => {
-  let result = -1;
+  let result;
   const saltRounds = 10;
   bcrypt.hash(password, saltRounds, (err, hash) => {
     // Store hash in your password DB.
