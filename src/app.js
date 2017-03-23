@@ -6,7 +6,7 @@
 // https://github.com/dslomov/typed-objects-es7
 
 const bodyParser = require('koa-bodyparser');
-//const csrf = require('koa-csrf');
+const CSRF = require('koa-csrf'); // https://github.com/koajs/csrf
 const debug = require('debug');
 const helmet = require('koa-helmet');
 const json = require('koa-json');
@@ -28,7 +28,10 @@ const app = new Koa();
 // https://github.com/longztian/koa-session-minimal
 // https://github.com/koajs/koa-redis
 // https://github.com/TMiguelT/koa-pg-session
-app.keys = ['your-session-secret'];
+//app.keys = ['your-session-secret'];
+// set the session keys
+app.keys = ['your-session-secret-a', 'your-session-secret-b'];
+
 //app.use(session());
 //
 //const RedisStore = require('koa-redis');
@@ -49,6 +52,28 @@ app.use(session({
 app.use(bodyParser());
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(json({ pretty: false, param: 'pretty' }));
+
+// add the CSRF middleware
+/*app.use(CSRF({
+  invalidSessionSecretMessage: 'Invalid session secret',
+  invalidSessionSecretStatusCode: 403,
+  invalidTokenMessage: 'Invalid CSRF token',
+  invalidTokenStatusCode: 403,
+  excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
+  disableQuery: false,
+}));*/
+app.use(new CSRF());
+// your middleware here (e.g. parse a form submit)
+app.use(async (ctx, next) => {
+  if (!['GET', 'POST'].includes(ctx.method)) {
+    await next();
+  }
+  if (ctx.method === 'GET') {
+    ctx.body = ctx.csrf;
+    return;
+  }
+  ctx.body = 'OK';
+});
 
 // authentication
 require('./include/auth'); // include
