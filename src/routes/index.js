@@ -23,12 +23,16 @@ const metaHu = {
 // http://127.0.0.1:3000/?lang=hu
 //router.get(['/', '/:lang'], async (ctx) => {
 router.get('/', async (ctx) => {
-  ctx.state = {
+  /*ctx.state = {
     meta: ctx.query.lang === 'hu' ? meta : metaHu,
     welcome: ctx.query.lang === 'hu' ? 'Felhasználó' : 'User',
     num: 2,
     array: [1, 2, 4, 6, 8],
-  };
+  };*/
+  ctx.state.meta = ctx.query.lang === 'hu' ? meta : metaHu;
+  ctx.state.welcome = ctx.query.lang === 'hu' ? 'Felhasználó' : 'User';
+  ctx.state.num = 2;
+  ctx.state.array = [1, 2, 4, 6, 8];
   ctx.type = 'html';
   /*ctx.body = await index(ctx.state, {
     obj: ctx.query.lang === 'hu' ? metaHu : meta,

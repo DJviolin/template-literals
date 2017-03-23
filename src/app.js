@@ -129,6 +129,12 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // https://github.com/koajs/jwt/blob/koa-v2/test/test.js
 // https://github.com/koajs/jwt/blob/koa-v2/test/test-server.js
 
+// Global data sharing middleware
+app.use(async (ctx, next) => {
+  ctx.state.sitename = 'Sitename';
+  await next();
+});
+
 // Routes
 app.use(index.routes(), index.allowedMethods());
 app.use(db.routes(), db.allowedMethods());
@@ -159,8 +165,10 @@ app.use(login.routes(), login.allowedMethods());
 // Middleware below this line is only reached if JWT token is valid
 //app.use(koajwt({ secret: 'secret' }));
 
+// Global data sharing middleware
 // http://stackoverflow.com/a/20056529/1442219
 app.use(async (ctx, next) => {
+  //ctx.state.sitename = 'Sitename';
   ctx.state.login = ctx.isAuthenticated();
   await next();
 });
