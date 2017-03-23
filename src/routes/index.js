@@ -32,6 +32,7 @@ router.get('/', async (ctx) => {
   ctx.body = await index(ctx.state, {
     obj: ctx.query.lang === 'hu' ? metaHu : meta,
   });*/
+  ctx.state._passport = {};
   ctx.state.meta = ctx.query.lang === 'hu' ? meta : metaHu;
   ctx.state.welcome = ctx.query.lang === 'hu' ? 'Felhasználó' : 'User';
   ctx.state.num = 2;
@@ -42,6 +43,7 @@ router.get('/', async (ctx) => {
 
 // http://127.0.0.1:3000/hello/steve?num=27
 router.get('/hello/:id', async (ctx) => {
+  ctx.state._passport = {};
   ctx.state.meta = ctx.query.lang === 'hu' ? meta : metaHu;
   ctx.state.welcome = ctx.params.id;
   ctx.state.num = parseInt(ctx.query.num, 10);
@@ -54,6 +56,7 @@ router.get('/awesome', async (ctx) => {
   const json = {
     name: 'Mr. Awesome',
   };
+  ctx.state._passport = {};
   ctx.state.meta = ctx.query.lang === 'hu' ? meta : metaHu;
   ctx.state.welcome = `<span style="color: #f00;">${json.name}</span>!`;
   ctx.state.num = 2;
@@ -65,6 +68,7 @@ router.get('/awesome', async (ctx) => {
 router.get('/helpers', async (ctx) => {
   const names = ['Steve', 'John', 'Peter', 'Jack', 'István'];
   const randomName = names[Math.floor(Math.random() * names.length)];
+  ctx.state._passport = {};
   ctx.state.meta = ctx.query.lang === 'hu' ? meta : metaHu;
   ctx.state.welcome = `${randomName}!!!`; // Use TL in a router like if it was a helper
   ctx.state.num = 2;
