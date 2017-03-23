@@ -41,6 +41,9 @@ const pwdHash2 = function (password) {
 };
 console.log(`4 == ${JSON.stringify(pwdHash2('test'), null, 4)}`);
 
+// Async function:
+// https://paragonie.com/blog/2016/02/how-safely-store-password-in-2016#nodejs
+
 function pwdCheck(password, hash) {
   let val;
   bcrypt.compare(password, hash, (err, res) => {
