@@ -12,18 +12,16 @@ const someOtherPlaintextPassword = 'not_bacon';*/
 const bcrypt = require('bcrypt');
 
 const pwdHash = (password) => {
-  let val;
+  let result = -1;
   const saltRounds = 10;
   bcrypt.hash(password, saltRounds, (err, hash) => {
     // Store hash in your password DB.
-    if (err) {
-      console.log(`bcrypt.hash error: ${err}`);
-    }
-    console.log(`2 == ${hash}`);
-    val = hash;
+    if (err) throw err;
+    result = hash;
+    console.log(`2 == ${result}`);
   });
-  console.log(`3 == ${val}`);
-  return val;
+  console.log(`3 == ${result}`);
+  return result;
 };
 
 //pwdHash('test');
