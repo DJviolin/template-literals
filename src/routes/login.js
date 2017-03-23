@@ -19,9 +19,7 @@ const meta = {
 
 // http://127.0.0.1:3000/login
 router.get('/login', async (ctx) => {
-  ctx.state = {
-    meta,
-  };
+  ctx.state.meta = meta;
   ctx.type = 'html';
   ctx.body = await login(ctx.state);
 });
@@ -43,7 +41,6 @@ router.get('/admin', async (ctx, next) => {
 router.post('/auth',
   passport.authenticate('local', {
     successRedirect: '/admin',
-    //failureRedirect: '/401',
     failureRedirect: '/login', // authentication failed
   }),
 );
