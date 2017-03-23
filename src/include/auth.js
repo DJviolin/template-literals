@@ -21,7 +21,6 @@ const pwdHash = (password) => {
     }
     console.log(`2 == ${hash}`);
     val = hash;
-    return val;
   });
   console.log(`3 == ${val}`);
   return val;
