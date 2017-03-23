@@ -21,12 +21,13 @@ const pwdHash = (password) => {
     }
     console.log(`2 == ${hash}`);
     val = hash;
-    //return val;
+    return val;
   });
   console.log(`3 == ${val}`);
   return val;
 };
 
+//pwdHash('test');
 console.log(`1 == ${pwdHash('test')}`);
 
 function pwdCheck(password, hash) {
