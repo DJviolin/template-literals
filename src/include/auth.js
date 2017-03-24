@@ -63,14 +63,14 @@ passport.deserializeUser(async (id, done) => {
 passport.use(new LocalStrategy((username, password, done) => {
   fetchUser()
     .then((user) => {
+      /*if (username === user.username && password === user.password) {
+        done(null, user);
+      } else {
+        done(null, false);
+      }*/
       bcrypt.compare(password, user.password, (val) => {
         console.log(`password === ${password}\nuser.password === ${user.password}`);
         console.log(`fetchUser() bcrypt.compare() === ${val}`);
-        /*if (username === user.username && password === user.password) {
-          done(null, user);
-        } else {
-          done(null, false);
-        }*/
         if (username === user.username && val === true) {
           done(null, user);
         } else {
