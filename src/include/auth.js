@@ -7,14 +7,6 @@ const LocalStrategy = require('passport-local').Strategy;
 // https://paragonie.com/blog/2016/02/how-safely-store-password-in-2016#nodejs
 const bcrypt = require('./bcrypt');
 
-const pwd = 'test';
-bcrypt.hash(pwd, (val) => {
-  console.log(`bcrypt.hash() === ${val}`);
-});
-bcrypt.compare(pwd, '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS', (val) => {
-  console.log(`bcrypt.compare() === ${val}`);
-});
-
 /*const fetchUser = (() => {
   // This is an example! Use password hashing in yours
   const user = { id: 1, username: 'test', password: 'test' };

@@ -32,6 +32,14 @@ const compare = (password, hash, fn) => {
   });
 };
 
+/*const pwd = 'test';
+bcrypt.hash(pwd, (val) => {
+  console.log(`bcrypt.hash() === ${val}`);
+});
+bcrypt.compare(pwd, '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS', (val) => {
+  console.log(`bcrypt.compare() === ${val}`);
+});*/
+
 module.exports = {
   hash,
   compare,
