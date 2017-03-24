@@ -7,11 +7,11 @@ const LocalStrategy = require('passport-local').Strategy;
 // https://paragonie.com/blog/2016/02/how-safely-store-password-in-2016#nodejs
 const bcrypt = require('./bcrypt');
 
-const password = 'test';
-bcrypt.hash(password, (val) => {
+const pwd = 'test';
+bcrypt.hash(pwd, (val) => {
   console.log(`bcrypt.hash() === ${val}`);
 });
-bcrypt.compare(password, '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS', (val) => {
+bcrypt.compare(pwd, '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS', (val) => {
   console.log(`bcrypt.compare() === ${val}`);
 });
 
@@ -31,7 +31,7 @@ bcrypt.compare(password, '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn
 
 const fetchUser = (() => {
   // This is an example! Use password hashing in yours
-  const user = { id: 1, username: 'test', password: '$2y$10$xtzDnpVSoyv4wn1GeI5dXePFa9fPMM6nWjjcNushC6epGL1BIdnzG' };
+  const user = { id: 1, username: 'test', password: '2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS' };
   return async () => user;
 })();
 
@@ -48,9 +48,27 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
+/*passport.use(new LocalStrategy((username, password, done) => {
+  fetchUser()
+    .then((user) => {
+      if (username === user.username && password === user.password) {
+        done(null, user);
+      } else {
+        done(null, false);
+      }
+    })
+    .catch(err => done(err));
+}));*/
+
 passport.use(new LocalStrategy((username, password, done) => {
   fetchUser()
     .then((user) => {
+      bcrypt.compare(password, user.password, (val) => {
+        console.log(`fetchUser() bcrypt.compare() === ${val}`);
+        if (val === false) {
+          done(null, false);
+        }
+      });
       if (username === user.username && password === user.password) {
         done(null, user);
       } else {
