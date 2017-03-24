@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 /*
 Usage:
 bcrypt.hash('test', (val) => {
-  console.log(`bcrypt.hash() == ${val}`);
+  console.log(`bcrypt.hash() === ${val}`);
 });
 */
 const hash = (password, fn) => {
@@ -22,7 +22,7 @@ const hash = (password, fn) => {
 /*
 Usage:
 bcrypt.compare('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS', (val) => {
-  console.log(`bcrypt.compare() == ${val}`);
+  console.log(`bcrypt.compare() === ${val}`);
 });
 */
 const compare = (password, hash, fn) => {
