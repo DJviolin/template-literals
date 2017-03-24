@@ -9,7 +9,7 @@ const saltRounds = 10;
 const myPlaintextPassword = 's0/\/\P4$$w0rD';
 const someOtherPlaintextPassword = 'not_bacon';*/
 
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 
 /*const pwdHash = (password) => {
   let result;
@@ -82,12 +82,12 @@ pwdCheck('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS',
 });
 */
 
-const bcrypt2 = require('./bcrypt2');
+const bcrypt = require('./bcrypt');
 const password = 'test';
-bcrypt2.hash(password, (val) => {
+bcrypt.hash(password, (val) => {
   console.log(`bcrypt.hash() == ${val}`);
 });
-bcrypt2.compare(password, '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS', (val) => {
+bcrypt.compare(password, '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS', (val) => {
   console.log(`bcrypt.compare() == ${val}`);
 });
 
