@@ -81,10 +81,13 @@ pwdCheck('test', '$2y$10$Enaa.wejFW69685ddCYD2.4FpKnP2otGNjze2ItDH/EzO7V4PEISq',
   console.log(`pwdCheck == ${val}`);
 });*/
 
-bcrypt.compare('test', '$2y$10$m2GHBCMjnXeAOqlq37piL.3Q9a8SNYD/Ki4cv0A/R04jcyWBLEGMe', (err, res) => {
+/*bcrypt.compare('test', '$2y$10$m2GHBCMjnXeAOqlq37piL.3Q9a8SNYD/Ki4cv0A/R04jcyWBLEGMe', (err, res) => {
   // res == true
   console.log(`bcrypt.compare == ${res}`);
-});
+});*/
+
+const pwdCheck = bcrypt.compare('test', '$2y$10$m2GHBCMjnXeAOqlq37piL.3Q9a8SNYD/Ki4cv0A/R04jcyWBLEGMe');
+pwdCheck.then(val => console.log(`bcrypt.compare == ${val}`));
 
 //const bcrypt = require('./bcrypt');
 //const salt = bcrypt.genSalt(10);
