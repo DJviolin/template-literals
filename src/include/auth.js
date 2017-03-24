@@ -52,8 +52,12 @@ const pwdHash3 = (password) => {
     result = hash;
   });
   return result;
+  //return async () => result;
 };
 console.log(`pwdHash3 == ${JSON.stringify(pwdHash3('test'), null, 4)}`);
+/*pwdHash3('test').then((val) => {
+  console.log(`pwdHash3 == ${val}`);
+});*/
 
 function pwdCheck(password, hash) {
   let val;
