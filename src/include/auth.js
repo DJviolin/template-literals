@@ -80,6 +80,16 @@ pwdCheck('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS',
   console.log(`pwdCheck == ${val}`);
 });
 
+const compare = (s, hash) => done => bcrypt.compare(s, hash, done);
+/*compare('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS', (val) => {
+  console.log(`compare == ${val}`);
+});*/
+if (compare('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS')) {
+  console.log('compare == true');
+} else {
+  console.log('compare == false');
+}
+
 /*bcrypt.compare('test', '$2y$10$m2GHBCMjnXeAOqlq37piL.3Q9a8SNYD/Ki4cv0A/R04jcyWBLEGMe', (err, res) => {
   // res == true
   console.log(`bcrypt.compare == ${res}`);
