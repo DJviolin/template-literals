@@ -44,14 +44,6 @@ console.log(`4 == ${JSON.stringify(pwdHash2('test'), null, 4)}`);*/
 // Async function:
 // https://paragonie.com/blog/2016/02/how-safely-store-password-in-2016#nodejs
 
-const pwdHash = (password) => {
-  const saltRounds = 10;
-  return bcrypt.hash(password, saltRounds);
-};
-pwdHash('test').then((val) => {
-  console.log(`pwdHash == ${val}`);
-});
-
 /*function pwdCheck(password, hash) {
   let val;
   bcrypt.compare(password, hash, (err, res) => {
@@ -69,6 +61,15 @@ pwdCheck('test', '$2y$10$Enaa.wejFW69685ddCYD2.4FpKnP2otGNjze2ItDH/EzO7V4PEISq')
   console.log(`pwdCheck.err == ${err}`);
 });*/
 
+/*
+const pwdHash = (password) => {
+  const saltRounds = 10;
+  return bcrypt.hash(password, saltRounds);
+};
+pwdHash('test').then((val) => {
+  console.log(`pwdHash == ${val}`);
+});
+
 const pwdCheck = (password, hash, fn) => {
   bcrypt.compare(password, hash, (err, res) => {
     if (err) throw err;
@@ -79,9 +80,14 @@ const pwdCheck = (password, hash, fn) => {
 pwdCheck('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS', (val) => {
   console.log(`pwdCheck == ${val}`);
 });
+*/
 
 const bcrypt2 = require('./bcrypt2');
-bcrypt2.compare('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS', (val) => {
+const password = 'test';
+bcrypt2.hash(password, (val) => {
+  console.log(`bcrypt.hash() == ${val}`);
+});
+bcrypt2.compare(password, '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS', (val) => {
   console.log(`bcrypt.compare() == ${val}`);
 });
 
