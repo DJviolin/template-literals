@@ -80,6 +80,11 @@ pwdCheck('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS',
   console.log(`pwdCheck == ${val}`);
 });
 
+const bcrypt2 = require('./bcrypt2');
+bcrypt2.compare('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS', (val) => {
+  console.log(`bcrypt2.pwdCheck == ${val}`);
+});
+
 /*// sync
 //const genSalt = (rounds, seedLength) => done => bcrypt.genSalt(rounds, seedLength, done);
 //const hash = (s, salt) => done => bcrypt.hash(s, salt, done);
