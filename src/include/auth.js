@@ -61,6 +61,14 @@ pwdHash('test').then((val) => {
   return val;
 }*/
 
+//const value = `${pwdHash('test').then(val => val)}`;
+const pwdCheck = (password, hash) => bcrypt.compare(password, hash);
+pwdCheck('test', '$2y$10$Enaa.wejFW69685ddCYD2.4FpKnP2otGNjze2ItDH/EzO7V4PEISq').then((val) => {
+  console.log(`pwdCheck == ${val}`);
+}, (err) => {
+  console.log(`pwdCheck.err == ${err}`);
+});
+
 //const bcrypt = require('./bcrypt');
 //const salt = bcrypt.genSalt(10);
 //const hash = bcrypt.hash('test', salt);
