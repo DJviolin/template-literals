@@ -44,6 +44,17 @@ console.log(`4 == ${JSON.stringify(pwdHash2('test'), null, 4)}`);
 // Async function:
 // https://paragonie.com/blog/2016/02/how-safely-store-password-in-2016#nodejs
 
+const pwdHash3 = (password) => {
+  let result;
+  const saltRounds = 10;
+  bcrypt.hash(password, saltRounds).then((hash) => {
+    // Store hash in your password DB.
+    result = hash;
+  });
+  return result;
+};
+console.log(`pwdHash3 == ${JSON.stringify(pwdHash3('test'), null, 4)}`);
+
 function pwdCheck(password, hash) {
   let val;
   bcrypt.compare(password, hash, (err, res) => {
