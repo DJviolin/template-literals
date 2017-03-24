@@ -80,10 +80,10 @@ pwdCheck('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS',
   console.log(`pwdCheck == ${val}`);
 });
 
+/*// sync
 //const genSalt = (rounds, seedLength) => done => bcrypt.genSalt(rounds, seedLength, done);
 //const hash = (s, salt) => done => bcrypt.hash(s, salt, done);
 const compare = (s, hash) => done => bcrypt.compare(s, hash, done);
-
 const salt = bcrypt.genSalt(10);
 const hashed = bcrypt.hash('test', salt);
 //if (compare('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS')) {
@@ -91,7 +91,7 @@ if (compare('test', hashed)) {
   console.log('compare == true');
 } else {
   console.log('compare == false');
-}
+}*/
 
 /*bcrypt.compare('test', '$2y$10$m2GHBCMjnXeAOqlq37piL.3Q9a8SNYD/Ki4cv0A/R04jcyWBLEGMe', (err, res) => {
   // res == true
