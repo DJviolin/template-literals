@@ -69,7 +69,7 @@ pwdCheck('test', '$2y$10$Enaa.wejFW69685ddCYD2.4FpKnP2otGNjze2ItDH/EzO7V4PEISq')
   console.log(`pwdCheck.err == ${err}`);
 });*/
 
-const pwdCheck = (password, hash, fn) => {
+/*const pwdCheck = (password, hash, fn) => {
   bcrypt.compare(password, hash, (err, res) => {
     // res == true
     if (err) throw err;
@@ -79,6 +79,12 @@ const pwdCheck = (password, hash, fn) => {
 };
 pwdCheck('test', '$2y$10$Enaa.wejFW69685ddCYD2.4FpKnP2otGNjze2ItDH/EzO7V4PEISq', (val) => {
   console.log(`pwdCheck == ${val}`);
+});*/
+
+bcrypt.compare('test', '$2y$10$Enaa.wejFW69685ddCYD2.4FpKnP2otGNjze2ItDH/EzO7V4PEISq', (err, res) => {
+  // res == true
+  if (err) throw err;
+  console.log(`bcrypt.compare == ${res}`);
 });
 
 //const bcrypt = require('./bcrypt');
