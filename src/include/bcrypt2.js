@@ -2,12 +2,22 @@
 
 const bcrypt = require('bcrypt');
 
-//exports.genSalt = (rounds, seedLength) => done => bcrypt.genSalt(rounds, seedLength, done);
-
-//exports.hash = (s, salt) => done => bcrypt.hash(s, salt, done);
-
-//exports.compare = (s, hash) => done => bcrypt.compare(s, hash, done);
-
+/*
+Usage:
+bcrypt.hash('test', (val) => {
+  console.log(`bcrypt.hash() == ${val}`);
+});
+*/
+const hash = (password, fn) => {
+  const saltRounds = 10;
+  bcrypt.genSalt(saltRounds, (err, salt) => {
+    if (err) throw err;
+    bcrypt.hash(password, salt, (err, hash) => {
+      if (err) throw err;
+      fn(hash); // Store hash in your password DB.
+    });
+  });
+};
 
 /*
 Usage:
@@ -24,5 +34,6 @@ const compare = (password, hash, fn) => {
 };
 
 module.exports = {
+  hash,
   compare,
 };
