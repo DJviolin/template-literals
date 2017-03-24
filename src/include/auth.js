@@ -11,7 +11,7 @@ const someOtherPlaintextPassword = 'not_bacon';*/
 
 const bcrypt = require('bcrypt');
 
-const pwdHash = (password) => {
+/*const pwdHash = (password) => {
   let result;
   const saltRounds = 10;
   bcrypt.hash(password, saltRounds, (err, hash) => {
@@ -39,42 +39,27 @@ const pwdHash2 = function (password) {
   });
   return result;
 };
-console.log(`4 == ${JSON.stringify(pwdHash2('test'), null, 4)}`);
+console.log(`4 == ${JSON.stringify(pwdHash2('test'), null, 4)}`);*/
 
 // Async function:
 // https://paragonie.com/blog/2016/02/how-safely-store-password-in-2016#nodejs
 
-const pwdHash3 = (password) => {
-  let val;
+const pwdHash = (password) => {
   const saltRounds = 10;
-  /*bcrypt.hash(password, saltRounds).then((hash) => {
-    // Store hash in your password DB.
-    result = hash;
-  });*/
-  //return result;
-  //return async () => result;
-  const p = bcrypt.hash(password, saltRounds);
-  p.then((res) => {
-    //console.log(val);
-    //return val;
-    val = res.val;
-  });
-  //p.then(val => al);
-  return val;
+  return bcrypt.hash(password, saltRounds);
 };
-console.log(`pwdHash3 == ${pwdHash3('test')}`);
-/*pwdHash3('test').then((val) => {
-  console.log(`pwdHash3 == ${val}`);
-});*/
+pwdHash('test').then((val) => {
+  console.log(`pwdHash == ${val}`);
+});
 
-function pwdCheck(password, hash) {
+/*function pwdCheck(password, hash) {
   let val;
   bcrypt.compare(password, hash, (err, res) => {
     // res == true
     val = res;
   });
   return val;
-}
+}*/
 
 //const bcrypt = require('./bcrypt');
 //const salt = bcrypt.genSalt(10);
