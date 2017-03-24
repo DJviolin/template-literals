@@ -83,6 +83,7 @@ pwdCheck('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS',
 */
 
 const bcrypt = require('./bcrypt');
+
 const password = 'test';
 bcrypt.hash(password, (val) => {
   console.log(`bcrypt.hash() == ${val}`);
