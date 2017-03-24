@@ -71,10 +71,9 @@ pwdCheck('test', '$2y$10$Enaa.wejFW69685ddCYD2.4FpKnP2otGNjze2ItDH/EzO7V4PEISq')
 
 const pwdCheck = (password, hash, fn) => {
   bcrypt.compare(password, hash, (err, res) => {
-    // res == true
     if (err) throw err;
-    fn(res);
-    console.log(`bcrypt.compare == ${res}`);
+    fn(res); // res == true
+    //console.log(`bcrypt.compare == ${res}`);
   });
 };
 pwdCheck('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS', (val) => {
