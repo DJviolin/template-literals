@@ -82,7 +82,7 @@ pwdCheck('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS',
 
 const bcrypt2 = require('./bcrypt2');
 bcrypt2.compare('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS', (val) => {
-  console.log(`bcrypt2.pwdCheck == ${val}`);
+  console.log(`bcrypt.compare() == ${val}`);
 });
 
 /*// sync

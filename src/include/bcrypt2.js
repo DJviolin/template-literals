@@ -11,11 +11,10 @@ const bcrypt = require('bcrypt');
 
 /*
 Usage:
-bcrypt2.pwdCheck('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS', (val) => {
-  console.log(`pwdCheck == ${val}`);
+bcrypt.compare('test', '$2a$10$PEh10qyPjkja.mg4Z.JVTelVbxVACIXdrFyeouET30YkSkn30R/LS', (val) => {
+  console.log(`bcrypt.compare() == ${val}`);
 });
 */
-
 const compare = (password, hash, fn) => {
   bcrypt.compare(password, hash, (err, res) => {
     if (err) throw err;
