@@ -45,16 +45,24 @@ console.log(`4 == ${JSON.stringify(pwdHash2('test'), null, 4)}`);
 // https://paragonie.com/blog/2016/02/how-safely-store-password-in-2016#nodejs
 
 const pwdHash3 = (password) => {
-  let result;
+  let val;
   const saltRounds = 10;
-  bcrypt.hash(password, saltRounds).then((hash) => {
+  /*bcrypt.hash(password, saltRounds).then((hash) => {
     // Store hash in your password DB.
     result = hash;
-  });
-  return result;
+  });*/
+  //return result;
   //return async () => result;
+  const p = bcrypt.hash(password, saltRounds);
+  p.then((res) => {
+    //console.log(val);
+    //return val;
+    val = res.val;
+  });
+  //p.then(val => al);
+  return val;
 };
-console.log(`pwdHash3 == ${JSON.stringify(pwdHash3('test'), null, 4)}`);
+console.log(`pwdHash3 == ${pwdHash3('test')}`);
 /*pwdHash3('test').then((val) => {
   console.log(`pwdHash3 == ${val}`);
 });*/
