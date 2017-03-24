@@ -29,7 +29,6 @@ const compare = (password, hash, fn) => {
   bcrypt.compare(password, hash, (err, res) => {
     if (err) throw err;
     fn(res); // res == true
-    //console.log(`bcrypt.compare == ${res}`);
   });
 };
 
