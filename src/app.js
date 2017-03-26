@@ -48,6 +48,20 @@ app.use(session({
   }),
 }));
 
+// Flash messages
+// https://github.com/rkusa/koa-passport/issues/35#issuecomment-256842554
+// https://github.com/embbnux/koa-flash-message
+// https://github.com/ifraixedes/node-koa-flash-simple
+app.use(async (ctx, next) => {
+  ctx.flash = (type, msg) => {
+    ctx.session.flash = {
+      type,
+      message: msg,
+    };
+  };
+  await next();
+});
+
 // Middlewares
 app.use(bodyParser());
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
