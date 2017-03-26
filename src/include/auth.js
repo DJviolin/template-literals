@@ -15,12 +15,6 @@ const bcrypt = require('./bcrypt');
   };
 })();*/
 
-/*const fetchUser = (() => {
-  // This is an example! Use password hashing in yours
-  const user = { id: 1, username: 'test', password: 'test' };
-  return async () => user;
-})();*/
-
 const fetchUser = (() => {
   // This is an example! Use password hashing in yours
   const user = { id: 1, username: 'test', password: '$2a$10$uciNKIZu14HmDx2wMy0qju5Unu3KhSRs/syq1rBT4fb1pqK8hNQ2q' };
@@ -39,18 +33,6 @@ passport.deserializeUser(async (id, done) => {
     done(err);
   }
 });
-
-/*passport.use(new LocalStrategy((username, password, done) => {
-  fetchUser()
-    .then((user) => {
-      if (username === user.username && password === user.password) {
-        done(null, user);
-      } else {
-        done(null, false);
-      }
-    })
-    .catch(err => done(err));
-}));*/
 
 passport.use(new LocalStrategy((username, password, done) => {
   fetchUser()
