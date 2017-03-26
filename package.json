@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node --use_strict ./src/index",
     "eslint": "node ./node_modules/eslint/bin/eslint.js --ignore-pattern \"src/.ignore/**/*\" --ignore-pattern \"src/include/nunjucks.js\" \"src/**/*.js*\"",
-    "flow": "flow",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
@@ -15,7 +14,6 @@
   "author": "István Lantos <kerozin.joe@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-es2017-node7": "^0.5.2",
     "babel-register": "^6.24.0",
     "bcrypt": "^1.0.2",
@@ -38,7 +36,6 @@
     "pg-promise": "^5.6.4"
   },
   "devDependencies": {
-    "flow-bin": "^0.42.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-clean-css": "^3.0.4",
     "gulp-download": "0.0.1",
@@ -59,8 +56,6 @@
     "htmlhint": "^0.9.13",
     "postcss": "^5.2.16",
     "stylelint": "^7.9.0",
-    "stylus": "^0.54.5",
-    "webpack": "^2.3.0",
-    "webpack-dev-server": "^2.4.2"
+    "stylus": "^0.54.5"
   }
 }
