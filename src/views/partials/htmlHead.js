@@ -16,6 +16,6 @@ module.exports = ({ state }) => `
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
 
-  <p>ctx.isAuthenticated(): ${state.global.login ? true : false}</p>
+  <p>ctx.isAuthenticated(): ${state.global.isAuthenticated ? true : false}</p>
   <p>Full object: ${JSON.stringify(state, null, 4)}</p>
 `;

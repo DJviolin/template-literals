@@ -73,7 +73,7 @@ app.use(async (ctx, next) => {
   // res.locals.global = {}; // Express 4+
   ctx.state.global = {
     sitename: 'Sitename',
-    login: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219
+    isAuthenticated: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219
   };
   await next();
 });
