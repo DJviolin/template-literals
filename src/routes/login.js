@@ -12,7 +12,7 @@ const login = require('../views/login');
 const admin = require('../views/admin');
 
 const meta = {
-  title: 'Admin',
+  //title: 'Admin',
   description: 'admin page',
   lang: 'en-US',
 };
