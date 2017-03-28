@@ -38,6 +38,7 @@ router.get('/admin', async (ctx, next) => {
   ctx.body = await admin(ctx.state);
 });
 
+// curl -X POST -F 'username=test' -F 'password=test' http://127.0.0.1:3000/auth
 router.post('/auth',
   passport.authenticate('local', {
     successRedirect: '/admin',
