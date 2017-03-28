@@ -7,17 +7,12 @@ const LocalStrategy = require('passport-local').Strategy;
 // https://paragonie.com/blog/2016/02/how-safely-store-password-in-2016#nodejs
 const bcrypt = require('./bcrypt');
 
-/*const fetchUser = (() => {
-  // This is an example! Use password hashing in yours
-  const user = { id: 1, username: 'test', password: 'test' };
-  return async () => {
-    return user;
-  };
-})();*/
-
 const fetchUser = (() => {
   // This is an example! Use password hashing in yours
   const user = { id: 1, username: 'test', password: '$2a$10$uciNKIZu14HmDx2wMy0qju5Unu3KhSRs/syq1rBT4fb1pqK8hNQ2q' };
+  /*return async () => {
+    return user;
+  };*/
   return async () => user;
 })();
 
