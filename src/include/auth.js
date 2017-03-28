@@ -3,6 +3,11 @@
 const passport = require('koa-passport');
 const LocalStrategy = require('passport-local').Strategy;
 
+// TODO: Stay logged in on server restart
+// http://stackoverflow.com/questions/10164312/node-js-express-js-passport-js-stay-authenticated-between-server-restart
+// http://stackoverflow.com/questions/23481817/node-js-passport-autentification-with-sqlite
+// Redis:
+
 // https://www.npmjs.com/package/bcrypt
 // https://paragonie.com/blog/2016/02/how-safely-store-password-in-2016#nodejs
 const bcrypt = require('./bcrypt');
