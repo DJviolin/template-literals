@@ -172,7 +172,11 @@ You can read more about the [COPY] command here.
 
 ## 2.5. Querying a Table
 
-To retrieve data from a table:
+To retrieve data from a table, the statement is divided into:
+
+* a select list (the part that lists the columns to be returned)
+* a table list (the part that lists the tables from which to retrieve the data)
+* and an optional qualification (the part that specifies any restrictions).
 
 ```sql
 SELECT * FROM weather;
