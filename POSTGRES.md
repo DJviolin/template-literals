@@ -110,5 +110,5 @@ PostgreSQL supports the standard SQL types:
 * timestamp
 * interval
 
-As well as other types of general utility and a rich set of geometric types.
+As well as other types of general utility and a rich set of geometric types. PostgreSQL can be customized with an arbitrary number of user-defined data types.
 
