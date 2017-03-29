@@ -356,8 +356,17 @@ SELECT *
 */
 ```
 
-
+Now we will figure out how we can get the Hayward records back in. What we want the query to do is to scan the weather table and for each row to find the matching cities row(s). If no matching row is found we want some "empty values" to be substituted for the cities table's columns. This kind of query is called an outer join. (The joins we have seen so far are inner joins.):
 
 ```sql
-
+SELECT *
+    FROM weather LEFT OUTER JOIN cities ON (weather.city = cities.name);
+/*
+     city      | temp_lo | temp_hi | prcp |    date    |     name      | location
+---------------+---------+---------+------+------------+---------------+-----------
+ San Francisco |      46 |      50 | 0.25 | 1994-11-27 | San Francisco | (-194,53)
+ San Francisco |      43 |      57 |    0 | 1994-11-29 | San Francisco | (-194,53)
+ Hayward       |      37 |      54 |      | 1994-11-29 |               |
+(3 rows)
+*/
 ```
