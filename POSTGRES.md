@@ -44,5 +44,12 @@ mydb=# SELECT current_date;
 (1 row)
 
 
+mydb=# SELECT 2 + 2;
+ ?column?
+----------
+        4
+(1 row)
+
+
 mydb=#
 ```
