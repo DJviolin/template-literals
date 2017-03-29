@@ -462,6 +462,7 @@ As is often the case the query can be restated to accomplish the desired result,
 ```sql
 SELECT city FROM weather WHERE temp_lo = max(temp_lo);    -- WRONG
 
+-- This next example is OK because the subquery is an independent computation that computes its own aggregate separately from what is happening in the outer query.
 SELECT city FROM weather
     WHERE temp_lo = (SELECT max(temp_lo) FROM weather);
 /*
@@ -469,5 +470,20 @@ SELECT city FROM weather
 ---------------
  San Francisco
 (1 row)
+*/
+```
+
+Aggregates are also very useful in combination with GROUP BY clauses. For example, we can get the maximum low temperature observed in each city with:
+
+```sql
+SELECT city, max(temp_lo)
+    FROM weather
+    GROUP BY city;
+/*
+     city      | max
+---------------+-----
+ Hayward       |  37
+ San Francisco |  46
+(2 rows)
 */
 ```
