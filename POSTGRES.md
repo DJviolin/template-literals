@@ -119,4 +119,11 @@ CREATE TABLE cities (
   name        varchar(80),
   location    point
 );
+-- point => this type is an example of a PostgreSQL-specific data type
+```
+
+Removing a table:
+
+```sql
+DROP TABLE tablename;
 ```
