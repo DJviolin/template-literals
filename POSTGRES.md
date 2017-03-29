@@ -20,5 +20,8 @@ More about [createdb], [dropdb] here.
 #### 1.4. Accessing a Database
 
 ```bash
+# allows you to interactively enter, edit, execute SQL commands
+# If you not supply database name, it will default to your user account name
+# `#` Indicating last line of the command
 $ psql mydb
 ```
