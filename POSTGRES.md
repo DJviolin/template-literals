@@ -17,3 +17,5 @@ More about [createdb], [dropdb]:
 [createdb]: https://www.postgresql.org/docs/current/static/app-createdb.html
 [dropdb]: https://www.postgresql.org/docs/current/static/app-dropdb.html
 
+#### 1.4. Accessing a Database
+
