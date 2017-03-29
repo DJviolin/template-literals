@@ -4,9 +4,11 @@ Link: https://www.postgresql.org/docs/current/static/index.html
 
 Current: https://www.postgresql.org/docs/current/static/tutorial-sql-intro.html
 
-## Chapter 1. Getting Started
+Chapter 1. Getting Started
+======
 
-### 1.3. Creating a Database
+1.3. Creating a Database
+------
 
 ```bash
 $ createdb mydb  # Creating mydb
