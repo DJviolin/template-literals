@@ -203,4 +203,14 @@ SELECT city, (temp_hi+temp_lo)/2 AS temp_avg, date FROM weather;
  Hayward       |       45 | 1994-11-29
 (3 rows)
 */
+
+SELECT city, (temp_hi+temp_lo)/2, date FROM weather;
+/*
+     city      | ?column? |    date
+---------------+----------+------------
+ San Francisco |       48 | 1994-11-27
+ San Francisco |       50 | 1994-11-29
+ Hayward       |       45 | 1994-11-29
+(3 rows)
+*/
 ```
