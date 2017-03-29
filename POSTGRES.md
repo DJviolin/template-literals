@@ -91,4 +91,8 @@ CREATE TABLE weather (
   prcp       real,           -- precipitation
   date       date
 );
+-- varchar() => arbitrary character strings up to 80 characters
+-- int => is the normal integer type
+-- real => is a type for storing single precision floating-point numbers
+-- date => date
 ```
