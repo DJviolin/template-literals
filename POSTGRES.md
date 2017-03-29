@@ -77,6 +77,10 @@ Books to read:
 [PosgreSQL tutorial repository]: https://github.com/postgres/postgres/tree/master/src/tutorial
 
 ```bash
-
-mydb=# 
+# psql's -s option puts you in single step mode which pauses before sending each statement to the server
+$ psql -s mydb
+...
+# The \i command reads in commands from the specified file
+mydb=> \i basics.sql 
 ```
+
