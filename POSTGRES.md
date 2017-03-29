@@ -4,3 +4,10 @@ Link: https://www.postgresql.org/docs/current/static/index.html
 
 Current: https://www.postgresql.org/docs/current/static/tutorial-createdb.html
 
+#### 1.3. Creating a Database
+
+```bash
+$ createdb mydb  # Creating mydb
+$ createdb       # Create database with the same name as your current user name
+$ dropdb mydb    # Destroy mydb
+```
