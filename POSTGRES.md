@@ -64,11 +64,9 @@ mydb=# \q -- Exit
 
 ```
 
-Chapter 2. The SQL Language
-======
+# Chapter 2. The SQL Language
 
-2.1. Introduction
-------
+## 2.1. Introduction
 
 ```bash
 
