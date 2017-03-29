@@ -159,3 +159,16 @@ INSERT INTO weather (date, city, temp_hi, temp_lo)
        VALUES ('1994-11-29', 'Hayward', 54, 37);
 -- INSERT 0 1
 ```
+
+You could also have used COPY to load large amounts of data from flat-text file. This is usually faster because the COPY command is optimized for this application while allowing less flexibility than INSERT:
+
+```sql
+COPY weather FROM '/home/user/weather.txt';
+```
+
+You can read more about the [COPY] command here.
+
+[COPY]: https://www.postgresql.org/docs/current/static/sql-copy.html
+
+## 2.5. Querying a Table
+
