@@ -190,3 +190,17 @@ SELECT city, temp_lo, temp_hi, prcp, date FROM weather;
 (3 rows)
 */
 ```
+
+You can write expressions, not just simple column references, in the select list:
+
+```sql
+SELECT city, (temp_hi+temp_lo)/2 AS temp_avg, date FROM weather;
+/*
+     city      | temp_avg |    date
+---------------+----------+------------
+ San Francisco |       48 | 1994-11-27
+ San Francisco |       50 | 1994-11-29
+ Hayward       |       45 | 1994-11-29
+(3 rows)
+*/
+```
