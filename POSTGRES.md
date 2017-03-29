@@ -487,3 +487,18 @@ SELECT city, max(temp_lo)
 (2 rows)
 */
 ```
+
+We can filter these grouped rows using HAVING:
+
+```sql
+SELECT city, max(temp_lo)
+    FROM weather
+    GROUP BY city
+    HAVING max(temp_lo) < 40;
+/*
+  city   | max
+---------+-----
+ Hayward |  37
+(1 row)
+*/
+```
