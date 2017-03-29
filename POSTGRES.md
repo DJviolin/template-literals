@@ -307,4 +307,18 @@ SELECT *
  San Francisco |      43 |      57 |    0 | 1994-11-29 | San Francisco | (-194,53)
 (2 rows)
 */
+
+
+-- There are two columns containing the city name
+-- this is undesirable, list the output columns explicitly rather than using *
+SELECT city, temp_lo, temp_hi, prcp, date, location
+    FROM weather, cities
+    WHERE city = name;
+/*
+     city      | temp_lo | temp_hi | prcp |    date    | location
+---------------+---------+---------+------+------------+-----------
+ San Francisco |      46 |      50 | 0.25 | 1994-11-27 | (-194,53)
+ San Francisco |      43 |      57 |    0 | 1994-11-29 | (-194,53)
+(2 rows)
+*/
 ```
