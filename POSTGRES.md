@@ -64,6 +64,14 @@ mydb=# \q -- Exit
 
 ## 2.1. Introduction
 
+Books to read:
+
+[Understanding the New SQL]
+[A Guide to the SQL Standard]
+
+[Understanding the New SQL]: https://www.postgresql.org/docs/current/static/biblio.html#MELT93
+[A Guide to the SQL Standard]: https://www.postgresql.org/docs/current/static/biblio.html#DATE97
+
 ```bash
 
 mydb=# 
