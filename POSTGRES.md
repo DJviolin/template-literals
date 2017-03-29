@@ -96,3 +96,19 @@ CREATE TABLE weather (
 -- real => is a type for storing single precision floating-point numbers
 -- date => date
 ```
+
+PostgreSQL supports the standard SQL types:
+
+* int
+* smallint
+* real
+* double precision
+* char(N)
+* varchar(N)
+* date
+* time
+* timestamp
+* interval
+
+As well as other types of general utility and a rich set of geometric types.
+
