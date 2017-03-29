@@ -2,7 +2,7 @@
 
 Link: https://www.postgresql.org/docs/current/static/index.html
 
-Current: https://www.postgresql.org/docs/current/static/tutorial-populate.html
+Current: https://www.postgresql.org/docs/current/static/tutorial-join.html
 
 # Chapter 1. Getting Started
 
@@ -286,3 +286,10 @@ SELECT DISTINCT city
 (2 rows)
 */
 ```
+
+* While `SELECT *` is useful for off-the-cuff queries, it is widely considered bad style in production code, since adding a column to the table would change the results.
+* In some database systems, including older versions of PostgreSQL, the implementation of DISTINCT automatically orders the rows and so ORDER BY is unnecessary. But this is not required by the SQL standard, and current PostgreSQL does not guarantee that DISTINCT causes the rows to be ordered.
+
+## 2.6. Joins Between Tables
+
+
