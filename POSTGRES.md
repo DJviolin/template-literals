@@ -25,3 +25,16 @@ More about [createdb], [dropdb] here.
 # `#` Indicating last line of the command
 $ psql mydb
 ```
+
+Inside `psql` cli:
+
+```bash
+mydb=# SELECT version(); -- Printing PostgreSQL version
+                           version
+-------------------------------------------------------------
+ PostgreSQL 9.6.2, compiled by Visual C++ build 1800, 64-bit
+(1 row)
+
+
+mydb=#
+```
