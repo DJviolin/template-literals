@@ -294,6 +294,8 @@ SELECT DISTINCT city
 
 Queries can access multiple tables at once, or access the same table in such a way that multiple rows of the table are being processed at the same time. A query that accesses multiple rows of the same or different tables at one time is called a join query.
 
+As an example, say you wish to list all the weather records together with the location of the associated city. To do that, we need to compare the city column of each row of the weather table with the name column of all rows in the cities table, and select the pairs of rows where these values match.
+
 ```sql
 SELECT *
     FROM weather, cities
