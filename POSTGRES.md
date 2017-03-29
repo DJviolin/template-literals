@@ -2,7 +2,7 @@
 
 Link: https://www.postgresql.org/docs/current/static/index.html
 
-Current: https://www.postgresql.org/docs/current/static/tutorial-update.html
+Current: https://www.postgresql.org/docs/current/static/tutorial-delete.html
 
 # Chapter 1. Getting Started
 
@@ -539,3 +539,6 @@ SELECT * FROM weather;
 (3 rows)
 */
 ```
+
+## 2.9. Deletions
+
