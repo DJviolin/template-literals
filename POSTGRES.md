@@ -242,3 +242,18 @@ SELECT * FROM weather
 (3 rows)
 */
 ```
+
+In this example, the sort order isn't fully specified, and so you might get the San Francisco rows in either order. But you'd always get the results shown above if you do:
+
+```sql
+SELECT * FROM weather
+         ORDER BY city, temp_lo;
+/*
+     city      | temp_lo | temp_hi | prcp |    date
+---------------+---------+---------+------+------------
+ Hayward       |      37 |      54 |      | 1994-11-29
+ San Francisco |      43 |      57 |    0 | 1994-11-29
+ San Francisco |      46 |      50 | 0.25 | 1994-11-27
+(3 rows)
+*/
+```
