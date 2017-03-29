@@ -11,3 +11,9 @@ $ createdb mydb  # Creating mydb
 $ createdb       # Create database with the same name as your current user name
 $ dropdb mydb    # Destroy mydb
 ```
+
+More about [createdb], [dropdb]:
+
+[createdb]: https://www.postgresql.org/docs/current/static/app-createdb.html
+[dropdb]: https://www.postgresql.org/docs/current/static/app-dropdb.html
+
