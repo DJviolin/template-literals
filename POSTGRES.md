@@ -321,4 +321,18 @@ SELECT city, temp_lo, temp_hi, prcp, date, location
  San Francisco |      43 |      57 |    0 | 1994-11-29 | (-194,53)
 (2 rows)
 */
+
+
+-- Exercise: Attempt to determine the semantics of this query when the WHERE clause is omitted.
+SELECT * FROM weather, cities;
+/*
+     city      | temp_lo | temp_hi | prcp |    date    |     name      | location
+---------------+---------+---------+------+------------+---------------+-----------
+ San Francisco |      46 |      50 | 0.25 | 1994-11-27 | San Francisco | (-194,53)
+ San Francisco |      43 |      57 |    0 | 1994-11-29 | San Francisco | (-194,53)
+ Hayward       |      37 |      54 |      | 1994-11-29 | San Francisco | (-194,53)
+(3 rows)
+*/
 ```
+
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
