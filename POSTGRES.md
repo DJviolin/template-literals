@@ -136,3 +136,18 @@ The INSERT statement is used to populate a table with rows:
 INSERT INTO weather VALUES ('San Francisco', 46, 50, 0.25, '1994-11-27');
 -- => INSERT 0 1
 ```
+
+The point type requires a coordinate pair as input, as shown here:
+
+```sql
+INSERT INTO cities VALUES ('San Francisco', '(-194.0, 53.0)');
+-- INSERT 0 1
+```
+
+The syntax used so far requires you to remember the order of the columns. An alternative syntax allows you to list the columns explicitly:
+
+```sql
+INSERT INTO weather (city, temp_lo, temp_hi, prcp, date)
+       VALUES ('San Francisco', 43, 57, 0.0, '1994-11-29');
+-- INSERT 0 1
+```
