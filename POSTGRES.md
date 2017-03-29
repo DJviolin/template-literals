@@ -335,13 +335,18 @@ SELECT * FROM weather, cities;
 */
 ```
 
-Since the columns all had different names, the parser automatically found which table they belong to. If there were duplicate column names in the two tables you'd need to qualify the column names to show which one you meant, as in:
+Since the columns all had different names, the parser automatically found which table they belong to. If there were duplicate column names in the two tables you'd need to qualify the column names to show which one you meant, as in.
+
+It is widely considered good style to qualify all column names in a join query, so that the query won't fail if a duplicate column name is later added to one of the tables.
 
 ```sql
 SELECT weather.city, weather.temp_lo, weather.temp_hi,
        weather.prcp, weather.date, cities.location
     FROM weather, cities
     WHERE cities.name = weather.city;
+-- Join queries of the kind seen thus far can also be written in this alternative form:
+SELECT *
+    FROM weather INNER JOIN cities ON (weather.city = cities.name);
 /*
      city      | temp_lo | temp_hi | prcp |    date    | location
 ---------------+---------+---------+------+------------+-----------
@@ -351,3 +356,8 @@ SELECT weather.city, weather.temp_lo, weather.temp_hi,
 */
 ```
 
+
+
+```sql
+
+```
