@@ -172,3 +172,17 @@ You can read more about the [COPY] command here.
 
 ## 2.5. Querying a Table
 
+To retrieve data from a table:
+
+```sql
+SELECT * FROM weather;
+SELECT city, temp_lo, temp_hi, prcp, date FROM weather;
+/*
+     city      | temp_lo | temp_hi | prcp |    date
+---------------+---------+---------+------+------------
+ San Francisco |      46 |      50 | 0.25 | 1994-11-27
+ San Francisco |      43 |      57 |    0 | 1994-11-29
+ Hayward       |      37 |      54 |      | 1994-11-29
+(3 rows)
+*/
+```
