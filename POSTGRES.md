@@ -19,3 +19,6 @@ More about [createdb], [dropdb] here.
 
 #### 1.4. Accessing a Database
 
+```bash
+$ psql mydb
+```
