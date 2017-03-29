@@ -292,4 +292,17 @@ SELECT DISTINCT city
 
 ## 2.6. Joins Between Tables
 
+Queries can access multiple tables at once, or access the same table in such a way that multiple rows of the table are being processed at the same time. A query that accesses multiple rows of the same or different tables at one time is called a join query.
 
+```sql
+SELECT *
+    FROM weather, cities
+    WHERE city = name;
+/*
+     city      | temp_lo | temp_hi | prcp |    date    |     name      | location
+---------------+---------+---------+------+------------+---------------+-----------
+ San Francisco |      46 |      50 | 0.25 | 1994-11-27 | San Francisco | (-194,53)
+ San Francisco |      43 |      57 |    0 | 1994-11-29 | San Francisco | (-194,53)
+(2 rows)
+*/
+```
