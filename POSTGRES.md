@@ -356,11 +356,41 @@ SELECT *
 */
 ```
 
-Now we will figure out how we can get the Hayward records back in. What we want the query to do is to scan the weather table and for each row to find the matching cities row(s). If no matching row is found we want some "empty values" to be substituted for the cities table's columns. This kind of query is called an outer join. (The joins we have seen so far are inner joins.):
+Now we will figure out how we can get the Hayward records back in. What we want the query to do is to scan the weather table and for each row to find the matching cities row(s). If no matching row is found we want some "empty values" to be substituted for the cities table's columns. This kind of query is called an outer join. (The joins we have seen so far are inner joins.).
+
+This query is called a left outer join because the table mentioned on the left of the join operator will have each of its rows in the output at least once, whereas the table on the right will only have those rows output that match some row of the left table.
+
+When outputting a left-table row for which there is no right-table match, empty (null) values are substituted for the right-table columns.
 
 ```sql
 SELECT *
     FROM weather LEFT OUTER JOIN cities ON (weather.city = cities.name);
+/*
+     city      | temp_lo | temp_hi | prcp |    date    |     name      | location
+---------------+---------+---------+------+------------+---------------+-----------
+ San Francisco |      46 |      50 | 0.25 | 1994-11-27 | San Francisco | (-194,53)
+ San Francisco |      43 |      57 |    0 | 1994-11-29 | San Francisco | (-194,53)
+ Hayward       |      37 |      54 |      | 1994-11-29 |               |
+(3 rows)
+*/
+```
+
+Exercise: There are also right outer joins and full outer joins. Try to find out what those do.
+
+```sql
+SELECT *
+    FROM weather RIGHT OUTER JOIN cities ON (weather.city = cities.name);
+/*
+     city      | temp_lo | temp_hi | prcp |    date    |     name      | location
+---------------+---------+---------+------+------------+---------------+-----------
+ San Francisco |      43 |      57 |    0 | 1994-11-29 | San Francisco | (-194,53)
+ San Francisco |      46 |      50 | 0.25 | 1994-11-27 | San Francisco | (-194,53)
+(2 rows)
+*/
+
+
+SELECT *
+    FROM weather FULL OUTER JOIN cities ON (weather.city = cities.name);
 /*
      city      | temp_lo | temp_hi | prcp |    date    |     name      | location
 ---------------+---------+---------+------+------------+---------------+-----------
