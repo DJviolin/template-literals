@@ -2,7 +2,7 @@
 
 Link: https://www.postgresql.org/docs/current/static/index.html
 
-Current: https://www.postgresql.org/docs/current/static/tutorial-join.html
+Current: https://www.postgresql.org/docs/current/static/tutorial-agg.html
 
 # Chapter 1. Getting Started
 
@@ -434,3 +434,6 @@ SELECT *
 (2 rows)
 */
 ```
+
+## 2.7. Aggregate Functions
+
