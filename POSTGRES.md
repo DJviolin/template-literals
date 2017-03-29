@@ -67,6 +67,7 @@ mydb=# \q -- Exit
 Books to read:
 
 [Understanding the New SQL]
+
 [A Guide to the SQL Standard]
 
 [Understanding the New SQL]: https://www.postgresql.org/docs/current/static/biblio.html#MELT93
