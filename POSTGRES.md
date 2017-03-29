@@ -2,7 +2,7 @@
 
 Link: https://www.postgresql.org/docs/current/static/index.html
 
-Current: https://www.postgresql.org/docs/current/static/tutorial-agg.html
+Current: https://www.postgresql.org/docs/current/static/tutorial-update.html
 
 # Chapter 1. Getting Started
 
@@ -515,3 +515,6 @@ SELECT city, max(temp_lo)
 
 */
 ```
+
+## 2.8. Updates
+
