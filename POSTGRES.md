@@ -1,15 +1,12 @@
 # PostgreSQL Documentation
-======
 
 Link: https://www.postgresql.org/docs/current/static/index.html
 
 Current: https://www.postgresql.org/docs/current/static/tutorial-sql-intro.html
 
 # Chapter 1. Getting Started
-======
 
 ## 1.3. Creating a Database
-------
 
 ```bash
 $ createdb mydb  # Creating mydb
@@ -23,7 +20,6 @@ More about [createdb], [dropdb] here.
 [dropdb]: https://www.postgresql.org/docs/current/static/app-dropdb.html
 
 ## 1.4. Accessing a Database
-------
 
 ```bash
 # allows you to interactively enter, edit, execute SQL commands
