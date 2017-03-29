@@ -2,7 +2,7 @@
 
 Link: https://www.postgresql.org/docs/current/static/index.html
 
-Current: https://www.postgresql.org/docs/current/static/tutorial-sql-intro.html
+Current: https://www.postgresql.org/docs/current/static/tutorial-concepts.html
 
 # Chapter 1. Getting Started
 
