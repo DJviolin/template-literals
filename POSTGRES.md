@@ -257,3 +257,32 @@ SELECT * FROM weather
 (3 rows)
 */
 ```
+
+You can request that duplicate rows be removed from the result of a query:
+
+```sql
+SELECT DISTINCT city
+       FROM weather;
+/*
+     city
+---------------
+ Hayward
+ San Francisco
+(2 rows)
+*/
+```
+
+Here again, the result row ordering might vary. You can ensure consistent results by using DISTINCT and ORDER BY together:
+
+```sql
+SELECT DISTINCT city
+       FROM weather
+       ORDER BY city;
+/*
+     city
+---------------
+ Hayward
+ San Francisco
+(2 rows)
+*/
+```
