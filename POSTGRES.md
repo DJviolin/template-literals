@@ -68,7 +68,6 @@ mydb=# \q -- Exit
 ======
 
 ## 2.1. Introduction
-------
 
 ```bash
 
