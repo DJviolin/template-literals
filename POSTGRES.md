@@ -510,9 +510,12 @@ SELECT city, max(temp_lo)
     FROM weather
     WHERE city LIKE 'S%'         -- The LIKE operator does pattern matching
     GROUP BY city
-    HAVING max(temp_lo) < 40;
+    HAVING max(temp_lo) > 40;
 /*
-
+     city      | max
+---------------+-----
+ San Francisco |  46
+(1 row)
 */
 ```
 
