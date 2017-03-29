@@ -2,7 +2,7 @@
 
 Link: https://www.postgresql.org/docs/current/static/index.html
 
-Current: https://www.postgresql.org/docs/current/static/tutorial-concepts.html
+Current: https://www.postgresql.org/docs/current/static/tutorial-table.html
 
 # Chapter 1. Getting Started
 
@@ -83,3 +83,14 @@ $ psql -s mydb
 mydb=> \i basics.sql 
 ```
 
+## 2.3. Creating a New Table
+
+```sql
+CREATE TABLE weather (
+  city       varchar(80),
+  temp_lo    int,            -- low temperature
+  temp_hi    int,            -- high temperature
+  prcp       real,           -- precipitation
+  date       date
+);
+```
