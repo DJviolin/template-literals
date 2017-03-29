@@ -456,3 +456,16 @@ SELECT max(temp_lo) FROM weather;
 (1 row)
 */
 ```
+
+As is often the case the query can be restated to accomplish the desired result, here by using a subquery:
+
+```sql
+SELECT city FROM weather
+    WHERE temp_lo = (SELECT max(temp_lo) FROM weather);
+/*
+     city
+---------------
+ San Francisco
+(1 row)
+*/
+```
