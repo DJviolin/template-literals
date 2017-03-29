@@ -127,3 +127,12 @@ Removing a table:
 ```sql
 DROP TABLE tablename;
 ```
+
+## 2.4. Populating a Table With Rows
+
+The INSERT statement is used to populate a table with rows:
+
+```sql
+INSERT INTO weather VALUES ('San Francisco', 46, 50, 0.25, '1994-11-27');
+-- => INSERT 0 1
+```
