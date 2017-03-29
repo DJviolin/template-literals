@@ -2,9 +2,11 @@
 
 Link: https://www.postgresql.org/docs/current/static/index.html
 
-Current: https://www.postgresql.org/docs/current/static/tutorial-createdb.html
+Current: https://www.postgresql.org/docs/current/static/tutorial-sql-intro.html
 
-#### 1.3. Creating a Database
+## Chapter 1. Getting Started
+
+### 1.3. Creating a Database
 
 ```bash
 $ createdb mydb  # Creating mydb
@@ -17,7 +19,7 @@ More about [createdb], [dropdb] here.
 [createdb]: https://www.postgresql.org/docs/current/static/app-createdb.html
 [dropdb]: https://www.postgresql.org/docs/current/static/app-dropdb.html
 
-#### 1.4. Accessing a Database
+### 1.4. Accessing a Database
 
 ```bash
 # allows you to interactively enter, edit, execute SQL commands
@@ -30,7 +32,7 @@ Inside `psql` cli:
 
 ```bash
 
-mydb=# SELECT version(); -- Printing PostgreSQL version
+mydb=# SELECT version(); -- Prints out PostgreSQL version
                            version
 -------------------------------------------------------------
  PostgreSQL 9.6.2, compiled by Visual C++ build 1800, 64-bit
@@ -51,5 +53,18 @@ mydb=# SELECT 2 + 2;
 (1 row)
 
 
-mydb=#
+mydb=# \h -- Prints out the syntax of various PostgreSQL SQL commands
+
+mydb=# \q -- Exit
+
+
+```
+
+## Chapter 2. The SQL Language
+
+### 2.1. Introduction
+
+```bash
+
+mydb=# 
 ```
