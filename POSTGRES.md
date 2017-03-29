@@ -437,3 +437,22 @@ SELECT *
 
 ## 2.7. Aggregate Functions
 
+An aggregate function computes a single result from multiple input rows, for example:
+
+* count
+* sum
+* avg (average)
+* max (maximum)
+* min (minimum)
+
+over a set of rows.
+
+```sql
+SELECT max(temp_lo) FROM weather;
+/*
+ max
+-----
+  46
+(1 row)
+*/
+```
