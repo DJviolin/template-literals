@@ -34,7 +34,7 @@ const options = {
 
 // Database connection parameters:
 const config = {
-  host: 'localhost',
+  host: process.env.PGHOST || 'localhost',
   port: process.env.PGPORT || 5432,
   database: process.env.PGDATABASE || 'postgres',
   user: process.env.PGUSER || 'postgres',
