@@ -134,7 +134,7 @@ The INSERT statement is used to populate a table with rows:
 
 ```sql
 INSERT INTO weather VALUES ('San Francisco', 46, 50, 0.25, '1994-11-27');
--- => INSERT 0 1
+-- INSERT 0 1
 ```
 
 The point type requires a coordinate pair as input, as shown here:
