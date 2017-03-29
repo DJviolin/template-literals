@@ -31,8 +31,8 @@ $ psql mydb
 Inside `psql` cli:
 
 ```bash
-
-mydb=# SELECT version(); -- Prints out PostgreSQL version
+# Prints out PostgreSQL version
+mydb=# SELECT version();
                            version
 -------------------------------------------------------------
  PostgreSQL 9.6.2, compiled by Visual C++ build 1800, 64-bit
@@ -53,11 +53,10 @@ mydb=# SELECT 2 + 2;
 (1 row)
 
 
-mydb=# \h -- Prints out the syntax of various PostgreSQL SQL commands
-
-mydb=# \q -- Exit
-
-
+# Prints out the syntax of various PostgreSQL SQL commands
+mydb=# \h
+# Exit
+mydb=# \q
 ```
 
 # Chapter 2. The SQL Language
