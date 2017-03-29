@@ -214,3 +214,16 @@ SELECT city, (temp_hi+temp_lo)/2, date FROM weather;
 (3 rows)
 */
 ```
+
+A query can be "qualified" by adding a WHERE clause that specifies which rows are wanted. The WHERE clause contains a Boolean (truth value) expression, and only rows for which the Boolean expression is true are returned. The usual Boolean operators (AND, OR, and NOT) are allowed in the qualification. For example, the following retrieves the weather of San Francisco on rainy days:
+
+```sql
+SELECT * FROM weather
+         WHERE city = 'San Francisco' AND prcp > 0.0;
+/*
+     city      | temp_lo | temp_hi | prcp |    date
+---------------+---------+---------+------+------------
+ San Francisco |      46 |      50 | 0.25 | 1994-11-27
+(1 row)
+*/
+```
