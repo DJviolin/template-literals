@@ -70,8 +70,11 @@ Books to read:
 
 [A Guide to the SQL Standard]
 
+[PosgreSQL tutorial repository]
+
 [Understanding the New SQL]: https://www.postgresql.org/docs/current/static/biblio.html#MELT93
 [A Guide to the SQL Standard]: https://www.postgresql.org/docs/current/static/biblio.html#DATE97
+[PosgreSQL tutorial repository]: https://github.com/postgres/postgres/tree/master/src/tutorial
 
 ```bash
 
