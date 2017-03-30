@@ -2,7 +2,7 @@
 
 Link: https://www.postgresql.org/docs/current/static/index.html
 
-Current: https://www.postgresql.org/docs/current/static/tutorial-inheritance.html
+Current: https://www.postgresql.org/docs/current/static/sql.html
 
 # Chapter 1. Getting Started
 
@@ -865,3 +865,25 @@ SELECT name, altitude
 (3 rows)
 */
 ```
+
+On the other hand, the following query finds all the cities that are not state capitals and are situated at an altitude over 500 feet:
+
+```sql
+SELECT name, altitude
+    FROM ONLY cities3
+    WHERE altitude > 500;
+/*
+   name    | altitude
+-----------+----------
+ Las Vegas |     2174
+ Mariposa  |     1953
+(2 rows)
+*/
+```
+
+Here the ONLY before cities indicates that the query should be run over only the cities table, and not tables below cities in the inheritance hierarchy. Many of the commands that we have already discussed — SELECT, UPDATE, and DELETE — support this ONLY notation.
+
+**Note:** Although inheritance is frequently useful, it has not been integrated with unique constraints or foreign keys, which limits its usefulness. See Section 5.9 for more detail.
+
+# II. The SQL Language
+
