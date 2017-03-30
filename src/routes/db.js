@@ -61,51 +61,46 @@ router.get('/sql/:id', async (ctx) => {
 });*/
 
 // http://127.0.0.1:3000/db/2
-/*router.get('/:id', async (ctx) => {
-  /*await db.one('SELECT ${id} + ${id} as VALUE;', {
-    id: parseInt(ctx.params.id, 10),
-  }, v => v.value)*
+router.get('/:id', async (ctx) => {
+  //await db.one('SELECT ${id} + ${id} as VALUE;', {
+  //  id: parseInt(ctx.params.id, 10),
+  //}, v => v.value)
   await db.one('SELECT version() as VALUE;', {}, v => v.value)
     .then((value) => {
-      //console.log('VALUE:', value); //=> value: 4
-      /*ctx.state = {
-        meta,
-        welcome: value,
-      }; // initialization (making sure it's empty)*
-      ctx.state.meta = meta;
       ctx.state.welcome = value;
-      //ctx.state.title = value;
-      //console.log(`ctx.state: ${util.inspect(ctx.state, false, null)}`);
+      //console.log('VALUE:', value); // => value: 4
     })
     .catch((error) => {
-      //console.log('ERROR:', error); // print the error
       ctx.body = `::DATABASE CONNECTION ERROR::<br>ERROR: ${error}`;
     })
     .finally(pgp.end); // for immediate app exit, closing the connection pool
     // for testing purposes only!
+
+  ctx.state.meta = meta;
   ctx.type = 'html';
   ctx.body = await index(ctx.state);
-});*/
+});
 
 // http://127.0.0.1:3000/db/2
-router.get('/:id', async (ctx) => {
+/*router.get('/:id', async (ctx) => {
   try {
-    /*await db.one('SELECT version() as VALUE;', {}, v => v.value)
-      .then((value) => {
-        ctx.state.meta = meta;
-        ctx.state.welcome = value;
-      })
-      .finally(pgp.end); // for immediate app exit, closing the connection pool
-      // for testing purposes only!*/
-    const wait = await db.one('SELECT version() as VALUE;', {}, v => v.value);
-    const response = await wait.value;
-    ctx.state.welcome = await response;
+    //await db.one('SELECT version() as VALUE;', {}, v => v.value)
+    //  .then((value) => {
+    //    ctx.state.welcome = value;
+    //  })
+    //  .finally(pgp.end); // for immediate app exit, closing the connection pool
+      // for testing purposes only!
+    const wait = await db.one('SELECT version();', {}, v => v.value);
+    const result = await wait;
+    console.log(result);
+    ctx.state.welcome = result;
   } catch (error) {
     ctx.body = `::DATABASE CONNECTION ERROR::<br>ERROR: ${error}`;
   }
 
+  ctx.state.meta = meta;
   ctx.type = 'html';
   ctx.body = await index(ctx.state);
-});
+});*/
 
 module.exports = router;
