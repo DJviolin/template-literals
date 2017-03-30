@@ -2,7 +2,7 @@
 
 Link: https://www.postgresql.org/docs/current/static/index.html
 
-Current: https://www.postgresql.org/docs/current/static/sql.html
+Current: https://www.postgresql.org/docs/current/static/sql-syntax-lexical.html
 
 # Chapter 1. Getting Started
 
@@ -886,4 +886,8 @@ Here the ONLY before cities indicates that the query should be run over only the
 **Note:** Although inheritance is frequently useful, it has not been integrated with unique constraints or foreign keys, which limits its usefulness. See Section 5.9 for more detail.
 
 # II. The SQL Language
+
+# Chapter 4. SQL Syntax
+
+## 4.1. Lexical Structure
 
