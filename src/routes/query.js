@@ -81,6 +81,11 @@ router.get('/sql/:id', async (ctx) => {
   ctx.body = await index(ctx.state);
 });*/
 
+router.use(async (ctx, next) => {
+  ctx.state.meta = meta;
+  await next();
+});
+
 // http://127.0.0.1:3000/query/2
 // $ ab -k -n 1000 -c 10 http://127.0.0.1:3000/query/2
 // $ wrk -c 64 -d 30s http://127.0.0.1:3000/query/2
@@ -98,7 +103,7 @@ router.get('/:id', async (ctx) => {
   } catch (error) {
     ctx.body = `::DATABASE CONNECTION ERROR::<br>ERROR: ${error}`;
   }
-  ctx.state.meta = meta;
+  //ctx.state.meta = meta;
   ctx.type = 'html';
   ctx.body = await index(ctx.state);
 });
