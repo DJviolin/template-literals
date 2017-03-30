@@ -6,7 +6,7 @@ const Router = require('koa-router');
 const db = require('../db/pgp').db;
 const pgp = require('../db/pgp').pgp;
 
-const router = new Router({ prefix: '/db' });
+const router = new Router({ prefix: '/query' });
 
 // Viewing
 const index = require('../views/index');
@@ -60,8 +60,8 @@ router.get('/sql/:id', async (ctx) => {
   await ctx.render('index');
 });*/
 
-// http://127.0.0.1:3000/db/2
-// wrk -c 64 -d 30s http://127.0.0.1:3000/db/2
+// http://127.0.0.1:3000/query/2
+// wrk -c 64 -d 30s http://127.0.0.1:3000/query/2
 /*router.get('/:id', async (ctx) => {
   //await db.one('SELECT ${id} + ${id} as VALUE;', {
   //  id: parseInt(ctx.params.id, 10),
@@ -82,16 +82,18 @@ router.get('/sql/:id', async (ctx) => {
   ctx.body = await index(ctx.state);
 });*/
 
-// http://127.0.0.1:3000/db/2
-// wrk -c 64 -d 30s http://127.0.0.1:3000/db/2
+// http://127.0.0.1:3000/query/2
+// wrk -c 64 -d 30s http://127.0.0.1:3000/query/2
 router.get('/:id', async (ctx) => {
   try {
-    const query = await db.one('SELECT ${id} + ${id} as VALUE;', {
-      id: parseInt(ctx.params.id, 10),
-    }, v => v.value);
     //const query = await db.one('SELECT version() as VALUE;', {}, v => v.value);
-    //console.log(query);
+    /*const query = await db.one('SELECT ${id} + ${id} as VALUE;', {
+      id: parseInt(ctx.params.id, 10),
+    }, v => v.value);*/
+    const id = parseInt(ctx.params.id, 10);
+    const query = await db.one(`SELECT ${id} + ${id} as VALUE;`, {}, v => v.value);
     ctx.state.welcome = query;
+    //console.log(query);
   } catch (error) {
     ctx.body = `::DATABASE CONNECTION ERROR::<br>ERROR: ${error}`;
   }
