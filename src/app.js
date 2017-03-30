@@ -210,29 +210,28 @@ const oneTimeQuery = async (ctx, next) => {
   }
   await next();
 };*/
-const oneTimeQuery = async (ctx, next) => {
+const oneTimeQuery = async (ctx) => {
   const result = await ctx.db.one('SELECT version() as VALUE;', {}, v => v.value);
   debugLog(result);
-  await next();
 };
-//app.use(oneTimeQuery);
 
-const oneTime2 = (fn) => {
-  let done = false;
-  return async (ctx, next) => {
-    /*if (done) {
+const oneTime = (fn) => {
+  try {
+    let done = false;
+    const res = (ctx, next) => {
+      if (done === false) {
+        fn(ctx, next);
+        done = true;
+      }
       next();
-      return;
-    }
-    fn(ctx, next);*/
-    if (done === false) {
-      fn(ctx, next);
-      done = true;
-    }
-    await next();
-  };
+    };
+    return res;
+  } catch (err) {
+    debugErr(`oneTime ERROR: ${err.message}` || err);
+  }
 };
-app.use(oneTime2(oneTimeQuery));
+
+app.use(oneTime(oneTimeQuery));
 
 // Routes
 app.use(index.routes(), index.allowedMethods());
