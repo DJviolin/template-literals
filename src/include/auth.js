@@ -11,6 +11,7 @@ const LocalStrategy = require('passport-local').Strategy;
 // https://www.npmjs.com/package/bcrypt
 // https://paragonie.com/blog/2016/02/how-safely-store-password-in-2016#nodejs
 const bcrypt = require('./bcrypt');
+//const bcrypt = require('bcrypt');
 
 const fetchUser = (() => {
   // This is an example! Use password hashing in yours
@@ -55,7 +56,7 @@ passport.deserializeUser(async (id, done) => {
     .catch(err => done(err));
 }));*/
 
-passport.use(new LocalStrategy(async (username, password, done) => {
+/*passport.use(new LocalStrategy(async (username, password, done) => {
   try {
     const user = await fetchUser();
     console.log(`fetchUser() password === ${password}\nfetchUser() user.password === ${user.password}`);
@@ -67,6 +68,25 @@ passport.use(new LocalStrategy(async (username, password, done) => {
         done(null, false);
       }
     });
+  } catch (err) {
+    done(err);
+  }
+}));*/
+
+passport.use(new LocalStrategy(async (username, password, done) => {
+  try {
+    const user = await fetchUser();
+    console.log(`fetchUser() password === ${password}\nfetchUser() user.password === ${user.password}`);
+    /*bcrypt.compare(password, user.password, (val) => {
+      console.log(`fetchUser() bcrypt.compare() === ${val}`);
+      if (username === user.username && val === true) {
+        done(null, user);
+      } else {
+        done(null, false);
+      }
+    });*/
+    const compare = await bcrypt.compare(password, user.password);
+    console.log(`fetchUser() bcrypt.compare() === ${compare}`);
   } catch (err) {
     done(err);
   }
