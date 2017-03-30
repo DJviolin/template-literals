@@ -192,6 +192,12 @@ const dbConnection = async (ctx, next) => {
 };
 app.use(dbConnection);
 
+app.use(async (ctx, next) => {
+  const result = await ctx.db.one(`SELECT version() as VALUE;`, {}, v => +v.value);
+  console.log(result);
+  await next();
+});
+
 // Routes
 app.use(index.routes(), index.allowedMethods());
 app.use(query.routes(), query.allowedMethods());
