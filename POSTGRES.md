@@ -2,7 +2,7 @@
 
 Link: https://www.postgresql.org/docs/current/static/index.html
 
-Current: https://www.postgresql.org/docs/current/static/tutorial-delete.html
+Current: https://www.postgresql.org/docs/current/static/tutorial-views.html
 
 # Chapter 1. Getting Started
 
@@ -558,3 +558,8 @@ SELECT * FROM weather;
 (2 rows)
 */
 ```
+
+# Chapter 3. Advanced Features
+
+## 3.2. Views
+
