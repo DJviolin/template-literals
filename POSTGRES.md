@@ -563,3 +563,20 @@ SELECT * FROM weather;
 
 ## 3.2. Views
 
+Suppose the combined listing of weather records and city location is of particular interest to your application, but you do not want to type the query each time you need it. You can create a view over the query, which gives a name to the query that you can refer to like an ordinary table:
+
+```sql
+CREATE VIEW myview AS
+    SELECT city, temp_lo, temp_hi, prcp, date, location
+    FROM weather, cities
+    WHERE city = name;
+-- CREATE VIEW
+SELECT * FROM myview;
+/*
+     city      | temp_lo | temp_hi | prcp |    date    | location
+---------------+---------+---------+------+------------+-----------
+ San Francisco |      46 |      50 | 0.25 | 1994-11-27 | (-194,53)
+ San Francisco |      41 |      55 |    0 | 1994-11-29 | (-194,53)
+(2 rows)
+*/
+```
