@@ -802,3 +802,57 @@ SELECT sum(salary) OVER w, avg(salary) OVER w
 
 ## 3.6. Inheritance
 
+Inheritance is a concept from object-oriented databases. It opens up interesting new possibilities of database design.
+
+Let's create two tables: A table cities and a table capitals. Naturally, capitals are also cities, so you want some way to show the capitals implicitly when you list all cities. If you're really clever you might invent some scheme like this:
+
+```sql
+CREATE TABLE capitals (
+    name          text,
+    population    real,
+    altitude      int,     -- (in ft)
+    state         char(2)
+);
+CREATE TABLE non_capitals (
+    name          text,
+    population    real,
+    altitude      int      -- (in ft)
+);
+CREATE VIEW cities AS
+    SELECT name, population, altitude FROM capitals
+        UNION
+    SELECT name, population, altitude FROM non_capitals;
+```
+
+This works OK as far as querying goes, but it gets ugly when you need to update several rows, for one thing.
+
+A better solution is this:
+
+```sql
+CREATE TABLE cities (
+    name          text,
+    population    real,
+    altitude      int      -- (in ft)
+);
+CREATE TABLE capitals (
+    state    char(2)
+) INHERITS (cities);
+```
+
+In this case, a row of capitals inherits all columns (name, population, and altitude) from its parent, cities. The type of the column name is text, a native PostgreSQL type for variable length character strings. State capitals have an extra column, state, that shows their state. In PostgreSQL, a table can inherit from zero or more other tables.
+
+For example, the following query finds the names of all cities, including state capitals, that are located at an altitude over 500 feet:
+
+```sql
+SELECT name, altitude
+    FROM cities
+    WHERE altitude > 500;
+/*
+   name    | altitude
+-----------+----------
+ Las Vegas |     2174
+ Mariposa  |     1953
+ Madison   |      845
+(3 rows)
+*/
+```
