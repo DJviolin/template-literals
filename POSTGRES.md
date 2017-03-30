@@ -829,14 +829,16 @@ This works OK as far as querying goes, but it gets ugly when you need to update 
 A better solution is this:
 
 ```sql
-CREATE TABLE cities (
+CREATE TABLE cities3 (
     name          text,
     population    real,
     altitude      int      -- (in ft)
 );
+-- CREATE TABLE
 CREATE TABLE capitals (
     state    char(2)
-) INHERITS (cities);
+) INHERITS (cities3);
+-- CREATE TABLE
 ```
 
 In this case, a row of capitals inherits all columns (name, population, and altitude) from its parent, cities. The type of the column name is text, a native PostgreSQL type for variable length character strings. State capitals have an extra column, state, that shows their state. In PostgreSQL, a table can inherit from zero or more other tables.
@@ -844,8 +846,15 @@ In this case, a row of capitals inherits all columns (name, population, and alti
 For example, the following query finds the names of all cities, including state capitals, that are located at an altitude over 500 feet:
 
 ```sql
+INSERT INTO cities3 VALUES ('San Francisco', 837442, 63);
+INSERT INTO cities3 VALUES ('Las Vegas', 603488, 2174);
+INSERT INTO cities3 VALUES ('Mariposa', 1200, 1953);
+
+INSERT INTO capitals VALUES ('Sacramento', 479686, 30, 'CA');
+INSERT INTO capitals VALUES ('Madison',243344, 845, 'WI');
+
 SELECT name, altitude
-    FROM cities
+    FROM cities3
     WHERE altitude > 500;
 /*
    name    | altitude
