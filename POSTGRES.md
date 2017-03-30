@@ -612,3 +612,5 @@ INSERT INTO weather2 VALUES ('Berkeley', 45, 53, 0.0, '1994-11-28');
 
 ## 3.4. Transactions
 
+Transactions are a fundamental concept of all database systems. The essential point of a transaction is that it **bundles multiple steps into a single, all-or-nothing operation**.
+
