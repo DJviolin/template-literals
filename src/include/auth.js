@@ -57,12 +57,12 @@ passport.deserializeUser(async (id, done) => {
 
 passport.use(new LocalStrategy(async (username, password, done) => {
   try {
-    const fetch = await fetchUser();
-    console.log(`fetchUser() password === ${password}\nfetchUser() user.password === ${fetch.password}`);
-    bcrypt.compare(password, fetch.password, (val) => {
+    const user = await fetchUser();
+    console.log(`fetchUser() password === ${password}\nfetchUser() user.password === ${user.password}`);
+    bcrypt.compare(password, user.password, (val) => {
       console.log(`fetchUser() bcrypt.compare() === ${val}`);
-      if (username === fetch.username && val === true) {
-        done(null, fetch);
+      if (username === user.username && val === true) {
+        done(null, user);
       } else {
         done(null, false);
       }
