@@ -91,18 +91,23 @@ router.use(async (ctx, next) => {
 // $ wrk -c 64 -d 30s http://127.0.0.1:3000/query/2
 // http://vitaly-t.github.io/pg-promise/Database.html#.one
 router.get('/:id', async (ctx) => {
-  try {
+  /*try {
     //const query = await db.one('SELECT version() as VALUE;', {}, v => v.value);
-    /*const query = await db.one('SELECT ${id} + ${id} as VALUE;', {
-      id: parseInt(ctx.params.id, 10),
-    }, v => v.value);*/
+    //const query = await db.one('SELECT ${id} + ${id} as VALUE;', {
+    //  id: parseInt(ctx.params.id, 10),
+    //}, v => v.value);
     const id = parseInt(ctx.params.id, 10);
     const query = await ctx.db.one(`SELECT ${id} + ${id} as VALUE;`, {}, v => +v.value);
     //console.log(query);
     ctx.state.welcome = query;
   } catch (error) {
-    ctx.body = `::DATABASE CONNECTION ERROR::<br>ERROR: ${error}`;
-  }
+    console.log(`PGP ERROR: ${err.message}` || err);
+  }*/
+  //
+  const id = parseInt(ctx.params.id, 10);
+  const query = await ctx.db.one(`SELECT ${id} + ${id} as VALUE;`, {}, v => +v.value);
+  ctx.state.welcome = query;
+  //
   //ctx.state.meta = meta;
   ctx.type = 'html';
   ctx.body = await index(ctx.state);
