@@ -3,8 +3,8 @@
 //const util = require('util');
 const Router = require('koa-router');
 //import db, { pgp } from '../db/pgp';
-const db = require('../db/pgp').db;
-const pgp = require('../db/pgp').pgp;
+//const db = require('../db/pgp').db;
+//const pgp = require('../db/pgp').pgp;
 
 const router = new Router({ prefix: '/query' });
 
@@ -91,7 +91,7 @@ router.get('/:id', async (ctx) => {
       id: parseInt(ctx.params.id, 10),
     }, v => v.value);*/
     const id = parseInt(ctx.params.id, 10);
-    const query = await db.one(`SELECT ${id} + ${id} as VALUE;`, {}, v => v.value);
+    const query = await ctx.db.one(`SELECT ${id} + ${id} as VALUE;`, {}, v => v.value);
     ctx.state.welcome = query;
     //console.log(query);
   } catch (error) {

@@ -188,7 +188,7 @@ const pgp = require('./db/pgp').pgp;
 const dbConnection = async (ctx, next) => {
   ctx.db = db;
   ctx.pgp = pgp;
-  await next;
+  await next();
 };
 app.use(dbConnection);
 
