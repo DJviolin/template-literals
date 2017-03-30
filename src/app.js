@@ -194,14 +194,14 @@ app.use(async (ctx, next) => {
   }
   await next();
 });
-
-// One-Time middleware
-// https://github.com/expressjs/express/issues/2457
 /*app.use(async (ctx, next) => {
   const result = await ctx.db.one('SELECT version() as VALUE;', {}, v => v.value);
   debugLog(result);
   await next();
 });*/
+
+// One-Time middleware
+// https://github.com/expressjs/express/issues/2457
 /*let oneTime = null;
 const oneTimeQuery = async (ctx, next) => {
   if (oneTime === null) {
@@ -210,11 +210,6 @@ const oneTimeQuery = async (ctx, next) => {
   }
   await next();
 };*/
-const oneTimeQuery = async (ctx) => {
-  const result = await ctx.db.one('SELECT version() as VALUE;', {}, v => v.value);
-  debugLog(result);
-};
-
 const oneTime = (fn) => {
   try {
     let done = false;
@@ -230,7 +225,10 @@ const oneTime = (fn) => {
     debugErr(`oneTime ERROR: ${err.message}` || err);
   }
 };
-
+const oneTimeQuery = async (ctx) => {
+  const result = await ctx.db.one('SELECT version() as VALUE;', {}, v => v.value);
+  debugLog(result);
+};
 app.use(oneTime(oneTimeQuery));
 
 // Routes
