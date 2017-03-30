@@ -193,8 +193,12 @@ const dbConnection = async (ctx, next) => {
 app.use(dbConnection);
 
 app.use(async (ctx, next) => {
-  const result = await ctx.db.one(`SELECT version() as VALUE;`, {}, v => +v.value);
-  console.log(result);
+  try {
+    const result = await ctx.db.one('SELECT version() as VALUE;', {}, v => v.value);
+    console.log(result);
+  } catch (error) {
+    ctx.body = `::DATABASE CONNECTION ERROR::<br>ERROR: ${error}`;
+  }
   await next();
 });
 
