@@ -185,21 +185,28 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 const db = require('./db/pgp').db;
 const pgp = require('./db/pgp').pgp;
 
-const dbConnection = async (ctx, next) => {
-  ctx.db = db;
-  ctx.pgp = pgp;
+app.use(async (ctx, next) => {
+  /*ctx.db = db;
+  ctx.pgp = pgp;*/
+  try {
+    ctx.db = db;
+    ctx.pgp = pgp;
+  } catch (err) {
+    debugErr(`PGP ERROR: ${err.message}` || err); // print error;
+  }
   await next();
-};
-app.use(dbConnection);
+});
 
 app.use(async (ctx, next) => {
-  try {
+  /*try {
     //const result = await ctx.db.one('SELECT version() as VALUE;', {}, v => v.value);
-    const result = await ctx.db.one('SELECT version() as VALUE;', {}, v => v.value);
-    console.log(result);
-  } catch (error) {
-    ctx.body = `::DATABASE CONNECTION ERROR::<br>ERROR: ${error}`;
-  }
+    const result = await ctx.db.one('SELECT version() ass VALUE;', {}, v => v.value);
+    debugLog(result);
+  } catch (err) {
+    debugErr(`PGP ERROR: ${err.message}` || err); // print error;
+  }*/
+  const result = await ctx.db.one('SELECT version() as VALUE;', {}, v => v.value);
+  debugLog(result);
   await next();
 });
 
