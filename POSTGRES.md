@@ -2,7 +2,7 @@
 
 Link: https://www.postgresql.org/docs/current/static/index.html
 
-Current: https://www.postgresql.org/docs/current/static/tutorial-views.html
+Current: https://www.postgresql.org/docs/current/static/tutorial-transactions.html
 
 # Chapter 1. Getting Started
 
@@ -609,3 +609,6 @@ INSERT INTO weather2 VALUES ('Berkeley', 45, 53, 0.0, '1994-11-28');
 -- ERROR:  insert or update on table "weather2" violates foreign key constraint "weather2_city_fkey"
 -- DETAIL:  Key (city)=(Berkeley) is not present in table "cities2".
 ```
+
+## 3.4. Transactions
+
