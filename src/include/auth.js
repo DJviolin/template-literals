@@ -44,7 +44,6 @@ passport.use(new LocalStrategy((username, password, done) => {
       }*/
       console.log(`fetchUser() password === ${password}\nfetchUser() user.password === ${user.password}`);
       bcrypt.compare(password, user.password, (val) => {
-        console.log(`fetchUser() password === ${password}\nfetchUser() user.password === ${user.password}`);
         console.log(`fetchUser() bcrypt.compare() === ${val}`);
         if (username === user.username && val === true) {
           done(null, user);
