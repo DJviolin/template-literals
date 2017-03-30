@@ -34,14 +34,14 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-passport.use(new LocalStrategy((username, password, done) => {
+/*passport.use(new LocalStrategy((username, password, done) => {
   fetchUser()
     .then(async (user) => {
-      /*if (username === user.username && password === user.password) {
-        done(null, user);
-      } else {
-        done(null, false);
-      }*/
+      //if (username === user.username && password === user.password) {
+      //  done(null, user);
+      //} else {
+      //  done(null, false);
+      //}
       console.log(`fetchUser() password === ${password}\nfetchUser() user.password === ${user.password}`);
       bcrypt.compare(password, user.password, (val) => {
         console.log(`fetchUser() bcrypt.compare() === ${val}`);
@@ -50,4 +50,30 @@ passport.use(new LocalStrategy((username, password, done) => {
       });
     })
     .catch(err => done(err));
+}));*/
+
+passport.use(new LocalStrategy(async (username, password, done) => {
+  try {
+    const fetch = await fetchUser();
+    (username === fetch.username && password === fetch.password) ?
+      done(null, fetch) : done(null, false);
+  } catch (err) {
+    done(err);
+  }
+
+  /*fetchUser()
+    .then(async (user) => {
+      //if (username === user.username && password === user.password) {
+      //  done(null, user);
+      //} else {
+      //  done(null, false);
+      //}
+      console.log(`fetchUser() password === ${password}\nfetchUser() user.password === ${user.password}`);
+      bcrypt.compare(password, user.password, (val) => {
+        console.log(`fetchUser() bcrypt.compare() === ${val}`);
+        (username === user.username && val === true) ?
+          done(null, user) : done(null, false);
+      });
+    })
+    .catch(err => done(err));*/
 }));
