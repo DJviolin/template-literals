@@ -194,6 +194,7 @@ app.use(dbConnection);
 
 app.use(async (ctx, next) => {
   try {
+    //const result = await ctx.db.one('SELECT version() as VALUE;', {}, v => v.value);
     const result = await ctx.db.one('SELECT version() as VALUE;', {}, v => v.value);
     console.log(result);
   } catch (error) {
