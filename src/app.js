@@ -180,6 +180,15 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 // https://github.com/koajs/jwt/blob/koa-v2/test/test.js
 // https://github.com/koajs/jwt/blob/koa-v2/test/test-server.js
 
+// PostgreSQL
+// https://github.com/vitaly-t/pg-promise-demo/blob/master/JavaScript/db/index.js
+const db = require('./db/pgp').db;
+const pgp = require('./db/pgp').pgp;
+const dbConnection = async (ctx, next) => {
+  await next;
+};
+app.use(dbConnection);
+
 // Routes
 app.use(index.routes(), index.allowedMethods());
 app.use(db.routes(), db.allowedMethods());
