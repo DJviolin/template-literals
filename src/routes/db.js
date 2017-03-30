@@ -61,7 +61,8 @@ router.get('/sql/:id', async (ctx) => {
 });*/
 
 // http://127.0.0.1:3000/db/2
-router.get('/:id', async (ctx) => {
+// wrk -c 64 -d 30s http://127.0.0.1:3000/db/2
+/*router.get('/:id', async (ctx) => {
   //await db.one('SELECT ${id} + ${id} as VALUE;', {
   //  id: parseInt(ctx.params.id, 10),
   //}, v => v.value)
@@ -79,28 +80,24 @@ router.get('/:id', async (ctx) => {
   ctx.state.meta = meta;
   ctx.type = 'html';
   ctx.body = await index(ctx.state);
-});
+});*/
 
 // http://127.0.0.1:3000/db/2
-/*router.get('/:id', async (ctx) => {
+// wrk -c 64 -d 30s http://127.0.0.1:3000/db/2
+router.get('/:id', async (ctx) => {
   try {
-    //await db.one('SELECT version() as VALUE;', {}, v => v.value)
-    //  .then((value) => {
-    //    ctx.state.welcome = value;
-    //  })
-    //  .finally(pgp.end); // for immediate app exit, closing the connection pool
-      // for testing purposes only!
-    const wait = await db.one('SELECT version();', {}, v => v.value);
-    const result = await wait;
-    console.log(result);
-    ctx.state.welcome = result;
+    const query = await db.one('SELECT ${id} + ${id} as VALUE;', {
+      id: parseInt(ctx.params.id, 10),
+    }, v => v.value);
+    //const query = await db.one('SELECT version() as VALUE;', {}, v => v.value);
+    //console.log(query);
+    ctx.state.welcome = query;
   } catch (error) {
     ctx.body = `::DATABASE CONNECTION ERROR::<br>ERROR: ${error}`;
   }
-
   ctx.state.meta = meta;
   ctx.type = 'html';
   ctx.body = await index(ctx.state);
-});*/
+});
 
 module.exports = router;
