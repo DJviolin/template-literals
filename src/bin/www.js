@@ -16,31 +16,35 @@ http.globalAgent.maxSockets = Infinity;
 app.proxy = true;
 
 // pg-promise
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw#Throw_an_object
 const db = require('../db/pgp').db;
 const pgp = require('../db/pgp').pgp;
 
 function UserException(message) {
-  this.message = message;
-  this.name = 'UserException';
+  //this.message = message;
+  //this.name = 'UserException';
+  return message;
 }
 const query = async (tablename) => {
   try {
     const exist = await db.one(`SELECT to_regclass('${tablename}') AS exist;`, [], a => a.exist);
-    if (exist !== tablename) {
+    if (exist === tablename) {
+      debugLog(`www: ${exist}`);
+    } else {
       debugLog(`${exist} !== ${tablename}`);
-      throw new UserException(`${tablename} table NOT exist`);
+      throw UserException(`${tablename} table NOT exist`);
     }
-    debugLog(`www: ${exist}`);
     await pgp.end(); // for immediate app exit, closing the connection pool
   } catch (err) {
     debugErr(`PGP ERROR: ${err.message || err}`); // print error;
   }
 };
-try {
+/*try {
   query('foo2');
 } catch (e) {
   debugErr(e.message, e.name); // pass exception object to err handler
-}
+}*/
+query('foo2');
 
 // Create HTTP server
 const server = http.createServer(app.callback());
