@@ -39,7 +39,7 @@ const query = async (tablename) => {
 };
 
 try {
-  query('foo');
+  query('foo2');
 } catch (e) {
   debugErr(e.message, e.name); // pass exception object to err handler
 }
