@@ -226,7 +226,8 @@ const oneTime = (fn) => {
   }
 };
 const oneTimeQuery = async (ctx) => {
-  const result = await ctx.db.one('SELECT version() as VALUE;', {}, v => v.value);
+  //const result = await ctx.db.one('SELECT version() as VALUE;', {}, v => v.value);
+  const result = await ctx.db.proc('version', [], a => a.version);
   debugLog(result);
 };
 app.use(oneTime(oneTimeQuery));
