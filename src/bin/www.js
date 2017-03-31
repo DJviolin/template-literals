@@ -15,6 +15,11 @@ http.globalAgent.maxSockets = Infinity;
 // Security
 app.proxy = true;
 
+function UserException(message) {
+  this.message = message;
+  this.name = 'UserException';
+}
+
 const query = async () => {
   const db = require('../db/pgp').db;
   const pgp = require('../db/pgp').pgp;
@@ -22,18 +27,21 @@ const query = async () => {
   const result = await db.proc('version', [], a => a.version);
   debugLog(`www: ${result}`);
 
-  const tablename = 'foo';
+  const tablename = 'foo2';
   const exist = await db.one(`SELECT to_regclass('${tablename}') AS exist;`, [], a => a.exist);
-  debugLog(`www: ${exist}`);
-  if (exist === tablename) {
-    debugLog(`${tablename} table exist`);
-  } else {
-    debugLog(`${tablename} table NOT exist`);
+  if (exist !== tablename) {
+    throw new UserException(`${tablename} table NOT exist`);
   }
+  debugLog(`www: ${exist}`);
 
   await pgp.end(); // for immediate app exit, closing the connection pool
 };
-query();
+
+try {
+  query();
+} catch (e) {
+  debugErr(e.message, e.name); // pass exception object to err handler
+}
 
 // Create HTTP server
 const server = http.createServer(app.callback());
