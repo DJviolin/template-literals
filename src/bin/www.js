@@ -36,6 +36,7 @@ const query = async (tablename) => {
     await pgp.end(); // for immediate app exit, closing the connection pool
   } catch (err) {
     debugErr(`PGP ERROR: ${err.message || err}`); // print error;
+    process.exit();
   }
 };
 /*try {
