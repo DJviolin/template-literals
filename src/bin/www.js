@@ -35,7 +35,7 @@ const query = async (tablename) => {
     if (exist === tablename) {
       debugLog(`Database exists: ${exist}`);
     } else {
-      debugLog(`Database missing: ${tablename} !== ${exist}`);
+      debugErr(`Database missing: ${tablename} !== ${exist}`);
       throw new UserException(`${tablename} table NOT exist`);
     }
     await pgp.end(); // for immediate app exit, closing the connection pool
