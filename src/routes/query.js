@@ -115,7 +115,7 @@ router.get('/:id', async (ctx) => {
   const id = parseInt(ctx.params.id, 10);
   const query = await ctx.db.one(`SELECT ${id} + ${id} as VALUE;`, {}, v => +v.value);
   ctx.state.welcome = query;
-  await ctx.pgp.end(); // for immediate app exit, closing the connection pool
+  //await ctx.pgp.end(); // for immediate app exit, closing the connection pool
   ctx.state.meta.title = 'Template Literals (edited)';
   ctx.type = 'html';
   ctx.body = await index(ctx.state);
