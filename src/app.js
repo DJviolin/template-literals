@@ -190,7 +190,7 @@ app.use(async (ctx, next) => {
     ctx.db = db;
     ctx.pgp = pgp;
   } catch (err) {
-    debugErr(`PGP ERROR: ${err.message}` || err); // print error;
+    debugErr(`PGP ERROR: ${err.message || err}`); // print error;
   }
   await next();
 });
