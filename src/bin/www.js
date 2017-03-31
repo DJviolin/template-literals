@@ -28,9 +28,9 @@ const query = async (tablename) => {
   try {
     const exist = await db.one(`SELECT to_regclass('${tablename}') AS exist;`, [], a => a.exist);
     if (exist === tablename) {
-      debugLog(`www: ${exist}`);
+      debugLog(`Database exists: ${exist}`);
     } else {
-      debugLog(`${exist} !== ${tablename}`);
+      debugLog(`Database missing: ${tablename} !== ${exist}`);
       throw new UserException(`${tablename} table NOT exist`);
     }
     await pgp.end(); // for immediate app exit, closing the connection pool
@@ -44,6 +44,7 @@ const query = async (tablename) => {
   debugErr(e.message, e.name); // pass exception object to err handler
 }*/
 query('foo2');
+query('foo');
 
 // Create HTTP server
 const server = http.createServer(app.callback());
