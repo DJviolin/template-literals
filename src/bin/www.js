@@ -15,29 +15,27 @@ http.globalAgent.maxSockets = Infinity;
 // Security
 app.proxy = true;
 
+// pg-promise
+const db = require('../db/pgp').db;
+const pgp = require('../db/pgp').pgp;
+
 function UserException(message) {
   this.message = message;
   this.name = 'UserException';
 }
-
 const query = async (tablename) => {
-  const db = require('../db/pgp').db;
-  const pgp = require('../db/pgp').pgp;
-
-  //const result = await db.proc('version', [], a => a.version);
-  //debugLog(`www: ${result}`);
-
-  //const tablename = 'foo2';
-  const exist = await db.one(`SELECT to_regclass('${tablename}') AS exist;`, [], a => a.exist);
-  if (exist !== tablename) {
-    console.log(`${exist} !== ${tablename}`);
-    throw new UserException(`${tablename} table NOT exist`);
+  try {
+    const exist = await db.one(`SELECT to_regclass('${tablename}') AS exist;`, [], a => a.exist);
+    if (exist !== tablename) {
+      debugLog(`${exist} !== ${tablename}`);
+      throw new UserException(`${tablename} table NOT exist`);
+    }
+    debugLog(`www: ${exist}`);
+    await pgp.end(); // for immediate app exit, closing the connection pool
+  } catch (err) {
+    debugErr(`PGP ERROR: ${err.message || err}`); // print error;
   }
-  debugLog(`www: ${exist}`);
-
-  await pgp.end(); // for immediate app exit, closing the connection pool
 };
-
 try {
   query('foo2');
 } catch (e) {
