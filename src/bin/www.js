@@ -17,6 +17,8 @@ app.proxy = true;
 
 // pg-promise
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw#Throw_an_object
+// https://nodejs.org/api/process.html#process_event_exit
+// https://nodejs.org/api/errors.html#errors_error_propagation_and_interception
 const db = require('../db/pgp').db;
 const pgp = require('../db/pgp').pgp;
 
