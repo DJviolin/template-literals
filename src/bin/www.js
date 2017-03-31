@@ -15,10 +15,9 @@ http.globalAgent.maxSockets = Infinity;
 // Security
 app.proxy = true;
 
-const db = require('../db/pgp').db;
-const pgp = require('../db/pgp').pgp;
-
 const query = async () => {
+  const db = require('../db/pgp').db;
+  const pgp = require('../db/pgp').pgp;
   const result = await db.proc('version', [], a => a.version);
   debugLog(`www: ${result}`);
   await pgp.end(); // for immediate app exit, closing the connection pool
