@@ -22,7 +22,7 @@ const query = async () => {
   debugLog(`www: ${result}`);
 
   const tablename = 'foo';
-  const exist = await db.one(`SELECT to_regclass(${tablename}) AS exist;`, [], a => a.exist);
+  const exist = await db.one(`SELECT to_regclass('${tablename}') AS exist;`, [], a => a.exist);
   debugLog(`www: ${exist}`);
   if (exist === tablename) {
     debugLog(`${tablename} table exist`);
