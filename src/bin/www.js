@@ -17,7 +17,7 @@ app.proxy = true;
 
 // pg-promise
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw#Throw_an_object
-// https://nodejs.org/api/process.html#process_event_exit
+// https://nodejs.org/api/process.html#process_process_exit_code
 // https://nodejs.org/api/errors.html#errors_error_propagation_and_interception
 const db = require('../db/pgp').db;
 const pgp = require('../db/pgp').pgp;
@@ -39,7 +39,8 @@ const query = async (tablename) => {
   } catch (err) {
     debugErr(`PGP ERROR: ${err.message || err}`); // print error;
     //process.emitWarning('Something Happened!', 'CustomWarning');
-    process.exit(1);
+    process.exitCode = 9;
+    process.exit();
   }
 };
 /*try {
