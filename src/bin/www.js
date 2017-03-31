@@ -21,6 +21,7 @@ const pgp = require('../db/pgp').pgp;
 const query = async () => {
   const result = await db.proc('version', [], a => a.version);
   debugLog(`www: ${result}`);
+  await pgp.end(); // for immediate app exit, closing the connection pool
 };
 query();
 
