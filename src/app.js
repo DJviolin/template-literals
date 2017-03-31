@@ -210,7 +210,7 @@ const oneTimeQuery = async (ctx, next) => {
   }
   await next();
 };*/
-const oneTime = (fn) => {
+/*const oneTime = (fn) => {
   try {
     let done = false;
     const res = (ctx, next) => {
@@ -230,7 +230,7 @@ const oneTimeQuery = async (ctx) => {
   const result = await ctx.db.proc('version', [], a => a.version);
   debugLog(result);
 };
-app.use(oneTime(oneTimeQuery));
+app.use(oneTime(oneTimeQuery));*/
 
 // Routes
 app.use(index.routes(), index.allowedMethods());
