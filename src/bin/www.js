@@ -18,6 +18,7 @@ app.proxy = true;
 const query = async () => {
   const db = require('../db/pgp').db;
   const pgp = require('../db/pgp').pgp;
+
   const result = await db.proc('version', [], a => a.version);
   debugLog(`www: ${result}`);
 
