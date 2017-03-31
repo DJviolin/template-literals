@@ -24,8 +24,8 @@ const query = async (tablename) => {
   const db = require('../db/pgp').db;
   const pgp = require('../db/pgp').pgp;
 
-  const result = await db.proc('version', [], a => a.version);
-  debugLog(`www: ${result}`);
+  //const result = await db.proc('version', [], a => a.version);
+  //debugLog(`www: ${result}`);
 
   //const tablename = 'foo2';
   const exist = await db.one(`SELECT to_regclass('${tablename}') AS exist;`, [], a => a.exist);
