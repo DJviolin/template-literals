@@ -5,11 +5,22 @@ const debug = require('debug');
 const http = require('http');
 const app = require('../app');
 
+// Debugging
+const debugErr = debug('app:err');
+const debugLog = debug('app:log');
+
 // Optimizations
 http.globalAgent.maxSockets = Infinity;
 
 // Security
 app.proxy = true;
+
+const query = async () => {
+  const db = require('../db/pgp').db;
+  const result = await db.proc('version', [], a => a.version);
+  debugLog(`www.js: ${result}`);
+};
+query();
 
 // Create HTTP server
 const server = http.createServer(app.callback());
@@ -28,10 +39,6 @@ function normalizePort(val) {
 
 // Get port from environment and store in Koa
 const port = normalizePort(process.env.PORT || '3000');
-
-// Debugging
-const debugErr = debug('app:err');
-const debugLog = debug('app:log');
 
 // Event listener for HTTP server "error" event
 function onError(err) {
