@@ -43,8 +43,8 @@ const query = async (tablename) => {
 } catch (e) {
   debugErr(e.message, e.name); // pass exception object to err handler
 }*/
-query('foo2');
 query('foo');
+query('foo2');
 
 // Create HTTP server
 const server = http.createServer(app.callback());
