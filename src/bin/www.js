@@ -28,6 +28,9 @@ function UserException(message) {
 }
 const query = async (tablename) => {
   try {
+    // Check if table exists
+    // http://dba.stackexchange.com/a/86098/106579
+    // http://stackoverflow.com/a/24089729/1442219
     const exist = await db.one(`SELECT to_regclass('${tablename}') AS exist;`, [], a => a.exist);
     if (exist === tablename) {
       debugLog(`Database exists: ${exist}`);
