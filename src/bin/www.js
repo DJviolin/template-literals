@@ -21,9 +21,8 @@ const db = require('../db/pgp').db;
 const pgp = require('../db/pgp').pgp;
 
 function UserException(message) {
-  //this.message = message;
-  //this.name = 'UserException';
-  return message;
+  this.message = message;
+  this.name = 'UserException';
 }
 const query = async (tablename) => {
   try {
@@ -32,7 +31,7 @@ const query = async (tablename) => {
       debugLog(`www: ${exist}`);
     } else {
       debugLog(`${exist} !== ${tablename}`);
-      throw UserException(`${tablename} table NOT exist`);
+      throw new UserException(`${tablename} table NOT exist`);
     }
     await pgp.end(); // for immediate app exit, closing the connection pool
   } catch (err) {
