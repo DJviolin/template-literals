@@ -20,16 +20,17 @@ function UserException(message) {
   this.name = 'UserException';
 }
 
-const query = async () => {
+const query = async (tablename) => {
   const db = require('../db/pgp').db;
   const pgp = require('../db/pgp').pgp;
 
   const result = await db.proc('version', [], a => a.version);
   debugLog(`www: ${result}`);
 
-  const tablename = 'foo2';
+  //const tablename = 'foo2';
   const exist = await db.one(`SELECT to_regclass('${tablename}') AS exist;`, [], a => a.exist);
   if (exist !== tablename) {
+    console.log(`${exist} !== ${tablename}`);
     throw new UserException(`${tablename} table NOT exist`);
   }
   debugLog(`www: ${exist}`);
@@ -38,7 +39,7 @@ const query = async () => {
 };
 
 try {
-  query();
+  query('foo');
 } catch (e) {
   debugErr(e.message, e.name); // pass exception object to err handler
 }
