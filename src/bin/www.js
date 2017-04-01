@@ -41,13 +41,15 @@ const query = async (tablename) => {
     `, [], a => a.exist);*/
     const exist = await db.one(`
       SELECT EXISTS (
+        SELECT   1
         FROM     information_schema.columns
-        WHERE    table_name = '${tablename}'
-        AND      column_name = 'your_column';
+        WHERE    table_name  = '${tablename}'
+        AND      column_name = 'name'
       )
-      AS exist;
-    `, [], a => a.exist);
-    if (exist === tablename) {
+      AS bool;
+    `, [], a => a.bool);
+    //if (exist === tablename) {
+    if (exist === true) {
       debugLog(`Database exists: ${exist}`);
     } else {
       debugErr(`Database missing: ${tablename} !== ${exist}`);
