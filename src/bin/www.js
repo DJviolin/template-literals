@@ -48,7 +48,6 @@ const query = async (tablename) => {
       )
       AS bool;
     `, [], a => a.bool);
-    pgp.end();
     //if (exist === tablename) {
     if (exist === true) {
       debugLog(`Database exists: ${exist}`);
@@ -58,6 +57,7 @@ const query = async (tablename) => {
     }
   } catch (err) {
     debugErr(`PGP ERROR: ${err.message || err}`); // print error;
+    pgp.end();
     process.on('exit', (code) => {
       debugErr(`About to exit with code: ${code}`);
     });
