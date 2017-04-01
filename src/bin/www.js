@@ -48,6 +48,7 @@ const query = async (tablename) => {
       )
       AS bool;
     `, [], a => a.bool);
+    pgp.end();
     //if (exist === tablename) {
     if (exist === true) {
       debugLog(`Database exists: ${exist}`);
@@ -70,7 +71,7 @@ const query = async (tablename) => {
   debugErr(e.message, e.name); // pass exception object to err handler
 }*/
 query('foo');
-//query('foo2');
+query('foo2');
 
 // Create HTTP server
 const server = http.createServer(app.callback());
