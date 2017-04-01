@@ -41,10 +41,10 @@ const query = async (tablename) => {
     `, [], a => a.exist);*/
     const exist = await db.one(`
       SELECT EXISTS (
-        SELECT   1
-        FROM     information_schema.columns
-        WHERE    table_name  = '${tablename}'
-        AND      column_name = 'name'
+          SELECT    1
+          FROM      information_schema.columns
+          WHERE     table_name  = '${tablename}'
+          AND       column_name = 'name'
       )
       AS bool;
     `, [], a => a.bool);
