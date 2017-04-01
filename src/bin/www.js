@@ -38,7 +38,6 @@ const query = async (tablename) => {
       debugErr(`Database missing: ${tablename} !== ${exist}`);
       throw new UserException(`${tablename} table NOT exist`);
     }
-    pgp.end(); // for immediate app exit, closing the connection pool (synchronous)
   } catch (err) {
     debugErr(`PGP ERROR: ${err.message || err}`); // print error;
     process.on('exit', (code) => {
