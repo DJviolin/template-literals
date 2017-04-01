@@ -73,6 +73,9 @@ const query = async (tablename) => {
 query('foo');
 query('foo2');
 
+// TODO: re-write
+// https://github.com/vitaly-t/pg-promise/blob/master/examples/select-insert.md
+
 // Create HTTP server
 const server = http.createServer(app.callback());
 
