@@ -31,7 +31,14 @@ const query = async (tablename) => {
     // Check if table exists
     // http://dba.stackexchange.com/a/86098/106579
     // http://stackoverflow.com/a/24089729/1442219
-    const exist = await db.one(`SELECT to_regclass('${tablename}') AS exist;`, [], a => a.exist);
+    //const exist = await db.one(`SELECT to_regclass('${tablename}') AS exist;`, [], a => a.exist);
+    const exist = await db.one(`
+      SELECT EXISTS (
+        SELECT 1
+        FROM   information_schema.tables
+        WHERE  table_name = '${tablename}'
+      ) AS exist;
+    `, [], a => a.exist);
     if (exist === tablename) {
       debugLog(`Database exists: ${exist}`);
     } else {
