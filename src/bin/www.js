@@ -131,10 +131,8 @@ async function query(tablename) {
   });
 }
 
-for (let i = 0; i < 100; i += 1) {
-  query('foo');
-  query('foo2');
-}
+query('foo');
+query('foo2');
 
 // Create HTTP server
 const server = http.createServer(app.callback());
