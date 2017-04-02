@@ -16,6 +16,7 @@ http.globalAgent.maxSockets = Infinity;
 app.proxy = true;
 
 // pg-promise
+// https://github.com/vitaly-t/pg-promise/blob/master/examples/select-insert.md
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw#Throw_an_object
 // https://nodejs.org/api/process.html#process_process_exit_code
 // https://nodejs.org/api/errors.html#errors_error_propagation_and_interception
