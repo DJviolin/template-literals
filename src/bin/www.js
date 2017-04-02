@@ -133,7 +133,7 @@ async function query(tablename) {
 }
 
 query('foo');
-query('foo2');
+//query('foo2');
 
 // Create HTTP server
 const server = http.createServer(app.callback());
