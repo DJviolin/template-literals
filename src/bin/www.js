@@ -97,11 +97,11 @@ query2('foo2')
     // something went wrong;
     debugErr(`PGP ERROR: ${error.message || error}`); // print error;
     pgp.end();
-    /*process.on('exit', (code) => {
+    process.on('exit', (code) => {
       debugErr(`About to exit with code: ${code}`);
     });
     process.exitCode = 9;
-    process.exit();*/
+    process.exit();
   });
 
 // Create HTTP server
