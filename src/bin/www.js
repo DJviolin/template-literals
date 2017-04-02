@@ -20,12 +20,12 @@ app.proxy = true;
 // https://nodejs.org/api/process.html#process_process_exit_code
 // https://nodejs.org/api/errors.html#errors_error_propagation_and_interception
 const db = require('../db/pgp').db;
-const pgp = require('../db/pgp').pgp;
+//const pgp = require('../db/pgp').pgp;
 
-function UserException(message) {
+/*function UserException(message) {
   this.message = message;
   this.name = 'UserException';
-}
+}*/
 /*const query = async (tablename) => {
   try {
     // Check if table exists
@@ -75,7 +75,7 @@ query('foo2');*/
 
 // TODO: re-write
 // https://github.com/vitaly-t/pg-promise/blob/master/examples/select-insert.md
-async function query2(tablename) {
+/*async function query2(tablename) {
   return await db.task(async (t) => {
     let exist = await t.one('SELECT to_regclass($1) AS exist;', tablename, a => a && a.exist);
     //return userId || await t.one('INSERT INTO Users(tablename) VALUES($1) RETURNING id', tablename, u => u.id);
@@ -102,7 +102,39 @@ query2('foo2')
     });
     process.exitCode = 9;
     process.exit();
+  });*/
+
+function UserException(message) {
+  this.message = message;
+  this.name = 'UserException';
+}
+
+async function query(tablename) {
+  await db.task(async (t) => {
+    let exist = null;
+    try {
+      exist = await t.one('SELECT to_regclass($1) AS exist;', tablename, a => !!a.exist);
+      if (!exist) {
+        console.log('Database missing');
+        throw new UserException(`Table NOT exist: ${exist}`);
+      }
+      console.log(`Database exists: ${exist}`);
+    } catch (error) {
+      console.log(`PGP ERROR: ${error.message || error}`); // print error;
+      process.on('exit', (code) => {
+        console.log(`About to exit with code: ${code}`);
+      });
+      process.exitCode = 9;
+      process.exit();
+    }
+    return exist;
   });
+}
+
+for (let i = 0; i < 100; i += 1) {
+  query('foo');
+  query('foo2');
+}
 
 // Create HTTP server
 const server = http.createServer(app.callback());
