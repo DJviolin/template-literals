@@ -69,8 +69,9 @@ for (let i = 0; i < 100; i += 1) {
 // https://github.com/vitaly-t/pg-promise/blob/master/examples/select-insert.md
 async function query2(tablename) {
   return await db.task(async (t) => {
+    let exist;
     try {
-      let exist = await t.one('SELECT to_regclass($1) AS exist;', tablename, a => a && a.exist);
+      exist = await t.one('SELECT to_regclass($1) AS exist;', tablename, a => a && a.exist);
       //return userId || await t.one('INSERT INTO Users(tablename) VALUES($1) RETURNING id', tablename, u => u.id);
       //return exist;
       if (exist === null) {
@@ -88,6 +89,7 @@ async function query2(tablename) {
       process.exitCode = 9;
       process.exit();
     }
+    return exist;
   });
 }
 /*query2('foo2')
@@ -159,5 +161,5 @@ async function query2(tablename) {
 
 for (let i = 0; i < 100; i += 1) {
   query2('foo');
-  //query2('foo2');
+  query2('foo2');
 }
