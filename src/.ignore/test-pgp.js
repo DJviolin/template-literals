@@ -71,6 +71,12 @@ async function query2(tablename) {
   return await db.task(async (t) => {
     let exist = await t.one('SELECT to_regclass($1) AS exist;', tablename, a => a && a.exist);
     //return userId || await t.one('INSERT INTO Users(tablename) VALUES($1) RETURNING id', tablename, u => u.id);
+    //return exist;
+    if (exist === null) {
+      console.log('Database missing');
+      throw new UserException(`Table NOT exist: ${exist}`);
+    }
+    console.log(`Database exists: ${exist}`);
     return exist;
   });
 }
@@ -96,7 +102,7 @@ async function query2(tablename) {
     process.exit();
   });*/
 
-for (let i = 0; i < 100; i += 1) {
+/*for (let i = 0; i < 100; i += 1) {
   query2('foo')
     .then((exist) => {
       // use the id;
@@ -138,5 +144,19 @@ for (let i = 0; i < 100; i += 1) {
       });
       process.exitCode = 9;
       process.exit();
-    });*/
+    });*
+}*/
+
+for (let i = 0; i < 100; i += 1) {
+  try {
+    query2('foo');
+  } catch (error) {
+    console.log(`PGP ERROR: ${error.message || error}`); // print error;
+    pgp.end();
+    process.on('exit', (code) => {
+      console.log(`About to exit with code: ${code}`);
+    });
+    process.exitCode = 9;
+    process.exit();
+  }
 }
