@@ -25,7 +25,8 @@ function UserException(message) {
   this.name = 'UserException';
 }
 
-async function query(tablename) {
+//async function query(tablename) {
+const query = async (tablename) => {
   await db.task(async (t) => {
     let exist = null;
     try {
@@ -45,7 +46,7 @@ async function query(tablename) {
     }
     return exist;
   });
-}
+};
 
 query('foo');
 //query('foo2');

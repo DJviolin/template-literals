@@ -62,7 +62,8 @@ function UserException(message) {
 
 // TODO: re-write
 // https://github.com/vitaly-t/pg-promise/blob/master/examples/select-insert.md
-async function query(tablename) {
+//async function query(tablename) {
+const query = async (tablename) => {
   await db.task(async (t) => {
     let exist = null;
     try {
@@ -86,7 +87,7 @@ async function query(tablename) {
     }
     return exist;
   });
-}
+};
 /*query2('foo2')
   .then((exist) => {
     // use the id;
