@@ -69,15 +69,25 @@ for (let i = 0; i < 100; i += 1) {
 // https://github.com/vitaly-t/pg-promise/blob/master/examples/select-insert.md
 async function query2(tablename) {
   return await db.task(async (t) => {
-    let exist = await t.one('SELECT to_regclass($1) AS exist;', tablename, a => a && a.exist);
-    //return userId || await t.one('INSERT INTO Users(tablename) VALUES($1) RETURNING id', tablename, u => u.id);
-    //return exist;
-    if (exist === null) {
-      console.log('Database missing');
-      throw new UserException(`Table NOT exist: ${exist}`);
+    try {
+      let exist = await t.one('SELECT to_regclass($1) AS exist;', tablename, a => a && a.exist);
+      //return userId || await t.one('INSERT INTO Users(tablename) VALUES($1) RETURNING id', tablename, u => u.id);
+      //return exist;
+      if (exist === null) {
+        console.log('Database missing');
+        throw new UserException(`Table NOT exist: ${exist}`);
+      }
+      console.log(`Database exists: ${exist}`);
+      return exist;
+    } catch (error) {
+      console.log(`PGP ERROR: ${error.message || error}`); // print error;
+      pgp.end();
+      process.on('exit', (code) => {
+        console.log(`About to exit with code: ${code}`);
+      });
+      process.exitCode = 9;
+      process.exit();
     }
-    console.log(`Database exists: ${exist}`);
-    return exist;
   });
 }
 /*query2('foo2')
@@ -148,15 +158,6 @@ async function query2(tablename) {
 }*/
 
 for (let i = 0; i < 100; i += 1) {
-  try {
-    query2('foo');
-  } catch (error) {
-    console.log(`PGP ERROR: ${error.message || error}`); // print error;
-    pgp.end();
-    process.on('exit', (code) => {
-      console.log(`About to exit with code: ${code}`);
-    });
-    process.exitCode = 9;
-    process.exit();
-  }
+  query2('foo');
+  //query2('foo2');
 }
