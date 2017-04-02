@@ -75,6 +75,27 @@ query('foo2');
 
 // TODO: re-write
 // https://github.com/vitaly-t/pg-promise/blob/master/examples/select-insert.md
+async function query(tablename) {
+  return await db.task(async (t) => {
+    let exist = await t.oneOrNone('SELECT to_regclass($1)', tablename, a => a && a.name);
+    //return userId || await t.one('INSERT INTO Users(tablename) VALUES($1) RETURNING id', tablename, u => u.id);
+    return exist;
+  });
+}
+query('name')
+  .then((userId) => {
+    // use the id;
+  })
+  .catch((error) => {
+    // something went wrong;
+    debugErr(`PGP ERROR: ${error.message || error}`); // print error;
+    pgp.end();
+    process.on('exit', (code) => {
+      debugErr(`About to exit with code: ${code}`);
+    });
+    process.exitCode = 9;
+    process.exit();
+  });
 
 // Create HTTP server
 const server = http.createServer(app.callback());
