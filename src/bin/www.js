@@ -82,7 +82,7 @@ async function query2(tablename) {
     return exist;
   });
 }
-query2('foo')
+query2('foo2')
   .then((exist) => {
     // use the id;
     //console.log(`exist: ${exist}`);
@@ -97,11 +97,11 @@ query2('foo')
     // something went wrong;
     debugErr(`PGP ERROR: ${error.message || error}`); // print error;
     pgp.end();
-    process.on('exit', (code) => {
+    /*process.on('exit', (code) => {
       debugErr(`About to exit with code: ${code}`);
     });
     process.exitCode = 9;
-    process.exit();
+    process.exit();*/
   });
 
 // Create HTTP server
