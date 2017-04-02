@@ -66,10 +66,10 @@ async function query(tablename) {
   await db.task(async (t) => {
     let exist = null;
     try {
-      exist = await t.one('SELECT to_regclass($1) AS exist;', tablename, a => a && a.exist);
+      exist = await t.one('SELECT to_regclass($1) AS exist;', tablename, a => !!a.exist);
       //return userId || await t.one('INSERT INTO Users(tablename) VALUES($1) RETURNING id', tablename, u => u.id);
       //return exist;
-      if (exist === null) {
+      if (!exist) {
         console.log('Database missing');
         throw new UserException(`Table NOT exist: ${exist}`);
       }
@@ -77,7 +77,7 @@ async function query(tablename) {
       //return exist;
     } catch (error) {
       console.log(`PGP ERROR: ${error.message || error}`); // print error;
-      pgp.end();
+      //pgp.end();
       process.on('exit', (code) => {
         console.log(`About to exit with code: ${code}`);
       });
