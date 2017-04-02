@@ -1,6 +1,7 @@
 'use strict';
 
 // Module dependencies
+const db = require('../db/pgp').db;
 const debug = require('debug');
 const http = require('http');
 const app = require('../app');
@@ -18,14 +19,10 @@ app.proxy = true;
 // pg-promise
 // https://github.com/vitaly-t/pg-promise/blob/master/examples/select-insert.md
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw#Throw_an_object
-const db = require('../db/pgp').db;
-
 function UserException(message) {
   this.message = message;
   this.name = 'UserException';
 }
-
-//async function query(tablename) {
 const query = async (tablename) => {
   await db.task(async (t) => {
     let exist = null;
@@ -47,7 +44,6 @@ const query = async (tablename) => {
     return exist;
   });
 };
-
 query('foo');
 //query('foo2');
 
