@@ -90,7 +90,7 @@ query2('foo2')
       debugLog(`Database exists: ${exist}`);
     } else {
       debugErr('Database missing');
-      throw new UserException('table NOT exist');
+      throw new UserException(`Table NOT exist: ${exist}`);
     }
   })
   .catch((error) => {
