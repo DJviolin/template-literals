@@ -115,14 +115,14 @@ async function query(tablename) {
     try {
       exist = await t.one('SELECT to_regclass($1) AS exist;', tablename, a => !!a.exist);
       if (!exist) {
-        console.log('Database missing');
+        debugErr('Database missing');
         throw new UserException(`Table NOT exist: ${exist}`);
       }
-      console.log(`Database exists: ${exist}`);
+      debugLog(`Database exists: ${exist}`);
     } catch (error) {
-      console.log(`PGP ERROR: ${error.message || error}`); // print error;
+      debugErr(`PGP ERROR: ${error.message || error}`); // print error;
       process.on('exit', (code) => {
-        console.log(`About to exit with code: ${code}`);
+        debugErr(`About to exit with code: ${code}`);
       });
       process.exitCode = 9;
       process.exit();
