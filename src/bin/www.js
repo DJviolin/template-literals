@@ -1,7 +1,7 @@
 'use strict';
 
 // Module dependencies
-const db = require('../db/pgp');
+const db = require('../db/index');
 const debug = require('debug');
 const http = require('http');
 const app = require('../app');
