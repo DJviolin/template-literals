@@ -91,3 +91,7 @@ https://magician03.github.io/blog/2016/12/20/how-to-host-portfolio-and-blog-usin
 JS hacks:
 
 https://medium.com/@liviu.lupei/12-extremely-useful-hacks-for-javascript-278567de2706
+
+Vanilla React:
+
+https://hackernoon.com/how-i-converted-my-react-app-to-vanillajs-and-whether-or-not-it-was-a-terrible-idea-4b14b1b2faff
