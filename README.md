@@ -87,3 +87,7 @@ https://github.com/sintaxi/harp
 https://harpjs.com/recipes/blog-posts-list
 
 https://magician03.github.io/blog/2016/12/20/how-to-host-portfolio-and-blog-using-github-pages-harpjs/
+
+JS hacks:
+
+https://medium.com/@liviu.lupei/12-extremely-useful-hacks-for-javascript-278567de2706
