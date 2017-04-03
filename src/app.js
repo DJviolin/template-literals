@@ -19,6 +19,14 @@ const serve = require('koa-static');
 // const serverpush = require('koa-server-push');
 const session = require('koa-session-minimal');
 
+// Websockets
+// https://github.com/koajs/koa.io
+// https://github.com/mattstyles/koa-socket
+//
+// https://github.com/uWebSockets/uWebSockets
+// https://github.com/uWebSockets/bindings/tree/master/nodejs
+// https://socket.io/
+
 // Routes
 const index = require('./routes/index');
 const query = require('./routes/query');
