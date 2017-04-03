@@ -107,6 +107,70 @@ router.use(async (ctx, next) => {
   ctx.body = await index(ctx.state);
 });*/
 
+// http://127.0.0.1:3000/query/create
+router.get('/create', async (ctx) => {
+  try {
+    const db = await ctx.db.users.create(); // create table: Users
+    ctx.body = await {
+      success: true,
+      data: db,
+    };
+  } catch (error) {
+    ctx.body = await {
+      success: false,
+      error: error.message || error,
+    };
+  }
+});
+
+// http://127.0.0.1:3000/query/init
+router.get('/init', async (ctx) => {
+  try {
+    const db = await ctx.db.users.init(); // add some initial records
+    ctx.body = await {
+      success: true,
+      data: db,
+    };
+  } catch (error) {
+    ctx.body = await {
+      success: false,
+      error: error.message || error,
+    };
+  }
+});
+
+// http://127.0.0.1:3000/query/empty
+router.get('/empty', async (ctx) => {
+  try {
+    const db = await ctx.db.users.empty(); // remove all records from the table
+    ctx.body = await {
+      success: true,
+      data: db,
+    };
+  } catch (error) {
+    ctx.body = await {
+      success: false,
+      error: error.message || error,
+    };
+  }
+});
+
+// http://127.0.0.1:3000/query/drop
+router.get('/drop', async (ctx) => {
+  try {
+    const db = await ctx.db.users.drop(); // drop table: Users
+    ctx.body = await {
+      success: true,
+      data: db,
+    };
+  } catch (error) {
+    ctx.body = await {
+      success: false,
+      error: error.message || error,
+    };
+  }
+});
+
 // http://127.0.0.1:3000/query/2
 // $ ab -k -n 1000 -c 10 http://127.0.0.1:3000/query/2
 // $ wrk -c 64 -d 30s http://127.0.0.1:3000/query/2
