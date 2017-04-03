@@ -109,7 +109,7 @@ router.use(async (ctx, next) => {
 
 // http://127.0.0.1:3000/query/create
 // $ ab -k -n 1000 -c 10 http://127.0.0.1:3000/query/create
-// $ wrk -c 64 -d 30s http://127.0.0.1:3000/query/create
+// $ wrk -c 64 -d 60s http://127.0.0.1:3000/query/create
 router.get('/create', async (ctx) => {
   try {
     const db = await ctx.db.users.create(); // create table: Users

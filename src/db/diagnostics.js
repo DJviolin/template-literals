@@ -11,10 +11,10 @@
 // which may be a little better performing, but lacks all the nice formatting
 // provided by pg-monitor.
 
-const fs = require('fs');
+//const fs = require('fs');
 const monitor = require('pg-monitor');
-const os = require('os');
-const path = require('path');
+//const os = require('os');
+//const path = require('path');
 
 monitor.setTheme('dimmed'); // changing the default theme;
 
