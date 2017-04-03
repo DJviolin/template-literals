@@ -22,7 +22,7 @@ monitor.setTheme('dimmed'); // changing the default theme;
 const $DEV = process.env.NODE_ENV !== 'production';
 
 // Log file for database-related errors:
-const logFile = path.join(__dirname, '../logs/pg.error.log');
+//const logFile = path.join(__dirname, '../logs/pg.error.log');
 
 // Below we are logging errors exactly the way they are reported by pg-monitor,
 // which you can tweak any way you like, as parameter 'info' provides all the
@@ -36,7 +36,7 @@ monitor.setLog((msg, info) => {
   // And the check below is for DEV environment only, as we want to log
   // errors only, or else the file will grow out of proportion in no time.
 
-  if (info.event === 'error') {
+  /*if (info.event === 'error') {
     //let logText = os.EOL + msg; // line break + next error message;
     let logText = `${os.EOL}${msg}`;
     if (info.time) {
@@ -48,7 +48,7 @@ monitor.setLog((msg, info) => {
     //fs.appendFileSync(logFile, logText); // add error handling as required;
     const wstream = fs.createWriteStream(logFile, { flags: 'a' });
     wstream.write(logText);
-  }
+  }*/
 
   // We absolutely must not let the monitor write anything into the console
   // while in a PROD environment, and not just because nobody will be able
