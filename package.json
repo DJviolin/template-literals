@@ -26,7 +26,7 @@
     "koa-json": "^2.0.2",
     "koa-passport": "^3.0.0",
     "koa-ratelimit": "^4.0.0",
-    "koa-router": "^7.1.0",
+    "koa-router": "^7.1.1",
     "koa-session-minimal": "^3.0.3",
     "koa-static": "^3.0.0",
     "koa-views": "^6.0.1",
@@ -46,7 +46,7 @@
   },
   "optionalDependencies": {
     "babel-eslint": "^7.2.1",
-    "eslint": "^3.18.0",
+    "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-babel": "^4.1.1",
     "eslint-plugin-import": "^2.2.0",
@@ -54,7 +54,7 @@
     "eslint-plugin-react": "^6.10.3",
     "htmlhint": "^0.9.13",
     "postcss": "^5.2.16",
-    "stylelint": "^7.9.0",
+    "stylelint": "^7.10.1",
     "stylus": "^0.54.5"
   }
 }
