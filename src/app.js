@@ -15,6 +15,8 @@ const path = require('path');
 const passport = require('koa-passport');
 //const ratelimit = require('koa-ratelimit');
 const serve = require('koa-static');
+// https://github.com/silenceisgolden/koa-server-push
+// const serverpush = require('koa-server-push');
 const session = require('koa-session-minimal');
 
 // Routes
@@ -49,6 +51,13 @@ app.use(session({
 }));
 
 // Middlewares
+//app.use(serverpush());
+// OR
+// app.use(serverpush({
+//   manifestName: 'anothername.json',
+//   gaeproxy: true,
+//   singleheader: true
+// }));
 app.use(bodyParser());
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(json({ pretty: false, param: 'pretty' }));
