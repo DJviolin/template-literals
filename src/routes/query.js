@@ -173,6 +173,86 @@ router.get('/drop', async (ctx) => {
   }
 });
 
+// http://127.0.0.1:3000/query/add/Lanti
+router.get('/add/:name', async (ctx) => {
+  try {
+    const db = await ctx.db.users.add(ctx.params.name); // add a new user with name
+    ctx.body = await {
+      success: true,
+      data: db,
+    };
+  } catch (error) {
+    ctx.body = await {
+      success: false,
+      error: error.message || error,
+    };
+  }
+});
+
+// http://127.0.0.1:3000/query/find/6
+router.get('/find/:id', async (ctx) => {
+  try {
+    const db = await ctx.db.users.find(+ctx.params.id); // find a user by id
+    ctx.body = await {
+      success: true,
+      data: db,
+    };
+  } catch (error) {
+    ctx.body = await {
+      success: false,
+      error: error.message || error,
+    };
+  }
+});
+
+// http://127.0.0.1:3000/query/remove/6
+router.get('/remove/:id', async (ctx) => {
+  try {
+    const db = await ctx.db.users.remove(+ctx.params.id); // remove a user by id
+    ctx.body = await {
+      success: true,
+      data: db,
+    };
+  } catch (error) {
+    ctx.body = await {
+      success: false,
+      error: error.message || error,
+    };
+  }
+});
+
+// http://127.0.0.1:3000/query/all
+router.get('/all', async (ctx) => {
+  try {
+    const db = await ctx.db.users.all(); // get all users
+    ctx.body = await {
+      success: true,
+      data: db,
+    };
+  } catch (error) {
+    ctx.body = await {
+      success: false,
+      error: error.message || error,
+    };
+  }
+});
+
+// http://127.0.0.1:3000/query/total
+router.get('/total', async (ctx) => {
+  try {
+    const db = await ctx.db.users.total(); // count all users
+    ctx.body = await {
+      success: true,
+      data: db,
+    };
+  } catch (error) {
+    ctx.body = await {
+      success: false,
+      error: error.message || error,
+    };
+  }
+});
+
 // http://127.0.0.1:3000/query/2
 // $ ab -k -n 1000 -c 10 http://127.0.0.1:3000/query/2
 // $ wrk -c 64 -d 30s http://127.0.0.1:3000/query/2
