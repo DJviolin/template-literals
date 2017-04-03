@@ -55,12 +55,12 @@ module.exports = {
     drop: sql('users/drop.sql'),
     add: sql('users/add.sql'),
   },
-  products: {
+  /*products: {
     create: sql('products/create.sql'),
     empty: sql('products/empty.sql'),
     drop: sql('products/drop.sql'),
     add: sql('products/add.sql'),
-  },
+  },*/
 };
 
 //////////////////////////////////////////////////////////////////////////
