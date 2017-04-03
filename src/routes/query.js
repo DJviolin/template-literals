@@ -257,13 +257,13 @@ router.get('/total', async (ctx) => {
 // $ ab -k -n 1000 -c 10 http://127.0.0.1:3000/query/2
 // $ wrk -c 64 -d 30s http://127.0.0.1:3000/query/2
 // http://vitaly-t.github.io/pg-promise/Database.html#.one
-router.get('/:id', async (ctx) => {
+/*router.get('/:id', async (ctx) => {
   const id = parseInt(ctx.params.id, 10);
   const query = await ctx.db.one(`SELECT ${id} + ${id} as VALUE;`, {}, v => +v.value);
   ctx.state.welcome = query;
   ctx.state.meta.title = 'Template Literals (edited)';
   ctx.type = 'html';
   ctx.body = await index(ctx.state);
-});
+});*/
 
 module.exports = router;

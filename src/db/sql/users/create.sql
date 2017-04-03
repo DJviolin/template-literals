@@ -6,6 +6,8 @@ to pre-format SQL with static formatting parameters when needs to be.
 */
 
 CREATE TABLE ${schema~}.Users (
-    id serial PRIMARY KEY,    -- https://www.postgresql.org/docs/current/static/datatype-numeric.html#DATATYPE-SERIAL
-    name text NOT NULL
+    -- https://www.postgresql.org/docs/current/static/datatype-numeric.html#DATATYPE-SERIAL
+    id serial PRIMARY KEY,
+    --name text NOT NULL
+    name VARCHAR(90) NOT NULL
 );
