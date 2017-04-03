@@ -191,13 +191,11 @@ debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 
 // PostgreSQL
 // https://github.com/vitaly-t/pg-promise-demo/blob/master/JavaScript/db/index.js
-const db = require('./db/pgp').db;
-const pgp = require('./db/pgp').pgp;
+const db = require('./db/pgp');
 
 app.use(async (ctx, next) => {
   try {
     ctx.db = db;
-    ctx.pgp = pgp;
   } catch (err) {
     debugErr(`PGP ERROR: ${err.message || err}`); // print error;
   }

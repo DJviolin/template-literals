@@ -1,7 +1,7 @@
 'use strict';
 
 // https://github.com/vitaly-t/pg-promise-demo/blob/master/JavaScript/db/index.js
-// 2017-02-08
+// 2017-04-03
 
 // Bluebird is the best promise library available today,
 // and is the one recommended here:
@@ -59,8 +59,8 @@ diag.init(options);
 // If you even need access to the library's root (pgp object),
 // you can do it via db.$config.pgp
 // See: http://vitaly-t.github.io/pg-promise/Database.html#.$config
-//module.exports = db;
-module.exports = {
+module.exports = db;
+/*module.exports = {
   db,
   pgp,
-};
+};*/
