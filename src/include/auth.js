@@ -43,6 +43,7 @@ passport.deserializeUser(async (id, done) => {
   });*/
   try {
     const user = await db.oneOrNone('SELECT id, username FROM Users WHERE id = $1', id);
+    console.log(`passport.deserializeUser() user == ${JSON.stringify(user, null, 4)}`);
     done(null, user);
   } catch (err) {
     done(err);
