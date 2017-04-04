@@ -183,8 +183,8 @@ passport.use(new LocalStrategy(async (username, password, done) => {
 
   try {
     user = await db.oneOrNone('SELECT id, username, password FROM Users WHERE username = $1;', username);
-    console.log(`user == ${JSON.stringify(user, null, 4)}\nLocalStrategy() password === ${password}\nuser.username == ${user.username}\nuser.password == ${user.password}`);
   } catch (err) {
+    console.log(`user == ${JSON.stringify(user, null, 4)}\nLocalStrategy() password === ${password}\nuser.username == ${user.username}\nuser.password == ${user.password}`);
     user = {
       id: 'error',
       username: 'error',
