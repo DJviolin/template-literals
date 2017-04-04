@@ -155,7 +155,7 @@ passport.use(new LocalStrategy(async (username, password, done) => {
       id: callback.id,
       username: callback.username,
       password: callback.password,
-      bool: !!callback, // if object not empty == true
+      bool: !!callback, // if object not empty === true
     }));
     console.log(`user == ${JSON.stringify(user, null, 4)}\nLocalStrategy() password === ${password}\nuser.username == ${user.username}\nuser.password == ${user.password}`);
     // $2a$10$uciNKIZu14HmDx2wMy0qju5Unu3KhSRs/syq1rBT4fb1pqK8hNQ2q
