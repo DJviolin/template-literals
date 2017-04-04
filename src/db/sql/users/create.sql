@@ -17,7 +17,7 @@ CREATE TABLE ${schema~}.Users (
   email varchar(80) NOT NULL,
   username varchar(80) NOT NULL,
   -- http://dustwell.com/how-to-handle-passwords-bcrypt.html
-  password text NOT NULL, -- sha256 hash of the plain-text password
+  password bytea NOT NULL, -- sha256 hash of the plain-text password
   --salt smallint NOT NULL, -- salt that is appended to the password before it is hashed (bcrypt storing in in the hash)
   -- https://www.postgresql.org/docs/current/static/functions-datetime.html
   -- https://www.postgresql.org/docs/current/static/datatype-datetime.html
