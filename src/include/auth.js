@@ -94,10 +94,28 @@ passport.deserializeUser(async (id, done) => {
   return hash.digest('hex');
 }*/
 
-passport.use(new LocalStrategy(async (username, password, done) => {
+/*passport.use(new LocalStrategy(async (username, password, done) => {
   try {
     const user = await fetchUser();
+    console.log(`fetchUser() password === ${password}\nfetchUser() user.password === ${user.password}`);
+    bcrypt.compare(password, user.password, (val) => {
+      console.log(`fetchUser() bcrypt.compare() === ${val}`);
+      if (username === user.username && val === true) {
+        done(null, user);
+      } else {
+        done(null, false);
+      }
+    });
+  } catch (err) {
+    done(err);
+  }
+}));*/
+
+passport.use(new LocalStrategy(async (username, password, done) => {
+  try {
+    //const user = await fetchUser();
     //console.log(`fetchUser() password === ${password}\nfetchUser() user.password === ${user.password}`);
+    const user = await db.oneOrNone('SELECT id, username FROM Users WHERE username = $1 AND password = $2', username, password);
     bcrypt.compare(password, user.password, (val) => {
       //console.log(`fetchUser() bcrypt.compare() === ${val}`);
       if (username === user.username && val === true) {
@@ -111,7 +129,7 @@ passport.use(new LocalStrategy(async (username, password, done) => {
   }
 }));
 
-passport.use(new LocalStrategy((username, password, done) => {
+/*passport.use(new LocalStrategy((username, password, done) => {
   db.get('SELECT salt FROM users WHERE username = ?', username, (err, row) => {
     if (!row) return done(null, false);
     var hash = hashPassword(password, row.salt);
@@ -120,4 +138,4 @@ passport.use(new LocalStrategy((username, password, done) => {
       return done(null, row);
     });
   });
-}));
+}));*/
