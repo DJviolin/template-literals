@@ -11,6 +11,7 @@ CREATE TABLE ${schema~}.Users (
     id serial PRIMARY KEY NOT NULL,
     --name text NOT NULL
     --name VARCHAR(90) NOT NULL
+    email varchar(80) NOT NULL,
     username varchar(80) NOT NULL,
     password text NOT NULL, -- sha256 hash of the plain-text password
     salt smallint NOT NULL -- salt that is appended to the password before it is hashed
