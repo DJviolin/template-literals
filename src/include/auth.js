@@ -158,6 +158,7 @@ passport.use(new LocalStrategy(async (username, password, done) => {
     //  bool: !!callback, // if object not empty === true
     //}));
     const user = await db.oneOrNone(`
+      -- http://stackoverflow.com/questions/8098795/return-a-value-if-no-record-is-found
       SELECT id, username, password FROM Users WHERE username = $1
       UNION ALL
       SELECT -1, '???', '???'
