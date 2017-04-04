@@ -22,10 +22,10 @@ VALUES
   ('Demo User 3'),    -- user 3;
   ('Demo User 4'),    -- user 4;
   ('Demo User 5')     -- user 5;*/
-  ('test1@domain.com', 'User1', 'password'),
-  ('test2@domain.com', 'User2', 'password'),
-  ('test3@domain.com', 'User3', 'password'),
-  ('test4@domain.com', 'User4', 'password'),
-  ('test4@domain.com', 'User5', 'password'),
+  ('test1@domain.com', 'User1', 'password1'),
+  ('test2@domain.com', 'User2', 'password2'),
+  ('test3@domain.com', 'User3', 'password3'),
+  ('test4@domain.com', 'User4', 'password4'),
+  ('test4@domain.com', 'User5', 'password5'), -- duplicate
 
 RETURNING id;
