@@ -157,7 +157,7 @@ passport.use(new LocalStrategy(async (username, password, done) => {
       password: callback.password,
       bool: !!callback, // if object not empty === true
     }));*/
-    const user = await db.one('SELECT id, username, password FROM Users WHERE username = $1;', username) || { bool: false };
+    const user = await db.one('SELECT id, username, password FROM Users WHERE username = $1;', username);
     console.log(`user == ${JSON.stringify(user, null, 4)}\nLocalStrategy() password === ${password}\nuser.username == ${user.username}\nuser.password == ${user.password}`);
     // $2a$10$uciNKIZu14HmDx2wMy0qju5Unu3KhSRs/syq1rBT4fb1pqK8hNQ2q
     bcrypt.compare(password, user.password, (val) => {
