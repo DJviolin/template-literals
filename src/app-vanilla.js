@@ -11,8 +11,7 @@ app.use(bodyParser());
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(json({ pretty: false, param: 'pretty' }));
 
-
-
+////////////////////////////////////////////////////////////////////////////////
 
 const jsdom = require('jsdom');
 const App = require('./public/js/framework');
@@ -43,7 +42,6 @@ app.use((ctx) => {
   ctx.body = html;
 });
 
-
-
+////////////////////////////////////////////////////////////////////////////////
 
 app.listen(8080);

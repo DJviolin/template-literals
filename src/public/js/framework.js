@@ -127,7 +127,7 @@ const span = (...args) => makeElement('span', ...args);
 
 ////////////////////////////////////////////////////////////////////////////////
 
-const Header = props => (
+/*const Header = props => (
   header({ className: 'header' },
     h1({ className: 'header__title' }, 'Know It All'),
     a(
@@ -154,4 +154,4 @@ const App = props => (
 
 const someData = { what: 'eva' };
 
-document.body.appendChild(App(someData));
+document.body.appendChild(App(someData));*/
