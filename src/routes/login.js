@@ -17,22 +17,20 @@ const meta = {
   lang: 'en-US',
 };
 
+router.use(async (ctx, next) => {
+  ctx.state.meta = meta;
+  await next();
+});
+
 // http://127.0.0.1:3000/login
 router.get('/login', async (ctx) => {
-  ctx.state.meta = meta;
   ctx.type = 'html';
   ctx.body = await login(ctx.state);
 });
 
-// http://127.0.0.1:3000/401
-/*router.get('/401', async (ctx) => {
-  ctx.body = { error: 'Authentication failed' };
-});*/
-
 // http://127.0.0.1:3000/admin
 router.get('/admin', async (ctx, next) => {
   ctx.isAuthenticated() ? await next() : ctx.redirect('/login');
-  ctx.state.meta = meta;
   ctx.state.welcome = 'Authentication success';
   ctx.type = 'html';
   ctx.body = await admin(ctx.state);
