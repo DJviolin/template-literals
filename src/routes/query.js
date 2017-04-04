@@ -202,8 +202,8 @@ router.get('/add/:name', async (ctx) => {
   try {
     //const db = await ctx.db.users.add(ctx.params.name); // add a new user with name
     const db = await ctx.db.users.add([
-      'kerozin.joe@gmail.com',
-      'Lanti',
+      'test1@domain.com',
+      'test',
       '$2a$10$uciNKIZu14HmDx2wMy0qju5Unu3KhSRs/syq1rBT4fb1pqK8hNQ2q',
     ]);
     ctx.body = await {
