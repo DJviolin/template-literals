@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = () => `
-  <script src="/js/framework.js"></script>
+  <script src="/js/common.js"></script>
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>

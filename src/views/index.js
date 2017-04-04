@@ -22,5 +22,7 @@ module.exports = state => main(`
 
   <p>if/else:</p>
   <p>${state.welcome.length === 4 ? '4!' : 'NOT 4!'}</p>
+
+  <div id="app"></div>
 `,
 { state });
