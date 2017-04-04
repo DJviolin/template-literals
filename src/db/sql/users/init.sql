@@ -29,10 +29,10 @@ VALUES
   ('Demo User 3'),    -- user 3;
   ('Demo User 4'),    -- user 4;
   ('Demo User 5')     -- user 5;*/
-  (
-    'kerozin.joe@gmail.com',
-    'Lanti',
-    '$2a$10$uciNKIZu14HmDx2wMy0qju5Unu3KhSRs/syq1rBT4fb1pqK8hNQ2q'
-  )    -- Lanti
+  ('test@domain.com', 'User1', 'password'),
+  ('test@domain.com', 'User2', 'password'),
+  ('test@domain.com', 'User3', 'password'),
+  ('test@domain.com', 'User4', 'password'),
+  ('test@domain.com', 'User5', 'password'),
 
 RETURNING id;
