@@ -115,10 +115,10 @@ passport.deserializeUser(async (id, done) => {
 passport.use(new LocalStrategy(async (username, password, done) => {
   try {
     const user2 = await fetchUser();
-    console.log(`user2 == ${JSON.stringify(user2, null, 4)}`);
+    console.log(`fetchUser() == ${JSON.stringify(user2, null, 4)}`);
     //
     const user = await db.oneOrNone('SELECT id, username, password FROM Users WHERE username = $1 AND password = $2;', [username, password]);
-    console.log(`user == ${JSON.stringify(user, null, 4)}\nfetchUser() password === ${password}\nuser.username == ${user.username}\nuser.password == ${user.password}`);
+    console.log(`user == ${JSON.stringify(user, null, 4)}\nLocalStrategy() password === ${password}\nuser.username == ${user.username}\nuser.password == ${user.password}`);
     // $2a$10$uciNKIZu14HmDx2wMy0qju5Unu3KhSRs/syq1rBT4fb1pqK8hNQ2q
     bcrypt.compare(password, user.password, (val) => {
       console.log(`${username} === ${user.username}\n${password}, ${user.password} === ${val}`);
