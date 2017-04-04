@@ -192,8 +192,11 @@ passport.use(new LocalStrategy(async (username, password, done) => {
     };
   }
 
+  console.log(`Between pgp & bcrypt === ${JSON.stringify(user, null, 4)}`);
+
   try {
     bcrypt.compare(password, user.password, (val) => {
+      console.log(`IN bcrypt === ${JSON.stringify(user, null, 4)}`);
       console.log(`bcrypt.compare() username: ${username} === ${user.username}\nbcrypt.compare() password: ${password}, ${user.password} === ${val}`);
       if (username === user.username && val === true) {
         done(null, user);
