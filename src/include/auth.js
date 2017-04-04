@@ -115,7 +115,7 @@ passport.use(new LocalStrategy(async (username, password, done) => {
   try {
     //const user = await fetchUser();
     //console.log(`fetchUser() password === ${password}\nfetchUser() user.password === ${user.password}`);
-    const user = await db.oneOrNone('SELECT id, username FROM Users WHERE username = $1 AND password = $2', username, password);
+    const user = await db.oneOrNone('SELECT id, username FROM Users WHERE username = $1 AND password = $2', [username, password]);
     bcrypt.compare(password, user.password, (val) => {
       //console.log(`fetchUser() bcrypt.compare() === ${val}`);
       if (username === user.username && val === true) {
