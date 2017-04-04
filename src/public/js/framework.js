@@ -6,6 +6,7 @@ function makeElement(type, props, text) {
   const el = document.createElement(type);
 
   Object.keys(props).forEach((prop) => {
+    console.log(`type == ${type}\nprops == ${JSON.stringify(props, null, 4)}\ntext == ${text}`);
     el[prop] = props[prop];
   });
 
