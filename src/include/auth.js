@@ -147,16 +147,16 @@ passport.use(new LocalStrategy((username, password, done) => {
   }
 }));*/
 
-passport.use(new LocalStrategy(async (username, password, done) => {
+/*passport.use(new LocalStrategy(async (username, password, done) => {
   try {
     //const user = await db.oneOrNone('SELECT id, username, password FROM Users WHERE username = $1 AND password = $2;', [username, password]);
     //const user = await db.oneOrNone('SELECT id, username, password FROM Users WHERE username = $1;', username);
-    /*const user = await db.one('SELECT id, username, password FROM Users WHERE username = $1;', username, callback => ({
-      id: callback.id,
-      username: callback.username,
-      password: callback.password,
-      bool: !!callback, // if object not empty === true
-    }));*/
+    //const user = await db.one('SELECT id, username, password FROM Users WHERE username = $1;', username, callback => ({
+    //  id: callback.id,
+    //  username: callback.username,
+    //  password: callback.password,
+    //  bool: !!callback, // if object not empty === true
+    //}));
     const user = await db.oneOrNone(`
       SELECT id, username, password FROM Users WHERE username = $1
       UNION ALL
@@ -165,6 +165,34 @@ passport.use(new LocalStrategy(async (username, password, done) => {
     `, username);
     console.log(`user == ${JSON.stringify(user, null, 4)}\nLocalStrategy() password === ${password}\nuser.username == ${user.username}\nuser.password == ${user.password}`);
     // $2a$10$uciNKIZu14HmDx2wMy0qju5Unu3KhSRs/syq1rBT4fb1pqK8hNQ2q
+    bcrypt.compare(password, user.password, (val) => {
+      console.log(`bcrypt.compare() username: ${username} === ${user.username}\nbcrypt.compare() password: ${password}, ${user.password} === ${val}`);
+      if (username === user.username && val === true) {
+        done(null, user);
+      } else {
+        done(null, false);
+      }
+    });
+  } catch (err) {
+    done(err);
+  }
+}));*/
+
+passport.use(new LocalStrategy(async (username, password, done) => {
+  let user;
+
+  try {
+    user = await db.oneOrNone('SELECT id, username, password FROM Users WHERE username = $1;', username);
+    console.log(`user == ${JSON.stringify(user, null, 4)}\nLocalStrategy() password === ${password}\nuser.username == ${user.username}\nuser.password == ${user.password}`);
+  } catch (err) {
+    user = {
+      id: null,
+      username: null,
+      password: null,
+    };
+  }
+
+  try {
     bcrypt.compare(password, user.password, (val) => {
       console.log(`bcrypt.compare() username: ${username} === ${user.username}\nbcrypt.compare() password: ${password}, ${user.password} === ${val}`);
       if (username === user.username && val === true) {
