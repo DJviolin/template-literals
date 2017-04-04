@@ -186,9 +186,9 @@ passport.use(new LocalStrategy(async (username, password, done) => {
     console.log(`user == ${JSON.stringify(user, null, 4)}\nLocalStrategy() password === ${password}\nuser.username == ${user.username}\nuser.password == ${user.password}`);
   } catch (err) {
     user = {
-      id: undefined,
-      username: undefined,
-      password: undefined,
+      id: 'error',
+      username: 'error',
+      password: 'error',
     };
   }
 
