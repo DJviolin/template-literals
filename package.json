@@ -5,6 +5,7 @@
   "main": "./src/index",
   "scripts": {
     "start": "node --use_strict ./src/index",
+    "vanilla": "node --use_strict ./src/app-vanilla",
     "eslint": "node ./node_modules/eslint/bin/eslint.js --ignore-pattern \"src/.ignore/**/*\" --ignore-pattern \"src/include/nunjucks.js\" \"src/**/*.js*\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,6 +20,7 @@
     "bcrypt": "^1.0.2",
     "bluebird": "^3.5.0",
     "debug": "^2.6.3",
+    "jsdom": "^9.12.0",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
     "koa-csrf": "^3.0.5",
