@@ -46,7 +46,8 @@ passport.deserializeUser(async (id, done) => {
     console.log(`passport.deserializeUser() user == ${JSON.stringify(user, null, 4)}`);
     done(null, user);
   } catch (err) {
-    done(err);
+    //done(err);
+    done(`passport.deserializeUser() error == ${err}`);
   }
 });
 
