@@ -7,10 +7,11 @@ to pre-format SQL with static formatting parameters when needs to be.
 
 CREATE TABLE ${schema~}.Users (
     -- https://www.postgresql.org/docs/current/static/datatype-numeric.html#DATATYPE-SERIAL
+    -- https://www.postgresql.org/docs/current/static/sql-createtable.html
     id serial PRIMARY KEY,
     --name text NOT NULL
     --name VARCHAR(90) NOT NULL
-    username VARCHAR(80) NOT NULL,
-    password VARCHAR(80) NOT NULL, -- sha256 hash of the plain-text password
-    salt SMALLINT NOT NULL -- salt that is appended to the password before it is hashed
+    username varchar(80) NOT NULL,
+    password text NOT NULL, -- sha256 hash of the plain-text password
+    salt smallint NOT NULL -- salt that is appended to the password before it is hashed
 );
