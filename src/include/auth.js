@@ -88,13 +88,6 @@ passport.deserializeUser(async (id, done) => {
   }
 }));*/
 
-/*function hashPassword(password, salt) {
-  var hash = crypto.createHash('sha256');
-  hash.update(password);
-  hash.update(salt);
-  return hash.digest('hex');
-}*/
-
 /*passport.use(new LocalStrategy(async (username, password, done) => {
   try {
     const user = await fetchUser();
@@ -112,7 +105,27 @@ passport.deserializeUser(async (id, done) => {
   }
 }));*/
 
-passport.use(new LocalStrategy(async (username, password, done) => {
+////////////////////////////////////////////////////////////////////////////////
+
+/*function hashPassword(password, salt) {
+  var hash = crypto.createHash('sha256');
+  hash.update(password);
+  hash.update(salt);
+  return hash.digest('hex');
+}
+
+passport.use(new LocalStrategy((username, password, done) => {
+  db.get('SELECT salt FROM users WHERE username = ?', username, (err, row) => {
+    if (!row) return done(null, false);
+    var hash = hashPassword(password, row.salt);
+    db.get('SELECT username, id FROM users WHERE username = ? AND password = ?', username, hash, (err, row) => {
+      if (!row) return done(null, false);
+      return done(null, row);
+    });
+  });
+}));*/
+
+/*passport.use(new LocalStrategy(async (username, password, done) => {
   try {
     //const user2 = await fetchUser();
     //console.log(`fetchUser() == ${JSON.stringify(user2, null, 4)}`);
@@ -122,7 +135,26 @@ passport.use(new LocalStrategy(async (username, password, done) => {
     console.log(`user == ${JSON.stringify(user, null, 4)}\nLocalStrategy() password === ${password}\nuser.username == ${user.username}\nuser.password == ${user.password}`);
     // $2a$10$uciNKIZu14HmDx2wMy0qju5Unu3KhSRs/syq1rBT4fb1pqK8hNQ2q
     bcrypt.compare(password, user.password, (val) => {
-      console.log(`bcrypt.compare(): ${username} === ${user.username}\n${password}, ${user.password} === ${val}`);
+      console.log(`bcrypt.compare() username: ${username} === ${user.username}\nbcrypt.compare() password: ${password}, ${user.password} === ${val}`);
+      if (username === user.username && val === true) {
+        done(null, user);
+      } else {
+        done(null, false);
+      }
+    });
+  } catch (err) {
+    done(err);
+  }
+}));*/
+
+passport.use(new LocalStrategy(async (username, password, done) => {
+  try {
+    //const user = await db.oneOrNone('SELECT id, username, password FROM Users WHERE username = $1 AND password = $2;', [username, password]);
+    const user = await db.oneOrNone('SELECT id, username, password FROM Users WHERE username = $1;', username);
+    console.log(`user == ${JSON.stringify(user, null, 4)}\nLocalStrategy() password === ${password}\nuser.username == ${user.username}\nuser.password == ${user.password}`);
+    // $2a$10$uciNKIZu14HmDx2wMy0qju5Unu3KhSRs/syq1rBT4fb1pqK8hNQ2q
+    bcrypt.compare(password, user.password, (val) => {
+      console.log(`bcrypt.compare() username: ${username} === ${user.username}\nbcrypt.compare() password: ${password}, ${user.password} === ${val}`);
       if (username === user.username && val === true) {
         done(null, user);
       } else {
@@ -133,14 +165,3 @@ passport.use(new LocalStrategy(async (username, password, done) => {
     done(err);
   }
 }));
-
-/*passport.use(new LocalStrategy((username, password, done) => {
-  db.get('SELECT salt FROM users WHERE username = ?', username, (err, row) => {
-    if (!row) return done(null, false);
-    var hash = hashPassword(password, row.salt);
-    db.get('SELECT username, id FROM users WHERE username = ? AND password = ?', username, hash, (err, row) => {
-      if (!row) return done(null, false);
-      return done(null, row);
-    });
-  });
-}));*/
