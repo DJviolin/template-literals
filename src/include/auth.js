@@ -116,7 +116,7 @@ passport.use(new LocalStrategy(async (username, password, done) => {
     bcrypt.hash('test', (val) => {
       console.log(`bcrypt.hash() === ${val}`);
     });
-    bcrypt.compare(password, (val) => {
+    bcrypt.compare(password, '$2a$10$uciNKIZu14HmDx2wMy0qju5Unu3KhSRs/syq1rBT4fb1pqK8hNQ2q', (val) => {
       console.log(`bcrypt.compare() === ${val}`);
     });
     //const user = await fetchUser();
