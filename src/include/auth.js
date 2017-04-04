@@ -14,14 +14,14 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('./bcrypt');
 //const bcrypt = require('bcrypt');
 
-const fetchUser = (() => {
+/*const fetchUser = (() => {
   // This is an example! Use password hashing in yours
   const user = { id: 1, username: 'test', password: '$2a$10$uciNKIZu14HmDx2wMy0qju5Unu3KhSRs/syq1rBT4fb1pqK8hNQ2q' };
   //return async () => {
   //  return user;
   //};
   return async () => user;
-})();
+})();*/
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -114,8 +114,8 @@ passport.deserializeUser(async (id, done) => {
 
 passport.use(new LocalStrategy(async (username, password, done) => {
   try {
-    const user2 = await fetchUser();
-    console.log(`fetchUser() == ${JSON.stringify(user2, null, 4)}`);
+    //const user2 = await fetchUser();
+    //console.log(`fetchUser() == ${JSON.stringify(user2, null, 4)}`);
     //
     //const user = await db.oneOrNone('SELECT id, username, password FROM Users WHERE username = $1 AND password = $2;', [username, password]);
     const user = await db.oneOrNone('SELECT id, username, password FROM Users WHERE username = $1;', username);
