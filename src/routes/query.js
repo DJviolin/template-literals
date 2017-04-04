@@ -107,6 +107,30 @@ router.use(async (ctx, next) => {
   ctx.body = await index(ctx.state);
 });*/
 
+// http://127.0.0.1:3000/query/test
+router.get('/test', async (ctx) => {
+  try {
+    const db = await ctx.db.one(`
+      INSERT INTO "public".Users(email, username, password)
+      VALUES ($1, $2, $3)
+      RETURNING id;
+    `, [
+      'kerozin.joe@gmail.com',
+      'Lanti',
+      '$2a$10$uciNKIZu14HmDx2wMy0qju5Unu3KhSRs/syq1rBT4fb1pqK8hNQ2q',
+    ], a => a.id);
+    ctx.body = await {
+      success: true,
+      data: db,
+    };
+  } catch (error) {
+    ctx.body = await {
+      success: false,
+      error: error.message || error,
+    };
+  }
+});
+
 // http://127.0.0.1:3000/query/create
 // $ ab -k -n 1000 -c 10 http://127.0.0.1:3000/query/create
 // $ wrk -c 64 -d 60s http://127.0.0.1:3000/query/create
