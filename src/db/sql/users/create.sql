@@ -15,7 +15,7 @@ CREATE TABLE ${schema~}.Users (
   --name text NOT NULL
   --name VARCHAR(90) NOT NULL
   email varchar(80) UNIQUE NOT NULL,
-  username varchar(80) NOT NULL,
+  username varchar(80) UNIQUE NOT NULL,
   -- http://dustwell.com/how-to-handle-passwords-bcrypt.html
   --password bytea NOT NULL, -- sha256 hash of the plain-text password
   password varchar(160) NOT NULL, -- sha256 hash of the plain-text password
