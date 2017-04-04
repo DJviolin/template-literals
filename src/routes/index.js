@@ -41,12 +41,6 @@ router.get('/', async (ctx) => {
   ctx.body = await index(ctx.state);
 });
 
-// http://127.0.0.1:3000/common
-router.get('/common', async (ctx) => {
-  ctx.type = 'html';
-  ctx.body = await index(ctx.state);
-});
-
 // http://127.0.0.1:3000/hello/steve?num=27
 router.get('/hello/:id', async (ctx) => {
   ctx.state._passport = {};
