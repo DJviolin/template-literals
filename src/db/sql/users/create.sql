@@ -12,5 +12,5 @@ CREATE TABLE ${schema~}.Users (
     --name VARCHAR(90) NOT NULL
     username VARCHAR(80) NOT NULL,
     password VARCHAR(80) NOT NULL, -- sha256 hash of the plain-text password
-    salt TEXT NOT NULL -- salt that is appended to the password before it is hashed
+    salt SMALLINT NOT NULL -- salt that is appended to the password before it is hashed
 );
