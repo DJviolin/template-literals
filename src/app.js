@@ -1,5 +1,8 @@
 'use strict';
 
+// https://github.com/danneu/koa-skeleton
+// https://koa-skeleton.danneu.com/register
+
 //'use stricter';
 // https://github.com/sirisian/ecmascript-use-stricter
 // https://github.com/sirisian/ecmascript-types
@@ -36,6 +39,10 @@ const login = require('./routes/login');
 const app = new Koa();
 
 // Sessions
+// https://www.npmjs.com/package/connect-pg-simple
+// https://www.npmjs.com/package/koa-pg-session
+//
+// http://mherman.org/blog/2016/09/25/node-passport-and-postgres/
 // https://github.com/longztian/koa-session-minimal
 // https://github.com/koajs/koa-redis
 // https://github.com/TMiguelT/koa-pg-session
