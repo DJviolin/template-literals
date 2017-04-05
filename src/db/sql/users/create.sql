@@ -5,9 +5,6 @@ NOTE: We only add schema here to demonstrate the ability of class QueryFile
 to pre-format SQL with static formatting parameters when needs to be.
 */
 
--- SELECT * FROM users;
--- \d+ users;
-
 /*
 https://www.postgresql.org/docs/current/static/datatype-numeric.html#DATATYPE-SERIAL
 https://www.postgresql.org/docs/current/static/sql-createtable.html
@@ -15,6 +12,9 @@ http://dustwell.com/how-to-handle-passwords-bcrypt.html
 https://www.postgresql.org/docs/current/static/functions-datetime.html
 https://www.postgresql.org/docs/current/static/datatype-datetime.html
 */
+
+-- SELECT * FROM users;
+-- \d+ users;
 
 CREATE TABLE ${schema~}.Users (
   id serial PRIMARY KEY NOT NULL,
