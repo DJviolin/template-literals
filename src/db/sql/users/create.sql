@@ -26,8 +26,8 @@ CREATE TYPE user_role AS ENUM ('ADMIN', 'MOD', 'MEMBER', 'BANNED');
 
 CREATE TABLE ${schema~}.Users (
   id                serial PRIMARY KEY,
-  email             varchar(80) UNIQUE NOT NULL,
-  uname             varchar(80) UNIQUE NOT NULL,
+  email             varchar(80) NOT NULL,
+  uname             varchar(80) NOT NULL,
   digest            text NOT NULL, -- sha256 password hash
   role              user_role NOT NULL DEFAULT 'MEMBER',
   creation_date date NOT NULL DEFAULT CURRENT_DATE,
