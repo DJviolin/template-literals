@@ -2,6 +2,10 @@
 
 // https://github.com/danneu/koa-skeleton
 // https://koa-skeleton.danneu.com/register
+// https://github.com/danneu/koa-bouncer
+//
+// https://github.com/danneu/koa-skeleton/blob/master/sql/schema.sql
+// https://github.com/danneu/koa-skeleton/blob/master/sql/seeds.sql
 
 //'use stricter';
 // https://github.com/sirisian/ecmascript-use-stricter
