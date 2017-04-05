@@ -34,7 +34,7 @@ CREATE TABLE ${schema~}.Users (
   creation_date    date        NOT NULL DEFAULT CURRENT_DATE,
   creation_time    time        NOT NULL DEFAULT CURRENT_TIME,
   last_online_date date        NOT NULL DEFAULT CURRENT_DATE,
-  last_online_time time        NOT NULL DEFAULT CURRENT_TIME,
+  last_online_time time        NOT NULL DEFAULT CURRENT_TIME
 );
 
 -- Ensure unames are unique and speed up lower(uname) lookup
