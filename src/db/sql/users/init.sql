@@ -26,6 +26,6 @@ VALUES
   ('test2@domain.com', 'User2', 'password2'),
   ('test3@domain.com', 'User3', 'password3'),
   ('test4@domain.com', 'User4', 'password4'),
-  ('test4@domain.com', 'User5', 'password5'), -- duplicate
+  ('test4@domain.com', 'User5', 'password5') -- duplicate
 
 RETURNING id;
