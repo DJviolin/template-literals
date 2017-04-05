@@ -18,6 +18,6 @@ INSERT INTO ${schema~}.users(email, uname, digest, role) VALUES
   ('test2@domain.com', 'User2', '$2a$10$ZKoaHub5foJTU3nA9IXX2ud0Q.RwNdZ20t2bGLLUiOcl1w7TCC3BS', 'MEMBER'), -- password2
   ('test3@domain.com', 'User3', '$2a$10$CJUccMt2oXUhMri7e2WoROFCfgCx2arUvGO0mw/NLp1aYXK9otxpm', 'MEMBER'), -- password3
   ('test4@domain.com', 'User4', '$2a$10$Tarlc3QGibl/2IutQDCmZetdi4dqAaUWWLe19wqhAhjPC6XBEuIqK', 'MEMBER'), -- password4
-  --('test4@domain.com', 'User5', '$2a$10$EtT2JQ1VTtjtfpZRY8syX.b94X8k3u.CakyIcnpYyOhE.1QDlKaMu', 'MEMBER'), -- duplicate, throw error
+  --('test4@domain.com', 'User4', '$2a$10$Tarlc3QGibl/2IutQDCmZetdi4dqAaUWWLe19wqhAhjPC6XBEuIqK', 'MEMBER'), -- duplicate, throw error
   ('test5@domain.com', 'User5', '$2a$10$EtT2JQ1VTtjtfpZRY8syX.b94X8k3u.CakyIcnpYyOhE.1QDlKaMu', 'MEMBER') -- password5
 RETURNING id;
