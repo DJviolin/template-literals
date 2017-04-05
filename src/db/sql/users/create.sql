@@ -25,15 +25,15 @@ https://www.postgresql.org/docs/current/static/datatype-datetime.html
 CREATE TYPE user_role AS ENUM ('ADMIN', 'MOD', 'MEMBER', 'BANNED');
 
 CREATE TABLE ${schema~}.Users (
-  id               serial PRIMARY KEY,
+  id               serial      PRIMARY KEY,
   email            varchar(80) NOT NULL,
   uname            varchar(80) NOT NULL,
-  digest           text NOT NULL, -- sha256 password hash
-  role             user_role NOT NULL DEFAULT 'MEMBER',
-  creation_date    date NOT NULL DEFAULT CURRENT_DATE,
-  creation_time    time NOT NULL DEFAULT CURRENT_TIME,
-  last_online_date date NOT NULL DEFAULT CURRENT_DATE,
-  last_online_time time NOT NULL DEFAULT CURRENT_TIME,
+  digest           text        NOT NULL, -- sha256 password hash
+  role             user_role   NOT NULL DEFAULT 'MEMBER',
+  creation_date    date        NOT NULL DEFAULT CURRENT_DATE,
+  creation_time    time        NOT NULL DEFAULT CURRENT_TIME,
+  last_online_date date        NOT NULL DEFAULT CURRENT_DATE,
+  last_online_time time        NOT NULL DEFAULT CURRENT_TIME,
 );
 
 -- Ensure unames are unique and speed up lower(uname) lookup
