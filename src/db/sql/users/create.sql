@@ -19,6 +19,9 @@ https://www.postgresql.org/docs/current/static/datatype-datetime.html
 -- https://github.com/danneu/koa-skeleton/blob/master/sql/schema.sql
 -- https://github.com/danneu/koa-skeleton/blob/master/sql/seeds.sql
 
+--DROP SCHEMA public CASCADE;
+--CREATE SCHEMA public;
+
 ------------------------------------------------------------
 ------------------------------------------------------------
 
