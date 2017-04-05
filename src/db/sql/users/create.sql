@@ -19,8 +19,8 @@ https://www.postgresql.org/docs/current/static/datatype-datetime.html
 -- https://github.com/danneu/koa-skeleton/blob/master/sql/schema.sql
 -- https://github.com/danneu/koa-skeleton/blob/master/sql/seeds.sql
 
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
 
 CREATE TYPE user_role AS ENUM ('ADMIN', 'MOD', 'MEMBER', 'BANNED');
 
@@ -40,8 +40,29 @@ CREATE UNIQUE INDEX unique_uname ON users (lower(uname));
 -- Speed up lower(email) lookup
 CREATE UNIQUE INDEX lower_email ON users (lower(email));
 
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
+------------------------------------------------------------
+-- Creates first user, password is 'secret'
+------------------------------------------------------------
+
+INSERT INTO users (email, uname, role, digest) VALUES
+  ('foo@domain.com', 'foo', 'ADMIN', '$2a$12$3InPKSvlWwgLHYVxvJpaMeXDZF/.hhoiYMv72xydoqm3Pg58Emrwm'),
+  ('test@domain.com', 'test', 'ADMIN', '$2a$12$3InPKSvlWwgLHYVxvJpaMeXDZF/.hhoiYMv72xydoqm3Pg58Emrwm')
+;
+
+------------------------------------------------------------
+-- Create some users, password is always 'secret'
+------------------------------------------------------------
+
+INSERT INTO users (email, uname, digest)
+  SELECT
+    'user-' || x.id || '@domain.com',
+    'user-' || x.id,
+    '$2a$12$3InPKSvlWwgLHYVxvJpaMeXDZF/.hhoiYMv72xydoqm3Pg58Emrwm'
+  FROM generate_series(1, 10) AS x(id)
+;
+
+------------------------------------------------------------
+------------------------------------------------------------
 
 /*CREATE TABLE ${schema~}.sessions (
   id            uuid        PRIMARY KEY,
