@@ -195,8 +195,8 @@ router.get('/empty', async (ctx) => {
   }
 });
 
-// http://127.0.0.1:3000/query/add/lanti
-router.get('/add/:name', async (ctx) => {
+// http://127.0.0.1:3000/query/add
+router.get('/add', async (ctx) => {
   try {
     //const db = await ctx.db.users.add(ctx.params.name); // add a new user with name
     const db = await ctx.db.users.add([
