@@ -27,9 +27,17 @@ CREATE TYPE user_role AS ENUM ('ADMIN', 'MOD', 'MEMBER', 'BANNED');
 CREATE TABLE ${schema~}.Users (
   id                serial PRIMARY KEY,
   email             varchar(80) UNIQUE NOT NULL,
-  username          varchar(80) UNIQUE NOT NULL,
-  password          varchar(160) NOT NULL, -- sha256 hash
+  uname             varchar(80) UNIQUE NOT NULL,
+  digest            text NOT NULL, -- sha256 password hash
   role              user_role NOT NULL DEFAULT 'MEMBER',
-  registration_date date NOT NULL DEFAULT CURRENT_DATE,
-  registration_time time NOT NULL DEFAULT CURRENT_TIME
+  creation_date date NOT NULL DEFAULT CURRENT_DATE,
+  creation_time time NOT NULL DEFAULT CURRENT_TIME
 );
+
+-- Ensure unames are unique and speed up lower(uname) lookup
+CREATE UNIQUE INDEX unique_uname ON users (lower(uname));
+-- Speed up lower(email) lookup
+CREATE UNIQUE INDEX lower_email ON users (lower(email));
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
