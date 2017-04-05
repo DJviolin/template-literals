@@ -5,6 +5,7 @@ NOTE: We only add schema here to demonstrate the ability of class QueryFile
 to pre-format SQL with static formatting parameters when needs to be.
 */
 
+DROP TYPE user_role;
 DROP TABLE ${schema~}.users;
 DROP TABLE ${schema~}.sessions;
 DROP VIEW ${schema~}.active_sessions;
