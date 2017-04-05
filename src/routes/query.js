@@ -111,7 +111,7 @@ router.use(async (ctx, next) => {
 router.get('/test', async (ctx) => {
   try {
     const db = await ctx.db.one(`
-      INSERT INTO "public".Users(email, username, password)
+      INSERT INTO "public".users(email, username, password)
       VALUES ($1, $2, $3)
       RETURNING id;
     `, [

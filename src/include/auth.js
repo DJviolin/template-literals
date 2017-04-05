@@ -42,7 +42,7 @@ passport.deserializeUser(async (id, done) => {
     return done(null, row);
   });*/
   try {
-    const user = await db.oneOrNone('SELECT id, uname FROM Users WHERE id = $1', id);
+    const user = await db.oneOrNone('SELECT id, uname FROM users WHERE id = $1', id);
     console.log(`passport.deserializeUser() user == ${JSON.stringify(user, null, 4)}`);
     done(null, user);
   } catch (err) {
@@ -162,7 +162,7 @@ passport.use(new LocalStrategy(async (username, password, done) => {
     //}));
     const user = await db.oneOrNone(`
       -- http://stackoverflow.com/questions/8098795/return-a-value-if-no-record-is-found
-      SELECT id, uname, digest FROM Users WHERE uname = $1
+      SELECT id, uname, digest FROM users WHERE uname = $1
       UNION ALL
       SELECT -1, '???', '???'
       LIMIT 1;
