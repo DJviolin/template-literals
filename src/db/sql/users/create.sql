@@ -22,7 +22,7 @@ https://www.postgresql.org/docs/current/static/datatype-datetime.html
 ------------------------------------------------------------
 ------------------------------------------------------------
 
-CREATE TYPE user_role AS ENUM ('ADMIN', 'MOD', 'MEMBER', 'BANNED');
+CREATE TYPE ${schema~}.user_role AS ENUM ('ADMIN', 'MOD', 'MEMBER', 'BANNED');
 
 -- ( email, uname, digest )
 CREATE TABLE ${schema~}.users (
