@@ -22,7 +22,7 @@ CREATE TABLE ${schema~}.Users (
   username varchar(80) UNIQUE NOT NULL,
   --password bytea NOT NULL, -- sha256 hash of the plain-text password
   password varchar(160) NOT NULL, -- sha256 hash of the plain-text password
-  --salt smallint NOT NULL, -- salt that is appended to the password before it is hashed (bcrypt storing in in the hash)
+  --salt smallint NOT NULL, -- salt that is appended to the password before hash (bcrypt storing in the hash)
   registration_date date NOT NULL DEFAULT CURRENT_DATE,
   registration_time time NOT NULL DEFAULT CURRENT_TIME
 );
