@@ -169,7 +169,6 @@ passport.use(new LocalStrategy(async (username, password, done) => {
       LIMIT 1;
     `, username);
     console.log(`user == ${JSON.stringify(user, null, 4)}\nLocalStrategy() password === ${password}\nuser.username == ${user.username}\nuser.password == ${user.password}`);
-    // $2a$10$uciNKIZu14HmDx2wMy0qju5Unu3KhSRs/syq1rBT4fb1pqK8hNQ2q
     bcrypt.compare(password, user.password, (val) => {
       console.log(`bcrypt.compare() username: ${username} === ${user.username}\nbcrypt.compare() password: ${password}, ${user.password} === ${val}`);
       if (username === user.username && val === true) {
