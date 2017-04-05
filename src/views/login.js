@@ -8,12 +8,12 @@ module.exports = state => main(`
     <input type="hidden" name="_csrf" value="${state.global.csrf}" />
     <p>
       <label>Username:
-        <input type="text" name="username" placeholder="Username" value="test" />
+        <input type="text" name="username" placeholder="Username" value="User2" />
       </label>
     </p>
     <p>
       <label>Password:
-        <input type="password" name="password" placeholder="Password" value="test" />
+        <input type="password" name="password" placeholder="Password" value="password2" />
       </label>
     </p>
     <p>
