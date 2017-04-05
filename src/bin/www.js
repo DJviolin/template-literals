@@ -19,7 +19,7 @@ app.proxy = true;
 // pg-promise
 // https://github.com/vitaly-t/pg-promise/blob/master/examples/select-insert.md
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw#Throw_an_object
-function UserException(message) {
+/*function UserException(message) {
   this.message = message;
   this.name = 'UserException';
 }
@@ -45,7 +45,7 @@ const query = async (tablename) => {
   });
 };
 query('foo');
-//query('foo2');
+//query('foo2');*/
 
 // Create HTTP server
 const server = http.createServer(app.callback());
