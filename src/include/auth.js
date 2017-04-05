@@ -42,7 +42,7 @@ passport.deserializeUser(async (id, done) => {
     return done(null, row);
   });*/
   try {
-    const user = await db.oneOrNone('SELECT id, username FROM Users WHERE id = $1', id);
+    const user = await db.oneOrNone('SELECT id, uname FROM Users WHERE id = $1', id);
     console.log(`passport.deserializeUser() user == ${JSON.stringify(user, null, 4)}`);
     done(null, user);
   } catch (err) {
@@ -162,15 +162,15 @@ passport.use(new LocalStrategy(async (username, password, done) => {
     //}));
     const user = await db.oneOrNone(`
       -- http://stackoverflow.com/questions/8098795/return-a-value-if-no-record-is-found
-      SELECT id, username, password FROM Users WHERE username = $1
+      SELECT id, uname, digest FROM Users WHERE username = $1
       UNION ALL
       SELECT -1, '???', '???'
       LIMIT 1;
     `, username);
-    console.log(`user == ${JSON.stringify(user, null, 4)}\nLocalStrategy() password === ${password}\nuser.username == ${user.username}\nuser.password == ${user.password}`);
-    bcrypt.compare(password, user.password, (val) => {
-      console.log(`bcrypt.compare() username: ${username} === ${user.username}\nbcrypt.compare() password: ${password}, ${user.password} === ${val}`);
-      if (username === user.username && val === true) {
+    console.log(`user == ${JSON.stringify(user, null, 4)}\nLocalStrategy() password === ${password}\nuser.uname == ${user.uname}\nuser.digest == ${user.digest}`);
+    bcrypt.compare(password, user.digest, (val) => {
+      console.log(`bcrypt.compare() username: ${username} === ${user.uname}\nbcrypt.compare() password: ${password}, ${user.digest} === ${val}`);
+      if (username === user.uname && val === true) {
         done(null, user);
       } else {
         done(null, false);
