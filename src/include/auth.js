@@ -149,21 +149,10 @@ passport.use(new LocalStrategy((username, password, done) => {
 
 passport.use(new LocalStrategy(async (username, password, done) => {
   try {
-    bcrypt.hash('password1', (val) => {
-      console.log(`bcrypt.hash('password1') === ${val}`);
-    });
-    bcrypt.hash('password2', (val) => {
-      console.log(`bcrypt.hash('password2') === ${val}`);
-    });
-    bcrypt.hash('password3', (val) => {
-      console.log(`bcrypt.hash('password3') === ${val}`);
-    });
-    bcrypt.hash('password4', (val) => {
-      console.log(`bcrypt.hash('password4') === ${val}`);
-    });
-    bcrypt.hash('password5', (val) => {
-      console.log(`bcrypt.hash('password5') === ${val}`);
-    });
+    //bcrypt.hash('password1', (val) => {
+    //  console.log(`bcrypt.hash('password1') === ${val}`);
+    //});
+    //
     //const user = await db.oneOrNone('SELECT id, username, password FROM Users WHERE username = $1 AND password = $2;', [username, password]);
     //const user = await db.oneOrNone('SELECT id, username, password FROM Users WHERE username = $1;', username);
     //const user = await db.one('SELECT id, username, password FROM Users WHERE username = $1;', username, callback => ({
