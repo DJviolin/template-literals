@@ -43,7 +43,7 @@ CREATE UNIQUE INDEX lower_email ON users (lower(email));
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 
-CREATE TABLE ${schema~}.sessions (
+/*CREATE TABLE ${schema~}.sessions (
   id            uuid        PRIMARY KEY,
   user_id       int         NOT NULL REFERENCES users(id),
   ip_address    inet        NOT NULL,
@@ -61,7 +61,7 @@ CREATE VIEW ${schema~}.active_sessions AS
   FROM sessions
   WHERE expired_at > NOW()
     AND logged_out_at IS NULL
-;
+;*/
 
 ------------------------------------------------------------
 ------------------------------------------------------------
