@@ -24,7 +24,7 @@ const session = require('koa-session-minimal');
 // 1st
 const config = require('./config');
 const mw = require('./include/middleware');
-const { LOG, REQ, ERR } = require('./include/debug.js');
+const { LOG, ERR } = require('./include/debug.js');
 
 // Routes
 const index = require('./routes/index');
