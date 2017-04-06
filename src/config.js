@@ -41,6 +41,10 @@ if (exports.RECAPTCHA_SYSTEM_ONLINE) {
 
 // //////////////////////////////////////////////////////////
 
+exports.PRIVATE_IP_DOCKER = process.env.PRIVATE_IP_DOCKER || '0.0.0.0';
+
+// //////////////////////////////////////////////////////////
+
 // Output config object in development to help with sanity-checking
 if (exports.NODE_ENV === 'development' || exports.NODE_ENV === 'test') {
   LOG(exports);
