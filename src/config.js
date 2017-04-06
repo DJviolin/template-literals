@@ -44,6 +44,9 @@ if (exports.RECAPTCHA_SYSTEM_ONLINE) {
   warn('Warn: Recaptcha system offline');
 }
 
+//exports.MESSAGES_PER_PAGE = Number.parseInt(process.env.MESSAGES_PER_PAGE, 10) || 10;
+//exports.USERS_PER_PAGE = Number.parseInt(process.env.USERS_PER_PAGE, 10) || 10;
+
 // //////////////////////////////////////////////////////////
 
 // Output config object in development to help with sanity-checking
