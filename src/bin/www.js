@@ -1,8 +1,8 @@
 'use strict';
 
-// 3rd party
+// Node
 const http = require('http');
-// 1st party
+// 1st
 const app = require('../app');
 const config = require('../config');
 const { LOG, ERR } = require('../include/debug.js');

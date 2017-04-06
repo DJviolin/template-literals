@@ -7,8 +7,8 @@
 // https://github.com/danneu/koa-skeleton/blob/master/sql/schema.sql
 // https://github.com/danneu/koa-skeleton/blob/master/sql/seeds.sql
 
-// 3rd party
-require('dotenv').config();
+// 3rd
+//require('dotenv').config();
 const bodyParser = require('koa-bodyparser');
 const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf
 const helmet = require('koa-helmet');
@@ -21,8 +21,9 @@ const serve = require('koa-static');
 // https://github.com/silenceisgolden/koa-server-push
 // const serverpush = require('koa-server-push');
 const session = require('koa-session-minimal');
-// 1st party
+// 1st
 const config = require('./config');
+const mw = require('./include/middleware');
 const { LOG, REQ, ERR } = require('./include/debug.js');
 
 // Routes
@@ -91,7 +92,7 @@ app.use(passport.session());
 // https://github.com/rkusa/koa-passport/issues/35#issuecomment-256842554
 // https://github.com/embbnux/koa-flash-message
 // https://github.com/ifraixedes/node-koa-flash-simple
-app.use(async (ctx, next) => {
+/*app.use(async (ctx, next) => {
   ctx.flash = (type, msg) => {
     ctx.session.flash = {
       type,
@@ -99,7 +100,8 @@ app.use(async (ctx, next) => {
     };
   };
   await next();
-});
+});*/
+app.use(mw.flash());
 
 // Global data sharing middleware initialization
 app.use(async (ctx, next) => {
@@ -127,7 +129,7 @@ app.use(async (ctx, next) => {
 });
 
 // Logger middleware
-app.use(async (ctx, next) => {
+/*app.use(async (ctx, next) => {
   const start = new Date();
   await next();
   const ms = new Date() - start;
@@ -140,7 +142,8 @@ app.use(async (ctx, next) => {
   if (found === false) {
     REQ(`${ctx.method} ${ctx.originalUrl} ${ctx.status} - ${ms}ms`);
   }
-});
+});*/
+app.use(mw.logger());
 
 // Development
 if (config.NODE_ENV !== 'production') {

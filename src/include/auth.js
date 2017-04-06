@@ -43,7 +43,7 @@ passport.deserializeUser(async (id, done) => {
   });*/
   try {
     const user = await db.oneOrNone('SELECT id, uname FROM users WHERE id = $1', id);
-    console.log(`passport.deserializeUser() user == ${JSON.stringify(user, null, 4)}`);
+    //console.log(`passport.deserializeUser() user == ${JSON.stringify(user, null, 4)}`);
     done(null, user);
   } catch (err) {
     done(err);
@@ -167,9 +167,9 @@ passport.use(new LocalStrategy(async (username, password, done) => {
       SELECT -1, '???', '???'
       LIMIT 1;
     `, username);
-    console.log(`user == ${JSON.stringify(user, null, 4)}\nLocalStrategy() password === ${password}\nuser.uname == ${user.uname}\nuser.digest == ${user.digest}`);
+    //console.log(`user == ${JSON.stringify(user, null, 4)}\nLocalStrategy() password === ${password}\nuser.uname == ${user.uname}\nuser.digest == ${user.digest}`);
     bcrypt.compare(password, user.digest, (val) => {
-      console.log(`bcrypt.compare() username: ${username} === ${user.uname}\nbcrypt.compare() password: ${password}, ${user.digest} === ${val}`);
+      //console.log(`bcrypt.compare() username: ${username} === ${user.uname}\nbcrypt.compare() password: ${password}, ${user.digest} === ${val}`);
       if (username === user.uname && val === true) {
         done(null, user);
       } else {

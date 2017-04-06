@@ -1,6 +1,6 @@
 'use strict';
 
-// 1st party
+// 1st
 const { LOG, WARN } = require('./include/debug.js');
 
 // Ensure require('dotenv').config() is run before this module is required
