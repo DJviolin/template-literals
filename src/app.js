@@ -72,6 +72,8 @@ app.use(session({
 app.use(bodyParser());
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(json({ pretty: false, param: 'pretty' }));
+app.use(mw.flash());
+app.use(mw.logger());
 
 // add the CSRF middleware
 app.use(new CSRF({
@@ -101,7 +103,7 @@ app.use(passport.session());
   };
   await next();
 });*/
-app.use(mw.flash());
+//app.use(mw.flash());
 
 // Global data sharing middleware initialization
 app.use(async (ctx, next) => {
@@ -143,7 +145,7 @@ app.use(async (ctx, next) => {
     REQ(`${ctx.method} ${ctx.originalUrl} ${ctx.status} - ${ms}ms`);
   }
 });*/
-app.use(mw.logger());
+//app.use(mw.logger());
 
 // Development
 if (config.NODE_ENV !== 'production') {
