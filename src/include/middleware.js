@@ -30,7 +30,6 @@ exports.logger = function () {
     const match = `${ctx.originalUrl}`;
     const found = str.test(match);
     //
-    //if ((found === false) && (process.env.NODE_ENV !== 'production')) {
     if (found === false) {
       REQ(`${ctx.method} ${ctx.originalUrl} ${ctx.status} - ${ms}ms`);
     }

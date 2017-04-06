@@ -72,8 +72,8 @@ app.use(session({
 app.use(bodyParser());
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(json({ pretty: false, param: 'pretty' }));
-app.use(mw.flash());
-app.use(mw.logger());
+app.use(mw.flash()); // Flash messages
+app.use(mw.logger()); // Logger middleware
 
 // add the CSRF middleware
 app.use(new CSRF({
@@ -89,21 +89,6 @@ app.use(new CSRF({
 require('./include/auth'); // include
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Flash messages
-// https://github.com/rkusa/koa-passport/issues/35#issuecomment-256842554
-// https://github.com/embbnux/koa-flash-message
-// https://github.com/ifraixedes/node-koa-flash-simple
-/*app.use(async (ctx, next) => {
-  ctx.flash = (type, msg) => {
-    ctx.session.flash = {
-      type,
-      message: msg,
-    };
-  };
-  await next();
-});*/
-//app.use(mw.flash());
 
 // Global data sharing middleware initialization
 app.use(async (ctx, next) => {
@@ -129,23 +114,6 @@ app.use(async (ctx, next) => {
   //ctx.body = 'OK';
   await next();
 });
-
-// Logger middleware
-/*app.use(async (ctx, next) => {
-  const start = new Date();
-  await next();
-  const ms = new Date() - start;
-  //
-  const str = new RegExp(/\/css\//, 'g');
-  const match = `${ctx.originalUrl}`;
-  const found = str.test(match);
-  //
-  //if ((found === false) && (process.env.NODE_ENV !== 'production')) {
-  if (found === false) {
-    REQ(`${ctx.method} ${ctx.originalUrl} ${ctx.status} - ${ms}ms`);
-  }
-});*/
-//app.use(mw.logger());
 
 // Development
 if (config.NODE_ENV !== 'production') {
