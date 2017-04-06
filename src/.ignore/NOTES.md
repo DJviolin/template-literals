@@ -53,6 +53,7 @@ Users.get(req.params.id, function (err, result) {
 #### Header
 
 $ curl -I -k https://wordpress-31043-67215-181802.cloudwaysapps.com
+$ curl -I -k http://127.0.0.1:3000
 
 #### Immutable
 

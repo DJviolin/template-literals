@@ -11,7 +11,6 @@ http.globalAgent.maxSockets = Infinity;
 
 // Security
 app.poweredBy = false;
-//app.proxy = true;
 app.proxy = config.TRUST_PROXY;
 
 // Create HTTP server
