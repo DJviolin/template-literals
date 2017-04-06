@@ -143,14 +143,14 @@ app.use(async (ctx, next) => {
   //
   //if ((found === false) && (process.env.NODE_ENV !== 'production')) {
   if (found === false) {
-    config.debugReq(`${ctx.method} ${ctx.originalUrl} ${ctx.status} - ${ms}ms`);
+    config.req(`${ctx.method} ${ctx.originalUrl} ${ctx.status} - ${ms}ms`);
   }
 });
 
 // Development
 if (config.NODE_ENV !== 'production') {
   app.use(serve(path.join(__dirname, 'public'))); // Static files
-  config.debugLog('serveStatic is ON!');
+  config.log('serveStatic is ON!');
 }
 
 // Templating setup - Must be used before any router
@@ -163,7 +163,7 @@ app.use(async (ctx, next) => {
   try {
     ctx.db = db;
   } catch (err) {
-    config.debugErr(`PGP ERROR: ${err.message || err}`); // print error;
+    config.err(`PGP ERROR: ${err.message || err}`); // print error;
   }
   await next();
 });
@@ -186,7 +186,7 @@ app.use(login.routes(), login.allowedMethods());
 
 // Error handling
 app.on('error', (err, ctx) => {
-  config.debugErr('server error', err, ctx);
+  config.err('server error', err, ctx);
 });
 
 module.exports = app;
