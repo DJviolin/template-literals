@@ -4,8 +4,7 @@
   "description": "Template literals as Viewing engine test",
   "main": "./src/index",
   "scripts": {
-    "start": "node --use_strict ./src/index",
-    "vanilla": "node --use_strict ./src/app-vanilla",
+    "start": "node --use_strict ./src/init",
     "eslint": "node ./node_modules/eslint/bin/eslint.js --ignore-pattern \"src/.ignore/**/*\" --ignore-pattern \"src/include/nunjucks.js\" \"src/**/*.js*\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
