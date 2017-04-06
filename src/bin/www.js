@@ -28,7 +28,8 @@ function normalizePort(val) {
 }
 
 // Get port from environment and store in Koa
-const port = normalizePort(process.env.PORT || '3000');
+//const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(config.PORT);
 
 // Event listener for HTTP server "error" event
 function onError(err) {
