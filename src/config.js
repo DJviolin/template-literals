@@ -28,6 +28,15 @@ if (!exports.HOSTNAME) {
   warn('Warn: CSRF checks are disabled since there is no HOSTNAME environment variable provided');
 }
 
+exports.RECAPTCHA_SITEKEY = process.env.RECAPTCHA_SITEKEY;
+exports.RECAPTCHA_SITESECRET = process.env.RECAPTCHA_SITESECRET;
+if (!exports.RECAPTCHA_SITEKEY) {
+  warn('Warn: Recaptcha will not work since RECAPTCHA_SITEKEY is not set');
+}
+if (!exports.RECAPTCHA_SITESECRET) {
+  warn('Warn: Recaptcha will not work since RECAPTCHA_SITESECRET is not set');
+}
+
 // //////////////////////////////////////////////////////////
 
 // Output config object in development to help with sanity-checking
