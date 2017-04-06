@@ -2,8 +2,8 @@
 
 // 3rd party
 const http = require('http');
-const app = require('../app');
 // 1st party
+const app = require('../app');
 const config = require('../config');
 
 // Optimizations
