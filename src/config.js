@@ -3,9 +3,11 @@
 const debug = require('debug');
 
 const err = debug('app:err');
+const warn = debug('app:warn');
 const log = debug('app:log');
 const req = debug('app:req');
 exports.err = err;
+exports.warn = warn;
 exports.log = log;
 exports.req = req;
 
@@ -18,6 +20,13 @@ exports.PORT = Number.parseInt(process.env.PORT, 10) || 3000;
 // For example, use this if you're behind Cloudflare
 // https://github.com/koajs/koa/blob/master/docs/api/request.md#requesthost
 exports.TRUST_PROXY = process.env.TRUST_PROXY || true;
+
+// Set the HOSTNAME in production for basic CSRF prevention
+// Ex: example.com, subdomain.example.com
+exports.HOSTNAME = process.env.HOSTNAME;
+if (!exports.HOSTNAME) {
+  warn('Warn: CSRF checks are disabled since there is no HOSTNAME environment variable provided');
+}
 
 // //////////////////////////////////////////////////////////
 
