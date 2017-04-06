@@ -14,6 +14,11 @@ exports.req = req;
 exports.NODE_ENV = process.env.NODE_ENV || 'development';
 exports.PORT = Number.parseInt(process.env.PORT, 10) || 3000;
 
+// If true, then Koa will trust the X-Forwarded-Host header
+// For example, use this if you're behind Cloudflare
+// https://github.com/koajs/koa/blob/master/docs/api/request.md#requesthost
+exports.TRUST_PROXY = process.env.TRUST_PROXY === 'true';
+
 // //////////////////////////////////////////////////////////
 
 // Output config object in development to help with sanity-checking

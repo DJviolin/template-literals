@@ -10,7 +10,9 @@ const config = require('../config');
 http.globalAgent.maxSockets = Infinity;
 
 // Security
-app.proxy = true;
+app.poweredBy = false;
+//app.proxy = true;
+app.proxy = config.TRUST_PROXY;
 
 // Create HTTP server
 const server = http.createServer(app.callback());
