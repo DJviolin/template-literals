@@ -11,7 +11,7 @@
 require('dotenv').config();
 const bodyParser = require('koa-bodyparser');
 const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf
-const debug = require('debug');
+//const debug = require('debug');
 const helmet = require('koa-helmet');
 const json = require('koa-json');
 const Koa = require('koa');
@@ -23,6 +23,7 @@ const serve = require('koa-static');
 // const serverpush = require('koa-server-push');
 const session = require('koa-session-minimal');
 // 1st party
+const config = require('./config');
 
 // Routes
 const index = require('./routes/index');
@@ -126,9 +127,9 @@ app.use(async (ctx, next) => {
 });
 
 // Debug
-const debugErr = debug('app:err');
-const debugLog = debug('app:log');
-const debugReq = debug('app:req');
+//const debugErr = debug('app:err');
+//const debugLog = debug('app:log');
+//const debugReq = debug('app:req');
 
 // Logger middleware
 app.use(async (ctx, next) => {
@@ -142,16 +143,15 @@ app.use(async (ctx, next) => {
   //
   //if ((found === false) && (process.env.NODE_ENV !== 'production')) {
   if (found === false) {
-    debugReq(`${ctx.method} ${ctx.originalUrl} ${ctx.status} - ${ms}ms`);
+    config.debugReq(`${ctx.method} ${ctx.originalUrl} ${ctx.status} - ${ms}ms`);
   }
 });
 
 // Development
-if (process.env.NODE_ENV !== 'production') {
+if (config.NODE_ENV !== 'production') {
   app.use(serve(path.join(__dirname, 'public'))); // Static files
-  debugLog('serveStatic is ON!');
+  config.debugLog('serveStatic is ON!');
 }
-debugLog('process.env.NODE_ENV = %s', process.env.NODE_ENV);
 
 // Templating setup - Must be used before any router
 // Thanks to template literals, this part not needed
@@ -163,7 +163,7 @@ app.use(async (ctx, next) => {
   try {
     ctx.db = db;
   } catch (err) {
-    debugErr(`PGP ERROR: ${err.message || err}`); // print error;
+    config.debugErr(`PGP ERROR: ${err.message || err}`); // print error;
   }
   await next();
 });
@@ -186,7 +186,7 @@ app.use(login.routes(), login.allowedMethods());
 
 // Error handling
 app.on('error', (err, ctx) => {
-  debugErr('server error', err, ctx);
+  config.debugErr('server error', err, ctx);
 });
 
 module.exports = app;
