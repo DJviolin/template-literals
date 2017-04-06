@@ -37,6 +37,13 @@ if (!exports.RECAPTCHA_SITESECRET) {
   warn('Warn: Recaptcha will not work since RECAPTCHA_SITESECRET is not set');
 }
 
+exports.RECAPTCHA_SYSTEM_ONLINE = !!(exports.RECAPTCHA_SITEKEY && exports.RECAPTCHA_SITESECRET);
+if (exports.RECAPTCHA_SYSTEM_ONLINE) {
+  log('Recaptcha system online');
+} else {
+  warn('Warn: Recaptcha system offline');
+}
+
 // //////////////////////////////////////////////////////////
 
 // Output config object in development to help with sanity-checking
