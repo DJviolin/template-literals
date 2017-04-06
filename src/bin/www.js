@@ -5,6 +5,7 @@ const http = require('http');
 // 1st party
 const app = require('../app');
 const config = require('../config');
+const { LOG, ERR } = require('../include/debug.js');
 
 // Optimizations
 http.globalAgent.maxSockets = Infinity;
@@ -45,11 +46,11 @@ function onError(err) {
   // Handle specific listen errors with friendly messages
   switch (err.code) {
     case 'EACCES':
-      config.err('%s requires elevated privileges', bind);
+      ERR('%s requires elevated privileges', bind);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      config.err('%s is already in use', bind);
+      ERR('%s is already in use', bind);
       process.exit(1);
       break;
     default:
@@ -63,7 +64,7 @@ function onListening() {
   const bind = typeof addr === 'string'
     ? `pipe ${addr}`
     : `port ${addr.port}`;
-  config.log('Listening on %s', bind);
+  LOG('Listening on %s', bind);
 }
 
 // Listen on provided port, on all network interfaces

@@ -1,6 +1,9 @@
 'use strict';
 
-const debug = require('debug');
+// 1st party
+const { LOG, WARN } = require('./include/debug.js');
+
+/*const debug = require('debug');
 
 const err = debug('app:err');
 const warn = debug('app:warn');
@@ -9,7 +12,7 @@ const req = debug('app:req');
 exports.err = err;
 exports.warn = warn;
 exports.log = log;
-exports.req = req;
+exports.req = req;*/
 
 // Ensure require('dotenv').config() is run before this module is required
 
@@ -25,23 +28,23 @@ exports.TRUST_PROXY = process.env.TRUST_PROXY || true;
 // Ex: example.com, subdomain.example.com
 exports.HOSTNAME = process.env.HOSTNAME;
 if (!exports.HOSTNAME) {
-  warn('Warn: CSRF checks are disabled since there is no HOSTNAME environment variable provided');
+  WARN('Warn: CSRF checks are disabled since there is no HOSTNAME environment variable provided');
 }
 
 exports.RECAPTCHA_SITEKEY = process.env.RECAPTCHA_SITEKEY;
 exports.RECAPTCHA_SITESECRET = process.env.RECAPTCHA_SITESECRET;
 if (!exports.RECAPTCHA_SITEKEY) {
-  warn('Warn: Recaptcha will not work since RECAPTCHA_SITEKEY is not set');
+  WARN('Warn: Recaptcha will not work since RECAPTCHA_SITEKEY is not set');
 }
 if (!exports.RECAPTCHA_SITESECRET) {
-  warn('Warn: Recaptcha will not work since RECAPTCHA_SITESECRET is not set');
+  WARN('Warn: Recaptcha will not work since RECAPTCHA_SITESECRET is not set');
 }
 
 exports.RECAPTCHA_SYSTEM_ONLINE = !!(exports.RECAPTCHA_SITEKEY && exports.RECAPTCHA_SITESECRET);
 if (exports.RECAPTCHA_SYSTEM_ONLINE) {
-  log('Recaptcha system online');
+  LOG('Recaptcha system online');
 } else {
-  warn('Warn: Recaptcha system offline');
+  WARN('Warn: Recaptcha system offline');
 }
 
 //exports.MESSAGES_PER_PAGE = Number.parseInt(process.env.MESSAGES_PER_PAGE, 10) || 10;
@@ -51,5 +54,5 @@ if (exports.RECAPTCHA_SYSTEM_ONLINE) {
 
 // Output config object in development to help with sanity-checking
 if (exports.NODE_ENV === 'development' || exports.NODE_ENV === 'test') {
-  log(exports);
+  LOG(exports);
 }
