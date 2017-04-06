@@ -1,7 +1,6 @@
 'use strict';
 
 // Module dependencies
-const db = require('../db/index');
 const debug = require('debug');
 const http = require('http');
 const app = require('../app');
@@ -15,37 +14,6 @@ http.globalAgent.maxSockets = Infinity;
 
 // Security
 app.proxy = true;
-
-// pg-promise
-// https://github.com/vitaly-t/pg-promise/blob/master/examples/select-insert.md
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw#Throw_an_object
-/*function UserException(message) {
-  this.message = message;
-  this.name = 'UserException';
-}
-const query = async (tablename) => {
-  await db.task(async (t) => {
-    let exist = null;
-    try {
-      exist = await t.one('SELECT to_regclass($1) AS exist;', tablename, a => !!a.exist);
-      if (!exist) {
-        debugErr('Database missing');
-        throw new UserException(`Table NOT exist: ${exist}`);
-      }
-      debugLog(`Database exists: ${exist}`);
-    } catch (error) {
-      debugErr(`PGP ERROR: ${error.message || error}`); // print error;
-      process.on('exit', (code) => {
-        debugErr(`About to exit with code: ${code}`);
-      });
-      process.exitCode = 9;
-      process.exit();
-    }
-    return exist;
-  });
-};
-query('foo');
-//query('foo2');*/
 
 // Create HTTP server
 const server = http.createServer(app.callback());
