@@ -1,13 +1,10 @@
 'use strict';
 
-// Module dependencies
-const debug = require('debug');
+// 3rd party
 const http = require('http');
 const app = require('../app');
-
-// Debugging
-const debugErr = debug('app:err');
-const debugLog = debug('app:log');
+// 1st party
+const config = require('../config');
 
 // Optimizations
 http.globalAgent.maxSockets = Infinity;
@@ -46,11 +43,11 @@ function onError(err) {
   // Handle specific listen errors with friendly messages
   switch (err.code) {
     case 'EACCES':
-      debugErr('%s requires elevated privileges', bind);
+      config.err('%s requires elevated privileges', bind);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      debugErr('%s is already in use', bind);
+      config.err('%s is already in use', bind);
       process.exit(1);
       break;
     default:
@@ -64,7 +61,7 @@ function onListening() {
   const bind = typeof addr === 'string'
     ? `pipe ${addr}`
     : `port ${addr.port}`;
-  debugLog('Listening on %s', bind);
+  config.log('Listening on %s', bind);
 }
 
 // Listen on provided port, on all network interfaces

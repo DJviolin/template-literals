@@ -11,7 +11,6 @@
 require('dotenv').config();
 const bodyParser = require('koa-bodyparser');
 const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf
-//const debug = require('debug');
 const helmet = require('koa-helmet');
 const json = require('koa-json');
 const Koa = require('koa');
@@ -125,11 +124,6 @@ app.use(async (ctx, next) => {
   //ctx.body = 'OK';
   await next();
 });
-
-// Debug
-//const debugErr = debug('app:err');
-//const debugLog = debug('app:log');
-//const debugReq = debug('app:req');
 
 // Logger middleware
 app.use(async (ctx, next) => {
