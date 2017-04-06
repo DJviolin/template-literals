@@ -12,6 +12,8 @@
 // https://github.com/sirisian/ecmascript-types
 // https://github.com/dslomov/typed-objects-es7
 
+// 3rd party
+require('dotenv').config();
 const bodyParser = require('koa-bodyparser');
 const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf
 const debug = require('debug');
@@ -25,6 +27,8 @@ const serve = require('koa-static');
 // https://github.com/silenceisgolden/koa-server-push
 // const serverpush = require('koa-server-push');
 const session = require('koa-session-minimal');
+
+// 1st party
 
 // Websockets
 // https://github.com/koajs/koa.io
