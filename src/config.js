@@ -3,17 +3,6 @@
 // 1st party
 const { LOG, WARN } = require('./include/debug.js');
 
-/*const debug = require('debug');
-
-const err = debug('app:err');
-const warn = debug('app:warn');
-const log = debug('app:log');
-const req = debug('app:req');
-exports.err = err;
-exports.warn = warn;
-exports.log = log;
-exports.req = req;*/
-
 // Ensure require('dotenv').config() is run before this module is required
 
 exports.NODE_ENV = process.env.NODE_ENV || 'development';
