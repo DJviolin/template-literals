@@ -9,7 +9,8 @@
     "eslint": "node ./node_modules/eslint/bin/eslint.js --ignore-pattern \"src/.ignore/**/*\" --ignore-pattern \"src/include/nunjucks.js\" \"src/**/*.js*\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "git-commit": "git add -A . && git commit -a -m 'repo update'",
-    "git-push": "git push -u github master && git checkout master"
+    "git-push": "git push -u github master && git checkout master",
+    "deploy": "npm run git-commit && npm run git-push"
   },
   "engines": {
     "node": ">= 7.6.0"

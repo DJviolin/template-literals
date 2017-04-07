@@ -7,6 +7,8 @@ $ git config user.email "you@example.com"
 $ git config user.name "Your Name"
 ```
 
+http://blog.npmjs.org/post/118810260230/building-a-simple-command-line-tool-with-npm
+
 #### RUN
 
 ```
