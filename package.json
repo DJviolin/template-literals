@@ -10,8 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "git-commit-linux": "git add -A . && timestamp=$(date \"+%s\") && git commit -a -m \"automated deployment $timestamp\"",
     "git-commit-win": "git add -A . && git commit -a -m \"automated deployment %DATE% %TIME%\"",
-    "git-push-github": "git push -u github master --force && git checkout master",
-    "git-push-bitbucket": "git push -u bitbucket master --force && git checkout master",
+    "git-push-github": "git push -u github master && git checkout master",
+    "git-push-bitbucket": "git push -u bitbucket master && git checkout master",
     "deploy": "npm run git-commit-win && npm run git-push-github"
   },
   "engines": {
