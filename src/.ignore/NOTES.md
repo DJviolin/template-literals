@@ -1,7 +1,3 @@
-```
-"nodemon": "node --inspect --use_strict ./node_modules/nodemon/bin/nodemon --ignore \".git,node_modules/**/node_modules\" --ext js --exitcrash ./src/init",
-```
-
 ```bash
 $ npm info "eslint-config-airbnb@latest" peerDependencies --json
 $ npm install --save-optional eslint-config-airbnb@latest eslint@^3.13.0 eslint-plugin-jsx-a11y@^3.0.2 eslint-plugin-import@^2.2.0 eslint-plugin-react@^6.9.0
