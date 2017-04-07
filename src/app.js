@@ -69,7 +69,7 @@ app.use(mw.flash()); // Flash messages
 // Static file serving middleware
 if (config.NODE_ENV !== 'production') {
   app.use(serve(path.join(__dirname, 'public'), {
-    // cache static assets for 365 days in production
+    // cache static assets for 365 days in production (if not nginx serving it)
     maxage: config.NODE_ENV === 'production' ? 1000 * 60 * 60 * 24 * 365 : 0,
   }));
   LOG('serveStatic is ON!');
