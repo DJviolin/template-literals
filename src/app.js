@@ -23,6 +23,7 @@ const serve = require('koa-static');
 const session = require('koa-session-minimal');
 // 1st
 const config = require('./config');
+const db = require('./db/index'); // Postgres
 const mw = require('./include/middleware');
 const { LOG, ERR } = require('./include/debug.js');
 
@@ -125,8 +126,6 @@ if (config.NODE_ENV !== 'production') {
 // Thanks to template literals, this part not needed
 
 // PostgreSQL
-const db = require('./db/index');
-
 app.use(async (ctx, next) => {
   try {
     ctx.db = db;
