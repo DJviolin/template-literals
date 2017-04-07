@@ -11,9 +11,9 @@
 require('dotenv').config();
 // Node
 const path = require('path');
-const url = require('url');
 // 3rd
 const bodyParser = require('koa-bodyparser');
+const compress = require('koa-compress');
 const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf
 const helmet = require('koa-helmet');
 const json = require('koa-json');
@@ -61,9 +61,19 @@ app.keys = ['your-session-secret', 'another-session-secret'];
 app.use(methodOverride());
 app.use(bodyParser());
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
+app.use(compress());
 app.use(json({ pretty: false, param: 'pretty' }));
 app.use(mw.logger()); // Logger middleware
 app.use(mw.flash()); // Flash messages
+
+// Static file serving middleware
+if (config.NODE_ENV !== 'production') {
+  app.use(serve(path.join(__dirname, 'public'), {
+    // cache static assets for 365 days in production
+    maxage: config.NODE_ENV === 'production' ? 1000 * 60 * 60 * 24 * 365 : 0,
+  }));
+  LOG('serveStatic is ON!');
+}
 
 //app.use(session());
 //
@@ -120,12 +130,6 @@ app.use(async (ctx, next) => {
   //ctx.body = 'OK';
   await next();
 });
-
-// Development
-if (config.NODE_ENV !== 'production') {
-  app.use(serve(path.join(__dirname, 'public'))); // Static files
-  LOG('serveStatic is ON!');
-}
 
 // Templating setup - Must be used before any router
 // Thanks to template literals, this part not needed
