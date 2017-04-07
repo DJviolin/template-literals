@@ -28,14 +28,6 @@ router.get('/login', async (ctx) => {
   ctx.body = await login(ctx.state);
 });
 
-// http://127.0.0.1:3000/admin
-router.get('/admin', async (ctx, next) => {
-  ctx.isAuthenticated() ? await next() : ctx.redirect('/login');
-  ctx.state.welcome = 'Authentication success';
-  ctx.type = 'html';
-  ctx.body = await admin(ctx.state);
-});
-
 // curl -X POST -F 'username=test' -F 'password=test' http://127.0.0.1:3000/auth
 router.post('/auth',
   passport.authenticate('local', {
@@ -45,6 +37,14 @@ router.post('/auth',
     failureFlash: 'Invalid username or password.',
   }),
 );
+
+// http://127.0.0.1:3000/admin
+router.get('/admin', async (ctx, next) => {
+  ctx.isAuthenticated() ? await next() : ctx.redirect('/login');
+  ctx.state.welcome = 'Authentication success';
+  ctx.type = 'html';
+  ctx.body = await admin(ctx.state);
+});
 
 // Clear session
 // http://127.0.0.1:3000/logout

@@ -31,6 +31,11 @@ exports.flash = function () {
         type,
         message: msg,
       };
+      // clear flash if it's a successful request
+      // AND if it was actually set (then clear it)
+      if (ctx.response.status < 300 && ctx.session.flash !== undefined) {
+        ctx.session.flash = undefined;
+      }
     };
     await next();
   };

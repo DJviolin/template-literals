@@ -115,6 +115,7 @@ app.use(async (ctx, next) => {
     isAuthenticated: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219
     flash: ctx.session.flash,
   };
+  console.log(`ctx.session.flash == ${ctx.session.flash}`);
   await next();
 });
 
