@@ -7,6 +7,8 @@
 // https://github.com/danneu/koa-skeleton/blob/master/sql/schema.sql
 // https://github.com/danneu/koa-skeleton/blob/master/sql/seeds.sql
 
+// Node
+const path = require('path');
 // 3rd
 require('dotenv').config();
 const bodyParser = require('koa-bodyparser');
@@ -14,7 +16,6 @@ const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf
 const helmet = require('koa-helmet');
 const json = require('koa-json');
 const Koa = require('koa');
-const path = require('path');
 const passport = require('koa-passport');
 //const ratelimit = require('koa-ratelimit');
 const serve = require('koa-static');
