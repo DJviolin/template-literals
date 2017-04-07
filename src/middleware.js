@@ -3,22 +3,6 @@
 // 1st
 const { REQ } = require('./include/debug.js');
 
-// Flash messages
-// https://github.com/rkusa/koa-passport/issues/35#issuecomment-256842554
-// https://github.com/embbnux/koa-flash-message
-// https://github.com/ifraixedes/node-koa-flash-simple
-exports.flash = function () {
-  return async (ctx, next) => {
-    ctx.flash = (type, msg) => {
-      ctx.session.flash = {
-        type,
-        message: msg,
-      };
-    };
-    await next();
-  };
-};
-
 // Logger middleware
 exports.logger = function () {
   return async (ctx, next) => {
@@ -36,6 +20,23 @@ exports.logger = function () {
   };
 };
 
+// Flash messages
+// https://github.com/rkusa/koa-passport/issues/35#issuecomment-256842554
+// https://github.com/embbnux/koa-flash-message
+// https://github.com/ifraixedes/node-koa-flash-simple
+exports.flash = function () {
+  return async (ctx, next) => {
+    ctx.flash = (type, msg) => {
+      ctx.session.flash = {
+        type,
+        message: msg,
+      };
+    };
+    await next();
+  };
+};
+
+// Removes latest "/" from URLs
 exports.removeTrailingSlash = function () {
   return async (ctx, next) => {
     if (ctx.path.length > 1 && ctx.path.endsWith('/')) {
