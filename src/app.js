@@ -29,7 +29,7 @@ const session = require('koa-session-minimal');
 const config = require('./config');
 const db = require('./db/index'); // Postgres
 const mw = require('./middleware');
-const { LOG, ERR, WARN } = require('./include/debug.js');
+const { LOG, ERR } = require('./include/debug.js');
 
 // Routes
 const index = require('./routes/index');
