@@ -11,6 +11,7 @@
 require('dotenv').config();
 // Node
 const path = require('path');
+const url = require('url');
 // 3rd
 const bodyParser = require('koa-bodyparser');
 const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf
@@ -28,7 +29,7 @@ const session = require('koa-session-minimal');
 const config = require('./config');
 const db = require('./db/index'); // Postgres
 const mw = require('./middleware');
-const { LOG, ERR } = require('./include/debug.js');
+const { LOG, ERR, WARN } = require('./include/debug.js');
 
 // Routes
 const index = require('./routes/index');
@@ -80,15 +81,28 @@ app.use(session({
   }),
 }));
 
-// add the CSRF middleware
+// CSRF middleware
 app.use(new CSRF({
   invalidSessionSecretMessage: 'Invalid session secret',
   invalidSessionSecretStatusCode: 403,
   invalidTokenMessage: 'Invalid CSRF token',
   invalidTokenStatusCode: 403,
-  //excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
-  //disableQuery: false,
+  excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
+  disableQuery: false,
 }));
+// CSRF middleware (e.g. parse a form submit)
+app.use(async (ctx, next) => {
+  if (!['GET', 'POST'].includes(ctx.method)) {
+    return next();
+  }
+  if (ctx.method === 'GET') {
+    //ctx.body = ctx.csrf;
+    //return;
+    ctx.state.global.csrf = await ctx.csrf;
+  }
+  //ctx.body = 'OK';
+  await next();
+});
 
 // authentication
 require('./include/auth'); // include
@@ -103,20 +117,6 @@ app.use(async (ctx, next) => {
     isAuthenticated: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219
     flash: ctx.session.flash,
   };
-  await next();
-});
-
-// your middleware here (e.g. parse a form submit)
-app.use(async (ctx, next) => {
-  if (!['GET', 'POST'].includes(ctx.method)) {
-    await next();
-  }
-  if (ctx.method === 'GET') {
-    //ctx.body = ctx.csrf;
-    //return;
-    ctx.state.global.csrf = await ctx.csrf;
-  }
-  //ctx.body = 'OK';
   await next();
 });
 
