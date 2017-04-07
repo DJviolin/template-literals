@@ -35,6 +35,7 @@ exports.flash = function () {
       // AND if it was actually set (then clear it)
       if (ctx.response.status < 300 && ctx.session.flash !== undefined) {
         ctx.session.flash = undefined;
+        return;
       }
     };
     await next();
