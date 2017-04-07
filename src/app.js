@@ -90,19 +90,6 @@ app.use(new CSRF({
   excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
   disableQuery: false,
 }));
-// CSRF middleware (e.g. parse a form submit)
-app.use(async (ctx, next) => {
-  if (!['GET', 'POST'].includes(ctx.method)) {
-    return next();
-  }
-  if (ctx.method === 'GET') {
-    //ctx.body = ctx.csrf;
-    //return;
-    ctx.state.global.csrf = await ctx.csrf;
-  }
-  //ctx.body = 'OK';
-  await next();
-});
 
 // authentication
 require('./include/auth'); // include
@@ -117,6 +104,20 @@ app.use(async (ctx, next) => {
     isAuthenticated: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219
     flash: ctx.session.flash,
   };
+  await next();
+});
+
+// CSRF middleware (e.g. parse a form submit)
+app.use(async (ctx, next) => {
+  if (!['GET', 'POST'].includes(ctx.method)) {
+    return next();
+  }
+  if (ctx.method === 'GET') {
+    //ctx.body = ctx.csrf;
+    //return;
+    ctx.state.global.csrf = await ctx.csrf;
+  }
+  //ctx.body = 'OK';
   await next();
 });
 
