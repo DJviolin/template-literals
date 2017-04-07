@@ -1,5 +1,12 @@
 # template-literals
 
+#### Git pre-config
+
+```
+$ git config user.email "you@example.com"
+$ git config user.name "Your Name"
+```
+
 #### RUN
 
 ```
