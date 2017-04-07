@@ -5,6 +5,7 @@
   "main": "./src/index",
   "scripts": {
     "start": "node --use_strict ./src/init",
+    "nodemon": "nodemon --ext js,html ./src/init",
     "eslint": "node ./node_modules/eslint/bin/eslint.js --ignore-pattern \"src/.ignore/**/*\" --ignore-pattern \"src/include/nunjucks.js\" \"src/**/*.js*\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -44,7 +45,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-stylus": "^2.6.0",
-    "gulp-uglify": "^2.1.2"
+    "gulp-uglify": "^2.1.2",
+    "nodemon": "^1.11.0"
   },
   "optionalDependencies": {
     "babel-eslint": "^7.2.1",
