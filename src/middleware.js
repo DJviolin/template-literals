@@ -1,7 +1,7 @@
 'use strict';
 
 // 1st
-const { REQ } = require('../include/debug.js');
+const { REQ } = require('./include/debug.js');
 
 // Flash messages
 // https://github.com/rkusa/koa-passport/issues/35#issuecomment-256842554
