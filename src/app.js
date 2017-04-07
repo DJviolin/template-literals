@@ -118,9 +118,10 @@ app.use(async (ctx, next) => {
   // clear flash if it's a successful request
   // AND if it was actually set (then clear it)
   //console.log(`ctx.session.flash == ${JSON.stringify(ctx.session.flash, null, 4)}`);
-  if (ctx.session.flash !== undefined) {
+  /*if (ctx.session.flash !== undefined) {
     ctx.session.flash = undefined;
-  }
+  }*/
+  ctx.session.flash = this || undefined; // shorthand for if
   await next();
 });
 
