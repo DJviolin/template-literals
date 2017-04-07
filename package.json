@@ -8,9 +8,10 @@
     "nodemon": "node --use_strict ./node_modules/nodemon/bin/nodemon --ext js,html ./src/init",
     "eslint": "node ./node_modules/eslint/bin/eslint.js --ignore-pattern \"src/.ignore/**/*\" --ignore-pattern \"src/include/nunjucks.js\" \"src/**/*.js*\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "git-commit": "git add -A . && git commit -a -m 'repo update'",
-    "git-push": "git push -u github master && git checkout master",
-    "deploy": "npm run git-commit && npm run git-push"
+    "git-commit-linux": "git add -A . && timestamp=$(date \"+%s\") && git commit -a -m \"automated deployment $timestamp\"",
+    "git-commit-win": "git add -A . && git commit -a -m \"automated deployment %DATE%_%TIME%\"",
+    "git-push": "git push -u github master --force && git checkout master",
+    "deploy": "npm run git-commit-win && npm run git-push"
   },
   "engines": {
     "node": ">= 7.6.0"
