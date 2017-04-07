@@ -1,3 +1,3 @@
 @ECHO OFF
 
-npm run-script --silent deploy
+npm run --silent deploy

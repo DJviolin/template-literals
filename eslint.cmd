@@ -1,3 +1,3 @@
 @ECHO OFF
 
-npm run-script --silent eslint
+npm run --silent eslint

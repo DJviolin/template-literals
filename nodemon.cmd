@@ -1,3 +1,3 @@
 @ECHO OFF
 
-npm run-script nodemon
+npm run nodemon
