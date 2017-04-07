@@ -65,6 +65,7 @@ app.use(compress());
 app.use(json({ pretty: false, param: 'pretty' }));
 app.use(mw.logger()); // Logger middleware
 app.use(mw.flash()); // Flash messages
+app.use(mw.removeTrailingSlash()); // Remove latest / from URLs
 
 // Static file serving middleware
 if (config.NODE_ENV !== 'production') {

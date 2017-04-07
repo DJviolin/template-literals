@@ -35,3 +35,13 @@ exports.logger = function () {
     }
   };
 };
+
+exports.removeTrailingSlash = function () {
+  return async (ctx, next) => {
+    if (ctx.path.length > 1 && ctx.path.endsWith('/')) {
+      ctx.redirect(ctx.path.slice(0, ctx.path.length - 1));
+      return;
+    }
+    await next();
+  };
+};
