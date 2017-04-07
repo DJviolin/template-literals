@@ -7,7 +7,8 @@
     "start": "node --use_strict ./src/init",
     "nodemon": "node --use_strict ./node_modules/nodemon/bin/nodemon --ext js,html ./src/init",
     "eslint": "node ./node_modules/eslint/bin/eslint.js --ignore-pattern \"src/.ignore/**/*\" --ignore-pattern \"src/include/nunjucks.js\" \"src/**/*.js*\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "git status && git add --all && git commit -m \"test\" && git status && git push -u github master && git push -u bitbucket master"
   },
   "engines": {
     "node": ">= 7.6.0"
