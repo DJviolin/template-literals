@@ -26,7 +26,7 @@ const session = require('koa-session-minimal');
 // 1st
 const config = require('./config');
 const db = require('./db/index'); // Postgres
-const mw = require('./include/middleware');
+const mw = require('./middleware');
 const { LOG, ERR } = require('./include/debug.js');
 
 // Routes
