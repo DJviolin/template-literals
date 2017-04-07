@@ -7,10 +7,11 @@
 // https://github.com/danneu/koa-skeleton/blob/master/sql/schema.sql
 // https://github.com/danneu/koa-skeleton/blob/master/sql/seeds.sql
 
+// Dotenv (initialize before everything else)
+require('dotenv').config();
 // Node
 const path = require('path');
 // 3rd
-require('dotenv').config();
 const bodyParser = require('koa-bodyparser');
 const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf
 const helmet = require('koa-helmet');
