@@ -49,6 +49,21 @@ const app = new Koa();
 // set the session keys
 app.keys = ['your-session-secret', 'another-session-secret'];
 
+// Middlewares
+//app.use(serverpush());
+// OR
+// app.use(serverpush({
+//   manifestName: 'anothername.json',
+//   gaeproxy: true,
+//   singleheader: true
+// }));
+app.use(methodOverride());
+app.use(bodyParser());
+app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
+app.use(json({ pretty: false, param: 'pretty' }));
+app.use(mw.logger()); // Logger middleware
+app.use(mw.flash()); // Flash messages
+
 //app.use(session());
 //
 //const RedisStore = require('koa-redis');
@@ -64,21 +79,6 @@ app.use(session({
     httpOnly: false,
   }),
 }));
-
-// Middlewares
-//app.use(serverpush());
-// OR
-// app.use(serverpush({
-//   manifestName: 'anothername.json',
-//   gaeproxy: true,
-//   singleheader: true
-// }));
-app.use(bodyParser());
-app.use(methodOverride());
-app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
-app.use(json({ pretty: false, param: 'pretty' }));
-app.use(mw.flash()); // Flash messages
-app.use(mw.logger()); // Logger middleware
 
 // add the CSRF middleware
 app.use(new CSRF({
