@@ -58,8 +58,8 @@ app.keys = ['your-session-secret', 'another-session-secret'];
 //   gaeproxy: true,
 //   singleheader: true
 // }));
-app.use(methodOverride());
 app.use(bodyParser());
+app.use(methodOverride()); // Must come after body parser
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(compress());
 app.use(json({ pretty: false, param: 'pretty' }));
