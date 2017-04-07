@@ -68,6 +68,13 @@ function onListening() {
 }
 
 // Listen on provided port, on all network interfaces
-server.listen(port, config.PRIVATE_IP_DOCKER);
-server.on('error', onError);
-server.on('listening', onListening);
+//server.listen(port, config.PRIVATE_IP_DOCKER);
+//server.on('error', onError);
+//server.on('listening', onListening);
+
+server.start = function () {
+  server.listen(port, config.PRIVATE_IP_DOCKER);
+  server.on('error', onError);
+  server.on('listening', onListening);
+};
+module.exports = server;
