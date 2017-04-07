@@ -115,8 +115,7 @@ app.use(async (ctx, next) => {
     isAuthenticated: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219
     flash: ctx.session.flash,
   };
-  // clear flash if it's a successful request
-  // AND if it was actually set (then clear it)
+  // clear flash after if it was actually set (so on the next request)
   //console.log(`ctx.session.flash == ${JSON.stringify(ctx.session.flash, null, 4)}`);
   /*if (ctx.session.flash !== undefined) {
     ctx.session.flash = undefined;
