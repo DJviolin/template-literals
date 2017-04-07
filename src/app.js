@@ -147,7 +147,6 @@ app.use(async (ctx, next) => {
 // Routes
 app.use(index.routes(), index.allowedMethods());
 app.use(query.routes(), query.allowedMethods());
-
 // Routes (authorized)
 // https://github.com/rkusa/koa-passport-example/blob/master/server.js
 app.use(login.routes(), login.allowedMethods());
