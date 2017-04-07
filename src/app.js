@@ -17,6 +17,7 @@ const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf
 const helmet = require('koa-helmet');
 const json = require('koa-json');
 const Koa = require('koa');
+const methodOverride = require('koa-methodoverride');
 const passport = require('koa-passport');
 //const ratelimit = require('koa-ratelimit');
 const serve = require('koa-static');
@@ -73,6 +74,7 @@ app.use(session({
 //   singleheader: true
 // }));
 app.use(bodyParser());
+app.use(methodOverride());
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(json({ pretty: false, param: 'pretty' }));
 app.use(mw.flash()); // Flash messages
