@@ -115,9 +115,25 @@ app.use(async (ctx, next) => {
     isAuthenticated: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219
     flash: ctx.session.flash,
   };
-  console.log(`ctx.session.flash == ${ctx.session.flash}`);
+  // clear flash if it's a successful request
+  // AND if it was actually set (then clear it)
+  if (ctx.session.flash !== undefined) {
+    ctx.session.flash = undefined;
+  }
   await next();
 });
+
+/*app.use(async (ctx, next) => {
+  // clear flash if it's a successful request
+  // AND if it was actually set (then clear it)
+  //if (ctx.response.status < 300 && ctx.session.flash !== undefined) {
+  //if (ctx.session.flash.type === 'error') {
+  if (ctx.session.flash !== undefined) {
+    ctx.session.flash = undefined;
+  }
+  console.log(`ctx.session.flash == ${JSON.stringify(ctx.session.flash, null, 4)}`);
+  await next();
+});*/
 
 // CSRF middleware (e.g. parse a form submit)
 app.use(async (ctx, next) => {

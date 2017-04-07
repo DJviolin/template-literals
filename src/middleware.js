@@ -26,17 +26,11 @@ exports.logger = function () {
 // https://github.com/ifraixedes/node-koa-flash-simple
 exports.flash = function () {
   return async (ctx, next) => {
-    ctx.flash = (type, msg) => {
+    ctx.flash = async (type, msg) => {
       ctx.session.flash = {
         type,
         message: msg,
       };
-      // clear flash if it's a successful request
-      // AND if it was actually set (then clear it)
-      if (ctx.response.status < 300 && ctx.session.flash !== undefined) {
-        ctx.session.flash = undefined;
-        return;
-      }
     };
     await next();
   };
