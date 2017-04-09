@@ -1,4 +1,4 @@
-# $ curl -w "@curl-format.txt" -o NUL -s --data "username=User2&password=password2" "http://127.0.0.1:3000/auth"
+# $ curl -X POST -w "@curl-format.txt" --data "username=User2&password=password2" "http://127.0.0.1:3000/auth"
 
 \n\n
           http_code: %{http_code}\n
