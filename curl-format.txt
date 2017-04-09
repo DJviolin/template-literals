@@ -1,9 +1,9 @@
 # $ curl -w "@curl-format.txt" -o NUL -s --data "username=User2&password=password2" "http://127.0.0.1:3000/auth"
 
 \n\n
-          HTTP_CODE: %{http_code}\n
-      EFFECTIVE_URL: %{url_effective}\n
-       REDIRECT_URL: %{redirect_url}\n
+          http_code: %{http_code}\n
+      url_effective: %{url_effective}\n
+       redirect_url: %{redirect_url}\n
                     ----------\n
     time_namelookup:  %{time_namelookup}\n
        time_connect:  %{time_connect}\n
