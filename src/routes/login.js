@@ -22,13 +22,15 @@ router.use(async (ctx, next) => {
   await next();
 });
 
+// curl -X POST -F 'username=User2' -F 'password=password2' http://127.0.0.1:3000/auth
+// curl -X POST -u User2:password2 http://127.0.0.1:3000/auth
+
 // http://127.0.0.1:3000/login
 router.get('/login', async (ctx) => {
   ctx.type = 'html';
   ctx.body = await login(ctx.state);
 });
 
-// curl -X POST -F 'username=test' -F 'password=test' http://127.0.0.1:3000/auth
 /*router.post('/auth',
   passport.authenticate('local', {
     successRedirect: '/admin',
@@ -40,7 +42,7 @@ router.get('/login', async (ctx) => {
 router.post('/auth', async (ctx, next) => {
   await passport.authenticate('local', (err, user, info) => {
     try {
-      //console.log(`${err}\n${user}\n${info}`);
+      //console.log(`${err}\n${JSON.stringify(user, null, 4)}\n${info}`);
       if (!user) {
         ctx.flash = {
           type: 'error',
