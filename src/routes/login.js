@@ -31,7 +31,7 @@ router.use(async (ctx, next) => {
 // curl -L --data "username=User2&password=password2" http://127.0.0.1:3000/auth
 // curl --data "username=User2&password=password2" -w %{redirect_url} http://127.0.0.1:3000/auth
 // curl -X POST -s --data "username=User2&password=password2" -w "\nHTTP_CODE: %{http_code}\nEFFECTIVE_URL: %{url_effective}\nREDIRECT_URL: %{redirect_url}\n" http://127.0.0.1:3000/auth
-// curl -X POST --data "username=User2&password=password2" -w "\n\nHTTP_CODE: %{http_code}\nEFFECTIVE_URL: %{url_effective}\nREDIRECT_URL: %{redirect_url}\n" http://127.0.0.1:3000/auth
+// curl -D - --data "username=User2&password=password2" -w "\n\nHTTP_CODE: %{http_code}\nEFFECTIVE_URL: %{url_effective}\nREDIRECT_URL: %{redirect_url}\n" http://127.0.0.1:3000/auth
 //
 // curl -w "@curl-format.txt" -o NUL -s --data "username=User2&password=password2" "http://127.0.0.1:3000/auth"
 //
