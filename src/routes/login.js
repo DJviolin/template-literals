@@ -27,6 +27,9 @@ router.get('/login', async (ctx) => {
   //console.log(`ctx.flash === ${JSON.stringify(ctx.flash, null, 4)}`);
   //console.log(`ctx.cookies === ${ctx.cookies.get('flash')}`);
   //ctx.isAuthenticated() ? ctx.flash = 'Login was succesful!' : ctx.flash = 'Login error!';
+  console.log(`ctx.flash === ${JSON.stringify(ctx.flash, null, 4)}`);
+  console.log(`ctx.cookies.get('flash') === ${ctx.cookies.get('flash')}`);
+  console.log(`ctx.session.flash === ${JSON.stringify(ctx.session.flash, null, 4)}`);
   ctx.type = 'html';
   ctx.body = await login(ctx.state);
 });
@@ -42,11 +45,15 @@ router.get('/login', async (ctx) => {
 );*/
 router.post('/auth', async (ctx, next) => {
   return passport.authenticate('local', (err, user, info) => {
-    console.log(`${err}\n${user}\n${info}`);
+    //console.log(`${err}\n${user}\n${info}`);
     if (err) { return next(err); }
-    if (!user) { return ctx.redirect('/login'); }
+    if (!user) {
+      ctx.flash = 'Login error!';
+      return ctx.redirect('/login');
+    }
     ctx.logIn(user, (err) => {
       if (err) { return next(err); }
+      ctx.flash = 'Login was succesful!';
       return ctx.redirect('/admin');
     });
   })(ctx, next);
