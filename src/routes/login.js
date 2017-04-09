@@ -36,7 +36,7 @@ router.get('/login', async (ctx) => {
     //failureFlash: 'Invalid username or password.',
   }),
 );*/
-router.post('/auth', async (ctx, next) => {
+/*router.post('/auth', async (ctx, next) => {
   await passport.authenticate('local', (err, user, info) => {
     try {
       //console.log(`${err}\n${JSON.stringify(user, null, 4)}\n${info}`);
@@ -57,6 +57,30 @@ router.post('/auth', async (ctx, next) => {
     } catch (error) {
       return next(error);
     }
+  })(ctx, next);
+});*/
+// Passport.js custom callback
+// Official implementation is here:
+// http://passportjs.org/docs#custom-callback
+router.post('/auth', async (ctx, next) => {
+  await passport.authenticate('local', (err, user, info) => {
+    //console.log(`${err}\n${JSON.stringify(user, null, 4)}\n${info}`);
+    if (err) { return next(err); }
+    if (!user) {
+      ctx.flash = {
+        type: 'error',
+        message: 'Login error!',
+      };
+      return ctx.redirect('/login');
+    }
+    ctx.login(user, () => {
+      if (err) { return next(err); }
+      ctx.flash = {
+        type: 'success',
+        message: 'Login was succesful!',
+      };
+      return ctx.redirect('/admin');
+    });
   })(ctx, next);
 });
 
