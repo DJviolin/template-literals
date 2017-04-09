@@ -116,7 +116,7 @@ app.use(async (ctx, next) => {
     isAuthenticated: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219
     //flash: ctx.session.flash,
     flash: ctx.flash,
-    isEmpty: (obj) => { // act as a helper function in templaing engines
+    isEmpty: (obj) => { // act as a helper function in templating engines
       // Check if object is empty
       // http://stackoverflow.com/a/32108184/1442219
       let bool = false;
