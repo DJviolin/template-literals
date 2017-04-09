@@ -116,6 +116,15 @@ app.use(async (ctx, next) => {
     isAuthenticated: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219
     //flash: ctx.session.flash,
     flash: ctx.flash,
+    isEmpty: (obj) => {
+      // Check if object is empty
+      // http://stackoverflow.com/a/32108184/1442219
+      let bool = false;
+      if (Object.keys(obj).length === 0 && obj.constructor === Object) {
+        bool = true;
+      }
+      return bool;
+    },
   };
   // clear flash after if it was actually set (so on the next request)
   //console.log(`ctx.session.flash == ${JSON.stringify(ctx.session.flash, null, 4)}`);
@@ -124,6 +133,7 @@ app.use(async (ctx, next) => {
   }*/
   //ctx.session.flash = this || undefined; // shorthand for if
   //console.log(`app.js ctx.flash == ${JSON.stringify(ctx.flash, null, 4)}`);
+  console.log(`app.js ctx.state.global.flash == ${JSON.stringify(ctx.state.global.flash, null, 4)}`);
   await next();
 });
 

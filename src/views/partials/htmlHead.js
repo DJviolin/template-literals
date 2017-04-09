@@ -6,6 +6,12 @@
       ${state.global.flash.message}
     </p>
   `}
+
+  ${Object.keys(state.global.flash).length === 0 && state.global.flash.constructor === Object ? '' : `
+    <p class="flash ${state.global.flash.type}">
+      ${state.global.flash.message}
+    </p>
+  `}
 */
 
 module.exports = ({ state }) => `
@@ -27,7 +33,7 @@ module.exports = ({ state }) => `
   <p>ctx.isAuthenticated(): ${state.global.isAuthenticated ? true : false}</p>
   <p>Full object: ${JSON.stringify(state, null, 4)}</p>
 
-  ${state.global.flash === undefined ? '' : `
+  ${state.global.isEmpty(state.global.flash) ? '' : `
     <p class="flash ${state.global.flash.type}">
       ${state.global.flash.message}
     </p>
