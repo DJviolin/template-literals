@@ -24,9 +24,6 @@ router.use(async (ctx, next) => {
 
 // http://127.0.0.1:3000/login
 router.get('/login', async (ctx) => {
-  //ctx.isAuthenticated() ? ctx.flash = 'Login was succesful!' : ctx.flash = 'Login error!';
-  console.log(`ctx.flash === ${JSON.stringify(ctx.flash, null, 4)}`);
-  console.log(`ctx.cookies.get('flash') === ${ctx.cookies.get('flash')}`);
   ctx.type = 'html';
   ctx.body = await login(ctx.state);
 });
@@ -40,7 +37,7 @@ router.get('/login', async (ctx) => {
     //failureFlash: 'Invalid username or password.',
   }),
 );*/
-router.post('/auth', async (ctx, next) => {
+/*router.post('/auth', async (ctx, next) => {
   await passport.authenticate('local', (err, user, info) => {
     //console.log(`${err}\n${user}\n${info}`);
     if (err) { return next(err); }
@@ -53,6 +50,29 @@ router.post('/auth', async (ctx, next) => {
       ctx.flash = 'Login was succesful!';
       return ctx.redirect('/admin');
     });
+  })(ctx, next);
+});*/
+router.post('/auth', async (ctx, next) => {
+  await passport.authenticate('local', (err, user, info) => {
+    try {
+      //console.log(`${err}\n${user}\n${info}`);
+      if (!user) {
+        ctx.flash = {
+          type: 'error',
+          message: 'Login error!',
+        };
+        return ctx.redirect('/login');
+      }
+      ctx.login(user, () => {
+        ctx.flash = {
+          type: 'success',
+          message: 'Login was succesful!',
+        };
+        return ctx.redirect('/admin');
+      });
+    } catch (error) {
+      return next(error);
+    }
   })(ctx, next);
 });
 

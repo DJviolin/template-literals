@@ -1,5 +1,13 @@
 'use strict';
 
+/*
+  ${state.global.flash === undefined ? '' : `
+    <p class="flash ${state.global.flash.type}">
+      ${state.global.flash.message}
+    </p>
+  `}
+*/
+
 module.exports = ({ state }) => `
   <!doctype html>
   <html class="no-js" lang="${state.meta.lang || 'en-US'}">
