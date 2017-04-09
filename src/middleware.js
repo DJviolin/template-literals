@@ -24,7 +24,7 @@ exports.logger = function () {
 // https://github.com/rkusa/koa-passport/issues/35#issuecomment-256842554
 // https://github.com/embbnux/koa-flash-message
 // https://github.com/ifraixedes/node-koa-flash-simple
-exports.flash = function () {
+/*exports.flash = function () {
   return async (ctx, next) => {
     ctx.flash = async (type, msg) => {
       ctx.session.flash = {
@@ -34,7 +34,7 @@ exports.flash = function () {
     };
     await next();
   };
-};
+};*/
 
 // Expose req.flash (getter) and res.flash = _ (setter)
 // Flash data persists in user's sessions until the next ~successful response
