@@ -64,8 +64,7 @@ app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(compress());
 app.use(json({ pretty: false, param: 'pretty' }));
 app.use(mw.logger()); // Logger middleware
-app.use(mw.wrapFlash()); // Flash messages
-//app.use(mw.flash()); // Flash messages
+app.use(mw.flash()); // Flash messages
 app.use(mw.removeTrailingSlash()); // Removes latest "/" from URLs
 
 // Static file serving middleware

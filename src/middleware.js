@@ -38,7 +38,7 @@ exports.logger = function () {
 
 // Expose req.flash (getter) and res.flash = _ (setter)
 // Flash data persists in user's sessions until the next ~successful response
-exports.wrapFlash = function (cookieName = 'flash') {
+exports.flash = function (cookieName = 'flash') {
   return async (ctx, next) => {
     let data;
     let tmp;
