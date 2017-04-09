@@ -41,20 +41,8 @@ router.get('/login', async (ctx) => {
   }),
 );*/
 router.post('/auth', async (ctx, next) => {
-  /*return passport.authenticate('local', (err, user, info) => {
-    if (err) { return next(err); }
-    if (!user) { return ctx.redirect('/login'); }
-    ctx.logIn(user, (err) => {
-      if (err) { return next(err); }
-      return ctx.redirect('/users/' + user.username);
-    });
-  })(ctx, next);*/
-  //console.log('POST on /auth');
   return passport.authenticate('local', (err, user, info) => {
-    // PS: You can also inspect err/user here to see if everything else is working properly
-    //console.log(err);
-    //console.log(user);
-    //console.log(info);
+    console.log(`${err}\n${user}\n${info}`);
     if (err) { return next(err); }
     if (!user) { return ctx.redirect('/login'); }
     ctx.logIn(user, (err) => {
