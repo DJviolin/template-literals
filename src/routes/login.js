@@ -41,13 +41,27 @@ router.get('/login', async (ctx) => {
   }),
 );*/
 router.post('/auth', async (ctx, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/admin',
-    failureRedirect: '/login', // authentication failed
-    //successFlash: 'Welcome!',
-    //failureFlash: 'Invalid username or password.',
-  });
-  await next();
+  /*return passport.authenticate('local', (err, user, info) => {
+    if (err) { return next(err); }
+    if (!user) { return ctx.redirect('/login'); }
+    ctx.logIn(user, (err) => {
+      if (err) { return next(err); }
+      return ctx.redirect('/users/' + user.username);
+    });
+  })(ctx, next);*/
+  //console.log('POST on /auth');
+  return passport.authenticate('local', (err, user, info) => {
+    // PS: You can also inspect err/user here to see if everything else is working properly
+    //console.log(err);
+    //console.log(user);
+    //console.log(info);
+    if (err) { return next(err); }
+    if (!user) { return ctx.redirect('/login'); }
+    ctx.logIn(user, (err) => {
+      if (err) { return next(err); }
+      return ctx.redirect('/admin');
+    });
+  })(ctx, next);
 });
 
 // http://127.0.0.1:3000/admin
