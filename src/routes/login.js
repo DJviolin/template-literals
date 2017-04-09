@@ -37,21 +37,6 @@ router.get('/login', async (ctx) => {
     //failureFlash: 'Invalid username or password.',
   }),
 );*/
-/*router.post('/auth', async (ctx, next) => {
-  await passport.authenticate('local', (err, user, info) => {
-    //console.log(`${err}\n${user}\n${info}`);
-    if (err) { return next(err); }
-    if (!user) {
-      ctx.flash = 'Login error!';
-      return ctx.redirect('/login');
-    }
-    ctx.login(user, (err) => {
-      if (err) { return next(err); }
-      ctx.flash = 'Login was succesful!';
-      return ctx.redirect('/admin');
-    });
-  })(ctx, next);
-});*/
 router.post('/auth', async (ctx, next) => {
   await passport.authenticate('local', (err, user, info) => {
     try {
