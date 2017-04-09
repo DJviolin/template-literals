@@ -110,7 +110,7 @@ app.use(passport.session());
 // Global data sharing middleware initialization
 app.use(async (ctx, next) => {
   // res.locals.global = {}; // Express 4+
-  ctx.state.global = await {
+  ctx.state.global = {
     sitename: 'Sitename',
     isAuthenticated: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219
     //flash: ctx.session.flash,
