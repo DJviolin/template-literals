@@ -93,14 +93,14 @@ app.use(session({
 }));
 
 // CSRF middleware
-/*app.use(new CSRF({
+app.use(new CSRF({
   invalidSessionSecretMessage: 'Invalid session secret',
   invalidSessionSecretStatusCode: 403,
   invalidTokenMessage: 'Invalid CSRF token',
   invalidTokenStatusCode: 403,
   excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
   disableQuery: false,
-}));*/
+}));
 
 // authentication
 require('./include/auth'); // include
@@ -137,7 +137,7 @@ app.use(async (ctx, next) => {
 });
 
 // CSRF middleware (e.g. parse a form submit)
-/*app.use(async (ctx, next) => {
+app.use(async (ctx, next) => {
   if (!['GET', 'POST'].includes(ctx.method)) {
     return next();
   }
@@ -148,7 +148,7 @@ app.use(async (ctx, next) => {
   }
   //ctx.body = 'OK';
   await next();
-});*/
+});
 
 // Templating setup - Must be used before any router
 // Thanks to template literals, this part not needed
