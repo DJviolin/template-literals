@@ -41,14 +41,14 @@ router.get('/login', async (ctx) => {
   }),
 );*/
 router.post('/auth', async (ctx, next) => {
-  return passport.authenticate('local', (err, user, info) => {
+  await passport.authenticate('local', (err, user, info) => {
     //console.log(`${err}\n${user}\n${info}`);
     if (err) { return next(err); }
     if (!user) {
       ctx.flash = 'Login error!';
       return ctx.redirect('/login');
     }
-    ctx.logIn(user, (err) => {
+    ctx.login(user, (err) => {
       if (err) { return next(err); }
       ctx.flash = 'Login was succesful!';
       return ctx.redirect('/admin');
