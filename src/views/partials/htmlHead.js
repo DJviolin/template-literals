@@ -6,12 +6,6 @@
       ${state.global.flash.message}
     </p>
   `}
-
-  ${Object.keys(state.global.flash).length === 0 && state.global.flash.constructor === Object ? '' : `
-    <p class="flash ${state.global.flash.type}">
-      ${state.global.flash.message}
-    </p>
-  `}
 */
 
 module.exports = ({ state }) => `
