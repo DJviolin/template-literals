@@ -24,12 +24,9 @@ router.use(async (ctx, next) => {
 
 // http://127.0.0.1:3000/login
 router.get('/login', async (ctx) => {
-  //console.log(`ctx.flash === ${JSON.stringify(ctx.flash, null, 4)}`);
-  //console.log(`ctx.cookies === ${ctx.cookies.get('flash')}`);
   //ctx.isAuthenticated() ? ctx.flash = 'Login was succesful!' : ctx.flash = 'Login error!';
   console.log(`ctx.flash === ${JSON.stringify(ctx.flash, null, 4)}`);
   console.log(`ctx.cookies.get('flash') === ${ctx.cookies.get('flash')}`);
-  console.log(`ctx.session.flash === ${JSON.stringify(ctx.session.flash, null, 4)}`);
   ctx.type = 'html';
   ctx.body = await login(ctx.state);
 });
@@ -62,7 +59,6 @@ router.post('/auth', async (ctx, next) => {
 // http://127.0.0.1:3000/admin
 router.get('/admin', async (ctx, next) => {
   ctx.isAuthenticated() ? await next() : ctx.redirect('/login');
-  //ctx.isAuthenticated() ? ctx.flash = 'Login was succesful!' : ctx.flash = 'Login error!';
   ctx.state.welcome = 'Authentication success';
   ctx.type = 'html';
   ctx.body = await admin(ctx.state);
