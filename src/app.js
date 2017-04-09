@@ -64,7 +64,8 @@ app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(compress());
 app.use(json({ pretty: false, param: 'pretty' }));
 app.use(mw.logger()); // Logger middleware
-app.use(mw.flash()); // Flash messages
+app.use(mw.wrapFlash()); // Flash messages
+//app.use(mw.flash()); // Flash messages
 app.use(mw.removeTrailingSlash()); // Removes latest "/" from URLs
 
 // Static file serving middleware
@@ -113,28 +114,17 @@ app.use(async (ctx, next) => {
   ctx.state.global = {
     sitename: 'Sitename',
     isAuthenticated: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219
-    flash: ctx.session.flash,
+    //flash: ctx.session.flash,
+    flash: ctx.flash,
   };
   // clear flash after if it was actually set (so on the next request)
   //console.log(`ctx.session.flash == ${JSON.stringify(ctx.session.flash, null, 4)}`);
   /*if (ctx.session.flash !== undefined) {
     ctx.session.flash = undefined;
   }*/
-  ctx.session.flash = this || undefined; // shorthand for if
+  //ctx.session.flash = this || undefined; // shorthand for if
   await next();
 });
-
-/*app.use(async (ctx, next) => {
-  // clear flash if it's a successful request
-  // AND if it was actually set (then clear it)
-  //if (ctx.response.status < 300 && ctx.session.flash !== undefined) {
-  //if (ctx.session.flash.type === 'error') {
-  if (ctx.session.flash !== undefined) {
-    ctx.session.flash = undefined;
-  }
-  console.log(`ctx.session.flash == ${JSON.stringify(ctx.session.flash, null, 4)}`);
-  await next();
-});*/
 
 // CSRF middleware (e.g. parse a form submit)
 app.use(async (ctx, next) => {

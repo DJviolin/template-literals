@@ -24,23 +24,36 @@ router.use(async (ctx, next) => {
 
 // http://127.0.0.1:3000/login
 router.get('/login', async (ctx) => {
+  //console.log(`ctx.flash === ${JSON.stringify(ctx.flash, null, 4)}`);
+  //console.log(`ctx.cookies === ${ctx.cookies.get('flash')}`);
+  //ctx.isAuthenticated() ? ctx.flash = 'Login was succesful!' : ctx.flash = 'Login error!';
   ctx.type = 'html';
   ctx.body = await login(ctx.state);
 });
 
 // curl -X POST -F 'username=test' -F 'password=test' http://127.0.0.1:3000/auth
-router.post('/auth',
+/*router.post('/auth',
   passport.authenticate('local', {
     successRedirect: '/admin',
     failureRedirect: '/login', // authentication failed
-    successFlash: 'Welcome!',
-    failureFlash: 'Invalid username or password.',
+    //successFlash: 'Welcome!',
+    //failureFlash: 'Invalid username or password.',
   }),
-);
+);*/
+router.post('/auth', async (ctx, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/admin',
+    failureRedirect: '/login', // authentication failed
+    //successFlash: 'Welcome!',
+    //failureFlash: 'Invalid username or password.',
+  });
+  await next();
+});
 
 // http://127.0.0.1:3000/admin
 router.get('/admin', async (ctx, next) => {
   ctx.isAuthenticated() ? await next() : ctx.redirect('/login');
+  //ctx.isAuthenticated() ? ctx.flash = 'Login was succesful!' : ctx.flash = 'Login error!';
   ctx.state.welcome = 'Authentication success';
   ctx.type = 'html';
   ctx.body = await admin(ctx.state);
