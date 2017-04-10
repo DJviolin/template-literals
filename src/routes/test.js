@@ -235,20 +235,35 @@ router.post('/auth2', async (ctx) => {
 });*/
 
 // Logout
+// http://127.0.0.1:3000/sessions/81242878-b37c-4e43-ad3c-9a024897dbff
 router.del('/sessions/:id', async (ctx) => {
   try {
     // If user isn't logged in, give them the success case anyways
     if (!ctx.currUser) {
-      ctx.flash = { message: ['success', 'You successfully logged out'] };
-      ctx.redirect('/');
+      //ctx.flash = { message: ['success', 'You successfully logged out'] };
+      ctx.flash = {
+        type: 'success',
+        message: 'You successfully logged out!',
+      };
+      ctx.redirect('/login2');
       return;
     }
-    ctx.validateParam('id');
-    await db.logoutSession(ctx.currUser.id, ctx.vals.id);
+    //ctx.validateParam('id');
+    ////await ctx.db.logoutSession(ctx.currUser.id, ctx.vals.id);
+    await ctx.db.oneOrNone(`
+      UPDATE sessions
+        SET logged_out_at = NOW()
+      WHERE user_id = '${ctx.currUser.id}'
+        AND id = '${ctx.params.id}';
+    `);
     ctx.cookies.set('session_id', null);
 
-    ctx.flash = { message: ['success', 'You successfully logged out'] };
-    ctx.redirect('/');
+    //ctx.flash = { message: ['success', 'You successfully logged out'] };
+    ctx.flash = {
+      type: 'success',
+      message: 'You successfully logged out!',
+    };
+    ctx.redirect('/login2');
   } catch (err) {
     ERR(`PGP ERROR: ${err.message}` || err);
   }
