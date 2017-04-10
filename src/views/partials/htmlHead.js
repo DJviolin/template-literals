@@ -25,7 +25,7 @@ module.exports = ({ state }) => `
   <![endif]-->
 
   <p>ctx.isAuthenticated(): ${state.global.isAuthenticated ? true : false}</p>
-  <p>Full object: ${JSON.stringify(state, null, 4)}</p>
+  <p>ctx.state === ${JSON.stringify(state, null, 4)}</p>
 
   ${state.global.isEmpty(state.global.flash) ? '' : `
     <p class="flash ${state.global.flash.type}">
