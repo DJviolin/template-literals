@@ -235,8 +235,9 @@ router.post('/auth2', async (ctx) => {
 });*/
 
 // Logout
-// http://127.0.0.1:3000/sessions/81242878-b37c-4e43-ad3c-9a024897dbff
-router.del('/sessions/:id', async (ctx) => {
+// http://127.0.0.1:3000/sessions/4730a117-1275-422f-80c1-746204589113
+//router.del('/sessions/:id', async (ctx) => {
+router.post('/sessions/:id', async (ctx) => {
   try {
     // If user isn't logged in, give them the success case anyways
     if (!ctx.currUser) {
@@ -245,8 +246,8 @@ router.del('/sessions/:id', async (ctx) => {
         type: 'success',
         message: 'You successfully logged out!',
       };
-      ctx.redirect('/login2');
-      return;
+      await ctx.redirect('/login2');
+      //return;
     }
     //ctx.validateParam('id');
     ////await ctx.db.logoutSession(ctx.currUser.id, ctx.vals.id);
