@@ -137,7 +137,7 @@ router.post('/auth2', async (ctx, next) => {
         if (res === 'match') {
           return ctx.redirect('/admin2');
         } else {
-          return ctx.redirect('/back');
+          return ctx.redirect('back');
         }
       })
       .catch(err => console.log(`bcrypt.compare() promise error: ${err}`));
