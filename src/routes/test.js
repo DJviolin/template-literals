@@ -2,10 +2,11 @@
 
 // Auth test
 
-const passport = require('koa-passport');
+//const passport = require('koa-passport');
 
 const Router = require('koa-router');
-const bcrypt = require('../include/bcrypt');
+//const bcrypt = require('../include/bcrypt');
+const bcrypt = require('bcrypt');
 
 const router = new Router();
 //const router = new Router({ prefix: '/login' });
@@ -125,7 +126,7 @@ router.post('/auth2', async (ctx) => {
       `);
       ctx.redirect('back');
     }*/
-    bcrypt.compare(ctx.request.body.user.pass, user.digest, (val) => {
+    /*bcrypt.compare(ctx.request.body.user.pass, user.digest, (val) => {
       if (ctx.request.body.user.name === user.uname && val === true) {
         console.log(`
           ////////////////////////////////////////////////////////////
@@ -166,7 +167,51 @@ router.post('/auth2', async (ctx) => {
         };
         ctx.redirect('/admin2');
       }
-    });
+    });*/
+    //bcrypt.compare(ctx.request.body.user.pass, user.digest, (val) => {
+    bcrypt.compare(ctx.request.body.user.pass, user.digest)
+      .then((res) => {
+        if (ctx.request.body.user.name === user.uname && res === true) {
+          console.log(`
+            ////////////////////////////////////////////////////////////
+            MATCH:
+            ----
+            ctx.request.body.user.name === ${ctx.request.body.user.name}
+            user.uname === ${user.uname}
+            ----
+            ctx.request.body.user.pass === ${ctx.request.body.user.pass}
+            user.digest === ${user.digest}
+            ----
+            bcrypt.compare() === ${res}
+            ////////////////////////////////////////////////////////////
+
+          `);
+          ctx.flash = {
+            type: 'error',
+            message: 'Login error!',
+          };
+          ctx.redirect('/login');
+        } else {
+          console.log(`
+            ////////////////////////////////////////////////////////////
+            NO MATCH:
+            ----
+            ctx.request.body.user.name === ${ctx.request.body.user.name}
+            user.uname === ${user.uname}
+            ----
+            ctx.request.body.user.pass === ${ctx.request.body.user.pass}
+            user.digest === ${user.digest}
+            ----
+            bcrypt.compare() === ${res}
+            ////////////////////////////////////////////////////////////
+          `);
+          ctx.flash = {
+            type: 'success',
+            message: 'Login was succesful!',
+          };
+          ctx.redirect('/admin2');
+        }
+      });
   } catch (err) {
     return err;
   }
