@@ -206,6 +206,7 @@ router.post('/auth2', async (ctx) => {
       })
       .then((res) => {
         console.log(`bool === ${res}`);
+        ctx.redirect('/login');
       })
       .catch(err => console.log(`bcrypt.compare() promise error: ${err}`));
     //console.log(`ctx.state.isAuthenticated === ${ctx.state.isAuthenticated}`);
