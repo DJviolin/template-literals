@@ -196,8 +196,9 @@ router.post('/auth2', async (ctx) => {
             )
             RETURNING *;
           `, [], v => v);
+          const days = 1000 * 60 * 60 * 24;
           ctx.cookies.set('session_id', session.id, {
-            expires: 1 * 1000 * 60 * 60 * 24 * 365, // 1 year
+            expires: new Date(Date.now() + (10 * days)), // 1 year
           });
           console.log(`session === ${JSON.stringify(session, null, 4)}`);
           //return ctx.redirect('/admin2');
