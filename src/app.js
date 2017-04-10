@@ -135,7 +135,7 @@ app.use(async (ctx, next) => {
   ctx.session.flash = this || undefined; // shorthand for if */
   //console.log(`app.js ctx.flash == ${JSON.stringify(ctx.flash, null, 4)}`);
   //console.log(`app.js ctx.state.global.flash == ${JSON.stringify(ctx.state.global.flash, null, 4)}`);
-  console.log(`ctx.session === ${JSON.stringify(ctx.session, null, 4)}`);
+  //console.log(`ctx.session === ${JSON.stringify(ctx.session, null, 4)}`);
   await next();
 });
 
