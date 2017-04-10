@@ -13,7 +13,6 @@ require('dotenv').config();
 const path = require('path');
 // 3rd
 const bodyParser = require('koa-bodyparser');
-const bouncer = require('koa-bouncer');
 const compress = require('koa-compress');
 const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf
 const helmet = require('koa-helmet');

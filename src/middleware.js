@@ -1,7 +1,5 @@
 'use strict';
 
-// 3rd
-const bouncer = require('koa-bouncer');
 // 1st
 const { LOG, REQ, ERR, WARN } = require('./include/debug.js');
 

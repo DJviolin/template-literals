@@ -28,7 +28,6 @@
     "dotenv": "^4.0.0",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
-    "koa-bouncer": "^6.0.0",
     "koa-compress": "^2.0.0",
     "koa-csrf": "^3.0.5",
     "koa-helmet": "^3.1.0",
