@@ -125,7 +125,6 @@ router.post('/auth2', async (ctx) => {
       `);
       ctx.redirect('back');
     }*/
-
     bcrypt.compare(ctx.request.body.user.pass, user.digest, (val) => {
       if (ctx.request.body.user.name === user.uname && val === true) {
         console.log(`
@@ -156,19 +155,6 @@ router.post('/auth2', async (ctx) => {
         ctx.redirect('back');
       }
     });
-
-    /*if (ctx.request.body.user.name !== 'User2' && ctx.request.body.user.pass !== 'password2') {
-      ctx.flash = {
-        type: 'error',
-        message: 'Login error!',
-      };
-      return ctx.redirect('/login2');
-    }
-    ctx.flash = {
-      type: 'success',
-      message: 'Login was succesful!',
-    };
-    return ctx.redirect('/admin2');*/
   } catch (err) {
     return err;
   }
