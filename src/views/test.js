@@ -13,7 +13,7 @@ module.exports = state => main(`
     </p>
     <p>
       <label>Password:
-        <input type="password" name="user[pass]" placeholder="Password" value="password2" />
+        <input type="password" name="user[pass]" placeholder="Password" value="$2a$10$ZKoaHub5foJTU3nA9IXX2ud0Q.RwNdZ20t2bGLLUiOcl1w7TCC3BS" />
       </label>
     </p>
     <p>

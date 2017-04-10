@@ -5,6 +5,7 @@
 const passport = require('koa-passport');
 
 const Router = require('koa-router');
+const bcrypt = require('../include/bcrypt');
 
 const router = new Router();
 //const router = new Router({ prefix: '/login' });
@@ -87,7 +88,44 @@ router.get('/login2', async (ctx) => {
 });*/
 router.post('/auth2', async (ctx) => {
   try {
-    if (ctx.request.body.user.name !== 'User2' && ctx.request.body.user.pass !== 'password2') {
+    const user = await ctx.db.oneOrNone(`
+      -- http://stackoverflow.com/questions/8098795/return-a-value-if-no-record-is-found
+      SELECT id, uname, digest FROM users WHERE uname = $1
+      UNION ALL
+      SELECT -1, '???', '???'
+      LIMIT 1;
+    `, ctx.request.body.user.name);
+    //console.log(`user == ${JSON.stringify(user, null, 4)}`);
+    if ((ctx.request.body.user.name === user.uname) &&
+        (ctx.request.body.user.pass === user.digest)) {
+      console.log(`
+        ////////////////////////////////////////////////////////////
+        MATCH:
+        ----
+        ctx.request.body.user.name === ${ctx.request.body.user.name}
+        user.uname === ${user.uname}
+        ----
+        ctx.request.body.user.pass === ${ctx.request.body.user.pass}
+        user.digest === ${user.digest}
+        ////////////////////////////////////////////////////////////
+
+      `);
+      ctx.redirect('back');
+    } else {
+      console.log(`
+        ////////////////////////////////////////////////////////////
+        NO MATCH:
+        ----
+        ctx.request.body.user.name === ${ctx.request.body.user.name}
+        user.uname === ${user.uname}
+        ----
+        ctx.request.body.user.pass === ${ctx.request.body.user.pass}
+        user.digest === ${user.digest}
+        ////////////////////////////////////////////////////////////
+      `);
+      ctx.redirect('back');
+    }
+    /*if (ctx.request.body.user.name !== 'User2' && ctx.request.body.user.pass !== 'password2') {
       ctx.flash = {
         type: 'error',
         message: 'Login error!',
@@ -98,7 +136,7 @@ router.post('/auth2', async (ctx) => {
       type: 'success',
       message: 'Login was succesful!',
     };
-    return ctx.redirect('/admin2');
+    return ctx.redirect('/admin2');*/
   } catch (err) {
     return err;
   }
@@ -117,7 +155,7 @@ router.get('/admin2', async (ctx, next) => {
 router.get('/logout2', (ctx) => {
   ctx.session = {}; // or = null
   ctx.logout();
-  ctx.redirect('/login');
+  ctx.redirect('/login2');
 });
 
 module.exports = router;
