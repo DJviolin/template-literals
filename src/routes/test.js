@@ -235,9 +235,9 @@ router.post('/auth2', async (ctx) => {
 });*/
 
 // Logout
-// http://127.0.0.1:3000/sessions/4730a117-1275-422f-80c1-746204589113
+// http://127.0.0.1:3000/sessions/31293c28-e8f4-4ef8-86b4-ae6e518acf92
 //router.del('/sessions/:id', async (ctx) => {
-router.get('/sessions/:id', async (ctx) => {
+/*router.get('/sessions/:id', async (ctx) => {
   try {
     // If user isn't logged in, give them the success case anyways
     if (!ctx.currUser) {
@@ -254,6 +254,38 @@ router.get('/sessions/:id', async (ctx) => {
         SET logged_out_at = NOW()
       WHERE user_id = '${ctx.currUser.id}'
         AND id = '${ctx.params.id}';
+    `);
+    ctx.cookies.set('session_id', null);
+
+    ctx.flash = {
+      type: 'success',
+      message: 'You successfully logged out!',
+    };
+    return await ctx.redirect('/login2');
+  } catch (err) {
+    ERR(`PGP ERROR: ${err.message}` || err);
+  }
+});*/
+
+// Logout
+// http://127.0.0.1:3000/logout2
+router.get('/logout2', async (ctx) => {
+  try {
+    // If user isn't logged in, give them the success case anyways
+    if (!ctx.currUser) {
+      ctx.flash = {
+        type: 'success',
+        message: 'You successfully logged out!',
+      };
+      return await ctx.redirect('/login2');
+    }
+    //ctx.validateParam('id');
+    ////await ctx.db.logoutSession(ctx.currUser.id, ctx.vals.id);
+    await ctx.db.oneOrNone(`
+      UPDATE sessions
+        SET logged_out_at = NOW()
+      WHERE user_id = '${ctx.currUser.id}'
+        AND id = '${ctx.currSessionId}';
     `);
     ctx.cookies.set('session_id', null);
 
