@@ -7,6 +7,7 @@
 const Router = require('koa-router');
 //const bcrypt = require('../include/bcrypt');
 const bcrypt = require('bcrypt');
+const uuid = require('uuid');
 
 const router = new Router();
 //const router = new Router({ prefix: '/login' });
@@ -185,15 +186,16 @@ router.post('/auth2', async (ctx) => {
         if (res === true) {
           //const session = await ctx.db.one(user.id, ctx.ip, ctx.headers['user-agent'], ctx.vals['remember-me'] ? '1 year' : '2 weeks');
           const session = await ctx.db.one(`
-            INSERT INTO "public".sessions (user_id, ip_address, user_agent, expired_at)
+            INSERT INTO "public".sessions (id, user_id, ip_address, user_agent, expired_at)
             VALUES (
+              '${uuid.v4()}',
               '${user.id}',
               '${ctx.ip}'::inet,
               '${ctx.headers['user-agent']}',
               NOW() + '1 year'::interval
             )
             RETURNING *;
-          `, [], v => v.value);
+          `, [], v => v);
           console.log(`session === ${session}`);
           //return ctx.redirect('/admin2');
         } else {
