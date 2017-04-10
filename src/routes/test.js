@@ -168,7 +168,7 @@ router.post('/auth2', async (ctx, next) => {
         ctx.redirect('/admin2');
       }
     });*/
-    bcrypt.compare(ctx.request.body.user.pass, user.digest)
+    await bcrypt.compare(ctx.request.body.user.pass, user.digest)
       .then((res) => {
         if (ctx.request.body.user.name === user.uname && res === true) {
           console.log(`
@@ -204,8 +204,12 @@ router.post('/auth2', async (ctx, next) => {
         }
       })
       .then((res) => {
-        console.log(`bool === ${res}`);
-        ctx.redirect('/login');
+        console.log(`res === ${res}`);
+        if (res === 'match') {
+          return ctx.redirect('/login2');
+        } else {
+          return ctx.redirect('/admin2');
+        }
       })
       .catch(err => console.log(`bcrypt.compare() promise error: ${err}`));
     //console.log(`ctx.state.isAuthenticated === ${ctx.state.isAuthenticated}`);
