@@ -169,7 +169,7 @@ router.post('/auth2', async (ctx) => {
       }
     });*/
     //bcrypt.compare(ctx.request.body.user.pass, user.digest, (val) => {
-    bcrypt.compare(ctx.request.body.user.pass, user.digest)
+    /*bcrypt.compare(ctx.request.body.user.pass, user.digest)
       .then(async (res) => {
         if (ctx.request.body.user.name === user.uname && res === true) {
           console.log(`
@@ -190,7 +190,7 @@ router.post('/auth2', async (ctx) => {
             type: 'error',
             message: 'Login error!',
           };
-          ctx.redirect('/login');*/
+          ctx.redirect('/login');*
           //ctx.state.isAuthenticated = true;
           ctx.body = await { isAuthenticated: true };
         } else {
@@ -211,13 +211,59 @@ router.post('/auth2', async (ctx) => {
             type: 'success',
             message: 'Login was succesful!',
           };
-          ctx.redirect('/admin2');*/
+          ctx.redirect('/admin2');*
           //ctx.state.isAuthenticated = false;
           ctx.body = await { isAuthenticated: false };
         }
       })
-      .catch(err => console.log(`bcrypt.compare() promise error: ${err}`));
+      .catch(err => console.log(`bcrypt.compare() promise error: ${err}`));*/
     //console.log(`ctx.state.isAuthenticated === ${ctx.state.isAuthenticated}`);
+    bcrypt.compare(ctx.request.body.user.pass, user.digest, (err, res) => {
+      if (ctx.request.body.user.name === user.uname && res === true) {
+        console.log(`
+          ////////////////////////////////////////////////////////////
+          MATCH:
+          ----
+          ctx.request.body.user.name === ${ctx.request.body.user.name}
+          user.uname === ${user.uname}
+          ----
+          ctx.request.body.user.pass === ${ctx.request.body.user.pass}
+          user.digest === ${user.digest}
+          ----
+          bcrypt.compare() === ${res}
+          ////////////////////////////////////////////////////////////
+
+        `);
+        /*ctx.flash = {
+          type: 'error',
+          message: 'Login error!',
+        };
+        ctx.redirect('/login');*/
+        //ctx.state.isAuthenticated = true;
+        ctx.body = { isAuthenticated: true };
+      } else {
+        console.log(`
+          ////////////////////////////////////////////////////////////
+          NO MATCH:
+          ----
+          ctx.request.body.user.name === ${ctx.request.body.user.name}
+          user.uname === ${user.uname}
+          ----
+          ctx.request.body.user.pass === ${ctx.request.body.user.pass}
+          user.digest === ${user.digest}
+          ----
+          bcrypt.compare() === ${res}
+          ////////////////////////////////////////////////////////////
+        `);
+        /*ctx.flash = {
+          type: 'success',
+          message: 'Login was succesful!',
+        };
+        ctx.redirect('/admin2');*/
+        //ctx.state.isAuthenticated = false;
+        ctx.body = { isAuthenticated: false };
+      }
+    });
   } catch (err) {
     return err;
   }
