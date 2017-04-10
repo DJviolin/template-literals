@@ -105,6 +105,7 @@ const presentUser = function (x) {
 };
 // Assoc ctx.currUser if the session_id cookie (a UUID v4)
 // is an active session.
+const db = require('./db/index'); // Postgres
 exports.wrapCurrUser = function () {
   return async (ctx, next) => {
     const sessionId = ctx.cookies.get('session_id');
@@ -112,7 +113,7 @@ exports.wrapCurrUser = function () {
     //if (!sessionId) return await next();
     if (!sessionId) return next();
     try {
-      const user = await ctx.db.oneOrNone(`
+      const user = await db.oneOrNone(`
         UPDATE "public".users
           SET last_online_at = NOW()
         WHERE id = (
@@ -121,7 +122,7 @@ exports.wrapCurrUser = function () {
           WHERE u.id = (
             SELECT s.user_id
             FROM active_sessions s
-            WHERE s.id = ${sessionId}
+            WHERE s.id = '${sessionId}'
           )
         )
         RETURNING *;
