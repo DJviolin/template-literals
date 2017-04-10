@@ -87,7 +87,7 @@ router.get('/login2', async (ctx) => {
     });
   })(ctx, next);
 });*/
-router.post('/auth2', async (ctx, next) => {
+router.post('/auth2', async (ctx) => {
   try {
     const user = await ctx.db.oneOrNone(`
       -- http://stackoverflow.com/questions/8098795/return-a-value-if-no-record-is-found
@@ -226,7 +226,7 @@ router.post('/auth2', async (ctx, next) => {
           ////////////////////////////////////////////////////////////
 
         `);
-        next(ctx.redirect('/login'));
+        ctx.redirect('/login');
       } else {
         console.log(`
           ////////////////////////////////////////////////////////////
@@ -241,7 +241,7 @@ router.post('/auth2', async (ctx, next) => {
           bcrypt.compare() === ${val}
           ////////////////////////////////////////////////////////////
         `);
-        next(ctx.redirect('/login2'));
+        ctx.redirect('/login2');
       }
     });
   } catch (err) {
