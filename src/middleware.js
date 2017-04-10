@@ -93,3 +93,21 @@ exports.removeTrailingSlash = function () {
     await next();
   };
 };
+
+// Quickly generate Date objects in the future.
+//
+//    futureDate({ days: 4 })            -> Date
+//    futureDate(someDate, { years: 2 }) -> Date
+/*exports.futureDate = function (nowDate, opts) {
+  if (!opts) {
+    opts = nowDate;
+    nowDate = new Date();
+  }
+  return new Date(nowDate.getTime() +
+    (opts.years || 0) * 1000 * 60 * 60 * 24 * 365 +
+    (opts.days || 0) * 1000 * 60 * 60 * 24 +
+    (opts.hours || 0) * 1000 * 60 * 60 +
+    (opts.minutes || 0) * 1000 * 60 +
+    (opts.seconds || 0) * 1000 +
+    (opts.milliseconds || 0));
+};*/

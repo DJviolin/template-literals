@@ -196,6 +196,9 @@ router.post('/auth2', async (ctx) => {
             )
             RETURNING *;
           `, [], v => v);
+          ctx.cookies.set('session_id', session.id, {
+            expires: 1 * 1000 * 60 * 60 * 24 * 365, // 1 year
+          });
           console.log(`session === ${JSON.stringify(session, null, 4)}`);
           //return ctx.redirect('/admin2');
         } else {
@@ -221,6 +224,7 @@ router.get('/sessions/:user_id/:id', async (ctx) => {
       WHERE user_id = '${ctx.params.user_id}'
         AND id = '${ctx.params.id}';
     `);
+    ctx.cookies.set('session_id', null);
     ctx.redirect('/login2');
   } catch (err) {
     return err;
