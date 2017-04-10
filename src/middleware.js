@@ -109,7 +109,8 @@ exports.wrapCurrUser = function () {
   return async (ctx, next) => {
     const sessionId = ctx.cookies.get('session_id');
     LOG(`[wrapCurrUser] session_id: ${sessionId}`);
-    if (!sessionId) return await next();
+    //if (!sessionId) return await next();
+    if (!sessionId) return next();
     try {
       const user = await ctx.db.oneOrNone(`
         UPDATE "public".users
