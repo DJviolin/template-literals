@@ -114,6 +114,10 @@ router.post('/auth2', async (ctx, next) => {
             ////////////////////////////////////////////////////////////
 
           `);
+          ctx.flash = {
+            type: 'error',
+            message: 'Login error!',
+          };
           return true;
         } else {
           console.log(`
@@ -129,6 +133,10 @@ router.post('/auth2', async (ctx, next) => {
             bcrypt.compare() === ${res}
             ////////////////////////////////////////////////////////////
           `);
+          ctx.flash = {
+            type: 'success',
+            message: 'Login was succesful!',
+          };
           return false;
         }
       })
@@ -149,7 +157,7 @@ router.post('/auth2', async (ctx, next) => {
 
 // http://127.0.0.1:3000/admin2
 router.get('/admin2', async (ctx, next) => {
-  ctx.isAuthenticated() ? await next() : ctx.redirect('/login2');
+  //ctx.isAuthenticated() ? await next() : ctx.redirect('/login2');
   ctx.state.welcome = 'Authentication success';
   ctx.type = 'html';
   ctx.body = await admin(ctx.state);
