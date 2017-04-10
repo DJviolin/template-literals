@@ -94,20 +94,34 @@ exports.removeTrailingSlash = function () {
   };
 };
 
-// Quickly generate Date objects in the future.
-//
-//    futureDate({ days: 4 })            -> Date
-//    futureDate(someDate, { years: 2 }) -> Date
-/*exports.futureDate = function (nowDate, opts) {
-  if (!opts) {
-    opts = nowDate;
-    nowDate = new Date();
-  }
-  return new Date(nowDate.getTime() +
-    (opts.years || 0) * 1000 * 60 * 60 * 24 * 365 +
-    (opts.days || 0) * 1000 * 60 * 60 * 24 +
-    (opts.hours || 0) * 1000 * 60 * 60 +
-    (opts.minutes || 0) * 1000 * 60 +
-    (opts.seconds || 0) * 1000 +
-    (opts.milliseconds || 0));
-};*/
+// Assoc ctx.currUser if the session_id cookie (a UUID v4)
+// is an active session.
+exports.wrapCurrUser = function () {
+  return async (ctx, next) => {
+    const sessionId = ctx.cookies.get('session_id');
+    LOG(`[wrapCurrUser] session_id: ${sessionId}`);
+    if (!sessionId) return await next();
+    const user = await ctx.db.one(`
+      UPDATE users
+      SET last_online_at = NOW()
+      WHERE id = (
+        SELECT u.id
+        FROM users u
+        WHERE u.id = (
+          SELECT s.user_id
+          FROM active_sessions s
+          WHERE s.id = ${sessionId}
+        )
+      )
+      RETURNING *;
+    `);
+    if (user) {
+      ctx.currUser = pre.presentUser(user);
+      ctx.currSessionId = sessionId;
+      LOG('[wrapCurrUser] User found');
+    } else {
+      LOG('[wrapCurrUser] No user found');
+    }
+    await next();
+  };
+};
