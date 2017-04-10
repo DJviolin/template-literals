@@ -141,7 +141,11 @@ router.post('/auth2', async (ctx) => {
           ////////////////////////////////////////////////////////////
 
         `);
-        //ctx.redirect('back');
+        ctx.flash = {
+          type: 'error',
+          message: 'Login error!',
+        };
+        ctx.redirect('/login');
       } else {
         console.log(`
           ////////////////////////////////////////////////////////////
@@ -156,7 +160,11 @@ router.post('/auth2', async (ctx) => {
           bcrypt.compare() === ${val}
           ////////////////////////////////////////////////////////////
         `);
-        //ctx.redirect('back');
+        ctx.flash = {
+          type: 'success',
+          message: 'Login was succesful!',
+        };
+        ctx.redirect('/admin2');
       }
     });
   } catch (err) {
