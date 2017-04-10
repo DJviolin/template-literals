@@ -241,7 +241,6 @@ router.post('/sessions/:id', async (ctx) => {
   try {
     // If user isn't logged in, give them the success case anyways
     if (!ctx.currUser) {
-      //ctx.flash = { message: ['success', 'You successfully logged out'] };
       ctx.flash = {
         type: 'success',
         message: 'You successfully logged out!',
@@ -258,12 +257,11 @@ router.post('/sessions/:id', async (ctx) => {
     `);
     ctx.cookies.set('session_id', null);
 
-    //ctx.flash = { message: ['success', 'You successfully logged out'] };
     ctx.flash = {
       type: 'success',
       message: 'You successfully logged out!',
     };
-    ctx.redirect('/login2');
+    return ctx.redirect('/login2');
   } catch (err) {
     ERR(`PGP ERROR: ${err.message}` || err);
   }
