@@ -219,6 +219,7 @@ router.post('/auth2', async (ctx) => {
       .catch(err => console.log(`bcrypt.compare() promise error: ${err}`));*/
     //console.log(`ctx.state.isAuthenticated === ${ctx.state.isAuthenticated}`);
     bcrypt.compare(ctx.request.body.user.pass, user.digest, (err, res) => {
+      if (err) { console.log(`bcrypt.compare() promise error: ${err}`); }
       if (ctx.request.body.user.name === user.uname && res === true) {
         console.log(`
           ////////////////////////////////////////////////////////////
