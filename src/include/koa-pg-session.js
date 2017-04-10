@@ -1,7 +1,7 @@
 'use strict';
 
 //Requires
-const escape = require('pg-escape');
+//const escape = require('pg-escape');
 //const ms = require('ms');
 const Promise = require('bluebird');
 const EventEmitter = require('events');
@@ -148,7 +148,7 @@ module.exports = class PgSession extends EventEmitter {
    * Get the raw SQL for creating a new session table
    */
 
-  get createSql() {
+  /*get createSql() {
     return escape(
       'CREATE SCHEMA IF NOT EXISTS %I;\n' +
       'CREATE TABLE IF NOT EXISTS %I.%I (\n' +
@@ -160,60 +160,100 @@ module.exports = class PgSession extends EventEmitter {
       this.options.schema,
       this.options.table,
     );
+  }*/
+  get createSql() {
+    return `
+      CREATE SCHEMA IF NOT EXISTS ${this.options.schema};
+      CREATE TABLE IF NOT EXISTS ${this.options.schema}.${this.options.table} (
+        id TEXT NOT NULL PRIMARY KEY,    -- This is the Koa session ID
+        expiry timestamp NOT NULL,       -- This is the timestamp of when it will expire
+        session JSON                     -- All the session data that has been saved
+      );
+    `;
   }
 
   /**
    * Get the raw SQL for getting an existing session
    */
-  get getValueSql() {
+  /*get getValueSql() {
     return escape(
       'SELECT session FROM %I.%I WHERE id = $1;',
       this.options.schema,
       this.options.table,
     );
+  }*/
+  get getValueSql() {
+    return `
+      SELECT session FROM ${this.options.schema}.${this.options.table}
+      WHERE id = $1;
+    `;
   }
 
   /**
    * Get the raw SQL for updating an existing session
    */
-  get updateValueSql() {
+  /*get updateValueSql() {
     return escape(
       'UPDATE %I.%I SET session = $1, expiry = to_timestamp($2) WHERE id = $3;',
       this.options.schema,
       this.options.table,
     );
+  }*/
+  get updateValueSql() {
+    return `
+      UPDATE ${this.options.schema}.${this.options.table} SET session = $1, expiry = to_timestamp($2)
+      WHERE id = $3;
+    `;
   }
 
   /**
    * Get the raw SQL for creating a new existing session
    */
-  get insertValueSql() {
+  /*get insertValueSql() {
     return escape(
       'INSERT INTO %I.%I(id, session, expiry) VALUES($1, $2, to_timestamp($3) );',
       this.options.schema,
       this.options.table,
     );
+  }*/
+  get insertValueSql() {
+    return `
+      INSERT INTO ${this.options.schema}.${this.options.table}(id, session, expiry)
+      VALUES($1, $2, to_timestamp($3));
+    `;
   }
 
   /**
    * Get the raw SQL for destroying an existing session
    */
-  get destroyValueSql() {
+  /*get destroyValueSql() {
     return escape(
       'DELETE FROM %I.%I WHERE id = $1;',
       this.options.schema,
       this.options.table,
     );
+  }*/
+  get destroyValueSql() {
+    return `
+      DELETE FROM ${this.options.schema}.${this.options.table}
+      WHERE id = $1;
+    `;
   }
 
   /**
    * Get the raw SQL for cleaning up expired sessions
    */
-  get cleanupSql() {
+  /*get cleanupSql() {
     return escape(
       'DELETE FROM %I.%I WHERE expiry <= to_timestamp($1);',
       this.options.schema,
       this.options.table,
     );
+  }*/
+  get cleanupSql() {
+    return `
+      DELETE FROM ${this.options.schema}.${this.options.table}
+      WHERE expiry <= to_timestamp($1);
+    `;
   }
 };
