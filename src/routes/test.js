@@ -87,7 +87,7 @@ router.get('/login2', async (ctx) => {
     });
   })(ctx, next);
 });*/
-router.post('/auth2', async (ctx, next) => {
+/*router.post('/auth2', async (ctx, next) => {
   try {
     const user = await ctx.db.oneOrNone(`
       -- http://stackoverflow.com/questions/8098795/return-a-value-if-no-record-is-found
@@ -133,6 +133,46 @@ router.post('/auth2', async (ctx, next) => {
             bcrypt.compare() === ${res}
             ////////////////////////////////////////////////////////////
           `);
+          ctx.flash = {
+            type: 'error',
+            message: 'Login error!',
+          };
+          return false;
+        }
+      })
+      .then((res) => {
+        console.log(`res === ${res}`);
+        if (res === true) {
+          return ctx.redirect('/admin2');
+        } else {
+          return ctx.redirect('back');
+        }
+      })
+      .catch(err => console.log(`bcrypt.compare() promise error: ${err}`));
+    //console.log(`ctx.state.isAuthenticated === ${ctx.state.isAuthenticated}`);
+  } catch (err) {
+    return err;
+  }
+});*/
+router.post('/auth2', async (ctx) => {
+  try {
+    const user = await ctx.db.oneOrNone(`
+      -- http://stackoverflow.com/questions/8098795/return-a-value-if-no-record-is-found
+      SELECT id, uname, digest FROM users WHERE uname = $1
+      UNION ALL
+      SELECT -1, '???', '???'
+      LIMIT 1;
+    `, ctx.request.body.user.name);
+    //console.log(`user == ${JSON.stringify(user, null, 4)}`);
+    await bcrypt.compare(ctx.request.body.user.pass, user.digest)
+      .then((res) => {
+        if (ctx.request.body.user.name === user.uname && res === true) {
+          ctx.flash = {
+            type: 'success',
+            message: 'Login was succesful!',
+          };
+          return true;
+        } else {
           ctx.flash = {
             type: 'error',
             message: 'Login error!',
