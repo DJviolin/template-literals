@@ -187,10 +187,10 @@ router.post('/auth2', async (ctx) => {
           const session = await ctx.db.one(`
             INSERT INTO sessions (user_id, ip_address, user_agent, expired_at)
             VALUES (
-              ${user.id},
-              ${ctx.ip}::inet,
-              ${ctx.headers['user-agent']},
-              NOW() + '1 year'::interval
+              '${user.id}',
+              '${ctx.ip}::inet',
+              '${ctx.headers['user-agent']}',
+              'NOW() + '1 year'::interval'
             )
             RETURNING * AS value;
           `, {}, v => v.value);
