@@ -96,7 +96,7 @@ router.post('/auth2', async (ctx) => {
       LIMIT 1;
     `, ctx.request.body.user.name);
     //console.log(`user == ${JSON.stringify(user, null, 4)}`);
-    if ((ctx.request.body.user.name === user.uname) &&
+    /*if ((ctx.request.body.user.name === user.uname) &&
         (ctx.request.body.user.pass === user.digest)) {
       console.log(`
         ////////////////////////////////////////////////////////////
@@ -124,7 +124,38 @@ router.post('/auth2', async (ctx) => {
         ////////////////////////////////////////////////////////////
       `);
       ctx.redirect('back');
+    }*/
+
+    bcrypt.compare(ctx.request.body.user.pass, user.digest, (val) => {
+    if (ctx.request.body.user.name === user.uname && val === true) {
+      console.log(`
+        ////////////////////////////////////////////////////////////
+        MATCH:
+        ----
+        ctx.request.body.user.name === ${ctx.request.body.user.name}
+        user.uname === ${user.uname}
+        ----
+        ctx.request.body.user.pass === ${ctx.request.body.user.pass}
+        user.digest === ${user.digest}
+        ////////////////////////////////////////////////////////////
+
+      `);
+      ctx.redirect('back');
+    } else {
+      console.log(`
+        ////////////////////////////////////////////////////////////
+        NO MATCH:
+        ----
+        ctx.request.body.user.name === ${ctx.request.body.user.name}
+        user.uname === ${user.uname}
+        ----
+        ctx.request.body.user.pass === ${ctx.request.body.user.pass}
+        user.digest === ${user.digest}
+        ////////////////////////////////////////////////////////////
+      `);
+      ctx.redirect('back');
     }
+
     /*if (ctx.request.body.user.name !== 'User2' && ctx.request.body.user.pass !== 'password2') {
       ctx.flash = {
         type: 'error',
