@@ -131,6 +131,7 @@ exports.wrapCurrUser = function () {
       //console.log(`wrapCurrUser === ${JSON.stringify(user, null, 4)}`);
       if (user) {
         ctx.currUser = presentUser(user);
+        //ctx.currUser = user;
         ctx.currSessionId = sessionId;
         LOG('[wrapCurrUser] User found');
         console.log(`ctx.currUser === ${JSON.stringify(ctx.currUser, null, 4)}\nctx.currSessionId === ${ctx.currSessionId}`);

@@ -117,6 +117,8 @@ app.use(async (ctx, next) => {
     isAuthenticated: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219
     //flash: ctx.session.flash,
     flash: ctx.flash,
+  };
+  ctx.state.filters = {
     isEmpty: (obj) => { // act as a helper function in templating engines
       // Check if object is empty
       // http://stackoverflow.com/a/32108184/1442219
