@@ -211,6 +211,8 @@ router.post('/auth2', async (ctx) => {
 
 // Logout
 // http://127.0.0.1:3000/sessions/2/e1374126-a828-490c-a437-8d99b131a686
+// http://127.0.0.1:3000/sessions/3/96aa7fd0-7387-467f-9d3f-83594f414fc6
+// http://127.0.0.1:3000/sessions/2/69d2a736-09b5-499b-b63b-c47c49df9a3c
 router.get('/sessions/:user_id/:id', async (ctx) => {
   try {
     await ctx.db.oneOrNone(`
