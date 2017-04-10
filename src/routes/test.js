@@ -180,10 +180,22 @@ router.post('/auth2', async (ctx) => {
           return false;
         }
       })
-      .then((res) => {
+      .then(async (res) => {
         console.log(`res === ${res}`);
         if (res === true) {
-          return ctx.redirect('/admin2');
+          //const session = await ctx.db.one(user.id, ctx.ip, ctx.headers['user-agent'], ctx.vals['remember-me'] ? '1 year' : '2 weeks');
+          const session = await ctx.db.one(`
+            INSERT INTO sessions (user_id, ip_address, user_agent, expired_at)
+            VALUES (
+              ${user.id},
+              ${ctx.ip}::inet,
+              ${ctx.headers['user-agent']},
+              NOW() + '1 year'::interval
+            )
+            RETURNING * AS value;
+          `, {}, v => v.value);
+          console.log(`session === ${session}`);
+          //return ctx.redirect('/admin2');
         } else {
           return ctx.redirect('back');
         }
