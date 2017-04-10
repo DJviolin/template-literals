@@ -13,6 +13,7 @@ require('dotenv').config();
 const path = require('path');
 // 3rd
 const bodyParser = require('koa-bodyparser');
+const bouncer = require('koa-bouncer');
 const compress = require('koa-compress');
 const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf
 const helmet = require('koa-helmet');
@@ -66,6 +67,7 @@ app.use(json({ pretty: false, param: 'pretty' }));
 app.use(mw.logger()); // Logger middleware
 app.use(mw.flash()); // Flash messages
 app.use(mw.removeTrailingSlash()); // Removes latest "/" from URLs
+app.use(bouncer.middleware());
 
 // Static file serving middleware
 if (config.NODE_ENV !== 'production') {
