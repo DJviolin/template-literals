@@ -35,6 +35,7 @@ const { LOG, ERR } = require('./include/debug.js');
 const index = require('./routes/index');
 const query = require('./routes/query');
 const login = require('./routes/login');
+const test = require('./routes/test');
 
 const app = new Koa();
 
@@ -169,6 +170,7 @@ app.use(query.routes(), query.allowedMethods());
 // Routes (authorized)
 // https://github.com/rkusa/koa-passport-example/blob/master/server.js
 app.use(login.routes(), login.allowedMethods());
+app.use(test.routes(), test.allowedMethods());
 
 /*app.use((ctx) => {
   //if (ctx.path === '/test') {

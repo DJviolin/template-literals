@@ -94,7 +94,7 @@ router.post('/auth2', async (ctx, next) => {
         type: 'error',
         message: 'Login error!',
       };
-      return ctx.redirect('/login');
+      return ctx.redirect('/login2');
     }
     ctx.login(user, () => {
       if (err) { return next(err); }
@@ -102,7 +102,7 @@ router.post('/auth2', async (ctx, next) => {
         type: 'success',
         message: 'Login was succesful!',
       };
-      return ctx.redirect('/admin');
+      return ctx.redirect('/admin2');
     });
   })(ctx, next);
 });
