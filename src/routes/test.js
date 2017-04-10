@@ -211,8 +211,7 @@ router.post('/auth2', async (ctx) => {
 
 // Logout
 // http://127.0.0.1:3000/sessions/2/e1374126-a828-490c-a437-8d99b131a686
-router
-.get('/sessions/:user_id/:id', async (ctx) => {
+router.get('/sessions/:user_id/:id', async (ctx) => {
   try {
     await ctx.db.oneOrNone(`
       UPDATE sessions
