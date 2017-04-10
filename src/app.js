@@ -67,7 +67,6 @@ app.use(json({ pretty: false, param: 'pretty' }));
 app.use(mw.logger()); // Logger middleware
 app.use(mw.flash()); // Flash messages
 app.use(mw.removeTrailingSlash()); // Removes latest "/" from URLs
-app.use(bouncer.middleware());
 
 // Static file serving middleware
 if (config.NODE_ENV !== 'production') {

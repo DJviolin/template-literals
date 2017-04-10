@@ -1,7 +1,9 @@
 'use strict';
 
+// 3rd
+const bouncer = require('koa-bouncer');
 // 1st
-const { REQ } = require('./include/debug.js');
+const { LOG, REQ, ERR, WARN } = require('./include/debug.js');
 
 // Logger middleware
 exports.logger = function () {
