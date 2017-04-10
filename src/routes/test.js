@@ -86,7 +86,7 @@ router.get('/login2', async (ctx) => {
   })(ctx, next);
 });*/
 router.post('/auth2', async (ctx, next) => {
-  await passport.authenticate('local', (err, user, info) => {
+  /*await passport.authenticate('local', (err, user, info) => {
     //console.log(`${err}\n${JSON.stringify(user, null, 4)}\n${info}`);
     if (err) { return next(err); }
     if (!user) {
@@ -104,7 +104,9 @@ router.post('/auth2', async (ctx, next) => {
       };
       return ctx.redirect('/admin2');
     });
-  })(ctx, next);
+  })(ctx, next);*/
+  console.log(`${ctx.request.body.user.name}\n${ctx.request.body.user.pass}`);
+  await next();
 });
 
 // http://127.0.0.1:3000/admin2
