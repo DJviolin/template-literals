@@ -128,7 +128,6 @@ exports.wrapCurrUser = function () {
         )
         RETURNING *;
       `, [], v => v);
-      //console.log(`wrapCurrUser === ${JSON.stringify(user, null, 4)}`);
       if (user) {
         ctx.currUser = presentUser(user);
         //ctx.currUser = user;
