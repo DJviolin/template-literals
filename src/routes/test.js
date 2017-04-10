@@ -4,10 +4,13 @@
 
 //const passport = require('koa-passport');
 
+// 3rd
 const Router = require('koa-router');
 //const bcrypt = require('../include/bcrypt');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
+// 1st
+const { LOG, REQ, ERR, WARN } = require('../include/debug.js');
 
 const router = new Router();
 //const router = new Router({ prefix: '/login' });
@@ -216,7 +219,7 @@ router.post('/auth2', async (ctx) => {
 
 // Logout
 // http://127.0.0.1:3000/sessions/2/81242878-b37c-4e43-ad3c-9a024897dbff
-router.get('/sessions/:user_id/:id', async (ctx) => {
+/*router.get('/sessions/:user_id/:id', async (ctx) => {
   try {
     await ctx.db.oneOrNone(`
       UPDATE sessions
@@ -228,6 +231,26 @@ router.get('/sessions/:user_id/:id', async (ctx) => {
     ctx.redirect('/login2');
   } catch (err) {
     return err;
+  }
+});*/
+
+// Logout
+router.del('/sessions/:id', async (ctx) => {
+  try {
+    // If user isn't logged in, give them the success case anyways
+    if (!ctx.currUser) {
+      ctx.flash = { message: ['success', 'You successfully logged out'] };
+      ctx.redirect('/');
+      return;
+    }
+    ctx.validateParam('id');
+    await db.logoutSession(ctx.currUser.id, ctx.vals.id);
+    ctx.cookies.set('session_id', null);
+
+    ctx.flash = { message: ['success', 'You successfully logged out'] };
+    ctx.redirect('/');
+  } catch (err) {
+    ERR(`PGP ERROR: ${err.message}` || err);
   }
 });
 
