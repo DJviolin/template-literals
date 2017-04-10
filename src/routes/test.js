@@ -170,7 +170,7 @@ router.post('/auth2', async (ctx) => {
     });*/
     //bcrypt.compare(ctx.request.body.user.pass, user.digest, (val) => {
     bcrypt.compare(ctx.request.body.user.pass, user.digest)
-      .then((res) => {
+      .then(async (res) => {
         if (ctx.request.body.user.name === user.uname && res === true) {
           console.log(`
             ////////////////////////////////////////////////////////////
@@ -191,7 +191,8 @@ router.post('/auth2', async (ctx) => {
             message: 'Login error!',
           };
           ctx.redirect('/login');*/
-          ctx.isAuthenticated = true;
+          //ctx.state.isAuthenticated = true;
+          ctx.body = await { isAuthenticated: true };
         } else {
           console.log(`
             ////////////////////////////////////////////////////////////
@@ -211,10 +212,12 @@ router.post('/auth2', async (ctx) => {
             message: 'Login was succesful!',
           };
           ctx.redirect('/admin2');*/
-          ctx.isAuthenticated = false;
+          //ctx.state.isAuthenticated = false;
+          ctx.body = await { isAuthenticated: false };
         }
       })
       .catch(err => console.log(`bcrypt.compare() promise error: ${err}`));
+    //console.log(`ctx.state.isAuthenticated === ${ctx.state.isAuthenticated}`);
   } catch (err) {
     return err;
   }
@@ -222,7 +225,7 @@ router.post('/auth2', async (ctx) => {
 
 // http://127.0.0.1:3000/admin2
 router.get('/admin2', async (ctx, next) => {
-  ctx.isAuthenticated() ? await next() : ctx.redirect('/login');
+  ctx.isAuthenticated() ? await next() : ctx.redirect('/login2');
   ctx.state.welcome = 'Authentication success';
   ctx.type = 'html';
   ctx.body = await admin(ctx.state);
