@@ -212,13 +212,17 @@ router.post('/auth2', async (ctx) => {
 // Logout
 // http://127.0.0.1:3000/sessions/2/e1374126-a828-490c-a437-8d99b131a686
 router.put('/sessions/:user_id/:id', async (ctx) => {
-  await ctx.db.oneOrNone(`
-    UPDATE sessions
-    SET logged_out_at = NOW()
-    WHERE user_id = ${ctx.params.user_id}
-      AND id = ${ctx.params.id};
-  `);
-  ctx.redirect('/login2');
+  try {
+    await ctx.db.oneOrNone(`
+      UPDATE sessions
+      SET logged_out_at = NOW()
+      WHERE user_id = ${ctx.params.user_id}
+        AND id = ${ctx.params.id};
+    `);
+    ctx.redirect('/login2');
+  } catch (err) {
+    return err;
+  }
 });
 
 // http://127.0.0.1:3000/admin2
