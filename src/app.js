@@ -118,8 +118,9 @@ app.use(async (ctx, next) => {
     //flash: ctx.session.flash,
     flash: ctx.flash,
   };
+  // Act as a helper functions in templating engines
   ctx.state.filters = {
-    isEmpty: (obj) => { // act as a helper function in templating engines
+    isEmpty: (obj) => {
       // Check if object is empty
       // http://stackoverflow.com/a/32108184/1442219
       let bool = false;
