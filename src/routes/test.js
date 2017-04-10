@@ -211,7 +211,8 @@ router.post('/auth2', async (ctx) => {
           };
           ctx.redirect('/admin2');
         }
-      });
+      })
+      .catch(err => console.log(`bcrypt.compare() promise error: ${err}`));
   } catch (err) {
     return err;
   }
