@@ -136,10 +136,12 @@ router.post('/auth2', async (ctx) => {
           ----
           ctx.request.body.user.pass === ${ctx.request.body.user.pass}
           user.digest === ${user.digest}
+          ----
+          bcrypt.compare() === ${val}
           ////////////////////////////////////////////////////////////
 
         `);
-        ctx.redirect('back');
+        //ctx.redirect('back');
       } else {
         console.log(`
           ////////////////////////////////////////////////////////////
@@ -150,9 +152,11 @@ router.post('/auth2', async (ctx) => {
           ----
           ctx.request.body.user.pass === ${ctx.request.body.user.pass}
           user.digest === ${user.digest}
+          ----
+          bcrypt.compare() === ${val}
           ////////////////////////////////////////////////////////////
         `);
-        ctx.redirect('back');
+        //ctx.redirect('back');
       }
     });
   } catch (err) {
