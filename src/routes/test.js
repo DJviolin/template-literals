@@ -237,7 +237,7 @@ router.post('/auth2', async (ctx) => {
 // Logout
 // http://127.0.0.1:3000/sessions/4730a117-1275-422f-80c1-746204589113
 //router.del('/sessions/:id', async (ctx) => {
-router.post('/sessions/:id', async (ctx) => {
+router.get('/sessions/:id', async (ctx) => {
   try {
     // If user isn't logged in, give them the success case anyways
     if (!ctx.currUser) {
@@ -245,7 +245,7 @@ router.post('/sessions/:id', async (ctx) => {
         type: 'success',
         message: 'You successfully logged out!',
       };
-      return ctx.redirect('/login2');
+      return await ctx.redirect('/login2');
     }
     //ctx.validateParam('id');
     ////await ctx.db.logoutSession(ctx.currUser.id, ctx.vals.id);
@@ -261,7 +261,7 @@ router.post('/sessions/:id', async (ctx) => {
       type: 'success',
       message: 'You successfully logged out!',
     };
-    return ctx.redirect('/login2');
+    return await ctx.redirect('/login2');
   } catch (err) {
     ERR(`PGP ERROR: ${err.message}` || err);
   }
