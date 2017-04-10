@@ -13,7 +13,7 @@ const router = new Router();
 
 // Viewing
 const login = require('../views/test');
-const admin = require('../views/admin');
+const admin = require('../views/test-admin');
 
 const meta = {
   title: 'Admin',
