@@ -115,8 +115,8 @@ router.post('/auth2', async (ctx, next) => {
 
           `);
           ctx.flash = {
-            type: 'error',
-            message: 'Login error!',
+            type: 'success',
+            message: 'Login was succesful!',
           };
           return true;
         } else {
@@ -134,8 +134,8 @@ router.post('/auth2', async (ctx, next) => {
             ////////////////////////////////////////////////////////////
           `);
           ctx.flash = {
-            type: 'success',
-            message: 'Login was succesful!',
+            type: 'error',
+            message: 'Login error!',
           };
           return false;
         }
