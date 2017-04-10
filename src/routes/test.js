@@ -127,34 +127,35 @@ router.post('/auth2', async (ctx) => {
     }*/
 
     bcrypt.compare(ctx.request.body.user.pass, user.digest, (val) => {
-    if (ctx.request.body.user.name === user.uname && val === true) {
-      console.log(`
-        ////////////////////////////////////////////////////////////
-        MATCH:
-        ----
-        ctx.request.body.user.name === ${ctx.request.body.user.name}
-        user.uname === ${user.uname}
-        ----
-        ctx.request.body.user.pass === ${ctx.request.body.user.pass}
-        user.digest === ${user.digest}
-        ////////////////////////////////////////////////////////////
+      if (ctx.request.body.user.name === user.uname && val === true) {
+        console.log(`
+          ////////////////////////////////////////////////////////////
+          MATCH:
+          ----
+          ctx.request.body.user.name === ${ctx.request.body.user.name}
+          user.uname === ${user.uname}
+          ----
+          ctx.request.body.user.pass === ${ctx.request.body.user.pass}
+          user.digest === ${user.digest}
+          ////////////////////////////////////////////////////////////
 
-      `);
-      ctx.redirect('back');
-    } else {
-      console.log(`
-        ////////////////////////////////////////////////////////////
-        NO MATCH:
-        ----
-        ctx.request.body.user.name === ${ctx.request.body.user.name}
-        user.uname === ${user.uname}
-        ----
-        ctx.request.body.user.pass === ${ctx.request.body.user.pass}
-        user.digest === ${user.digest}
-        ////////////////////////////////////////////////////////////
-      `);
-      ctx.redirect('back');
-    }
+        `);
+        ctx.redirect('back');
+      } else {
+        console.log(`
+          ////////////////////////////////////////////////////////////
+          NO MATCH:
+          ----
+          ctx.request.body.user.name === ${ctx.request.body.user.name}
+          user.uname === ${user.uname}
+          ----
+          ctx.request.body.user.pass === ${ctx.request.body.user.pass}
+          user.digest === ${user.digest}
+          ////////////////////////////////////////////////////////////
+        `);
+        ctx.redirect('back');
+      }
+    });
 
     /*if (ctx.request.body.user.name !== 'User2' && ctx.request.body.user.pass !== 'password2') {
       ctx.flash = {
