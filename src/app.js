@@ -139,6 +139,7 @@ app.use(async (ctx, next) => {
   //console.log(`app.js ctx.flash == ${JSON.stringify(ctx.flash, null, 4)}`);
   //console.log(`app.js ctx.state.global.flash == ${JSON.stringify(ctx.state.global.flash, null, 4)}`);
   //console.log(`ctx.session === ${JSON.stringify(ctx.session, null, 4)}`);
+  console.log(`ctx.currUser === ${JSON.stringify(ctx.currUser, null, 4)}\nctx.currSessionId === ${ctx.currSessionId}`);
   await next();
 });
 
