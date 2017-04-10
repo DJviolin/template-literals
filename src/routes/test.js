@@ -186,11 +186,12 @@ router.post('/auth2', async (ctx) => {
             ////////////////////////////////////////////////////////////
 
           `);
-          ctx.flash = {
+          /*ctx.flash = {
             type: 'error',
             message: 'Login error!',
           };
-          ctx.redirect('/login');
+          ctx.redirect('/login');*/
+          ctx.isAuthenticated() = true;
         } else {
           console.log(`
             ////////////////////////////////////////////////////////////
@@ -205,11 +206,12 @@ router.post('/auth2', async (ctx) => {
             bcrypt.compare() === ${res}
             ////////////////////////////////////////////////////////////
           `);
-          ctx.flash = {
+          /*ctx.flash = {
             type: 'success',
             message: 'Login was succesful!',
           };
-          ctx.redirect('/admin2');
+          ctx.redirect('/admin2');*/
+          ctx.isAuthenticated() = false;
         }
       })
       .catch(err => console.log(`bcrypt.compare() promise error: ${err}`));
