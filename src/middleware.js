@@ -110,26 +110,30 @@ exports.wrapCurrUser = function () {
     const sessionId = ctx.cookies.get('session_id');
     LOG(`[wrapCurrUser] session_id: ${sessionId}`);
     if (!sessionId) return await next();
-    const user = await ctx.db.oneOrNone(`
-      UPDATE "public".users
-        SET last_online_at = NOW()
-      WHERE id = (
-        SELECT u.id
-        FROM users u
-        WHERE u.id = (
-          SELECT s.user_id
-          FROM active_sessions s
-          WHERE s.id = ${sessionId}
+    try {
+      const user = await ctx.db.oneOrNone(`
+        UPDATE "public".users
+          SET last_online_at = NOW()
+        WHERE id = (
+          SELECT u.id
+          FROM users u
+          WHERE u.id = (
+            SELECT s.user_id
+            FROM active_sessions s
+            WHERE s.id = ${sessionId}
+          )
         )
-      )
-      RETURNING *;
-    `, [], v => v);
-    if (user) {
-      ctx.currUser = presentUser(user);
-      ctx.currSessionId = sessionId;
-      LOG('[wrapCurrUser] User found');
-    } else {
-      LOG('[wrapCurrUser] No user found');
+        RETURNING *;
+      `, [], v => v);
+      if (user) {
+        ctx.currUser = presentUser(user);
+        ctx.currSessionId = sessionId;
+        LOG('[wrapCurrUser] User found');
+      } else {
+        LOG('[wrapCurrUser] No user found');
+      }
+    } catch (err) {
+      ERR(`PGP ERROR: ${err.message}` || err);
     }
     await next();
   };
