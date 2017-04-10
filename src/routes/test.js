@@ -246,8 +246,7 @@ router.post('/sessions/:id', async (ctx) => {
         type: 'success',
         message: 'You successfully logged out!',
       };
-      await ctx.redirect('/login2');
-      //return;
+      return ctx.redirect('/login2');
     }
     //ctx.validateParam('id');
     ////await ctx.db.logoutSession(ctx.currUser.id, ctx.vals.id);
