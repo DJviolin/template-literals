@@ -220,7 +220,7 @@ router.get('/sessions/:user_id/:id', async (ctx) => {
   try {
     await ctx.db.oneOrNone(`
       UPDATE sessions
-      SET logged_out_at = NOW()
+        SET logged_out_at = NOW()
       WHERE user_id = '${ctx.params.user_id}'
         AND id = '${ctx.params.id}';
     `);

@@ -110,9 +110,9 @@ exports.wrapCurrUser = function () {
     const sessionId = ctx.cookies.get('session_id');
     LOG(`[wrapCurrUser] session_id: ${sessionId}`);
     if (!sessionId) return await next();
-    const user = await ctx.db.one(`
-      UPDATE users
-      SET last_online_at = NOW()
+    const user = await ctx.db.oneOrNone(`
+      UPDATE "public".users
+        SET last_online_at = NOW()
       WHERE id = (
         SELECT u.id
         FROM users u
@@ -123,7 +123,7 @@ exports.wrapCurrUser = function () {
         )
       )
       RETURNING *;
-    `);
+    `, [], v => v);
     if (user) {
       ctx.currUser = presentUser(user);
       ctx.currSessionId = sessionId;
