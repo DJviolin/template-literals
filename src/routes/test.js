@@ -206,9 +206,9 @@ router.post('/auth2', async (ctx, next) => {
       .then((res) => {
         console.log(`res === ${res}`);
         if (res === 'match') {
-          return ctx.redirect('/login2');
-        } else {
           return ctx.redirect('/admin2');
+        } else {
+          return ctx.redirect('/login2');
         }
       })
       .catch(err => console.log(`bcrypt.compare() promise error: ${err}`));
