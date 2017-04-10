@@ -309,10 +309,10 @@ router.get('/admin2', async (ctx, next) => {
 
 // Clear session
 // http://127.0.0.1:3000/logout2
-router.get('/logout2', (ctx) => {
+/*router.get('/logout2', (ctx) => {
   ctx.session = {}; // or = null
   ctx.logout();
   ctx.redirect('/login2');
-});
+});*/
 
 module.exports = router;
