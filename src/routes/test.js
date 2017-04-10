@@ -114,7 +114,7 @@ router.post('/auth2', async (ctx, next) => {
             ////////////////////////////////////////////////////////////
 
           `);
-          return 'match';
+          return true;
         } else {
           console.log(`
             ////////////////////////////////////////////////////////////
@@ -129,12 +129,12 @@ router.post('/auth2', async (ctx, next) => {
             bcrypt.compare() === ${res}
             ////////////////////////////////////////////////////////////
           `);
-          return 'no match';
+          return false;
         }
       })
       .then((res) => {
         console.log(`res === ${res}`);
-        if (res === 'match') {
+        if (res === true) {
           return ctx.redirect('/admin2');
         } else {
           return ctx.redirect('back');
