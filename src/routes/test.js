@@ -191,7 +191,7 @@ router.post('/auth2', async (ctx) => {
             message: 'Login error!',
           };
           ctx.redirect('/login');*/
-          ctx.isAuthenticated() = true;
+          ctx.isAuthenticated = true;
         } else {
           console.log(`
             ////////////////////////////////////////////////////////////
@@ -211,7 +211,7 @@ router.post('/auth2', async (ctx) => {
             message: 'Login was succesful!',
           };
           ctx.redirect('/admin2');*/
-          ctx.isAuthenticated() = false;
+          ctx.isAuthenticated = false;
         }
       })
       .catch(err => console.log(`bcrypt.compare() promise error: ${err}`));
