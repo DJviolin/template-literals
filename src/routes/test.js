@@ -87,7 +87,7 @@ router.get('/login2', async (ctx) => {
     });
   })(ctx, next);
 });*/
-router.post('/auth2', async (ctx) => {
+router.post('/auth2', async (ctx, next) => {
   try {
     const user = await ctx.db.oneOrNone(`
       -- http://stackoverflow.com/questions/8098795/return-a-value-if-no-record-is-found
@@ -169,7 +169,7 @@ router.post('/auth2', async (ctx) => {
       }
     });*/
     //bcrypt.compare(ctx.request.body.user.pass, user.digest, (val) => {
-    bcrypt.compare(ctx.request.body.user.pass, user.digest)
+    /*bcrypt.compare(ctx.request.body.user.pass, user.digest)
       .then((res) => {
         if (ctx.request.body.user.name === user.uname && res === true) {
           console.log(`
@@ -204,12 +204,46 @@ router.post('/auth2', async (ctx) => {
           return 'no match';
         }
       })
-      .then((res) => {
+      .then((res, done) => {
         console.log(`bool === ${res}`);
-        ctx.redirect('/login');
+        done(ctx.redirect('/login'));
       })
-      .catch(err => console.log(`bcrypt.compare() promise error: ${err}`));
+      .catch(err => console.log(`bcrypt.compare() promise error: ${err}`));*/
     //console.log(`ctx.state.isAuthenticated === ${ctx.state.isAuthenticated}`);
+    bcrypt.compare(ctx.request.body.user.pass, user.digest, (val) => {
+      if (ctx.request.body.user.name === user.uname && val === true) {
+        console.log(`
+          ////////////////////////////////////////////////////////////
+          MATCH:
+          ----
+          ctx.request.body.user.name === ${ctx.request.body.user.name}
+          user.uname === ${user.uname}
+          ----
+          ctx.request.body.user.pass === ${ctx.request.body.user.pass}
+          user.digest === ${user.digest}
+          ----
+          bcrypt.compare() === ${val}
+          ////////////////////////////////////////////////////////////
+
+        `);
+        next(ctx.redirect('/login'));
+      } else {
+        console.log(`
+          ////////////////////////////////////////////////////////////
+          NO MATCH:
+          ----
+          ctx.request.body.user.name === ${ctx.request.body.user.name}
+          user.uname === ${user.uname}
+          ----
+          ctx.request.body.user.pass === ${ctx.request.body.user.pass}
+          user.digest === ${user.digest}
+          ----
+          bcrypt.compare() === ${val}
+          ////////////////////////////////////////////////////////////
+        `);
+        next(ctx.redirect('/login2'));
+      }
+    });
   } catch (err) {
     return err;
   }
