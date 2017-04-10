@@ -170,7 +170,10 @@ router.post('/auth2', async (ctx) => {
     });*/
     //bcrypt.compare(ctx.request.body.user.pass, user.digest, (val) => {
     bcrypt.compare(ctx.request.body.user.pass, user.digest)
-      .then(async (res) => {
+      .then((res) => {
+        return res;
+      })
+      .then((res) => {
         if (ctx.request.body.user.name === user.uname && res === true) {
           console.log(`
             ////////////////////////////////////////////////////////////
@@ -192,7 +195,7 @@ router.post('/auth2', async (ctx) => {
           };
           ctx.redirect('/login');*/
           //ctx.state.isAuthenticated = true;
-          ctx.body = await { isAuthenticated: true };
+          ctx.body = { isAuthenticated: true };
         } else {
           console.log(`
             ////////////////////////////////////////////////////////////
@@ -213,7 +216,7 @@ router.post('/auth2', async (ctx) => {
           };
           ctx.redirect('/admin2');*/
           //ctx.state.isAuthenticated = false;
-          ctx.body = await { isAuthenticated: false };
+          ctx.body = { isAuthenticated: false };
         }
       })
       .catch(err => console.log(`bcrypt.compare() promise error: ${err}`));
