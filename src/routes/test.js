@@ -85,19 +85,23 @@ router.get('/login2', async (ctx) => {
     });
   })(ctx, next);
 });*/
-router.post('/auth2', async (ctx, next) => {
-  if (ctx.request.body.user.name !== 'User2' && ctx.request.body.user.pass !== 'password2') {
+router.post('/auth2', async (ctx) => {
+  try {
+    if (ctx.request.body.user.name !== 'User2' && ctx.request.body.user.pass !== 'password2') {
+      ctx.flash = {
+        type: 'error',
+        message: 'Login error!',
+      };
+      return ctx.redirect('/login2');
+    }
     ctx.flash = {
-      type: 'error',
-      message: 'Login error!',
+      type: 'success',
+      message: 'Login was succesful!',
     };
-    return ctx.redirect('/login2');
+    return ctx.redirect('/admin2');
+  } catch (err) {
+    return err;
   }
-  ctx.flash = {
-    type: 'success',
-    message: 'Login was succesful!',
-  };
-  return ctx.redirect('/admin2');
 });
 
 // http://127.0.0.1:3000/admin2
