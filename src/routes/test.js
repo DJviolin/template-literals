@@ -97,77 +97,6 @@ router.post('/auth2', async (ctx, next) => {
       LIMIT 1;
     `, ctx.request.body.user.name);
     //console.log(`user == ${JSON.stringify(user, null, 4)}`);
-    /*if ((ctx.request.body.user.name === user.uname) &&
-        (ctx.request.body.user.pass === user.digest)) {
-      console.log(`
-        ////////////////////////////////////////////////////////////
-        MATCH:
-        ----
-        ctx.request.body.user.name === ${ctx.request.body.user.name}
-        user.uname === ${user.uname}
-        ----
-        ctx.request.body.user.pass === ${ctx.request.body.user.pass}
-        user.digest === ${user.digest}
-        ////////////////////////////////////////////////////////////
-
-      `);
-      ctx.redirect('back');
-    } else {
-      console.log(`
-        ////////////////////////////////////////////////////////////
-        NO MATCH:
-        ----
-        ctx.request.body.user.name === ${ctx.request.body.user.name}
-        user.uname === ${user.uname}
-        ----
-        ctx.request.body.user.pass === ${ctx.request.body.user.pass}
-        user.digest === ${user.digest}
-        ////////////////////////////////////////////////////////////
-      `);
-      ctx.redirect('back');
-    }*/
-    /*bcrypt.compare(ctx.request.body.user.pass, user.digest, (val) => {
-      if (ctx.request.body.user.name === user.uname && val === true) {
-        console.log(`
-          ////////////////////////////////////////////////////////////
-          MATCH:
-          ----
-          ctx.request.body.user.name === ${ctx.request.body.user.name}
-          user.uname === ${user.uname}
-          ----
-          ctx.request.body.user.pass === ${ctx.request.body.user.pass}
-          user.digest === ${user.digest}
-          ----
-          bcrypt.compare() === ${val}
-          ////////////////////////////////////////////////////////////
-
-        `);
-        ctx.flash = {
-          type: 'error',
-          message: 'Login error!',
-        };
-        ctx.redirect('/login');
-      } else {
-        console.log(`
-          ////////////////////////////////////////////////////////////
-          NO MATCH:
-          ----
-          ctx.request.body.user.name === ${ctx.request.body.user.name}
-          user.uname === ${user.uname}
-          ----
-          ctx.request.body.user.pass === ${ctx.request.body.user.pass}
-          user.digest === ${user.digest}
-          ----
-          bcrypt.compare() === ${val}
-          ////////////////////////////////////////////////////////////
-        `);
-        ctx.flash = {
-          type: 'success',
-          message: 'Login was succesful!',
-        };
-        ctx.redirect('/admin2');
-      }
-    });*/
     await bcrypt.compare(ctx.request.body.user.pass, user.digest)
       .then((res) => {
         if (ctx.request.body.user.name === user.uname && res === true) {
@@ -208,7 +137,7 @@ router.post('/auth2', async (ctx, next) => {
         if (res === 'match') {
           return ctx.redirect('/admin2');
         } else {
-          return ctx.redirect('/login2');
+          return ctx.redirect('/back');
         }
       })
       .catch(err => console.log(`bcrypt.compare() promise error: ${err}`));
