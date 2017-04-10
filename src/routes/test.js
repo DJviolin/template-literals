@@ -191,8 +191,7 @@ router.post('/auth2', async (ctx) => {
               '${ctx.ip}'::inet,
               '${ctx.headers['user-agent']}',
               NOW() + '1 year'::interval
-            )
-            RETURNING * AS value;
+            );
           `, [], v => v.value);
           console.log(`session === ${session}`);
           //return ctx.redirect('/admin2');
