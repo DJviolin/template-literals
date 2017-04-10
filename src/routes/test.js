@@ -196,7 +196,7 @@ router.post('/auth2', async (ctx) => {
             )
             RETURNING *;
           `, [], v => v);
-          console.log(`session === ${session}`);
+          console.log(`session === ${JSON.stringify(session, null, 4)}`);
           //return ctx.redirect('/admin2');
         } else {
           return ctx.redirect('back');
@@ -207,6 +207,18 @@ router.post('/auth2', async (ctx) => {
   } catch (err) {
     return err;
   }
+});
+
+// Logout
+// http://127.0.0.1:3000/sessions/2/e1374126-a828-490c-a437-8d99b131a686
+router.post('/sessions/:user_id/:id', async (ctx) => {
+  await ctx.db.oneOrNone(`
+    UPDATE sessions
+    SET logged_out_at = NOW()
+    WHERE user_id = ${ctx.params.user_id}
+      AND id = ${ctx.params.id};
+  `);
+  return ctx.redirect('/login2');
 });
 
 // http://127.0.0.1:3000/admin2
