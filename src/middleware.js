@@ -1,5 +1,7 @@
 'use strict';
 
+// 3rd
+const db = require('./db/index'); // Postgres
 // 1st
 const { LOG, REQ, ERR, WARN } = require('./include/debug.js');
 
@@ -105,7 +107,6 @@ const presentUser = function (x) {
 };
 // Assoc ctx.currUser if the session_id cookie (a UUID v4)
 // is an active session.
-const db = require('./db/index'); // Postgres
 exports.wrapCurrUser = function () {
   return async (ctx, next) => {
     const sessionId = ctx.cookies.get('session_id');
