@@ -121,15 +121,15 @@ app.use(async (ctx, next) => {
     //flash: ctx.session.flash,
     flash: ctx.flash,
   };
-  const csrf = await ctx.csrfToken;
-  const form = await ctx.request.body._csrf;
+
   if (ctx.method === 'GET') {
-    ctx.state.global.csrf = csrf;
+    ctx.state.global.csrf = ctx.csrfToken;
   }
   if (ctx.method === 'POST') {
-    console.log(`ctx.csrfToken === ${csrf}\nctx.request.body === ${form}`);
-    //ctx.assert(form === csrf, 'Invalid CSRF token', 403);
+    console.log(`ctx.csrfToken === ${ctx.csrfToken}\nctx.request.body._csrf === ${ctx.request.body._csrf}`);
+    ctx.assert(ctx.csrfToken === ctx.request.body._csrf, 'Invalid CSRF token', 403);
   }
+
   // Act as a helper functions in templating engines
   ctx.state.filters = {
     isEmpty: (obj) => {
