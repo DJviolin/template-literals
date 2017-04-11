@@ -119,6 +119,14 @@ exports.ensureReferer = function () {
   };
 };
 
+// CSRF token
+exports.csrfToken = function () {
+  return async (ctx, next) => {
+    ctx.csrfToken = Math.random().toString(36).slice(2);
+    await next();
+  };
+};
+
 const presentUser = function (x) {
   if (!x) return;
   // Fix embedded json representation

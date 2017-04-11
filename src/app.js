@@ -60,6 +60,7 @@ app.keys = ['your-session-secret', 'another-session-secret'];
 //   singleheader: true
 // }));
 app.use(mw.ensureReferer()); // CSRF protection: https://github.com/pillarjs/understanding-csrf
+app.use(mw.csrfToken());
 app.use(bodyParser({ enableTypes: ['json', 'form'], strict: true }));
 //app.use(methodOverride()); // Must come after body parser
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
@@ -72,8 +73,7 @@ app.use(mw.wrapCurrUser());
 
 app.use(async (ctx, next) => {
   console.log(`form === ${JSON.stringify(ctx.request.body, null, 4)}`);
-  const csrfToken = Math.random().toString(36).slice(2);
-  console.log(`csrfToken === ${JSON.stringify(csrfToken, null, 4)}`);
+  console.log(`csrfToken === ${JSON.stringify(ctx.csrfToken, null, 4)}`);
   await next();
 });
 
