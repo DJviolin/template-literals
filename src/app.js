@@ -17,7 +17,6 @@ const serve = require('koa-static');
 const session = require('koa-session-minimal');
 // 1st
 const config = require('./config');
-//const db = require('./db/index'); // Postgres
 const mw = require('./middleware');
 const { LOG, ERR, WARN } = require('./include/debug.js');
 
@@ -140,16 +139,6 @@ app.use(async (ctx, next) => {
   }
   await next();
 });
-
-// PostgreSQL
-/*app.use(async (ctx, next) => {
-  try {
-    ctx.db = db;
-  } catch (err) {
-    ERR(`PGP ERROR: ${err.message || err}`);
-  }
-  await next();
-});*/
 
 // Routes
 app.use(index.routes(), index.allowedMethods());
