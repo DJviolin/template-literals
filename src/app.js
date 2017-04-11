@@ -163,12 +163,12 @@ app.use(async (ctx, next) => {
   }
 
   // Skip if no HOSTNAME is set
-  if (!config.HOSTNAME) {
+  /*if (!config.HOSTNAME) {
     WARN('Skipping referer check since HOSTNAME not provided');
     return await next();
   }
   const refererHostname = url.parse(ctx.headers.referer || '').hostname;
-  ctx.assert(config.HOSTNAME === refererHostname, 'Invalid referer', 403);
+  ctx.assert(config.HOSTNAME === refererHostname, 'Invalid referer', 403);*/
 
   await next();
 });
