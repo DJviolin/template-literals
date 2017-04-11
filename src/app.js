@@ -14,7 +14,7 @@ const path = require('path');
 // 3rd
 const bodyParser = require('koa-bodyparser');
 const compress = require('koa-compress');
-/*const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf*/
+const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf
 const helmet = require('koa-helmet');
 const json = require('koa-json');
 const Koa = require('koa');
@@ -24,7 +24,7 @@ const Koa = require('koa');
 const serve = require('koa-static');
 // https://github.com/silenceisgolden/koa-server-push
 // const serverpush = require('koa-server-push');
-/*const session = require('koa-session-minimal');*/
+const session = require('koa-session-minimal');
 // 1st
 const config = require('./config');
 const db = require('./db/index'); // Postgres
@@ -86,26 +86,29 @@ if (config.NODE_ENV !== 'production') {
 //const RedisStore = require('koa-redis');
 //const PgStore = require('koa-pg-session');
 //const ONE_DAY = 24 * 3600 * 1000;
-/*const ONE_MONTH = 30 * 24 * 3600 * 1000;
+const ONE_MONTH = 30 * 24 * 3600 * 1000;
 app.use(session({
   //key: 'koa:sess',
-  key: 'SESSID',
+  //key: 'SESSID',
+  key: 'session:csrf',
   //store: new RedisStore(),
-  cookie: ctx => ({
-    maxAge: ctx.session.user ? ONE_MONTH : 0,
+  //cookie: ctx => ({
+  cookie: () => ({
+    //maxAge: ctx.session.user ? ONE_MONTH : 0,
+    maxAge: ONE_MONTH,
     httpOnly: false,
   }),
-}));*/
+}));
 
 // CSRF middleware
-/*app.use(new CSRF({
+app.use(new CSRF({
   invalidSessionSecretMessage: 'Invalid session secret',
   invalidSessionSecretStatusCode: 403,
   invalidTokenMessage: 'Invalid CSRF token',
   invalidTokenStatusCode: 403,
   excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
   disableQuery: false,
-}));*/
+}));
 
 // authentication
 /*require('./include/auth'); // include
@@ -121,15 +124,6 @@ app.use(async (ctx, next) => {
     //flash: ctx.session.flash,
     flash: ctx.flash,
   };
-
-  if (ctx.method === 'GET') {
-    ctx.state.global.csrf = ctx.csrfToken;
-  }
-  if (ctx.method === 'POST') {
-    console.log(`ctx.state.global.csrf === ${ctx.state.global.csrf}\nctx.request.body._csrf === ${ctx.request.body._csrf}`);
-    ctx.assert(ctx.csrfToken === ctx.request.body._csrf, 'Invalid CSRF token', 403);
-  }
-
   // Act as a helper functions in templating engines
   ctx.state.filters = {
     isEmpty: (obj) => {
@@ -155,14 +149,8 @@ app.use(async (ctx, next) => {
   await next();
 });
 
-app.use(async (ctx, next) => {
-  console.log(`form === ${JSON.stringify(ctx.request.body, null, 4)}`);
-  console.log(`csrfToken === ${JSON.stringify(ctx.csrfToken, null, 4)}`);
-  await next();
-});
-
 // CSRF middleware (e.g. parse a form submit)
-/*app.use(async (ctx, next) => {
+app.use(async (ctx, next) => {
   if (!['GET', 'POST'].includes(ctx.method)) {
     return next();
   }
@@ -173,7 +161,7 @@ app.use(async (ctx, next) => {
   }
   //ctx.body = 'OK';
   await next();
-});*/
+});
 
 // Templating setup - Must be used before any router
 // Thanks to template literals, this part not needed
