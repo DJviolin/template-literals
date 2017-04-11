@@ -58,7 +58,6 @@ if (config.NODE_ENV !== 'production') {
 
 //const RedisStore = require('koa-redis');
 //const PgStore = require('koa-pg-session');
-const days = 1000 * 60 * 60 * 24;
 app.use(session({
   key: 'SESSID',
   //store: new RedisStore(),
