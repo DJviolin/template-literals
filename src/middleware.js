@@ -152,7 +152,7 @@ const presentUser = function (x) {
 exports.wrapCurrUser = function () {
   return async (ctx, next) => {
     const sessionId = ctx.cookies.get('session_id');
-    LOG(`[wrapCurrUser] session_id: ${sessionId}`);
+    /*LOG(`[wrapCurrUser] session_id: ${sessionId}`);*/
     //if (!sessionId) return await next();
     if (!sessionId) return next();
     try {
@@ -174,9 +174,9 @@ exports.wrapCurrUser = function () {
         ctx.currUser = presentUser(user);
         //ctx.currUser = user;
         ctx.currSessionId = sessionId;
-        LOG('[wrapCurrUser] User found');
+        /*LOG('[wrapCurrUser] User found');*/
       } else {
-        LOG('[wrapCurrUser] No user found');
+        /*LOG('[wrapCurrUser] No user found');*/
       }
     } catch (err) {
       ERR(`PGP ERROR: ${err.message}` || err);
