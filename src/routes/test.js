@@ -200,7 +200,7 @@ router.post('/auth2', async (ctx) => {
           `, [], v => v);
           const days = 1000 * 60 * 60 * 24;
           ctx.cookies.set('session_id', session.id, {
-            expires: new Date(Date.now() + (10 * days)),
+            expires: new Date(Date.now() + (days * 30)),
             httpOnly: true,
           });
           console.log(`session === ${JSON.stringify(session, null, 4)}`);

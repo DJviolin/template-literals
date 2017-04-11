@@ -36,6 +36,21 @@ exports.pgp = function () {
   };
 };
 
+// ctx.periodOfTime({ days: 1, hours: 6 })
+exports.periodOfTime = function () {
+  return async (ctx, next) => {
+    ctx.periodOfTime = async (opts) => {
+      return (opts.years || 0) * 1000 * 60 * 60 * 24 * 365 +
+             (opts.days || 0) * 1000 * 60 * 60 * 24 +
+             (opts.hours || 0) * 1000 * 60 * 60 +
+             (opts.minutes || 0) * 1000 * 60 +
+             (opts.seconds || 0) * 1000 +
+             (opts.milliseconds || 0);
+    };
+    await next();
+  };
+};
+
 // Flash messages
 // https://github.com/rkusa/koa-passport/issues/35#issuecomment-256842554
 // https://github.com/embbnux/koa-flash-message

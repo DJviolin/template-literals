@@ -28,33 +28,17 @@ const test = require('./routes/test');
 
 const app = new Koa();
 
-// Sessions
-// https://www.npmjs.com/package/connect-pg-simple
-// https://www.npmjs.com/package/koa-pg-session
-//
-// http://mherman.org/blog/2016/09/25/node-passport-and-postgres/
-// https://github.com/longztian/koa-session-minimal
-// https://github.com/koajs/koa-redis
-// https://github.com/TMiguelT/koa-pg-session
-//app.keys = ['your-session-secret'];
 // set the session keys
 app.keys = ['your-session-secret', 'another-session-secret'];
 
-//app.use(session());
-//
 //const RedisStore = require('koa-redis');
 //const PgStore = require('koa-pg-session');
-//const ONE_DAY = 24 * 3600 * 1000;
-const ONE_MONTH = 30 * 24 * 3600 * 1000;
+const days = 1000 * 60 * 60 * 24;
 app.use(session({
-  //key: 'koa:sess',
   key: 'SESSID',
-  //key: 'session:csrf',
   //store: new RedisStore(),
   cookie: ctx => ({
-  //cookie: () => ({
-    maxAge: ctx.session.user ? ONE_MONTH : 0,
-    //maxAge: ONE_MONTH,
+    maxAge: ctx.session.user ? days * 30 : 0,
     //httpOnly: false,
     httpOnly: true,
   }),
@@ -62,7 +46,7 @@ app.use(session({
 
 // Middlewares
 app.use(bodyParser({ enableTypes: [/*'json', */'form'], strict: true }));
-/*app.use(methodOverride()); // Must come after body parser*/
+//app.use(methodOverride()); // Must come after body parser
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(compress());
 app.use(json({ pretty: false, param: 'pretty' }));
@@ -70,7 +54,13 @@ app.use(mw.logger()); // Logger middleware
 app.use(mw.flash()); // Flash messages
 app.use(mw.pgp()); // PostgreSQL
 app.use(mw.removeTrailingSlash()); // Removes latest "/" from URLs
+app.use(mw.periodOfTime());
 app.use(mw.wrapCurrUser());
+
+app.use(async (ctx, next) => {
+  console.log(ctx.periodOfTime({ days: 1, hours: 6 }));
+  await next();
+});
 
 // Templating setup - Must be used before any router
 // Thanks to template literals, this part not needed
