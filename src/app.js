@@ -71,12 +71,6 @@ app.use(mw.flash()); // Flash messages
 app.use(mw.removeTrailingSlash()); // Removes latest "/" from URLs
 app.use(mw.wrapCurrUser());
 
-app.use(async (ctx, next) => {
-  console.log(`form === ${JSON.stringify(ctx.request.body, null, 4)}`);
-  console.log(`csrfToken === ${JSON.stringify(ctx.csrfToken, null, 4)}`);
-  await next();
-});
-
 // Static file serving middleware
 if (config.NODE_ENV !== 'production') {
   app.use(serve(path.join(__dirname, 'public'), {
@@ -126,6 +120,9 @@ app.use(async (ctx, next) => {
     //flash: ctx.session.flash,
     flash: ctx.flash,
   };
+  if (ctx.method === 'GET') {
+    ctx.state.global.csrf = await ctx.csrfToken;
+  }
   // Act as a helper functions in templating engines
   ctx.state.filters = {
     isEmpty: (obj) => {
@@ -148,6 +145,12 @@ app.use(async (ctx, next) => {
   //console.log(`app.js ctx.state.global.flash == ${JSON.stringify(ctx.state.global.flash, null, 4)}`);
   //console.log(`ctx.session === ${JSON.stringify(ctx.session, null, 4)}`);
   console.log(`ctx.currUser === ${JSON.stringify(ctx.currUser, null, 4)}\nctx.currSessionId === ${ctx.currSessionId}`);
+  await next();
+});
+
+app.use(async (ctx, next) => {
+  console.log(`form === ${JSON.stringify(ctx.request.body, null, 4)}`);
+  console.log(`csrfToken === ${JSON.stringify(ctx.csrfToken, null, 4)}`);
   await next();
 });
 

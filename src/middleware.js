@@ -99,6 +99,14 @@ exports.removeTrailingSlash = function () {
   };
 };
 
+// CSRF token
+exports.csrfToken = function () {
+  return async (ctx, next) => {
+    ctx.csrfToken = Math.random().toString(36).slice(2);
+    await next();
+  };
+};
+
 // Cheap but simple way to protect against CSRF attacks
 // TODO: Replace with something more versatile
 exports.ensureReferer = function () {
@@ -115,14 +123,6 @@ exports.ensureReferer = function () {
     }
     const refererHostname = url.parse(ctx.headers.referer || '').hostname;
     ctx.assert(config.HOSTNAME === refererHostname, 'Invalid referer', 403);
-    await next();
-  };
-};
-
-// CSRF token
-exports.csrfToken = function () {
-  return async (ctx, next) => {
-    ctx.csrfToken = Math.random().toString(36).slice(2);
     await next();
   };
 };
