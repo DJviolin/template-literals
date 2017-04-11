@@ -5,6 +5,7 @@
   "main": "./src/init",
   "scripts": {
     "start": "node --use_strict ./src/init",
+    "csrf": "node --use_strict ./src/app-csrf",
     "nodemon": "node --inspect --use_strict ./node_modules/nodemon/bin/nodemon --ext js,json --verbose --exitcrash ./src/init",
     "eslint": "node ./node_modules/eslint/bin/eslint.js --ignore-pattern \"src/.ignore/**/*\" --ignore-pattern \"src/include/nunjucks.js\" \"src/**/*.js*\"",
     "test": "echo \"Error: no test specified\" && exit 1",

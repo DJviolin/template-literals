@@ -18,7 +18,7 @@ const compress = require('koa-compress');
 const helmet = require('koa-helmet');
 const json = require('koa-json');
 const Koa = require('koa');
-const methodOverride = require('koa-methodoverride');
+/*const methodOverride = require('koa-methodoverride');*/
 /*const passport = require('koa-passport');*/
 //const ratelimit = require('koa-ratelimit');
 const serve = require('koa-static');
@@ -61,8 +61,9 @@ app.keys = ['your-session-secret', 'another-session-secret'];
 // }));
 app.use(mw.ensureReferer()); // CSRF protection: https://github.com/pillarjs/understanding-csrf
 app.use(mw.csrfToken());
-app.use(bodyParser({ enableTypes: ['json', 'form'], strict: true }));
-//app.use(methodOverride()); // Must come after body parser
+//app.use(bodyParser({ enableTypes: ['json', 'form'], strict: true }));
+app.use(bodyParser({ enableTypes: ['form'], strict: true }));
+/*app.use(methodOverride()); // Must come after body parser*/
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(compress());
 app.use(json({ pretty: false, param: 'pretty' }));
@@ -189,13 +190,16 @@ app.use(query.routes(), query.allowedMethods());
 app.use(login.routes(), login.allowedMethods());
 app.use(test.routes(), test.allowedMethods());
 
-/*app.use((ctx) => {
+app.use((ctx) => {
   //if (ctx.path === '/test') {
-  if (ctx.url.match(/^\/test/)) {
-    ctx.type = 'html';
-    ctx.body = '<h1>route test</h1>';
+  if (ctx.url.match(/^\/json/)) {
+    //ctx.type = 'html';
+    //ctx.body = '<h1>route test</h1>';
+    ctx.body = {
+      json: 'works!!!',
+    };
   }
-});*/
+});
 
 // Error handling
 app.on('error', (err, ctx) => {
