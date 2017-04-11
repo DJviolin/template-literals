@@ -185,7 +185,6 @@ router.post('/auth2', async (ctx) => {
         }
       })
       .then(async (res) => {
-        console.log(`res === ${res}`);
         if (res === true) {
           //const session = await ctx.db.one(user.id, ctx.ip, ctx.headers['user-agent'], ctx.vals['remember-me'] ? '1 year' : '2 weeks');
           const session = await ctx.db.one(`
