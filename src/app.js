@@ -126,7 +126,7 @@ app.use(async (ctx, next) => {
     ctx.state.global.csrf = ctx.csrfToken;
   }
   if (ctx.method === 'POST') {
-    console.log(`ctx.csrfToken === ${ctx.csrfToken}\nctx.request.body._csrf === ${ctx.request.body._csrf}`);
+    console.log(`ctx.state.global.csrf === ${ctx.state.global.csrf}\nctx.request.body._csrf === ${ctx.request.body._csrf}`);
     ctx.assert(ctx.csrfToken === ctx.request.body._csrf, 'Invalid CSRF token', 403);
   }
 
