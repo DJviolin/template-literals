@@ -54,7 +54,7 @@ app.use(mw.logger()); // Logger middleware
 app.use(mw.flash()); // Flash messages
 app.use(mw.pgp()); // PostgreSQL
 app.use(mw.removeTrailingSlash()); // Removes latest "/" from URLs
-app.use(mw.periodOfTime());
+app.use(mw.periodOfTime()); // Returns a period of time in milliseconds
 app.use(mw.wrapCurrUser());
 
 app.use(async (ctx, next) => {
