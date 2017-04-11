@@ -59,9 +59,9 @@ app.keys = ['your-session-secret', 'another-session-secret'];
 //   gaeproxy: true,
 //   singleheader: true
 // }));
-app.use(mw.ensureReferer()); // CSRF protection
+app.use(mw.ensureReferer()); // CSRF protection: https://github.com/pillarjs/understanding-csrf
 app.use(bodyParser({ enableTypes: ['json', 'form'], strict: true }));
-app.use(methodOverride()); // Must come after body parser
+//app.use(methodOverride()); // Must come after body parser
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(compress());
 app.use(json({ pretty: false, param: 'pretty' }));
