@@ -3,7 +3,7 @@ const app = new Koa();
 
 app.use((ctx) => {
   ctx.body = `
-    <form name="attack" enctype="text/plain" action="http://127.0.0.1:3000/auth" method="POST">
+    <form name="attack" enctype="text/plain" action="http://127.0.0.1:3000/auth2" method="POST">
       <!--<input type="hidden" name='{"from": "User2", "to": "password2"}'>-->
       <p>
         <label>Username:

@@ -121,8 +121,8 @@ exports.ensureReferer = function () {
       WARN('Skipping referer check since HOSTNAME not provided');
       return await next();
     }
-    const refererHostname = url.parse(ctx.headers.referer || '').hostname;
-    ctx.assert(config.HOSTNAME === refererHostname, 'Invalid referer', 403);
+    //const refererHostname = url.parse(ctx.headers.referer || '').hostname;
+    //ctx.assert(config.HOSTNAME === refererHostname, 'Invalid referer', 403);
     await next();
   };
 };
