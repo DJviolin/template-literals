@@ -80,6 +80,7 @@ app.use(session({
 // }));
 //app.use(mw.csrfToken());
 //app.use(mw.ensureReferer()); // CSRF protection: https://github.com/pillarjs/understanding-csrf
+//app.use(bodyParser());
 //app.use(bodyParser({ enableTypes: ['json', 'form'], strict: true }));
 app.use(bodyParser({ enableTypes: ['form'], strict: true }));
 /*app.use(methodOverride()); // Must come after body parser*/
