@@ -1,3 +1,15 @@
+koa-skeleton
+
+```js
+// https://github.com/danneu/koa-skeleton
+// https://koa-skeleton.danneu.com/register
+// https://github.com/danneu/koa-bouncer
+//
+// https://github.com/danneu/koa-skeleton/blob/master/sql/schema.sql
+// https://github.com/danneu/koa-skeleton/blob/master/sql/seeds.sql
+```
+
+
 ```bash
 $ npm info "eslint-config-airbnb@latest" peerDependencies --json
 $ npm install --save-optional eslint-config-airbnb@latest eslint@^3.13.0 eslint-plugin-jsx-a11y@^3.0.2 eslint-plugin-import@^2.2.0 eslint-plugin-react@^6.9.0

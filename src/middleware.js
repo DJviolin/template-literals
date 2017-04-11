@@ -105,11 +105,11 @@ exports.removeTrailingSlash = function () {
     ctx.csrfToken = Math.random().toString(36).slice(2);
     await next();
   };
-};*/
+};
 
 // Cheap but simple way to protect against CSRF attacks
 // TODO: Replace with something more versatile
-/*exports.ensureReferer = function () {
+exports.ensureReferer = function () {
   // Don't ensure referer in tests
   return async (ctx, next) => {
     // Skip get requests

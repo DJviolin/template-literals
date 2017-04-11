@@ -1,17 +1,9 @@
 'use strict';
 
-// https://github.com/danneu/koa-skeleton
-// https://koa-skeleton.danneu.com/register
-// https://github.com/danneu/koa-bouncer
-//
-// https://github.com/danneu/koa-skeleton/blob/master/sql/schema.sql
-// https://github.com/danneu/koa-skeleton/blob/master/sql/seeds.sql
-
 // Dotenv (initialize before everything else)
 require('dotenv').config();
 // Node
 const path = require('path');
-const url = require('url');
 // 3rd
 const bodyParser = require('koa-bodyparser');
 const compress = require('koa-compress');
@@ -19,12 +11,9 @@ const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf
 const helmet = require('koa-helmet');
 const json = require('koa-json');
 const Koa = require('koa');
-/*const methodOverride = require('koa-methodoverride');*/
 /*const passport = require('koa-passport');*/
 //const ratelimit = require('koa-ratelimit');
 const serve = require('koa-static');
-// https://github.com/silenceisgolden/koa-server-push
-// const serverpush = require('koa-server-push');
 const session = require('koa-session-minimal');
 // 1st
 const config = require('./config');
@@ -73,18 +62,7 @@ app.use(session({
 }));
 
 // Middlewares
-//app.use(serverpush());
-// OR
-// app.use(serverpush({
-//   manifestName: 'anothername.json',
-//   gaeproxy: true,
-//   singleheader: true
-// }));
-//app.use(mw.csrfToken());
-//app.use(mw.ensureReferer()); // CSRF protection: https://github.com/pillarjs/understanding-csrf
-//app.use(bodyParser());
-//app.use(bodyParser({ enableTypes: ['json', 'form'], strict: true }));
-app.use(bodyParser({ enableTypes: ['form'], strict: true }));
+app.use(bodyParser({ enableTypes: [/*'json', */'form'], strict: true }));
 /*app.use(methodOverride()); // Must come after body parser*/
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(compress());
@@ -93,6 +71,9 @@ app.use(mw.logger()); // Logger middleware
 app.use(mw.flash()); // Flash messages
 app.use(mw.removeTrailingSlash()); // Removes latest "/" from URLs
 app.use(mw.wrapCurrUser());
+
+// Templating setup - Must be used before any router
+// Thanks to template literals, this part not needed
 
 // Static file serving middleware
 if (config.NODE_ENV !== 'production') {
@@ -127,8 +108,7 @@ app.use(async (ctx, next) => {
     //flash: ctx.session.flash,
     flash: ctx.flash,
   };
-  // Act as a helper functions in templating engines
-  ctx.state.filters = {
+  ctx.state.filters = { // Act as a helper functions in templating engines
     isEmpty: (obj) => {
       // Check if object is empty
       // http://stackoverflow.com/a/32108184/1442219
@@ -139,15 +119,12 @@ app.use(async (ctx, next) => {
       return bool;
     },
   };
-  /* // clear flash after if it was actually set (so on the next request)
+  /*// clear flash after if it was actually set (so on the next request)
   //console.log(`ctx.session.flash == ${JSON.stringify(ctx.session.flash, null, 4)}`);
   //if (ctx.session.flash !== undefined) {
   //  ctx.session.flash = undefined;
   //}
-  ctx.session.flash = this || undefined; // shorthand for if */
-  //console.log(`app.js ctx.flash == ${JSON.stringify(ctx.flash, null, 4)}`);
-  //console.log(`app.js ctx.state.global.flash == ${JSON.stringify(ctx.state.global.flash, null, 4)}`);
-  //console.log(`ctx.session === ${JSON.stringify(ctx.session, null, 4)}`);
+  ctx.session.flash = this || undefined; // shorthand for if*/
   console.log(`ctx.currUser === ${JSON.stringify(ctx.currUser, null, 4)}\nctx.currSessionId === ${ctx.currSessionId}`);
   await next();
 });
@@ -157,31 +134,18 @@ app.use(async (ctx, next) => {
   if (!['GET', 'POST'].includes(ctx.method)) {
     return next();
   }
-
   if (ctx.method === 'GET') {
     ctx.state.global.csrf = await ctx.csrf;
   }
-
-  // Skip if no HOSTNAME is set
-  /*if (!config.HOSTNAME) {
-    WARN('Skipping referer check since HOSTNAME not provided');
-    return await next();
-  }
-  const refererHostname = url.parse(ctx.headers.referer || '').hostname;
-  ctx.assert(config.HOSTNAME === refererHostname, 'Invalid referer', 403);*/
-
   await next();
 });
-
-// Templating setup - Must be used before any router
-// Thanks to template literals, this part not needed
 
 // PostgreSQL
 app.use(async (ctx, next) => {
   try {
     ctx.db = db;
   } catch (err) {
-    ERR(`PGP ERROR: ${err.message || err}`); // print error;
+    ERR(`PGP ERROR: ${err.message || err}`);
   }
   await next();
 });
@@ -190,15 +154,12 @@ app.use(async (ctx, next) => {
 app.use(index.routes(), index.allowedMethods());
 app.use(query.routes(), query.allowedMethods());
 // Routes (authorized)
-// https://github.com/rkusa/koa-passport-example/blob/master/server.js
 app.use(login.routes(), login.allowedMethods());
 app.use(test.routes(), test.allowedMethods());
 
 app.use((ctx) => {
   //if (ctx.path === '/test') {
   if (ctx.url.match(/^\/json/)) {
-    //ctx.type = 'html';
-    //ctx.body = '<h1>route test</h1>';
     ctx.body = {
       json: 'works!!!',
     };
