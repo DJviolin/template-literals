@@ -93,9 +93,9 @@ app.use(async (ctx, next) => {
     flash: ctx.flash,
   };
   ctx.state.filters = { // Act as a helper functions in templating engines
+    // Check if object is empty
+    // http://stackoverflow.com/a/32108184/1442219
     isEmpty: (obj) => {
-      // Check if object is empty
-      // http://stackoverflow.com/a/32108184/1442219
       let bool = false;
       if (Object.keys(obj).length === 0 && obj.constructor === Object) {
         bool = true;
