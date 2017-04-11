@@ -72,6 +72,8 @@ app.use(mw.wrapCurrUser());
 
 app.use(async (ctx, next) => {
   console.log(`form === ${JSON.stringify(ctx.request.body, null, 4)}`);
+  const csrfToken = Math.random().toString(36).slice(2);
+  console.log(`csrfToken === ${JSON.stringify(csrfToken, null, 4)}`);
   await next();
 });
 
