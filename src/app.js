@@ -59,8 +59,8 @@ app.keys = ['your-session-secret', 'another-session-secret'];
 const ONE_MONTH = 30 * 24 * 3600 * 1000;
 app.use(session({
   //key: 'koa:sess',
-  //key: 'SESSID',
-  key: 'session:csrf',
+  key: 'SESSID',
+  //key: 'session:csrf',
   //store: new RedisStore(),
   //cookie: ctx => ({
   cookie: () => ({

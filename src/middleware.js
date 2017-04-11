@@ -109,7 +109,7 @@ exports.removeTrailingSlash = function () {
 
 // Cheap but simple way to protect against CSRF attacks
 // TODO: Replace with something more versatile
-exports.ensureReferer = function () {
+/*exports.ensureReferer = function () {
   // Don't ensure referer in tests
   return async (ctx, next) => {
     // Skip get requests
@@ -125,7 +125,7 @@ exports.ensureReferer = function () {
     ctx.assert(config.HOSTNAME === refererHostname, 'Invalid referer', 403);
     await next();
   };
-};
+};*/
 
 const presentUser = function (x) {
   if (!x) return;
