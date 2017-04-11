@@ -51,7 +51,7 @@ app.use(mw.wrapCurrUser());
 if (config.NODE_ENV !== 'production') {
   app.use(serve(path.join(__dirname, 'public'), {
     // cache static assets for 365 days in production (if not nginx serving it)
-    maxage: config.NODE_ENV === 'production' ? 1000 * 60 * 60 * 24 * 365 : 0,
+    maxage: config.NODE_ENV === 'production' ? belt.periodOfTime({ years: 1 }) : 0,
   }));
   LOG('serveStatic is ON!');
 }
