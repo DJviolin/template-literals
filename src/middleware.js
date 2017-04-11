@@ -100,12 +100,12 @@ exports.removeTrailingSlash = function () {
 };
 
 // CSRF token
-exports.csrfToken = function () {
+/*exports.csrfToken = function () {
   return async (ctx, next) => {
     ctx.csrfToken = Math.random().toString(36).slice(2);
     await next();
   };
-};
+};*/
 
 // Cheap but simple way to protect against CSRF attacks
 // TODO: Replace with something more versatile

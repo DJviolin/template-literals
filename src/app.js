@@ -51,6 +51,25 @@ const app = new Koa();
 // set the session keys
 app.keys = ['your-session-secret', 'another-session-secret'];
 
+//app.use(session());
+//
+//const RedisStore = require('koa-redis');
+//const PgStore = require('koa-pg-session');
+//const ONE_DAY = 24 * 3600 * 1000;
+const ONE_MONTH = 30 * 24 * 3600 * 1000;
+app.use(session({
+  //key: 'koa:sess',
+  //key: 'SESSID',
+  key: 'session:csrf',
+  //store: new RedisStore(),
+  //cookie: ctx => ({
+  cookie: () => ({
+    //maxAge: ctx.session.user ? ONE_MONTH : 0,
+    maxAge: ONE_MONTH,
+    httpOnly: false,
+  }),
+}));
+
 // Middlewares
 //app.use(serverpush());
 // OR
@@ -59,7 +78,7 @@ app.keys = ['your-session-secret', 'another-session-secret'];
 //   gaeproxy: true,
 //   singleheader: true
 // }));
-app.use(mw.csrfToken());
+//app.use(mw.csrfToken());
 //app.use(mw.ensureReferer()); // CSRF protection: https://github.com/pillarjs/understanding-csrf
 //app.use(bodyParser({ enableTypes: ['json', 'form'], strict: true }));
 app.use(bodyParser({ enableTypes: ['form'], strict: true }));
@@ -80,25 +99,6 @@ if (config.NODE_ENV !== 'production') {
   }));
   LOG('serveStatic is ON!');
 }
-
-//app.use(session());
-//
-//const RedisStore = require('koa-redis');
-//const PgStore = require('koa-pg-session');
-//const ONE_DAY = 24 * 3600 * 1000;
-const ONE_MONTH = 30 * 24 * 3600 * 1000;
-app.use(session({
-  //key: 'koa:sess',
-  //key: 'SESSID',
-  key: 'session:csrf',
-  //store: new RedisStore(),
-  //cookie: ctx => ({
-  cookie: () => ({
-    //maxAge: ctx.session.user ? ONE_MONTH : 0,
-    maxAge: ONE_MONTH,
-    httpOnly: false,
-  }),
-}));
 
 // CSRF middleware
 app.use(new CSRF({
