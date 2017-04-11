@@ -31,19 +31,6 @@ const app = new Koa();
 // set the session keys
 app.keys = ['your-session-secret', 'another-session-secret'];
 
-//const RedisStore = require('koa-redis');
-//const PgStore = require('koa-pg-session');
-const days = 1000 * 60 * 60 * 24;
-app.use(session({
-  key: 'SESSID',
-  //store: new RedisStore(),
-  cookie: ctx => ({
-    maxAge: ctx.session.user ? days * 30 : 0,
-    //httpOnly: false,
-    httpOnly: true,
-  }),
-}));
-
 // Middlewares
 app.use(bodyParser({ enableTypes: [/*'json', */'form'], strict: true }));
 //app.use(methodOverride()); // Must come after body parser
@@ -57,11 +44,6 @@ app.use(mw.removeTrailingSlash()); // Removes latest "/" from URLs
 app.use(mw.periodOfTime()); // Returns a period of time in milliseconds
 app.use(mw.wrapCurrUser());
 
-app.use(async (ctx, next) => {
-  console.log(ctx.periodOfTime({ days: 3, hours: 6 }));
-  await next();
-});
-
 // Templating setup - Must be used before any router
 // Thanks to template literals, this part not needed
 
@@ -73,6 +55,19 @@ if (config.NODE_ENV !== 'production') {
   }));
   LOG('serveStatic is ON!');
 }
+
+//const RedisStore = require('koa-redis');
+//const PgStore = require('koa-pg-session');
+const days = 1000 * 60 * 60 * 24;
+app.use(session({
+  key: 'SESSID',
+  //store: new RedisStore(),
+  cookie: ctx => ({
+    maxAge: ctx.session.user ? ctx.periodOfTime({ days: 30 }) : 0,
+    //httpOnly: false,
+    httpOnly: true,
+  }),
+}));
 
 // CSRF middleware
 app.use(new CSRF({
