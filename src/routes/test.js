@@ -194,7 +194,7 @@ router.post('/auth2', async (ctx) => {
               '${user.id}',
               '${ctx.ip}'::inet,
               '${ctx.headers['user-agent']}',
-              NOW() + '10 days'::interval
+              NOW() + '1 year'::interval
             )
             RETURNING *;
           `, [], v => v);
