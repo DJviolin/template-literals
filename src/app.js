@@ -17,7 +17,7 @@ const serve = require('koa-static');
 const session = require('koa-session-minimal');
 // 1st
 const config = require('./config');
-const db = require('./db/index'); // Postgres
+//const db = require('./db/index'); // Postgres
 const mw = require('./middleware');
 const { LOG, ERR, WARN } = require('./include/debug.js');
 
@@ -69,6 +69,7 @@ app.use(compress());
 app.use(json({ pretty: false, param: 'pretty' }));
 app.use(mw.logger()); // Logger middleware
 app.use(mw.flash()); // Flash messages
+app.use(mw.pgp()); // PostgreSQL
 app.use(mw.removeTrailingSlash()); // Removes latest "/" from URLs
 app.use(mw.wrapCurrUser());
 
@@ -141,14 +142,14 @@ app.use(async (ctx, next) => {
 });
 
 // PostgreSQL
-app.use(async (ctx, next) => {
+/*app.use(async (ctx, next) => {
   try {
     ctx.db = db;
   } catch (err) {
     ERR(`PGP ERROR: ${err.message || err}`);
   }
   await next();
-});
+});*/
 
 // Routes
 app.use(index.routes(), index.allowedMethods());

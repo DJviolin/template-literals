@@ -1,11 +1,10 @@
 'use strict';
 
 // Node
-const url = require('url');
-// 3rd
-const db = require('./db/index'); // Postgres
+//const url = require('url');
 // 1st
-const config = require('./config');
+//const config = require('./config');
+const db = require('./db/index');
 const { LOG, REQ, ERR, WARN } = require('./include/debug.js');
 
 // Logger middleware
@@ -22,6 +21,18 @@ exports.logger = function () {
     if (found === false) {
       REQ(`${ctx.method} ${ctx.originalUrl} ${ctx.status} - ${ms}ms`);
     }
+  };
+};
+
+// PostgreSQL initialization
+exports.pgp = function () {
+  return async (ctx, next) => {
+    try {
+      ctx.db = db;
+    } catch (err) {
+      ERR(`PGP ERROR: ${err.message || err}`);
+    }
+    await next();
   };
 };
 
