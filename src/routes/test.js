@@ -10,6 +10,7 @@ const Router = require('koa-router');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 // 1st
+const belt = require('../belt');
 const { LOG, REQ, ERR, WARN } = require('../include/debug.js');
 
 const router = new Router();
@@ -199,7 +200,7 @@ router.post('/auth2', async (ctx) => {
             RETURNING *;
           `, [], v => v);
           ctx.cookies.set('session_id', session.id, {
-            expires: new Date(Date.now() + ctx.periodOfTime({ days: 30 })),
+            expires: new Date(Date.now() + belt.periodOfTime({ days: 30 })),
             httpOnly: true,
           });
           console.log(`session === ${JSON.stringify(session, null, 4)}`);

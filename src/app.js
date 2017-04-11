@@ -16,6 +16,7 @@ const Koa = require('koa');
 const serve = require('koa-static');
 const session = require('koa-session-minimal');
 // 1st
+const belt = require('./belt');
 const config = require('./config');
 const mw = require('./middleware');
 const { LOG, ERR } = require('./include/debug.js');
@@ -41,7 +42,6 @@ app.use(mw.logger()); // Logger middleware
 app.use(mw.flash()); // Flash messages
 app.use(mw.pgp()); // PostgreSQL
 app.use(mw.removeTrailingSlash()); // Removes latest "/" from URLs
-app.use(mw.periodOfTime()); // Returns a period of time in milliseconds
 app.use(mw.wrapCurrUser());
 
 // Templating setup - Must be used before any router
@@ -62,7 +62,7 @@ app.use(session({
   key: 'SESSID',
   //store: new RedisStore(),
   cookie: ctx => ({
-    maxAge: ctx.session.user ? ctx.periodOfTime({ days: 30 }) : 0,
+    maxAge: ctx.session.user ? belt.periodOfTime({ days: 30 }) : 0,
     //httpOnly: false,
     httpOnly: true,
   }),
