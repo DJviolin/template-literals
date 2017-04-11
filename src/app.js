@@ -19,12 +19,12 @@ const helmet = require('koa-helmet');
 const json = require('koa-json');
 const Koa = require('koa');
 const methodOverride = require('koa-methodoverride');
-const passport = require('koa-passport');
+/*const passport = require('koa-passport');*/
 //const ratelimit = require('koa-ratelimit');
 const serve = require('koa-static');
 // https://github.com/silenceisgolden/koa-server-push
 // const serverpush = require('koa-server-push');
-const session = require('koa-session-minimal');
+/*const session = require('koa-session-minimal');*/
 // 1st
 const config = require('./config');
 const db = require('./db/index'); // Postgres
@@ -83,7 +83,7 @@ if (config.NODE_ENV !== 'production') {
 //const RedisStore = require('koa-redis');
 //const PgStore = require('koa-pg-session');
 //const ONE_DAY = 24 * 3600 * 1000;
-const ONE_MONTH = 30 * 24 * 3600 * 1000;
+/*const ONE_MONTH = 30 * 24 * 3600 * 1000;
 app.use(session({
   //key: 'koa:sess',
   key: 'SESSID',
@@ -92,7 +92,7 @@ app.use(session({
     maxAge: ctx.session.user ? ONE_MONTH : 0,
     httpOnly: false,
   }),
-}));
+}));*/
 
 // CSRF middleware
 app.use(new CSRF({
@@ -105,9 +105,9 @@ app.use(new CSRF({
 }));
 
 // authentication
-require('./include/auth'); // include
+/*require('./include/auth'); // include
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session());*/
 
 // Global data sharing middleware initialization
 app.use(async (ctx, next) => {
