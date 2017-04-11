@@ -11,6 +11,7 @@
 require('dotenv').config();
 // Node
 const path = require('path');
+const url = require('url');
 // 3rd
 const bodyParser = require('koa-bodyparser');
 const compress = require('koa-compress');
@@ -153,17 +154,11 @@ app.use(async (ctx, next) => {
 
 // CSRF middleware (e.g. parse a form submit)
 app.use(async (ctx, next) => {
-  //if (!['GET', 'POST'].includes(ctx.method)) {
-  //  return next();
-  //}
-  // Skip get requests
-  if (['GET', 'HEAD', 'OPTIONS'].includes(ctx.method)) {
+  if (!['GET', 'POST'].includes(ctx.method)) {
     return next();
   }
 
   if (ctx.method === 'GET') {
-    //ctx.body = ctx.csrf;
-    //return;
     ctx.state.global.csrf = await ctx.csrf;
   }
 
@@ -175,7 +170,6 @@ app.use(async (ctx, next) => {
   const refererHostname = url.parse(ctx.headers.referer || '').hostname;
   ctx.assert(config.HOSTNAME === refererHostname, 'Invalid referer', 403);
 
-  //ctx.body = 'OK';
   await next();
 });
 
