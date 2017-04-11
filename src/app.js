@@ -29,7 +29,7 @@ const session = require('koa-session-minimal');
 const config = require('./config');
 const db = require('./db/index'); // Postgres
 const mw = require('./middleware');
-const { LOG, ERR } = require('./include/debug.js');
+const { LOG, ERR, WARN } = require('./include/debug.js');
 
 // Routes
 const index = require('./routes/index');
@@ -62,11 +62,12 @@ app.use(session({
   key: 'SESSID',
   //key: 'session:csrf',
   //store: new RedisStore(),
-  //cookie: ctx => ({
-  cookie: () => ({
-    //maxAge: ctx.session.user ? ONE_MONTH : 0,
-    maxAge: ONE_MONTH,
-    httpOnly: false,
+  cookie: ctx => ({
+  //cookie: () => ({
+    maxAge: ctx.session.user ? ONE_MONTH : 0,
+    //maxAge: ONE_MONTH,
+    //httpOnly: false,
+    httpOnly: true,
   }),
 }));
 
@@ -152,14 +153,28 @@ app.use(async (ctx, next) => {
 
 // CSRF middleware (e.g. parse a form submit)
 app.use(async (ctx, next) => {
-  if (!['GET', 'POST'].includes(ctx.method)) {
+  //if (!['GET', 'POST'].includes(ctx.method)) {
+  //  return next();
+  //}
+  // Skip get requests
+  if (['GET', 'HEAD', 'OPTIONS'].includes(ctx.method)) {
     return next();
   }
+
   if (ctx.method === 'GET') {
     //ctx.body = ctx.csrf;
     //return;
     ctx.state.global.csrf = await ctx.csrf;
   }
+
+  // Skip if no HOSTNAME is set
+  if (!config.HOSTNAME) {
+    WARN('Skipping referer check since HOSTNAME not provided');
+    return await next();
+  }
+  const refererHostname = url.parse(ctx.headers.referer || '').hostname;
+  ctx.assert(config.HOSTNAME === refererHostname, 'Invalid referer', 403);
+
   //ctx.body = 'OK';
   await next();
 });
