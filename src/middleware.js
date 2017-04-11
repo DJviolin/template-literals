@@ -39,7 +39,7 @@ exports.pgp = function () {
 // ctx.periodOfTime({ days: 1, hours: 6 })
 exports.periodOfTime = function () {
   return async (ctx, next) => {
-    ctx.periodOfTime = async (opts) => {
+    ctx.periodOfTime = (opts) => {
       return (opts.years || 0) * 1000 * 60 * 60 * 24 * 365 +
              (opts.days || 0) * 1000 * 60 * 60 * 24 +
              (opts.hours || 0) * 1000 * 60 * 60 +

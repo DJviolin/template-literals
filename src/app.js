@@ -58,7 +58,7 @@ app.use(mw.periodOfTime());
 app.use(mw.wrapCurrUser());
 
 app.use(async (ctx, next) => {
-  console.log(ctx.periodOfTime({ days: 1, hours: 6 }));
+  console.log(ctx.periodOfTime({ days: 3, hours: 6 }));
   await next();
 });
 
