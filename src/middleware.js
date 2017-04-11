@@ -36,7 +36,8 @@ exports.pgp = function () {
   };
 };
 
-// ctx.periodOfTime({ days: 1, hours: 6 })
+// Returns a period of time in milliseconds
+// Usage: ctx.periodOfTime({ days: 1, hours: 6 })
 exports.periodOfTime = function () {
   return async (ctx, next) => {
     ctx.periodOfTime = (opts) => {
