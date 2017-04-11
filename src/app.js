@@ -14,7 +14,7 @@ const path = require('path');
 // 3rd
 const bodyParser = require('koa-bodyparser');
 const compress = require('koa-compress');
-const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf
+/*const CSRF = require('koa-csrf').default; // https://github.com/koajs/csrf*/
 const helmet = require('koa-helmet');
 const json = require('koa-json');
 const Koa = require('koa');
@@ -59,6 +59,7 @@ app.keys = ['your-session-secret', 'another-session-secret'];
 //   gaeproxy: true,
 //   singleheader: true
 // }));
+app.use(mw.ensureReferer()); // CSRF protection
 app.use(bodyParser());
 app.use(methodOverride()); // Must come after body parser
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
@@ -95,14 +96,14 @@ app.use(session({
 }));*/
 
 // CSRF middleware
-app.use(new CSRF({
+/*app.use(new CSRF({
   invalidSessionSecretMessage: 'Invalid session secret',
   invalidSessionSecretStatusCode: 403,
   invalidTokenMessage: 'Invalid CSRF token',
   invalidTokenStatusCode: 403,
   excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
   disableQuery: false,
-}));
+}));*/
 
 // authentication
 /*require('./include/auth'); // include
@@ -114,7 +115,7 @@ app.use(async (ctx, next) => {
   // res.locals.global = {}; // Express 4+
   ctx.state.global = {
     sitename: 'Sitename',
-    isAuthenticated: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219
+    /*isAuthenticated: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219*/
     //flash: ctx.session.flash,
     flash: ctx.flash,
   };
@@ -144,7 +145,7 @@ app.use(async (ctx, next) => {
 });
 
 // CSRF middleware (e.g. parse a form submit)
-app.use(async (ctx, next) => {
+/*app.use(async (ctx, next) => {
   if (!['GET', 'POST'].includes(ctx.method)) {
     return next();
   }
@@ -155,7 +156,7 @@ app.use(async (ctx, next) => {
   }
   //ctx.body = 'OK';
   await next();
-});
+});*/
 
 // Templating setup - Must be used before any router
 // Thanks to template literals, this part not needed

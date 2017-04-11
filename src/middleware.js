@@ -1,8 +1,11 @@
 'use strict';
 
+// Node
+const url = require('url');
 // 3rd
 const db = require('./db/index'); // Postgres
 // 1st
+const config = require('./config');
 const { LOG, REQ, ERR, WARN } = require('./include/debug.js');
 
 // Logger middleware
@@ -92,6 +95,26 @@ exports.removeTrailingSlash = function () {
       ctx.redirect(ctx.path.slice(0, ctx.path.length - 1));
       return;
     }
+    await next();
+  };
+};
+
+// Cheap but simple way to protect against CSRF attacks
+// TODO: Replace with something more versatile
+exports.ensureReferer = function () {
+  // Don't ensure referer in tests
+  return async (ctx, next) => {
+    // Skip get requests
+    if (['GET', 'HEAD', 'OPTIONS'].includes(ctx.method)) {
+      return await next();
+    }
+    // Skip if no HOSTNAME is set
+    if (!config.HOSTNAME) {
+      WARN('Skipping referer check since HOSTNAME not provided');
+      return await next();
+    }
+    const refererHostname = url.parse(ctx.headers.referer || '').hostname;
+    ctx.assert(config.HOSTNAME === refererHostname, 'Invalid referer', 403);
     await next();
   };
 };
