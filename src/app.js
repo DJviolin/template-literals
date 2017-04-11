@@ -60,7 +60,7 @@ app.keys = ['your-session-secret', 'another-session-secret'];
 //   singleheader: true
 // }));
 app.use(mw.ensureReferer()); // CSRF protection
-app.use(bodyParser());
+app.use(bodyParser({ enableTypes: ['json', 'form'], strict: true }));
 app.use(methodOverride()); // Must come after body parser
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(compress());
@@ -69,6 +69,11 @@ app.use(mw.logger()); // Logger middleware
 app.use(mw.flash()); // Flash messages
 app.use(mw.removeTrailingSlash()); // Removes latest "/" from URLs
 app.use(mw.wrapCurrUser());
+
+app.use(async (ctx, next) => {
+  console.log(`form === ${JSON.stringify(ctx.request.body, null, 4)}`);
+  await next();
+});
 
 // Static file serving middleware
 if (config.NODE_ENV !== 'production') {
