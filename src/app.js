@@ -130,6 +130,7 @@ app.use(async (ctx, next) => {
       }
       return bool;
     },
+    json: obj => JSON.stringify(obj, null, 4),
   };
   /*// clear flash after if it was actually set (so on the next request)
   //console.log(`ctx.session.flash == ${JSON.stringify(ctx.session.flash, null, 4)}`);
