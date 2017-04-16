@@ -1,5 +1,8 @@
 'use strict';
 
+// Console colors
+// https://dev.to/moriczgergo/nodejs-console-colors-101
+
 // Node
 //const url = require('url');
 // 3rd
