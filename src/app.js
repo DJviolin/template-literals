@@ -39,11 +39,12 @@ app.use(bodyParser({ enableTypes: [/*'json', */'form'], strict: true }));
 app.use(helmet()); // https://blog.risingstack.com/node-js-security-checklist/
 app.use(compress());
 app.use(json({ pretty: false, param: 'pretty' }));
+app.use(mw.removeTrailingSlash()); // Removes latest "/" from URLs
 app.use(mw.logger()); // Logger middleware
 app.use(mw.flash()); // Flash messages
 app.use(bouncer.middleware()); // Extends the Koa context with some methods
+app.use(mw.handleBouncerValidationError()); // Must come after bouncer.middleware()
 app.use(mw.pgp()); // PostgreSQL
-app.use(mw.removeTrailingSlash()); // Removes latest "/" from URLs
 app.use(mw.wrapCurrUser());
 
 // Templating setup - Must be used before any router
