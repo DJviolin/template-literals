@@ -115,6 +115,10 @@ app.use(async (ctx, next) => {
     /*isAuthenticated: ctx.isAuthenticated(), // http://stackoverflow.com/a/20056529/1442219*/
     //flash: ctx.session.flash,
     flash: ctx.flash,
+    // let us use `can(USER, ACTION, TARGET)` authorization-checks in templates
+    can: cancan.can,
+    cancan,
+    config,
   };
   ctx.state.filters = { // Act as a helper functions in templating engines
     // Check if object is empty
