@@ -18,6 +18,7 @@ const serve = require('koa-static');
 const session = require('koa-session-minimal');
 // 1st
 const belt = require('./belt');
+const cancan = require('./cancan');
 const config = require('./config');
 const mw = require('./middleware');
 const { LOG, ERR } = require('./include/debug.js');
@@ -46,6 +47,26 @@ app.use(bouncer.middleware()); // Extends the Koa context with some methods
 app.use(mw.handleBouncerValidationError()); // Must come after bouncer.middleware()
 app.use(mw.pgp()); // PostgreSQL
 app.use(mw.wrapCurrUser());
+
+// Provide a convience function for protecting our routes behind
+// our authorization rules. If authorization check fails, 404 response.
+//
+// Usage:
+//
+//    router.get('/topics/:id', function*() {
+//      const topic = yield db.getTopicById(this.params.id)
+//      this.assertAuthorized(this.currUser, 'READ_TOPIC', topic)
+//      ...
+//    })
+app.use(async (ctx, next) => {
+  ctx.assertAuthorized = (user, action, target) => {
+    const isAuthorized = cancan.can(user, action, target);
+    const uname = (user && user.uname) || '<Guest>';
+    LOG('[assertAuthorized] Can %s %s: %s', uname, action, isAuthorized);
+    ctx.assert(isAuthorized, 404);
+  };
+  await next();
+});
 
 // Templating setup - Must be used before any router
 // Thanks to template literals, this part not needed
