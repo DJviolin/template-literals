@@ -20,7 +20,8 @@ exports.logger = function () {
     await next();
     const ms = new Date() - start;
     //
-    const str = new RegExp(/\/css\//, 'g');
+    //const str = new RegExp(/\/css\//, 'g');
+    const str = new RegExp(/(\/css\/|\/js\/)/, 'g');
     const match = `${ctx.originalUrl}`;
     const found = str.test(match);
     //

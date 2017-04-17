@@ -160,6 +160,17 @@ router.get('/login', async (ctx) => {
   }
 });*/
 router.post('/auth', async (ctx) => {
+  // Validate
+  ctx.validateBody('uname')
+    .required('Invalid creds')
+    .isString()
+    .trim();
+  ctx.validateBody('pass')
+    .required('Invalid creds')
+    .isString();
+  //ctx.validateBody('remember-me')
+  //  .toBoolean();
+
   try {
     const user = await ctx.db.oneOrNone(`
       -- http://stackoverflow.com/questions/8098795/return-a-value-if-no-record-is-found
