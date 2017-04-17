@@ -31,8 +31,8 @@ router.use(async (ctx, next) => {
   await next();
 });
 
-// http://127.0.0.1:3000/login2
-router.get('/login2', async (ctx) => {
+// http://127.0.0.1:3000/login
+router.get('/login', async (ctx) => {
   ctx.type = 'html';
   ctx.body = await login(ctx.state);
 });
@@ -71,7 +71,7 @@ router.get('/login2', async (ctx) => {
 // Passport.js custom callback
 // Official implementation is here:
 // http://passportjs.org/docs#custom-callback
-/*router.post('/auth2', async (ctx, next) => {
+/*router.post('/auth', async (ctx, next) => {
   await passport.authenticate('local', (err, user, info) => {
     //console.log(`${err}\n${JSON.stringify(user, null, 4)}\n${info}`);
     if (err) { return next(err); }
@@ -92,7 +92,7 @@ router.get('/login2', async (ctx) => {
     });
   })(ctx, next);
 });*/
-/*router.post('/auth2', async (ctx, next) => {
+/*router.post('/auth', async (ctx, next) => {
   try {
     const user = await ctx.db.oneOrNone(`
       -- http://stackoverflow.com/questions/8098795/return-a-value-if-no-record-is-found
@@ -148,7 +148,7 @@ router.get('/login2', async (ctx) => {
       .then((res) => {
         console.log(`res === ${res}`);
         if (res === true) {
-          return ctx.redirect('/admin2');
+          return ctx.redirect('/admin');
         } else {
           return ctx.redirect('back');
         }
@@ -159,7 +159,7 @@ router.get('/login2', async (ctx) => {
     return err;
   }
 });*/
-router.post('/auth2', async (ctx) => {
+router.post('/auth', async (ctx) => {
   try {
     const user = await ctx.db.oneOrNone(`
       -- http://stackoverflow.com/questions/8098795/return-a-value-if-no-record-is-found
@@ -204,7 +204,7 @@ router.post('/auth2', async (ctx) => {
             httpOnly: true,
           });
           console.log(`session === ${JSON.stringify(session, null, 4)}`);
-          //return ctx.redirect('/admin2');
+          //return ctx.redirect('/admin');
         } else {
           return ctx.redirect('back');
         }
@@ -227,7 +227,7 @@ router.post('/auth2', async (ctx) => {
         AND id = '${ctx.params.id}';
     `);
     ctx.cookies.set('session_id', null);
-    ctx.redirect('/login2');
+    ctx.redirect('/login');
   } catch (err) {
     return err;
   }
@@ -244,7 +244,7 @@ router.post('/auth2', async (ctx) => {
         type: 'success',
         message: 'You successfully logged out!',
       };
-      return await ctx.redirect('/login2');
+      return await ctx.redirect('/login');
     }
     //ctx.validateParam('id');
     ////await ctx.db.logoutSession(ctx.currUser.id, ctx.vals.id);
@@ -260,15 +260,15 @@ router.post('/auth2', async (ctx) => {
       type: 'success',
       message: 'You successfully logged out!',
     };
-    return await ctx.redirect('/login2');
+    return await ctx.redirect('/login');
   } catch (err) {
     ERR(`PGP ERROR: ${err.message}` || err);
   }
 });*/
 
 // Logout
-// http://127.0.0.1:3000/logout2
-router.get('/logout2', async (ctx) => {
+// http://127.0.0.1:3000/logout
+router.get('/logout', async (ctx) => {
   try {
     // If user isn't logged in, give them the success case anyways
     if (!ctx.currUser) {
@@ -276,7 +276,7 @@ router.get('/logout2', async (ctx) => {
         type: 'success',
         message: 'You successfully logged out!',
       };
-      return await ctx.redirect('/login2');
+      return await ctx.redirect('/login');
     }
     //ctx.validateParam('id');
     ////await ctx.db.logoutSession(ctx.currUser.id, ctx.vals.id);
@@ -292,14 +292,14 @@ router.get('/logout2', async (ctx) => {
       type: 'success',
       message: 'You successfully logged out!',
     };
-    return await ctx.redirect('/login2');
+    return await ctx.redirect('/login');
   } catch (err) {
     ERR(`PGP ERROR: ${err.message}` || err);
   }
 });
 
-// http://127.0.0.1:3000/admin2
-router.get('/admin2', async (ctx, next) => {
+// http://127.0.0.1:3000/admin
+router.get('/admin', async (ctx, next) => {
   //ctx.isAuthenticated() ? await next() : ctx.redirect('/login2');
   ctx.state.welcome = 'Authentication success';
   ctx.type = 'html';
@@ -307,11 +307,11 @@ router.get('/admin2', async (ctx, next) => {
 });
 
 // Clear session
-// http://127.0.0.1:3000/logout2
-/*router.get('/logout2', (ctx) => {
+// http://127.0.0.1:3000/logout
+/*router.get('/logout', (ctx) => {
   ctx.session = {}; // or = null
   ctx.logout();
-  ctx.redirect('/login2');
+  ctx.redirect('/login');
 });*/
 
 module.exports = router;
