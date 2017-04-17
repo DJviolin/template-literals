@@ -21,7 +21,9 @@ const loop = (elem1, obj, elem2) => {
   //const split = elem.split(/<<>>/); // '<li>Number <<>></li>'
   //console.log(split);
   try {
-    for (let i = 0; i < obj.length; i += 1) {
+    // This way NOT reading the length of an array in each iteration
+    const objLength = obj.length;
+    for (let i = 0; i < objLength; i += 1) {
       //results += `${split[0]}${obj[i]}${split[1]}\n`;
       results += `${elem1}${obj[i]}${elem2}\n`;
     }
