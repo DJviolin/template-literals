@@ -10,6 +10,7 @@ const bouncer = require('koa-bouncer');
 // 1st
 //const config = require('./config');
 const db = require('./db/index');
+const pre = require('./presenters');
 const { LOG, REQ, ERR, WARN } = require('./include/debug.js');
 
 // Logger middleware
@@ -167,15 +168,6 @@ exports.ensureReferer = function () {
   };
 };*/
 
-const presentUser = function (x) {
-  if (!x) return;
-  // Fix embedded json representation
-  if (typeof x.created_at === 'string') {
-    x.created_at = new Date(x.created_at);
-  }
-  x.url = `/users/${x.uname}`;
-  return x;
-};
 // Assoc ctx.currUser if the session_id cookie (a UUID v4)
 // is an active session.
 exports.wrapCurrUser = function () {
@@ -200,7 +192,7 @@ exports.wrapCurrUser = function () {
         RETURNING *;
       `, [], v => v);
       if (user) {
-        ctx.currUser = presentUser(user);
+        ctx.currUser = pre.presentUser(user);
         //ctx.currUser = user;
         ctx.currSessionId = sessionId;
         /*LOG('[wrapCurrUser] User found');*/
