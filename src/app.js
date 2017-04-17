@@ -26,8 +26,8 @@ const { LOG, ERR } = require('./include/debug.js');
 // Routes
 const index = require('./routes/index');
 const query = require('./routes/query');
-const login = require('./routes/login');
-const test = require('./routes/test');
+//const login = require('./routes/login');
+const login = require('./routes/test');
 
 const app = new Koa();
 
@@ -158,7 +158,6 @@ app.use(index.routes(), index.allowedMethods());
 app.use(query.routes(), query.allowedMethods());
 // Routes (authorized)
 app.use(login.routes(), login.allowedMethods());
-app.use(test.routes(), test.allowedMethods());
 
 app.use((ctx) => {
   //if (ctx.path === '/test') {
