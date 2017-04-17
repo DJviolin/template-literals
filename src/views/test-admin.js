@@ -16,6 +16,6 @@ module.exports = state => main(state.global.isAuthenticated ? `
 
   <p>Hello world! This is HTML5 Boilerplate.</p>
 
-  <a href="/logout">Logout</a>
+  <a href="/logout" rel="noopener noreferrer">Logout</a>
 ` : '<p>ERROR: authentication failure</p>',
 { state });
