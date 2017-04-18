@@ -217,11 +217,11 @@ router.get('/login', async (ctx) => {
 });*/
 router.post('/auth', async (ctx) => {
     // Validate
-  ctx.validateBody('uname')
+  ctx.validateBody('user.name')
     .required('Invalid creds')
     .isString()
     .trim();
-  ctx.validateBody('pass')
+  ctx.validateBody('user.pass')
     .required('Invalid creds')
     .isString();
   //ctx.validateBody('remember-me')
