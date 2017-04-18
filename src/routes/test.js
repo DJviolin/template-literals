@@ -231,13 +231,39 @@ router.post('/auth', async (ctx) => {
   const user = await ctx.db.oneOrNone(`
     SELECT *
     FROM "public".users
-    WHERE lower(uname) = lower($1)
+    WHERE lower(uname) = lower('${ctx.vals.uname}')
     RETURNING *;
-  `, [
-    ctx.vals.uname,
-  ], v => v);
+  `, [], v => v);
   ctx.check(user, 'Invalid creds');
   ctx.check(await belt.checkPassword(ctx.vals.password, user.digest), 'Invalid creds');
+
+  // User authenticated
+
+  //const session = await ctx.db.insertSession(user.id, ctx.ip, ctx.headers['user-agent'], ctx.vals['remember-me'] ? '1 year' : '2 weeks');
+  const session = await ctx.db.one(`
+    INSERT INTO "public".sessions (id, user_id, ip_address, user_agent, expired_at)
+    VALUES (
+      '${uuid.v4()}',
+      '${user.id}',
+      '${ctx.ip}'::inet,
+      '${ctx.headers['user-agent']}',
+      NOW() + ${ctx.vals['remember-me'] ? '1 year' : '2 weeks'}::interval
+    )
+    RETURNING *;
+  `, [], v => v);
+
+  ctx.cookies.set('session_id', session.id, {
+    //expires: ctx.vals['remember-me'] ? belt.futureDate({ years: 1 }) : undefined,
+    expires: new Date(Date.now() + belt.periodOfTime({ years: 1 })),
+  });
+  //ctx.flash = { message: ['success', 'Logged in successfully'] };
+  ctx.flash = {
+    type: 'success',
+    message: 'Login was succesful!',
+  };
+
+  //ctx.redirect('/');
+  ctx.redirect('/admin');
 });
 
 // Logout
