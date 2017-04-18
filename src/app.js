@@ -156,7 +156,9 @@ app.use(async (ctx, next) => {
 app.use(async (ctx, next) => {
   WARN(`ctx.vals == ${JSON.stringify(ctx.vals, null, 4)}`);
   WARN(`ctx.request.body == ${JSON.stringify(ctx.request.body, null, 4)}`);
-  WARN(`ctx.validateBody('user.name') == ${JSON.stringify(ctx.validateBody('user.name'), null, 4)}`);
+  if (ctx.method === 'POST') {
+    WARN(`ctx.validateBody('user.name') == ${JSON.stringify(ctx.validateBody('user.name'), null, 4)}`);
+  }
   await next();
 });
 
