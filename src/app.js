@@ -21,7 +21,7 @@ const belt = require('./belt');
 const cancan = require('./cancan');
 const config = require('./config');
 const mw = require('./middleware');
-const { LOG, ERR } = require('./include/debug.js');
+const { LOG, REQ, ERR, WARN } = require('./include/debug.js');
 
 // Routes
 const index = require('./routes/index');
@@ -154,7 +154,8 @@ app.use(async (ctx, next) => {
 });
 
 app.use(async (ctx, next) => {
-  console.log(`ctx.vals == ${JSON.stringify(ctx.vals, null, 4)}`);
+  WARN(`ctx.vals == ${JSON.stringify(ctx.vals, null, 4)}`);
+  WARN(`ctx.body == ${JSON.stringify(ctx.body, null, 4)}`);
   await next();
 });
 
