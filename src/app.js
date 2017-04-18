@@ -153,6 +153,11 @@ app.use(async (ctx, next) => {
   await next();
 });
 
+app.use(async (ctx, next) => {
+  console.log(`ctx.vals == ${JSON.stringify(ctx.vals, null, 4)}`);
+  await next();
+});
+
 // Routes
 app.use(index.routes(), index.allowedMethods());
 app.use(query.routes(), query.allowedMethods());
