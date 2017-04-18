@@ -231,11 +231,11 @@ router.post('/auth', async (ctx) => {
   const user = await ctx.db.oneOrNone(`
     SELECT *
     FROM "public".users
-    WHERE lower(uname) = lower('${ctx.vals.uname}')
+    WHERE lower(uname) = lower('${ctx.vals.user.name}')
     RETURNING *;
   `, [], v => v);
   ctx.check(user, 'Invalid creds');
-  ctx.check(await belt.checkPassword(ctx.vals.password, user.digest), 'Invalid creds');
+  ctx.check(await belt.checkPassword(ctx.vals.user.pass, user.digest), 'Invalid creds');
 
   // User authenticated
 

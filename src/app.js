@@ -155,7 +155,7 @@ app.use(async (ctx, next) => {
 
 app.use(async (ctx, next) => {
   WARN(`ctx.vals == ${JSON.stringify(ctx.vals, null, 4)}`);
-  WARN(`ctx.body == ${JSON.stringify(ctx.body, null, 4)}`);
+  WARN(`ctx.request.body == ${JSON.stringify(ctx.request.body, null, 4)}`);
   await next();
 });
 
