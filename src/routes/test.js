@@ -244,6 +244,7 @@ router.post('/auth', async (ctx) => {
   `, [
     ctx.vals.username,
   ], v => v);
+  console.log(`user == ${JSON.stringify(user, null, 4)}`);
   ctx.check(user, 'Invalid creds');
   ctx.check(await belt.checkPassword(ctx.vals.password, user.digest), 'Invalid creds');
 
@@ -257,7 +258,7 @@ router.post('/auth', async (ctx) => {
       '${user.id}',
       '${ctx.ip}'::inet,
       '${ctx.headers['user-agent']}',
-      NOW() + ${ctx.vals['remember-me'] ? '1 year' : '2 weeks'}::interval
+      NOW() + '${ctx.vals['remember-me'] ? '1 year' : '2 weeks'}'::interval
     )
     RETURNING *;
   `, [], v => v);
