@@ -159,18 +159,7 @@ router.get('/login', async (ctx) => {
     return err;
   }
 });*/
-router.post('/auth', async (ctx) => {
-  // Validate
-  ctx.validateBody('uname')
-    .required('Invalid creds')
-    .isString()
-    .trim();
-  ctx.validateBody('pass')
-    .required('Invalid creds')
-    .isString();
-  //ctx.validateBody('remember-me')
-  //  .toBoolean();
-
+/*router.post('/auth', async (ctx) => {
   try {
     const user = await ctx.db.oneOrNone(`
       -- http://stackoverflow.com/questions/8098795/return-a-value-if-no-record-is-found
@@ -225,6 +214,30 @@ router.post('/auth', async (ctx) => {
   } catch (err) {
     return err;
   }
+});*/
+router.post('/auth', async (ctx) => {
+  // Validate
+  ctx.validateBody('uname')
+    .required('Invalid creds')
+    .isString()
+    .trim();
+  ctx.validateBody('pass')
+    .required('Invalid creds')
+    .isString();
+  //ctx.validateBody('remember-me')
+  //  .toBoolean();
+
+  //const user = await ctx.db.getUserByUname(ctx.vals.uname);
+  const user = await ctx.db.oneOrNone(`
+    SELECT *
+    FROM "public".users
+    WHERE lower(uname) = lower($1)
+    RETURNING *;
+  `, [
+    ctx.vals.uname,
+  ], v => v);
+  ctx.check(user, 'Invalid creds');
+  ctx.check(await belt.checkPassword(ctx.vals.password, user.digest), 'Invalid creds');
 });
 
 // Logout

@@ -124,6 +124,7 @@ exports.handleBouncerValidationError = function () {
     } catch (err) {
       if (err instanceof bouncer.ValidationError) {
         ctx.flash = {
+          type: 'error',
           message: ['danger', err.message || 'Validation error'],
           // CAVEAT: Max cookie size is 4096 bytes. If the user sent us a
           // body that exceeds that (for example, a large message), then

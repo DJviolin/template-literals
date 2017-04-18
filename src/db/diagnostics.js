@@ -19,8 +19,8 @@ const monitor = require('pg-monitor');
 monitor.setTheme('dimmed'); // changing the default theme;
 
 // Flag to indicate whether we are in a DEV environment:
-//const $DEV = process.env.NODE_ENV !== 'production';
-const $DEV = process.env.NODE_ENV === 'production';
+const $DEV = process.env.NODE_ENV !== 'production';
+//const $DEV = process.env.NODE_ENV === 'production';
 
 // Log file for database-related errors:
 //const logFile = path.join(__dirname, '../logs/pg.error.log');
