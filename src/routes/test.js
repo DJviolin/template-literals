@@ -216,6 +216,8 @@ router.get('/login', async (ctx) => {
   }
 });*/
 router.post('/auth', async (ctx) => {
+  console.log(`ctx.vals == ${JSON.stringify(ctx.vals, null, 4)}`);
+
   // Validate
   ctx.validateBody('uname')
     .required('Invalid creds')
