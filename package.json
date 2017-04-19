@@ -13,7 +13,7 @@
     "git-push-github": "git push -u github master && git checkout master",
     "git-push-bitbucket": "git push -u bitbucket master && git checkout master",
     "deploy": "npm run git-commit-win && npm run git-push-github",
-    "test": "NODE_ENV=test mocha --reporter spec --require babel-polyfill --compilers js:babel-register"
+    "test": "mocha --reporter spec --require babel-polyfill --compilers js:babel-register"
   },
   "engines": {
     "node": ">= 7.6.0"
