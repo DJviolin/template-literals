@@ -265,7 +265,9 @@ router.post('/auth', async (ctx) => {
 
   ctx.cookies.set('session_id', session.id, {
     //expires: ctx.vals['remember-me'] ? belt.futureDate({ years: 1 }) : undefined,
-    expires: new Date(Date.now() + belt.periodOfTime({ years: 1 })),
+    //expires: new Date(Date.now() + belt.periodOfTime({ years: 1 })),
+    expires: new Date(Date.now() + ctx.vals['remember-me'] ?
+      belt.periodOfTime({ years: 1 }) : belt.periodOfTime({ days: 7 * 2 })),
   });
   //ctx.flash = { message: ['success', 'Logged in successfully'] };
   ctx.flash = {
