@@ -6,12 +6,12 @@ const should = require('chai').should();
 const expect = require('chai').expect;
 const supertest = require('supertest');
 
-const api = supertest('http://localhost:3000');
+const api = supertest('http://127.0.0.1:3000');
 
-describe('User', function () {
+describe('Login', function () {
   it('should return a 200 reponse', function (done) {
-    api.get('users/1')
-      .set('Accept', 'application/json')
+    api.get('/login')
+      .set('Accept', 'text/html')
       .expect(200, done);
   });
 });
