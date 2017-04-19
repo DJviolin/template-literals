@@ -263,10 +263,10 @@ router.post('/auth', async (ctx) => {
     RETURNING *;
   `, [], v => v);
 
-  // ERROR: COOKIE NOT CREATED FOR SOME REASON, MAYBE belt.periodOfTime error?
   ctx.cookies.set('session_id', session.id, {
     //expires: ctx.vals['remember-me'] ? belt.futureDate({ years: 1 }) : undefined,
     expires: new Date(Date.now() + belt.periodOfTime({ years: 1 })),
+    // ERROR: COOKIE NOT CREATED FOR SOME REASON, MAYBE belt.periodOfTime error?
     //expires: new Date(Date.now() + ctx.vals['remember-me'] ?
     //  belt.periodOfTime({ years: 1 }) : belt.periodOfTime({ days: 14 })),
   });
