@@ -13,7 +13,7 @@
     "git-push-github": "git push -u github master && git checkout master",
     "git-push-bitbucket": "git push -u bitbucket master && git checkout master",
     "deploy": "npm run git-commit-win && npm run git-push-github",
-    "test": "NODE_ENV=test mocha --reporter spec --compilers js:babel-register"
+    "test": "NODE_ENV=test mocha --reporter spec --require babel-polyfill --compilers js:babel-register"
   },
   "engines": {
     "node": ">= 7.6.0"
@@ -21,6 +21,7 @@
   "author": "István Lantos <kerozin.joe@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "babel-polyfill": "^6.23.0",
     "babel-preset-es2017-node7": "^0.5.2",
     "babel-register": "^6.24.1",
     "bcrypt": "^1.0.2",
