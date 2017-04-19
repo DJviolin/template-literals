@@ -1,6 +1,13 @@
 'use strict';
 
-// http://developmentnow.com/2015/02/05/make-your-node-js-api-bulletproof-how-to-test-with-mocha-chai-and-supertest/
+/*
+http://developmentnow.com/2015/02/05/make-your-node-js-api-bulletproof-how-to-test-with-mocha-chai-and-supertest/
+http://willi.am/node-mocha-supertest/
+
+mocha: describe, it, before, after, beforeEach, afterEach
+chai: should, expect (recommended)
+supertest: http://willi.am/node-mocha-supertest/#35
+*/
 
 const should = require('chai').should();
 const expect = require('chai').expect;
