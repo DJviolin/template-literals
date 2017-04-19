@@ -36,6 +36,12 @@ module.exports = state => main(`
         <input type="password" name="password" placeholder="Password" value="password2" />
       </label>
     </p>
+    <div class="form-group">
+      <label for="remember-me-input">
+        <input type="checkbox" name="remember-me" id="remember-me-input" checked>
+        Remember Me?
+      </label>
+    </div>
     <p>
       <button type="submit">Log In</button>
     </p>
