@@ -40,9 +40,9 @@ module.exports = state => main(`
         Remember Me?
       </label>
     </div>
-    <p>
+    <div class="form-group">
       <button type="submit">Log In</button>
-    </p>
+    </div>
   </form>
 `,
 { state });
