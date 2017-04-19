@@ -224,8 +224,8 @@ router.post('/auth', async (ctx) => {
   ctx.validateBody('password')
     .required('Invalid creds')
     .isString();
-  //ctx.validateBody('remember-me')
-  //  .toBoolean();
+  ctx.validateBody('remember-me')
+    .toBoolean();
 
   //const user = await ctx.db.getUserByUname(ctx.vals.uname);
   /*const user = await ctx.db.one(`
