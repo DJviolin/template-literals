@@ -8,12 +8,12 @@
     "csrf": "node --use_strict ./src/app-csrf",
     "nodemon": "node --inspect --use_strict ./node_modules/nodemon/bin/nodemon --ext js,json --verbose --exitcrash ./src/init",
     "eslint": "node ./node_modules/eslint/bin/eslint.js --ignore-pattern \"src/.ignore/**/*\" --ignore-pattern \"src/include/nunjucks.js\" \"src/**/*.js*\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "git-commit-linux": "git add -A . && timestamp=$(date \"+%s\") && git commit -a -m \"automated deployment $timestamp\"",
     "git-commit-win": "git add -A . && git commit -a -m \"automated deployment %DATE% %TIME%\"",
     "git-push-github": "git push -u github master && git checkout master",
     "git-push-bitbucket": "git push -u bitbucket master && git checkout master",
-    "deploy": "npm run git-commit-win && npm run git-push-github"
+    "deploy": "npm run git-commit-win && npm run git-push-github",
+    "test": "NODE_ENV=test mocha --reporter spec --compilers js:babel-register"
   },
   "engines": {
     "node": ">= 7.6.0"
@@ -48,6 +48,7 @@
     "uuid": "^3.0.1"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-clean-css": "^3.0.4",
     "gulp-download": "0.0.1",
@@ -56,7 +57,9 @@
     "gulp-replace": "^0.5.4",
     "gulp-stylus": "^2.6.0",
     "gulp-uglify": "^2.1.2",
-    "nodemon": "^1.11.0"
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "supertest": "^3.0.0"
   },
   "optionalDependencies": {
     "babel-eslint": "^7.2.2",
