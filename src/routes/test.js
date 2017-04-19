@@ -236,7 +236,7 @@ router.post('/auth', async (ctx) => {
     ctx.vals.username,
   ], v => v);
   console.log(`user == ${JSON.stringify(user, null, 4)}`);
-  ctx.check(user, 'Invalid creds');
+  ctx.check(user, 'Invalid creds');  // ctx.check is from koa-bouncer
   ctx.check(await belt.checkPassword(ctx.vals.password, user.digest), 'Invalid creds');
 
   // User authenticated
