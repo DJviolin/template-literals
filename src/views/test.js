@@ -25,16 +25,14 @@ const main = require('./layouts/frontend');
 
 module.exports = state => main(`
   <form action="/auth" method="POST">
-    <input type="hidden" name="_csrf" value="${state.global.csrf}" />
+    <input type="hidden" name="_csrf" value="${state.global.csrf}" required />
     <div class="form-group">
-      <label>Username:
-        <input type="text" name="username" placeholder="Username" value="User2" required />
-      </label>
+      <label for="username-input">Username:</label>
+      <input type="text" name="username" id="username-input"  placeholder="Username" value="User2" required />
     </div>
     <div class="form-group">
-      <label>Password:
-        <input type="password" name="password" placeholder="Password" value="password2" required />
-      </label>
+      <label for="password-input">Password:</label>
+      <input type="password" name="password" id="password-input" placeholder="Password" value="password2" required />
     </div>
     <div class="form-group">
       <label for="remember-me-input">
