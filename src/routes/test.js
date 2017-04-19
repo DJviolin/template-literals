@@ -228,15 +228,6 @@ router.post('/auth', async (ctx) => {
     .toBoolean();
 
   //const user = await ctx.db.getUserByUname(ctx.vals.uname);
-  /*const user = await ctx.db.one(`
-    SELECT *
-    FROM "public".users
-    WHERE lower(uname) = lower($1)
-    RETURNING *;
-  `, [
-    ctx.vals.username,
-  ], v => v);*/
-  // SELECT * FROM users WHERE lower(uname) = lower('User1');
   const user = await ctx.db.oneOrNone(`
     SELECT *
     FROM "public".users
@@ -265,18 +256,14 @@ router.post('/auth', async (ctx) => {
 
   ctx.cookies.set('session_id', session.id, {
     //expires: ctx.vals['remember-me'] ? belt.futureDate({ years: 1 }) : undefined,
-    //expires: new Date(Date.now() + belt.periodOfTime({ years: 1 })),
     expires: ctx.vals['remember-me'] ?
       new Date(Date.now() + belt.periodOfTime({ years: 1 })) :
       new Date(Date.now() + belt.periodOfTime({ days: 14 })),
   });
-  //ctx.flash = { message: ['success', 'Logged in successfully'] };
   ctx.flash = {
     type: 'success',
-    message: 'Login was succesful!',
+    message: 'Logged in successfully!',
   };
-
-  //ctx.redirect('/');
   ctx.redirect('/admin');
 });
 
