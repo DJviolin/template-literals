@@ -35,10 +35,8 @@ module.exports = state => main(`
       <input type="password" name="password" id="password-input" placeholder="Password" value="password2" required />
     </div>
     <div class="form-group">
-      <label for="remember-me-input">
-        <input type="checkbox" name="remember-me" id="remember-me-input" checked>
-        Remember Me?
-      </label>
+      <input type="checkbox" name="remember-me" id="remember-me-input" checked>
+      <label for="remember-me-input">Remember Me?</label>
     </div>
     <div class="form-group">
       <button type="submit">Log In</button>
