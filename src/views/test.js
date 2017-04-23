@@ -23,12 +23,15 @@ const main = require('./layouts/frontend');
 `,
 { state });*/
 
+
+//value="${state.filters.json(state.global.flash.params) || 'User2'}"
+
 module.exports = state => main(`
   <form action="/auth" method="POST">
     <input type="hidden" name="_csrf" value="${state.global.csrf}" required />
     <div class="form-group">
       <label for="username-input">Username:</label>
-      <input type="text" name="username" id="username-input"  placeholder="Username" value="User2" required />
+      <input type="text" name="username" id="username-input"  placeholder="Username" value="${state.filters.isEmpty(state.global.flash) ? 'User2' : `${state.global.flash.params.username}`}" required />
     </div>
     <div class="form-group">
       <label for="password-input">Password:</label>
