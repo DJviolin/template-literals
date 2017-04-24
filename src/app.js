@@ -132,6 +132,11 @@ app.use(async (ctx, next) => {
     },
     // Check if nested object exists
     // http://stackoverflow.com/questions/2631001/javascript-test-for-existence-of-nested-object-key
+    // My answer: http://stackoverflow.com/a/43589753/1442219
+    // catches the exception
+    // returns undefined on error (instead of undefined + null)
+    // returns the object if it exists
+    // USAGE: checkNested('obj');
     checkNested: (obj) => {
       try {
         return eval(obj);

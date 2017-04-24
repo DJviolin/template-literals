@@ -97,3 +97,35 @@ const checkNested = (obj) => {
 };
 console.log(checkNested('state.global'));
 console.log(checkNested('state.global.flash.params'));
+
+
+/*
+<div id="app"></div>
+
+const state = {
+  global: {
+    key: 'value',
+  },
+};
+
+const checkNested = (obj) => {
+  try {
+    return eval(obj);
+  } catch (err) {
+    return undefined;
+  }
+};
+
+console.log(checkNested('state.global'));
+console.log(checkNested('state.global.meta.lang'));
+
+const render = () => {
+  return `
+    <div>
+      Hello, World on ${checkNested('state.global.meta.lang') || 'english'} language!
+    </div>
+  `;
+}
+
+render();
+*/
