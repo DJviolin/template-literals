@@ -12,12 +12,12 @@
 
 module.exports = ({ state }) => `
   <!doctype html>
-  <html class="no-js" lang="${state.filters.checkNested(state, 'meta', 'lang') || 'en-US'}">
+  <html class="no-js" lang="${state.filters.check(state, 'meta', 'lang') || 'en-US'}">
   <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>${!state.filters.checkNested(state, 'meta', 'title') ? '' : `${state.meta.title} | `}${state.global.sitename}</title>
-  <meta name="description" content="${state.filters.checkNested(state, 'meta', 'description') || ''}">
+  <title>${!state.filters.check(state, 'meta', 'title') ? '' : `${state.meta.title} | `}${state.global.sitename}</title>
+  <meta name="description" content="${state.filters.check(state, 'meta', 'description') || ''}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/css/style.css">
   </head>
@@ -35,8 +35,8 @@ module.exports = ({ state }) => `
     </p>
   `}
 
-  ${state.filters.json(state.filters.checkNested(state, 'meta'))}<br>
-  ${state.filters.checkNested(state.meta, 'lang')}<br>
-  ${state.filters.checkNested(state.meta, 'lang', 'test', 'key', 'gone')}<br>
-  ${state.filters.checkNested(state.meta, 'lang', 'test', 'key', 'gone') || 'en-US'}<br>
+  ${state.filters.json(state.filters.check(state, 'meta'))}<br>
+  ${state.filters.check(state.meta, 'lang')}<br>
+  ${state.filters.check(state.meta, 'lang', 'test', 'key', 'gone')}<br>
+  ${state.filters.check(state.meta, 'lang', 'test', 'key', 'gone') || 'en-US'}<br>
 `;
