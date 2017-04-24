@@ -142,7 +142,8 @@ const state = {
 };
 
 const checkNestedFast = (obj, ...args) => {
-  for (let i = 1; i < args.length; i += 1) {
+  const length = args.length;
+  for (let i = 1; i < length; i += 1) {
     if (!obj.hasOwnProperty(args[i])) {
       return false;
     }
