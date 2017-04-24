@@ -139,7 +139,16 @@ app.use(async (ctx, next) => {
     // USAGE: checkNested('obj');
     checkNested: (obj) => {
       try {
-        return eval(obj);
+        //return eval(obj);
+        //
+        //const result = new Function('val', 'return val');
+        //return result(obj);
+        //
+        const result = new Function('x', 'return x');
+        if (result === undefined && result === null) {
+          return 'ERROR';
+        }
+        return result(obj);
       } catch (err) {
         //return undefined;
         return `
