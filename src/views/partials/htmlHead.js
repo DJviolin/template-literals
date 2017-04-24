@@ -8,13 +8,15 @@
   `}
 */
 
+// <title>${state.meta.title === undefined ? '' : `${state.meta.title} | `}${state.global.sitename}</title>
+
 module.exports = ({ state }) => `
   <!doctype html>
   <html class="no-js" lang="${state.filters.checkNested(state.meta.lang) || 'en-US'}">
   <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>${state.meta.title === undefined ? '' : `${state.meta.title} | `}${state.global.sitename}</title>
+  <title>${!state.filters.checkNested(state, 'meta', 'title') ? '' : `${state.meta.title} | `}${state.global.sitename}</title>
   <meta name="description" content="${state.meta.description}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/css/style.css">
