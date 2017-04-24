@@ -29,3 +29,7 @@ Eslint:
 $ ab -k -n 1000 -c 10 http://127.0.0.1:3000/
 $ wrk -c 64 -d 30s http://127.0.0.1:3000/
 ```
+
+Sharong logic:
+
+http://stackoverflow.com/questions/3225251/how-can-i-share-code-between-node-js-and-the-browser
