@@ -97,6 +97,7 @@ const checkNested = (obj) => {
 };
 console.log(checkNested('state.global'));
 console.log(checkNested('state.global.flash.params'));
+console.log(checkNested('state.global.key'));
 
 
 /*
