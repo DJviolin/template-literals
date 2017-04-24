@@ -133,7 +133,7 @@ app.use(async (ctx, next) => {
     // Check if nested object exists
     // http://stackoverflow.com/a/2631198/1442219
     // https://jsperf.com/checknested-efficiency
-    checkNestedFast: (obj, ...args) => {
+    checkNested: (obj, ...args) => {
       const length = args.length;
       for (let i = 0; i < length; i += 1) {
         if (!obj.hasOwnProperty(args[i])) {
