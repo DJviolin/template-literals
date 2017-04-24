@@ -82,7 +82,7 @@ ifExists(state.global.flash.params);*/
   }
 };*/
 
-const state = {
+/*const state = {
   global: {
     key: 'value',
   },
@@ -97,7 +97,7 @@ const checkNested = (obj) => {
 };
 console.log(checkNested('state.global'));
 console.log(checkNested('state.global.flash.params'));
-console.log(checkNested('state.global.key'));
+console.log(checkNested('state.global.key'));*/
 
 
 /*
@@ -130,3 +130,29 @@ const render = () => {
 
 render();
 */
+
+const state = {
+  global: {
+    key: 'value',
+  },
+  meta: {
+    lang: 'hu-HU',
+    foo: {},
+  },
+};
+
+const checkNestedFast = (obj, ...args) => {
+  for (let i = 1; i < args.length; i += 1) {
+    if (!obj.hasOwnProperty(args[i])) {
+      return false;
+    }
+    obj = obj[args[i]];
+  }
+  return true;
+};
+
+console.log(checkNestedFast(state)); // => true
+console.log(checkNestedFast(state.meta)); // => true
+console.log(checkNestedFast(state.meta, 'lang')); // => true
+console.log(checkNestedFast(state.meta, 'lang', 'foo', 'bar')); // => false
+console.log(checkNestedFast(state.meta, 'lang', 'foo', 'bar', 'baz')); // => false

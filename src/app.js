@@ -169,7 +169,7 @@ app.use(async (ctx, next) => {
       }
     },
     // https://jsperf.com/checknested-efficiency
-    checkNestedFast: (obj) => {
+    checkNestedFast: (obj, ...args) => {
       for (let i = 1; i < arguments.length; i += 1) {
         if (!obj.hasOwnProperty(arguments[i])) {
           return false;
