@@ -33,7 +33,7 @@ module.exports = ({ state }) => `
     </p>
   `}
 
-  ${state.filters.json(state.filters.checkNestedFast(state, 'meta'))}<br>
+  ${state.filters.json(state.filters.checkNested(state, 'meta'))}<br>
   ${state.filters.checkNested(state.meta, 'lang')}<br>
   ${state.filters.checkNested(state.meta, 'lang', 'test', 'key', 'gone')}<br>
   ${state.filters.checkNested(state.meta, 'lang', 'test', 'key', 'gone') || 'en-US'}<br>
