@@ -168,6 +168,7 @@ app.use(async (ctx, next) => {
         `;
       }
     },
+    // https://jsperf.com/checknested-efficiency
     checkNestedFast: (obj) => {
       for (let i = 1; i < arguments.length; i += 1) {
         if (!obj.hasOwnProperty(arguments[i])) {
@@ -177,6 +178,7 @@ app.use(async (ctx, next) => {
       }
       return true;
     },
+    // Beautify JSON
     json: obj => JSON.stringify(obj, null, 4),
   };
   /*// clear flash after if it was actually set (so on the next request)
