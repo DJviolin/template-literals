@@ -1,10 +1,10 @@
 'use strict';
 
-const state = {
+/*const state = {
   global: {
     key: 'value',
   },
-};
+};*/
 
 /*function checkNested(obj) {
   for (let i = 1; i < arguments.length; i += 1) {
@@ -82,20 +82,18 @@ ifExists(state.global.flash.params);*/
   }
 };*/
 
-const checkNested = (obj) => {
-  try {
-    //const ev = eval;
-    //console.log(JSON.stringify(eval(obj), null, 4));
-    return eval(obj);
-    //return ev(obj);
-  } catch (err) {
-    //console.log('err');
-    return false;
-  }
+const state = {
+  global: {
+    key: 'value',
+  },
 };
 
-//ifExists('state.global.flash.params');
-//ifExists(state.global);
-//ifExists('state.global');
-//ifExists('state.global.flash.params');
+const checkNested = (obj) => {
+  try {
+    return eval(obj);
+  } catch (err) {
+    return undefined;
+  }
+};
 console.log(checkNested('state.global'));
+console.log(checkNested('state.global.flash.params'));

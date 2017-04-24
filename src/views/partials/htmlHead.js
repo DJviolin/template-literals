@@ -11,6 +11,7 @@
 module.exports = ({ state }) => `
   <!doctype html>
   <html class="no-js" lang="${state.meta.lang || 'en-US'}">
+  <html class="no-js" lang="${state.filters.checkNested('state.meta.lang.test') || 'en-US'}">
   <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">

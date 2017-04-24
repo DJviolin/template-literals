@@ -132,9 +132,12 @@ app.use(async (ctx, next) => {
     },
     // Check if nested object exists
     // http://stackoverflow.com/questions/2631001/javascript-test-for-existence-of-nested-object-key
-    ifExists: (obj) => {
-      let bool = false;
-      return bool;
+    checkNested: (obj) => {
+      try {
+        return eval(obj);
+      } catch (err) {
+        return undefined;
+      }
     },
     json: obj => JSON.stringify(obj, null, 4),
   };
