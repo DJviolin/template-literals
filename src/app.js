@@ -178,8 +178,7 @@ app.use(async (ctx, next) => {
       }
       return true;
     },*/
-    checkNestedFast: (object, ...args) => {
-      let obj = object;
+    checkNestedFast: (obj, ...args) => {
       const length = args.length;
       for (let i = 0; i < length; i += 1) {
         if (!obj.hasOwnProperty(args[i])) {
