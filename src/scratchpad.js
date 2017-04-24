@@ -1,7 +1,9 @@
 'use strict';
 
 const state = {
-  global: {},
+  global: {
+    key: 'value',
+  },
 };
 
 /*function checkNested(obj) {
@@ -40,7 +42,8 @@ ifExists(state.global.flash.params);*/
 
 ifExists(state.global.flash.params);*/
 
-const ifExists = (obj) => {
+/*const ifExists = (obj) => {
+  //return !!obj;
   function UserException(message) {
     this.message = message;
     this.name = 'UserException';
@@ -56,4 +59,28 @@ const ifExists = (obj) => {
   }
 };
 
-ifExists(state.global.flash.params);
+ifExists(state.global.flash.params);*/
+
+//console.log(!!state.global.flash.params);
+
+/*if (typeof state.global.flash.params === 'undefined' && typeof state.global.flash.params === 'null') {
+  console.log('result');
+}*/
+
+/*try {
+  state.global.flash.params;
+} catch (err) {
+  console.log('err');
+}*/
+
+const ifExists = (obj) => {
+  try {
+    const result = obj;
+    console.log(JSON.stringify(result, null, 4));
+  } catch (err) {
+    console.log('err');
+  }
+};
+
+//ifExists('state.global.flash.params');
+ifExists(state.global);
