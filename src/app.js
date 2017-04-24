@@ -181,7 +181,7 @@ app.use(async (ctx, next) => {
     checkNestedFast: (object, ...args) => {
       let obj = object;
       const length = args.length;
-      for (let i = 1; i < length; i += 1) {
+      for (let i = 0; i < length; i += 1) {
         if (!obj.hasOwnProperty(args[i])) {
           //return false;
           return undefined;
