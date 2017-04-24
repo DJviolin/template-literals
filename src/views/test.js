@@ -31,7 +31,7 @@ module.exports = state => main(`
     <input type="hidden" name="_csrf" value="${state.global.csrf}" required />
     <div class="form-group">
       <label for="username-input">Username:</label>
-      <input type="text" name="username" id="username-input"  placeholder="Username" value="${state.filters.isEmpty(state.global.flash) ? 'User2' : `${state.global.flash.params.username}`}" required />
+      <input type="text" name="username" id="username-input"  placeholder="Username" value="${state.filters.isEmpty(state.global.flash.params) ? 'User2' : `${state.global.flash.params.username}`}" required />
     </div>
     <div class="form-group">
       <label for="password-input">Password:</label>

@@ -130,6 +130,12 @@ app.use(async (ctx, next) => {
       }
       return bool;
     },
+    // Check if nested object exists
+    // http://stackoverflow.com/questions/2631001/javascript-test-for-existence-of-nested-object-key
+    ifExists: (obj) => {
+      let bool = false;
+      return bool;
+    },
     json: obj => JSON.stringify(obj, null, 4),
   };
   /*// clear flash after if it was actually set (so on the next request)
