@@ -73,14 +73,29 @@ ifExists(state.global.flash.params);*/
   console.log('err');
 }*/
 
-const ifExists = (obj) => {
+/*const ifExists = (obj) => {
   try {
-    const result = obj;
+    const result = eval(obj);
     console.log(JSON.stringify(result, null, 4));
   } catch (err) {
     console.log('err');
   }
+};*/
+
+const ifExists = (obj) => {
+  try {
+    //const ev = eval;
+    //console.log(JSON.stringify(eval(obj), null, 4));
+    return eval(obj);
+    //return ev(obj);
+  } catch (err) {
+    //console.log('err');
+    return false;
+  }
 };
 
 //ifExists('state.global.flash.params');
-ifExists(state.global);
+//ifExists(state.global);
+//ifExists('state.global');
+//ifExists('state.global.flash.params');
+console.log(ifExists('state.global'));
