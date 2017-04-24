@@ -38,5 +38,5 @@ module.exports = ({ state }) => `
   ${state.filters.json(state.filters.check(state, 'meta'))}<br>
   ${state.filters.check(state.meta, 'lang')}<br>
   ${state.filters.check(state.meta, 'lang', 'test', 'key', 'gone')}<br>
-  ${state.filters.check(state.meta, 'lang', 'test', 'key', 'gone') || 'en-US'}<br>
+  ${state.filters.check(state.meta, 'lang', 'test', 'key', 'gone') || 'en-US'}<br><br>
 `;
