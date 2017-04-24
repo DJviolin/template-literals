@@ -145,8 +145,9 @@ app.use(async (ctx, next) => {
         //return result(obj);
         //
         const result = new Function('x', 'return x');
-        if (result === undefined && result === null) {
+        if (result(obj) === undefined && result(obj) === null) {
           return 'ERROR';
+          //throw err;
         }
         return result(obj);
       } catch (err) {
