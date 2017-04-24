@@ -141,7 +141,13 @@ app.use(async (ctx, next) => {
       try {
         return eval(obj);
       } catch (err) {
-        return undefined;
+        //return undefined;
+        return `
+          <span style="color: #f00; font-weight: bold; font-style: italic;">
+            Render error:<br />
+            ${err}<br />
+          </span>
+        `;
       }
     },
     json: obj => JSON.stringify(obj, null, 4),

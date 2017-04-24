@@ -33,6 +33,6 @@ module.exports = ({ state }) => `
     </p>
   `}
 
-  ${console.log(state.filters.checkNested('state.meta.lang'))}
-  ${console.log(state.filters.checkNested('state.meta.test.key.gone'))}
+  ${state.filters.checkNested('state.meta.lang')}
+  ${state.filters.checkNested('state.meta.test.key.gone')}
 `;
