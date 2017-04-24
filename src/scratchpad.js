@@ -82,7 +82,7 @@ ifExists(state.global.flash.params);*/
   }
 };*/
 
-const ifExists = (obj) => {
+const checkNested = (obj) => {
   try {
     //const ev = eval;
     //console.log(JSON.stringify(eval(obj), null, 4));
@@ -98,4 +98,4 @@ const ifExists = (obj) => {
 //ifExists(state.global);
 //ifExists('state.global');
 //ifExists('state.global.flash.params');
-console.log(ifExists('state.global'));
+console.log(checkNested('state.global'));
