@@ -131,63 +131,16 @@ app.use(async (ctx, next) => {
       return bool;
     },
     // Check if nested object exists
-    // http://stackoverflow.com/questions/2631001/javascript-test-for-existence-of-nested-object-key
-    // My answer: http://stackoverflow.com/a/43589753/1442219
-    // catches the exception
-    // returns undefined on error (instead of undefined + null)
-    // returns the object if it exists
-    // USAGE: checkNested('obj');
-    checkNested: (obj) => {
-      try {
-        //return eval(obj);
-        //
-        //const result = new Function('val', 'return val');
-        //return result(obj);
-        //
-        /*const result = new Function('x', 'return x');
-        if (result(obj) === undefined && result(obj) === null) {
-          return 'ERROR';
-          //throw err;
-        }
-        return result(obj);*/
-        //return new Function('' + obj);
-        //return new Function(`${obj}`);
-        //return new Function(obj);
-        const result = new Function('x', 'return x');
-        if (result(obj) === undefined && result(obj) === null) {
-          return 'ERROR';
-        }
-        return result(obj);
-      } catch (err) {
-        //return undefined;
-        return `
-          <span style="color: #f00; font-weight: bold; font-style: italic;">
-            Render error:<br />
-            ${err}<br />
-          </span>
-        `;
-      }
-    },
+    // http://stackoverflow.com/a/2631198/1442219
     // https://jsperf.com/checknested-efficiency
-    /*checkNestedFast: (obj, ...args) => {
-      for (let i = 1; i < arguments.length; i += 1) {
-        if (!obj.hasOwnProperty(arguments[i])) {
-          return false;
-        }
-        obj = obj[arguments[i]];
-      }
-      return true;
-    },*/
     checkNestedFast: (obj, ...args) => {
       const length = args.length;
       for (let i = 0; i < length; i += 1) {
         if (!obj.hasOwnProperty(args[i])) {
-          //return false;
           return undefined;
         }
         obj = obj[args[i]];
       }
-      //return true;
       return obj;
     },
     // Beautify JSON
