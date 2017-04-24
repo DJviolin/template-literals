@@ -33,9 +33,6 @@ module.exports = ({ state }) => `
     </p>
   `}
 
-  ${state.filters.checkNested('state.meta.lang')}<br>
-  ${state.filters.checkNested('state.meta.test.key.gone')}<br>
-  ${state.filters.checkNested("state['meta']['test']['key']['gone']")}<br>
-
   ${state.filters.checkNestedFast(state.meta, 'lang')}<br>
+  ${state.filters.checkNestedFast(state.meta, 'lang', 'test', 'key', 'gone')}<br>
 `;
