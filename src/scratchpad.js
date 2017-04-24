@@ -1,6 +1,8 @@
 'use strict';
 
-const state = {};
+const state = {
+  global: {},
+};
 
 /*function checkNested(obj) {
   for (let i = 1; i < arguments.length; i += 1) {
