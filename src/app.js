@@ -178,15 +178,18 @@ app.use(async (ctx, next) => {
       }
       return true;
     },*/
-    checkNestedFast: (obj, ...args) => {
+    checkNestedFast: (object, ...args) => {
+      let obj = object;
       const length = args.length;
       for (let i = 1; i < length; i += 1) {
         if (!obj.hasOwnProperty(args[i])) {
-          return false;
+          //return false;
+          return undefined;
         }
         obj = obj[args[i]];
       }
-      return true;
+      //return true;
+      return obj;
     },
     // Beautify JSON
     json: obj => JSON.stringify(obj, null, 4),
