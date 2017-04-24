@@ -144,10 +144,18 @@ app.use(async (ctx, next) => {
         //const result = new Function('val', 'return val');
         //return result(obj);
         //
-        const result = new Function('x', 'return x');
+        /*const result = new Function('x', 'return x');
         if (result(obj) === undefined && result(obj) === null) {
           return 'ERROR';
           //throw err;
+        }
+        return result(obj);*/
+        //return new Function('' + obj);
+        //return new Function(`${obj}`);
+        //return new Function(obj);
+        const result = new Function('x', 'return x');
+        if (result(obj) === undefined && result(obj) === null) {
+          return 'ERROR';
         }
         return result(obj);
       } catch (err) {
