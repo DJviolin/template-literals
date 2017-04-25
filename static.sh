@@ -18,11 +18,15 @@ wget \
   --no-host-directories \
   --protocol-directories \
   --directory-prefix=static \
-  -mpck \
+  --mirror \
+  --page-requisites \
+  --continue \
+  --convert-links \
   --user-agent="" \
-  -e robots=off \
+  --execute robots=off \
   --wait 1 \
-  -E http://127.0.0.1:3000/
+  --adjust-extension \
+   http://127.0.0.1:3000/
 
 # Minify HTML
 # https://archive.keyboardplaying.org/2012/12/02/minify-html-using-sed/
