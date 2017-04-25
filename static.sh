@@ -13,8 +13,6 @@ set -ex
 rm -rf ./static/*
 mkdir -p ./static
 
-# wget --no-host-directories --protocol-directories --directory-prefix=static -mpck --user-agent="" -e robots=off --wait 1 -E http://127.0.0.1:3000/
-
 wget \
   --no-host-directories \
   --protocol-directories \
