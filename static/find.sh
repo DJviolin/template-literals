@@ -37,5 +37,17 @@ find . -maxdepth 1 -name '*.html' -type f -print0 |
     while IFS= read -r -d $'\0' line; do
         #echo "$line"
         #cat "$line" > "$line.bak"
-        grep --extended-regexp --invert-match '\/\*[\s\S]+?\*\/' "$line" > "$line.bak"
+        #grep --extended-regexp --invert-match '\/\*[\s\S]+?\*\/' "$line" > "$line.bak"
+        #grep --perl-regexp --ignore-case '/\*[\s\S]+?\*/' "$line" > "$line.bak"
+
+        # https://askubuntu.com/questions/551338/how-do-i-grep-for-multiple-patterns-on-multiple-lines
+        #grep --perl-regexp '/\*[\s\S]+?\*/' "$line" > "$line.bak"
+        #grep --perl-regexp '\/\*((?!\*\/).|\n)+\*\/' "$line" > "$line.bak"
+
+        # http://www.pcre.org/original/doc/html/pcregrep.html
+        # http://linuxcommand.org/man_pages/pcregrep1.html
+        #pcregrep --ignore-case --multiline '/\*[\s\S]+?\*/' "$line" > "$line.bak"
+        #pcregrep --ignore-case --multiline '\/\*((?!\*\/).|\n)+\*\/' "$line" > "$line.bak"
+        # https://regex101.com/r/LDKPdL/1
+        pcregrep --ignore-case --multiline --invert-match '\/\*((?!\*\/).|\n)+\*\/' "$line" > "$line.bak"
     done
