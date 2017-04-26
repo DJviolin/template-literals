@@ -118,4 +118,5 @@ wget \
   --header="Accept-Charset: utf-8" \
   \
   --directory-prefix=./static \
+  --quiet \
   127.0.0.1/public_html/lantosistvan/
