@@ -92,7 +92,23 @@ mv -v ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blan
 :: cat index.html | sed --regexp-extended 's/(\/\*)[^*]+([^/][^*]*\*+)*(\/)//im' - > output.html
 :: cat index.html | sed --regexp-extended 's/(\/\*)[^*]+(\*\/)//im' - > output.html
 ::
-:: cat output.html | sed --regexp-extended 's/(\/\*)[\s\S]+?(\*\/)//igm' - > output2.html
+:: cat output.html | sed -E 's/(\/\*)[\s\S]+?(\*\/)//igm' - > output2.html
+:: cat output.html | sed -E 's/(\/\*)[\s\S]+?(\*\/)//p' - > output2.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :: cat output.html | grep --extended-regexp 'class' -
 :: cat index.html | sed --regexp-extended '/^(\s*)/!p' - > output2.html
 ::
@@ -108,3 +124,43 @@ mv -v ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blan
 :: Classic approach
 :: find ./static -name '*.html' -type f -print | xargs cat
 :: find ./static -name '*.html' -type f -print | xargs cat | sed --regexp-extended 's/class/classsssss/' - > output2.html
+
+:: find ./static -name '*.html' -type f -print | xargs cat | sed -E 's/class/classsssss/' < - > output2.html
+
+:: http://stackoverflow.com/a/9612232/1442219
+:: # using xargs*
+:: find . -name \*.txt -print0 | xargs -0 process
+:: # using xargs with arguments after each filename (implies one run per filename)
+:: find . -name \*.txt -print0 | xargs -0 -I{} process {} argument
+
+:: find ./static -name '*.html' -type f -print0 | xargs -0 -I{} cat {} -n
+:: find ./static -name '*.html' -type f -print0 | xargs -0 -I{} sed {} -E 's/class/classsssss/' > output2.html
+:: find ./static -name '*.html' -type f -print0 | xargs -0 -I{} cat {} -n > output2.html
+:: find ./static -name '*.html' -type f -print0 | xargs -0 -I{} sed {} -E 's/class/classsssss/' > output2.html
+
+:: https://www.cyberciti.biz/faq/linux-unix-bsd-xargs-construct-argument-lists-utility/
+:: Find all .bak files in or below the current directory and delete them.
+:: find . -name "*.bak" -type f -print | xargs /bin/rm -f
+
+:: xargs user-agent
+:: http://www.thegeekstuff.com/2013/12/xargs-examples/
+
+:: find ./static -name '*.html' -type f -print
+:: find ./static -name '*.html' -type f -print | xargs -t --delimiter=\; cat; echo -e "\n--separator--\n" > output2.html
+
+:: WORKS
+:: find ./static -name '*.html' -type f -print0 | xargs -0 cat
+:: find ./static -name '*.html' -type f | xargs grep 'doctype'
+:: find ./static -name '*.html' -type f -print0 | xargs -0 grep -E 'doctype'
+
+:: FILE=$(find ./static -name '*.html' -type f -print); ${FILE} | xargs cat - | grep -E 'doctype'
+
+:: WORKS:
+:: find ./static -name '*.html' -type f -print0 | xargs -0 -I{} cat {} -
+:: find ./static -name '*.html' -type f -print0 | xargs -0 -I{} cat {} - | grep -E 'doctype'
+:: find ./static -name '*.html' -type f -print0 | xargs -0 cat | grep --extended-regexp 'doctype'
+:: find ./static -name '*.html' -type f -print0 | xargs -0 cat | grep --extended-regexp --invert-match 'doctype'
+:: find ./static -name '*.html' -type f -print0 | xargs -0 cat | grep --extended-regexp --invert-match 'doctype' > output2.html
+:: find ./static -name '*.html' -type f -print0 | xargs -0 cat | grep --extended-regexp --invert-match 'doctype' | sponge
+:: find ./static -name '*.html' -type f -print0 | xargs -0 grep --no-filename --extended-regexp --invert-match 'doctype' > output2.html
+:: find ./static -name '*.html' -type f -print0 | xargs -0 grep --no-filename --extended-regexp --invert-match 'doctype' | sponge -
