@@ -30,9 +30,10 @@ set -e
 #cat "${FILE}" > "${FILE}.bak"
 #cat "${FILE}" > "${FILE}.bak"
 
-FILE=$(find ./static -name '*.html' -type f -print0 | xargs -0) # "Maybe" fix whitespace issue
+#FILE=$(find ./static -name '*.html' -type f -print0 | xargs -0) # "Maybe" fix whitespace issue
 
-find ./static -name '*.html' -type f -print0 |
+#find ./static -name '*.html' -type f -print0 |
+find . -maxdepth 1 -name '*.html' -type f -print0 |
     while IFS= read -r -d $'\0' line; do
         echo "$line"
         #cat "$line" > "$line.bak"
