@@ -1,11 +1,17 @@
 #!/bin/bash
 
 # Notes:
+# http://stackoverflow.com/a/9612232/1442219
 # http://www.stevenmaude.co.uk/posts/archiving-a-wordpress-site-with-wget-and-hosting-for-free
 
 # set -e making the commands if they were like &&
 # set -x putting + before every line
 set -e
+
+echo -e "\n\
+//////////////////////////////////// \n\
+Static HTML generator for Wordpress \n\
+//////////////////////////////////// \n"
 
 rm -rf ./static
 mkdir ./static
