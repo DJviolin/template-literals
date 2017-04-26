@@ -35,6 +35,7 @@ set -e
 #find ./static -name '*.html' -type f -print0 |
 find . -maxdepth 1 -name '*.html' -type f -print0 |
     while IFS= read -r -d $'\0' line; do
-        echo "$line"
+        #echo "$line"
         #cat "$line" > "$line.bak"
+        grep --extended-regexp --invert-match '\/\*[\s\S]+?\*\/' "$line" > "$line.bak"
     done
