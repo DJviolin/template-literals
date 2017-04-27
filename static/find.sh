@@ -38,7 +38,8 @@ set -e
 /usr/bin/find . -maxdepth 1 -name '*.html' -type f -print0 |
     while IFS= read -r -d $'\0' line; do
         echo "$line"
-        node --use_strict ./minify.js -f "$line" -t html > "$line.bak"
+        node ./minify.js -f "$line" -t html > "$line.bak"
+        #node ./minify.js "$line" html > "$line.bak"
     done
 
 
