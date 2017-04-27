@@ -10,25 +10,32 @@ const uglify = require('gulp-uglify');
 const replace = require('gulp-replace');
 const htmlmin = require('gulp-htmlmin');*/
 
+/*const gulp = require('gulp');
+const htmlmin = require('gulp-htmlmin');
+
+gulp.task('minify', function() {
+  return gulp.src('src/*.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('dist'));
+});*/
+
 if (argv['f'] !== undefined) {
-  process.stdout.write(argv.f);
+  //process.stdout.write(argv.f);
 } else {
   process.exitCode = 1;
   process.exit();
 }
 
-if (argv['t'] !== undefined) {
+if (argv['t'] === 'html') {
+  process.stdout.write(argv.t);
+} else if (argv['t'] === 'css') {
+  process.stdout.write(argv.t);
+} else if (argv['t'] === 'js') {
   process.stdout.write(argv.t);
 } else {
   process.exitCode = 1;
   process.exit();
 }
-
-/*gulp.task('minify', function() {
-  return gulp.src('src/*.html')
-    .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('dist'));
-});*/
 
 
 // MINIFY CSS
