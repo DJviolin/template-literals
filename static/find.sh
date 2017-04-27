@@ -59,14 +59,27 @@ find . -maxdepth 1 -name '*.html' -type f -print0 |
             # Removes heading space
             #s/^[ \t]*//g;
             #s/^[[:space:]]*//g;
-            s/^[[:blank:]]*//g;
+            #s/^[[:blank:]]*//g;
 
             # Removes trailing space
             #s/[ \t]*$//g;
             #s/[[:space:]]*$//g;
-            s/[[:blank:]]*$//g;
+            #s/[[:blank:]]*$//g;
 
-            # Delete empty lines
+            # Deletes empty lines
             #/^\s*$/d;
+            #/^\s*$/D;
+
+            # Removes any whitespace between > and <
+            # http://stackoverflow.com/a/19878198/1442219
+            ##s/>[^<]*|[^>]*<//gm;
+
+            # Removes new lines
+            {
+                :a;
+                N;
+                $!ba;
+                s/\n//g
+            }
         }' "$line" > "$line.bak"
     done
