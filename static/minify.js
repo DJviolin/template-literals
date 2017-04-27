@@ -5,6 +5,7 @@ const htmlmin = require('gulp-htmlmin');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
 const replace = require('gulp-replace');
+const pump = require('pump');
 
 const file = process.argv[2];
 const task = process.argv[3];
