@@ -47,15 +47,28 @@ if (file !== undefined) {
 
 gulp.task('htmlmin', () =>
   gulp.src(file)
-    //.pipe(console.log(`file === ${file}`))
     .pipe(htmlmin({
+      collapseBooleanAttributes: true,
       collapseWhitespace: true,
-      //removeComments: true,
+      decodeEntities: true,
       html5: true,
       minifyCSS: true,
       minifyJS: true,
+      processConditionalComments: true,
+      processScripts: ['text/html'],
+      removeAttributeQuotes: true,
+      removeComments: true,
+      removeEmptyAttributes: true,
+      removeOptionalTags: true,
+      removeRedundantAttributes: true,
+      removeScriptTypeAttributes: true,
+      removeStyleLinkTypeAttributes: true,
+      removeTagWhitespace: true,
+      sortAttributes: true,
+      sortClassName: true,
+      trimCustomFragments: true,
+      useShortDoctype: true,
     }))
-    //.pipe(gulp.dest(process.stdout.write()))
     .pipe(rename({ extname: '.html.bak' }))
     .pipe(gulp.dest('.'))
 );
