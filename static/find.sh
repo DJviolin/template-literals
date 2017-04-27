@@ -56,25 +56,30 @@ find . -maxdepth 1 -name '*.html' -type f -print0 |
         # http://www.thegeekstuff.com/2009/11/unix-sed-tutorial-multi-line-file-operation-with-6-practical-examples/
         # https://www.tutorialspoint.com/unix/unix-regular-expressions.htm
         sed '{
-            # Removes heading space
-            #s/^[ \t]*//g;
-            #s/^[[:space:]]*//g;
-            #s/^[[:blank:]]*//g;
+            {
+                # Removes heading space
+                #s/^[ \t]*//g;
+                #s/^[[:space:]]*//g;
+                s/^[[:blank:]]*//g;
 
-            # Removes trailing space
-            #s/[ \t]*$//g;
-            #s/[[:space:]]*$//g;
-            #s/[[:blank:]]*$//g;
+                # Removes trailing space
+                #s/[ \t]*$//g;
+                #s/[[:space:]]*$//g;
+                s/[[:blank:]]*$//g;
 
-            # Deletes empty lines
-            #/^\s*$/d;
-            #/^\s*$/D;
+                # Deletes empty lines
+                #/^\s*$/d;
+                /^\s*$/D;
+            }
+
+            # Removes new lines
+            # http://stackoverflow.com/a/1252191/1442219
+            #{ :a; N; $!ba; s/\n//g }
 
             # Removes any whitespace between > and <
             # http://stackoverflow.com/a/19878198/1442219
-            ##s/>[^<]*|[^>]*<//gm;
-
-            # Removes new lines
-            { :a; N; $!ba; s/\n//g }
+            # http://stackoverflow.com/a/36224109/1442219
+            #{ :a; N; $!ba; s/>\s*</></g }
+            { :a; N; $!ba; s/>[[:space:]]*</></g }
         }' "$line" > "$line.bak"
     done
