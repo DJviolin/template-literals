@@ -1,24 +1,19 @@
 {
-  "name": "lantosistvan-static",
+  "name": "static-website-generator",
   "version": "1.0.0",
   "description": "",
-  "main": "init.js",
+  "main": "minify.js",
   "scripts": {
-    "start": "node --use_strict ./init.js",
+    "start": "node ./minify.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-es2017-node7": "^0.5.2",
-    "babel-register": "^6.24.1",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-clean-css": "^3.0.4",
     "gulp-htmlmin": "^3.0.0",
-    "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
-    "gulp-uglify": "^2.1.2",
-    "minimist": "^1.2.0"
+    "gulp-uglify": "^2.1.2"
   }
 }

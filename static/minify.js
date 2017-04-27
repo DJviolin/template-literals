@@ -3,16 +3,12 @@
 const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
 
-/*const argv = require('minimist')(process.argv.slice(2));
-const gulp = require('gulp');
-const rename = require('gulp-rename');
+/*const gulp = require('gulp');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
 const replace = require('gulp-replace');
 const htmlmin = require('gulp-htmlmin');*/
 
-//const file = argv['f'];
-//const task = argv['t'];
 const file = process.argv[2];
 const task = process.argv[3];
 
@@ -56,11 +52,8 @@ gulp.task('htmlmin', () => {
 
 if (task === 'html') {
   gulp.series('htmlmin')();
-  //process.stdout.write(`html === ${file}`);
 } else if (task === 'css') {
-  //process.stdout.write(`css === ${task}`);
 } else if (task === 'js') {
-  //process.stdout.write(`js === ${task}`);
 } else {
   process.exitCode = 1;
   process.exit();
