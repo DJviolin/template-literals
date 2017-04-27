@@ -5,7 +5,6 @@ const htmlmin = require('gulp-htmlmin');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
 const replace = require('gulp-replace');
-const pump = require('pump');
 
 const file = process.argv[2];
 const task = process.argv[3];
@@ -51,8 +50,7 @@ gulp.task('htmlmin', () => {
   readable.on('data', (chunk) => {
     // https://nodejs.org/api/stream.html#stream_event_data
     // http://stackoverflow.com/a/24470353/1442219
-    //process.stdout.write(`${chunk.contents.toString().trim()}`);
-    process.stdout.write(chunk.contents);
+    process.stdout.write(chunk._contents.toString().trim());
   });
 });
 
@@ -63,7 +61,9 @@ gulp.task('minify-css', () => {
       compatibility: '*',
     }));
   readable.on('data', (chunk) => {
-    process.stdout.write(chunk.contents);
+    //process.stdout.write(chunk.contents);
+    //process.stdout.write(JSON.stringify(chunk._contents.toString().trim(), null, 4));
+    process.stdout.write(chunk._contents.toString().trim());
   });
 });
 
