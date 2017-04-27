@@ -19,7 +19,7 @@ if (file !== undefined) {
 }
 
 gulp.task('htmlmin', () => {
-  const a = gulp.src(file)
+  const readable = gulp.src(file)
     .pipe(htmlmin({
       collapseBooleanAttributes: true,
       collapseWhitespace: true,
@@ -42,7 +42,7 @@ gulp.task('htmlmin', () => {
       trimCustomFragments: true,
       useShortDoctype: true,
     }));
-  a.on('data', (chunk) => {
+  readable.on('data', (chunk) => {
     // https://nodejs.org/api/stream.html#stream_event_data
     // http://stackoverflow.com/a/24470353/1442219
     //process.stdout.write(`${chunk.contents.toString().trim()}`);
