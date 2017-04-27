@@ -43,6 +43,6 @@ wget \
   --directory-prefix=static \
   127.0.0.1/public_html/lantosistvan/
 
-:: Website specific pre-config
+# Website specific pre-config
 mv -v ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blank.cur.html ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blank.cur
 mv -v ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blank_google_chrome.cur.html ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blank_google_chrome.cur
