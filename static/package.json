@@ -2,9 +2,9 @@
   "name": "lantosistvan-static",
   "version": "1.0.0",
   "description": "",
-  "main": "gulpfile.js",
+  "main": "minify.js",
   "scripts": {
-    "start": "node --use_strict ./gulpfile.js",
+    "start": "node --use_strict ./minify.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

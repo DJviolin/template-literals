@@ -1,7 +1,8 @@
 'use strict';
 
 const argv = require('minimist')(process.argv.slice(2));
-//console.dir(argv);
+const htmlmin = require('gulp-htmlmin');
+const gulp = require('gulp');
 
 /*const gulp = require('gulp');
 const rename = require('gulp-rename');
@@ -10,24 +11,21 @@ const uglify = require('gulp-uglify');
 const replace = require('gulp-replace');
 const htmlmin = require('gulp-htmlmin');*/
 
-/*const gulp = require('gulp');
-const htmlmin = require('gulp-htmlmin');
-
-gulp.task('minify', function() {
-  return gulp.src('src/*.html')
-    .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('dist'));
-});*/
-
 if (argv['f'] !== undefined) {
-  //process.stdout.write(argv.f);
 } else {
   process.exitCode = 1;
   process.exit();
 }
 
+gulp.task('html', (chunk) =>
+  gulp.src(argv['f'])
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest(process.stdout.write(chunk)));
+);
+
 if (argv['t'] === 'html') {
-  process.stdout.write(argv.t);
+  gulp.start('html');
+  //process.stdout.write(argv.t);
 } else if (argv['t'] === 'css') {
   process.stdout.write(argv.t);
 } else if (argv['t'] === 'js') {
