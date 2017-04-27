@@ -39,8 +39,8 @@ set -e
     while IFS= read -r -d $'\0' line; do
         echo "$line"
         #node ./minify.js -f "$line" -t html > "$line.bak"
-        node ./minify.js "$line" html > "$line.bak"
-        #node ./minify.js "$line" > "$line.bak"
+        #node ./minify.js "$line" html > "$line.bak"
+        node ./minify.js "$line" html
     done
 
 

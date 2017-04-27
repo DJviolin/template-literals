@@ -3,6 +3,7 @@
 //const argv = require('minimist')(process.argv.slice(2));
 const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
+const rename = require('gulp-rename');
 
 /*const gulp = require('gulp');
 const rename = require('gulp-rename');
@@ -47,17 +48,25 @@ if (file !== undefined) {
 gulp.task('htmlmin', () =>
   gulp.src(file)
     //.pipe(console.log(`file === ${file}`))
-    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(htmlmin({
+      collapseWhitespace: true,
+      //removeComments: true,
+      html5: true,
+      minifyCSS: true,
+      minifyJS: true,
+    }))
     //.pipe(gulp.dest(process.stdout.write()))
+    .pipe(rename({ extname: '.html.bak' }))
+    .pipe(gulp.dest('.'))
 );
 
 if (task === 'html') {
   gulp.series('htmlmin')();
-  process.stdout.write(`html === ${task}`);
+  //process.stdout.write(`html === ${file}`);
 } else if (task === 'css') {
-  process.stdout.write(`css === ${task}`);
+  //process.stdout.write(`css === ${task}`);
 } else if (task === 'js') {
-  process.stdout.write(`js === ${task}`);
+  //process.stdout.write(`js === ${task}`);
 } else {
   process.exitCode = 1;
   process.exit();
@@ -90,6 +99,4 @@ gulp.task('uglify', () =>
     .pipe(gulp.dest('app/public/javascripts'))
 );
 
-gulp.task('app', gulp.parallel('css', 'uglify'));
-
-if () {}*/
+gulp.task('app', gulp.parallel('css', 'uglify'));*/
