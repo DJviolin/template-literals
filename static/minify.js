@@ -12,32 +12,10 @@ const uglify = require('gulp-uglify');
 const replace = require('gulp-replace');
 const htmlmin = require('gulp-htmlmin');*/
 
+//const file = argv['f'];
+//const task = argv['t'];
 const file = process.argv[2];
 const task = process.argv[3];
-
-/*if (argv['f'] !== undefined) {
-} else {
-  process.exitCode = 1;
-  process.exit();
-}
-
-gulp.task('htmlmin', () =>
-  gulp.src(argv['f'])
-    //.pipe(console.log(`argv['f'] === ${argv['f']}`))
-    .pipe(htmlmin({collapseWhitespace: true}))
-    //.pipe(gulp.dest(process.stdout.write()))
-);
-
-if (argv['t'] === 'html') {
-  gulp.series('htmlmin')();
-} else if (argv['t'] === 'css') {
-  process.stdout.write(argv.t);
-} else if (argv['t'] === 'js') {
-  process.stdout.write(argv.t);
-} else {
-  process.exitCode = 1;
-  process.exit();
-}*/
 
 if (file !== undefined) {
 } else {
