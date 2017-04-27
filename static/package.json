@@ -2,14 +2,17 @@
   "name": "lantosistvan-static",
   "version": "1.0.0",
   "description": "",
-  "main": "minify.js",
+  "main": "init.js",
   "scripts": {
-    "start": "node --use_strict ./minify.js",
+    "start": "node --use_strict ./init.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-register": "^6.24.1",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-clean-css": "^3.0.4",
     "gulp-htmlmin": "^3.0.0",

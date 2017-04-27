@@ -17,15 +17,16 @@ if (argv['f'] !== undefined) {
   process.exit();
 }
 
-gulp.task('html', (chunk) =>
+/*gulp.task('htmlmin', () =>
   gulp.src(argv['f'])
+    .pipe(console.log(`argv['f'] === argv['f']`))
     .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest(process.stdout.write(chunk)));
-);
+    //.pipe(gulp.dest(process.stdout.write()))
+);*/
 
 if (argv['t'] === 'html') {
-  gulp.start('html');
-  //process.stdout.write(argv.t);
+  //gulp.series('htmlmin')();
+  process.stdout.write(argv.t);
 } else if (argv['t'] === 'css') {
   process.stdout.write(argv.t);
 } else if (argv['t'] === 'js') {
