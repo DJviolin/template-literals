@@ -2,12 +2,10 @@
 
 const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
-
-/*const gulp = require('gulp');
 const cleanCSS = require('gulp-clean-css');
-const uglify = require('gulp-uglify');
-const replace = require('gulp-replace');
-const htmlmin = require('gulp-htmlmin');*/
+
+/*const uglify = require('gulp-uglify');
+const replace = require('gulp-replace');*/
 
 const file = process.argv[2];
 const task = process.argv[3];
@@ -50,9 +48,21 @@ gulp.task('htmlmin', () => {
   });
 });
 
+gulp.task('minify-css', () => {
+  const readable = gulp.src(file)
+    .pipe(cleanCSS({
+      // https://github.com/jakubpawlowicz/clean-css#constructor-options
+      compatibility: '*',
+    }));
+  readable.on('data', (chunk) => {
+    process.stdout.write(chunk.contents);
+  });
+});
+
 if (task === 'html') {
   gulp.series('htmlmin')();
 } else if (task === 'css') {
+  gulp.series('minify-css')();
 } else if (task === 'js') {
 } else {
   process.exitCode = 1;
