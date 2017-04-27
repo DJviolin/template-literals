@@ -75,11 +75,6 @@ find . -maxdepth 1 -name '*.html' -type f -print0 |
             ##s/>[^<]*|[^>]*<//gm;
 
             # Removes new lines
-            {
-                :a;
-                N;
-                $!ba;
-                s/\n//g
-            }
+            { :a; N; $!ba; s/\n//g }
         }' "$line" > "$line.bak"
     done
