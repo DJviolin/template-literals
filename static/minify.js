@@ -54,10 +54,10 @@ gulp.task('htmlmin', () => {
   });
 });
 
+// https://github.com/jakubpawlowicz/clean-css#constructor-options
 gulp.task('minify-css', () => {
   const readable = gulp.src(file)
     .pipe(cleanCSS({
-      // https://github.com/jakubpawlowicz/clean-css#constructor-options
       compatibility: '*',
     }));
   readable.on('data', (chunk) => {

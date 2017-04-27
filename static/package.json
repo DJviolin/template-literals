@@ -9,7 +9,7 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-clean-css": "^3.0.4",
     "gulp-htmlmin": "^3.0.0",
