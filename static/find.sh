@@ -73,66 +73,7 @@ loop () {
     /usr/bin/find . -maxdepth 1 -name "*.$1" -type f -print0 |
         while IFS= read -r -d $'\0' line; do
             echo "$line"
-            #node ./minify.js -f "$line" -t $1 $2 > "$line.bak"
             node ./minify.js "$line" $1 $2 > "$line.bak"
-            #node ./minify.js "$line" $1 $2
         done
 }
 loop html mysite
-
-
-
-
-
-
-
-
-#echo "$line"
-#cat "$line" > "$line.bak"
-#grep --extended-regexp --invert-match '\/\*[\s\S]+?\*\/' "$line" > "$line.bak"
-#grep --perl-regexp --ignore-case '/\*[\s\S]+?\*/' "$line" > "$line.bak"
-
-# https://askubuntu.com/questions/551338/how-do-i-grep-for-multiple-patterns-on-multiple-lines
-#grep --perl-regexp '/\*[\s\S]+?\*/' "$line" > "$line.bak"
-#grep --perl-regexp '\/\*((?!\*\/).|\n)+\*\/' "$line" > "$line.bak"
-
-# http://www.pcre.org/original/doc/html/pcregrep.html
-# http://linuxcommand.org/man_pages/pcregrep1.html
-#pcregrep --ignore-case --multiline '/\*[\s\S]+?\*/' "$line" > "$line.bak"
-#pcregrep --ignore-case --multiline '\/\*((?!\*\/).|\n)+\*\/' "$line" > "$line.bak"
-# https://regex101.com/r/LDKPdL/1
-#pcregrep --ignore-case --multiline --invert-match '\/\*((?!\*\/).|\n)+\*\/' "$line" > "$line.bak"
-#sed -E 's/(\/\*)[\s\S]+?(\*\/)//igm' "$line" > "$line.bak"
-#sed 's/\/\*.*?\*\///igm' "$line" > "$line.bak"
-
-# http://www.thegeekstuff.com/2009/11/unix-sed-tutorial-multi-line-file-operation-with-6-practical-examples/
-# https://www.tutorialspoint.com/unix/unix-regular-expressions.htm
-<<COMMENT9
-sed '{
-    {
-        # Removes heading space
-        #s/^[ \t]*//g;
-        #s/^[[:space:]]*//g;
-        #s/^[[:blank:]]*//g;
-
-        # Removes trailing space
-        #s/[ \t]*$//g;
-        #s/[[:space:]]*$//g;
-        #s/[[:blank:]]*$//g;
-
-        # Deletes empty lines
-        #/^\s*$/d;
-        #/^\s*$/D;
-    };
-
-    # Removes new lines
-    # http://stackoverflow.com/a/1252191/1442219
-    #{ :a; N; $!ba; s/\n//g }
-
-    # Removes any whitespace between > and <
-    # http://stackoverflow.com/a/19878198/1442219
-    # http://stackoverflow.com/a/36224109/1442219
-    #{ :a; N; $!ba; s/>\s*</></g }
-    { :a; N; $!ba; s/>[[:space:]]*</></g }
-}' "$line" > "$line.bak"
-COMMENT9
