@@ -7,11 +7,31 @@ const uglify = require('gulp-uglify');
 const replace = require('gulp-replace');
 const htmlmin = require('gulp-htmlmin');*/
 
-const filename = process.argv[2];
-const task = process.argv[3];
-const output = process.argv[4];
+const argv = require('minimist')(process.argv.slice(2));
+//console.dir(argv);
 
-process.stdout.write(`filename === ${filename}\ntask === ${task}\noutput === ${output}`);
+if (argv['f'] !== undefined) {
+  process.stdout.write(argv.f);
+}
+
+if (argv['t'] !== undefined) {
+  process.stdout.write(argv.t);
+}
+
+
+
+//const filename = process.argv[2];
+//const task = process.argv[3];
+//const output = process.argv[4];
+
+//process.stdout.write(`filename === ${filename}\ntask === ${task}\noutput === ${output}`);
+
+/*gulp.task('minify', function() {
+  return gulp.src('src/*.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('dist'));
+});*/
+
 
 // MINIFY CSS
 // http://goalsmashers.github.io/css-minification-benchmark/

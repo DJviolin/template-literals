@@ -38,7 +38,7 @@ set -e
 find . -maxdepth 1 -name '*.html' -type f -print0 |
     while IFS= read -r -d $'\0' line; do
         echo "$line"
-        node --use_strict ./gulpfile.js "$line" > "$line.bak"
+        node --use_strict ./gulpfile.js -f "$line" -t task > "$line.bak"
     done
 
 
