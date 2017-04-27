@@ -84,12 +84,3 @@ if (task === 'html') {
   process.exitCode = 1;
   process.exit();
 }
-
-/*gulp.task('uglify', () =>
-  gulp.src(paths.uglify)
-    .pipe(uglify({ output: { quote_style: 1 } }))
-    .pipe(rename({ extname: '.min.js' }))
-    .pipe(gulp.dest('app/public/javascripts'))
-);
-
-gulp.task('app', gulp.parallel('css', 'uglify'));*/
