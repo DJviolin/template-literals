@@ -69,8 +69,7 @@ print_something Jupiter
 COMMENT3
 
 loop () {
-    #/usr/bin/find ./static -name "*.$1" -type f -print0 |
-    /usr/bin/find ./static -name "*.$1" ! -name "*.min.$1" -type f -print0 |
+    /usr/bin/find ./static -name "*.$1" ! -name "*.min.$1" ! -name "*-min.$1" -type f -print0 |
     #/usr/bin/find . -maxdepth 1 -name "*.$1" -type f -print0 |
         while IFS= read -r -d $'\0' line; do
             echo "$line"
