@@ -1,11 +1,10 @@
 'use strict';
 
-//const argv = require('minimist')(process.argv.slice(2));
 const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
-const rename = require('gulp-rename');
 
-/*const gulp = require('gulp');
+/*const argv = require('minimist')(process.argv.slice(2));
+const gulp = require('gulp');
 const rename = require('gulp-rename');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
@@ -23,8 +22,8 @@ if (file !== undefined) {
   process.exit();
 }
 
-gulp.task('htmlmin', () =>
-  gulp.src(file)
+gulp.task('htmlmin', () => {
+  const a = gulp.src(file)
     .pipe(htmlmin({
       collapseBooleanAttributes: true,
       collapseWhitespace: true,
@@ -46,10 +45,14 @@ gulp.task('htmlmin', () =>
       sortClassName: true,
       trimCustomFragments: true,
       useShortDoctype: true,
-    }))
-    .pipe(rename({ extname: '.html.bak' }))
-    .pipe(gulp.dest('.'))
-);
+    }));
+  a.on('data', (chunk) => {
+    // https://nodejs.org/api/stream.html#stream_event_data
+    // http://stackoverflow.com/a/24470353/1442219
+    //process.stdout.write(`${chunk.contents.toString().trim()}`);
+    process.stdout.write(chunk.contents);
+  });
+});
 
 if (task === 'html') {
   gulp.series('htmlmin')();
