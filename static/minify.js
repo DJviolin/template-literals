@@ -1,8 +1,8 @@
 'use strict';
 
 const argv = require('minimist')(process.argv.slice(2));
-const htmlmin = require('gulp-htmlmin');
 const gulp = require('gulp');
+const htmlmin = require('gulp-htmlmin');
 
 /*const gulp = require('gulp');
 const rename = require('gulp-rename');
@@ -17,12 +17,12 @@ if (argv['f'] !== undefined) {
   process.exit();
 }
 
-/*gulp.task('htmlmin', () =>
+gulp.task('htmlmin', () =>
   gulp.src(argv['f'])
     .pipe(console.log(`argv['f'] === argv['f']`))
     .pipe(htmlmin({collapseWhitespace: true}))
     //.pipe(gulp.dest(process.stdout.write()))
-);*/
+);
 
 if (argv['t'] === 'html') {
   //gulp.series('htmlmin')();
