@@ -1,6 +1,6 @@
 'use strict';
 
-const argv = require('minimist')(process.argv.slice(2));
+//const argv = require('minimist')(process.argv.slice(2));
 const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
 
@@ -14,7 +14,7 @@ const htmlmin = require('gulp-htmlmin');*/
 const file = process.argv[2];
 const task = process.argv[3];
 
-if (argv['f'] !== undefined) {
+/*if (argv['f'] !== undefined) {
 } else {
   process.exitCode = 1;
   process.exit();
@@ -33,6 +33,31 @@ if (argv['t'] === 'html') {
   process.stdout.write(argv.t);
 } else if (argv['t'] === 'js') {
   process.stdout.write(argv.t);
+} else {
+  process.exitCode = 1;
+  process.exit();
+}*/
+
+if (file !== undefined) {
+} else {
+  process.exitCode = 1;
+  process.exit();
+}
+
+gulp.task('htmlmin', () =>
+  gulp.src(file)
+    //.pipe(console.log(`file === ${file}`))
+    .pipe(htmlmin({collapseWhitespace: true}))
+    //.pipe(gulp.dest(process.stdout.write()))
+);
+
+if (task === 'html') {
+  gulp.series('htmlmin')();
+  process.stdout.write(`html === ${task}`);
+} else if (task === 'css') {
+  process.stdout.write(`css === ${task}`);
+} else if (task === 'js') {
+  process.stdout.write(`js === ${task}`);
 } else {
   process.exitCode = 1;
   process.exit();
