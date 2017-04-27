@@ -49,5 +49,24 @@ find . -maxdepth 1 -name '*.html' -type f -print0 |
         #pcregrep --ignore-case --multiline '/\*[\s\S]+?\*/' "$line" > "$line.bak"
         #pcregrep --ignore-case --multiline '\/\*((?!\*\/).|\n)+\*\/' "$line" > "$line.bak"
         # https://regex101.com/r/LDKPdL/1
-        pcregrep --ignore-case --multiline --invert-match '\/\*((?!\*\/).|\n)+\*\/' "$line" > "$line.bak"
+        #pcregrep --ignore-case --multiline --invert-match '\/\*((?!\*\/).|\n)+\*\/' "$line" > "$line.bak"
+        #sed -E 's/(\/\*)[\s\S]+?(\*\/)//igm' "$line" > "$line.bak"
+        #sed 's/\/\*.*?\*\///igm' "$line" > "$line.bak"
+
+        # http://www.thegeekstuff.com/2009/11/unix-sed-tutorial-multi-line-file-operation-with-6-practical-examples/
+        # https://www.tutorialspoint.com/unix/unix-regular-expressions.htm
+        sed '{
+            # Removes heading space
+            #s/^[ \t]*//g;
+            #s/^[[:space:]]*//g;
+            s/^[[:blank:]]*//g;
+
+            # Removes trailing space
+            #s/[ \t]*$//g;
+            #s/[[:space:]]*$//g;
+            s/[[:blank:]]*$//g;
+
+            # Delete empty lines
+            #/^\s*$/d;
+        }' "$line" > "$line.bak"
     done
