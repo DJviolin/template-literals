@@ -17,9 +17,10 @@ loop () {
         while IFS= read -r -d $'\0' line; do
             echo "$line"
             node ./minify.js "$line" $1 $2 > "$line.bak"
+            #mv "$line.bak" "$line"
         done
 }
 
 #loop html mysite
-#loop css
-loop js
+loop css
+#loop js
