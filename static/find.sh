@@ -34,8 +34,8 @@ set -e
 
 #lsb_release -a
 
-#find ./static -name '*.html' -type f -print0 |
-find . -maxdepth 1 -name '*.html' -type f -print0 |
+#/usr/bin/find ./static -name '*.html' -type f -print0 |
+/usr/bin/find . -maxdepth 1 -name '*.html' -type f -print0 |
     while IFS= read -r -d $'\0' line; do
         echo "$line"
         node --use_strict ./minify.js -f "$line" -t html > "$line.bak"
