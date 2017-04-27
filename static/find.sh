@@ -17,7 +17,7 @@ loop () {
         while IFS= read -r -d $'\0' line; do
             echo "$line"
             node ./minify.js "$line" $1 $2 > "$line.bak"
-            #mv "$line.bak" "$line"
+            #mv -v "$line.bak" "$line"
         done
 }
 
