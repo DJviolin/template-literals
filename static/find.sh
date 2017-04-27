@@ -73,12 +73,12 @@ loop () {
     /usr/bin/find . -maxdepth 1 -name "*.$1" -type f -print0 |
         while IFS= read -r -d $'\0' line; do
             echo "$line"
-            #node ./minify.js -f "$line" -t $1 > "$line.bak"
-            node ./minify.js "$line" $1 > "$line.bak"
-            #node ./minify.js "$line" $1
+            #node ./minify.js -f "$line" -t $1 $2 > "$line.bak"
+            node ./minify.js "$line" $1 $2 > "$line.bak"
+            #node ./minify.js "$line" $1 $2
         done
 }
-loop html
+loop html mysite
 
 
 
