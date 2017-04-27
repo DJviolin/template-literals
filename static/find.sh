@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Why not Regex?
+# http://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454
+
 # Notes:
 # http://stackoverflow.com/a/9612232/1442219
 # http://www.stevenmaude.co.uk/posts/archiving-a-wordpress-site-with-wget-and-hosting-for-free
@@ -34,6 +37,7 @@ set -e
 
 #lsb_release -a
 
+<<COMMENT
 #/usr/bin/find ./static -name '*.html' -type f -print0 |
 /usr/bin/find . -maxdepth 1 -name '*.html' -type f -print0 |
     while IFS= read -r -d $'\0' line; do
@@ -42,12 +46,39 @@ set -e
         node ./minify.js "$line" html > "$line.bak"
         #node ./minify.js "$line" html
     done
+COMMENT
 
+<<COMMENT2
+#/usr/bin/find ./static -name '*.html' -type f -print0 |
+/usr/bin/find . -maxdepth 1 -name '*.html' -type f -print0 |
+    while IFS= read -r -d $'\0' line; do
+        echo "$line"
+        #node ./minify.js -f "$line" -t html > "$line.bak"
+        node ./minify.js "$line" html > "$line.bak"
+        #node ./minify.js "$line" html
+    done
+COMMENT2
 
+<<COMMENT3
+# http://ryanstutorials.net/bash-scripting-tutorial/bash-functions.php
+print_something () {
+    echo Hello $1
+}
+print_something Mars
+print_something Jupiter
+COMMENT3
 
-
-
-
+loop () {
+    #/usr/bin/find ./static -name "*.$1" -type f -print0 |
+    /usr/bin/find . -maxdepth 1 -name "*.$1" -type f -print0 |
+        while IFS= read -r -d $'\0' line; do
+            echo "$line"
+            #node ./minify.js -f "$line" -t $1 > "$line.bak"
+            node ./minify.js "$line" $1 > "$line.bak"
+            #node ./minify.js "$line" $1
+        done
+}
+loop html
 
 
 
@@ -76,7 +107,7 @@ set -e
 
 # http://www.thegeekstuff.com/2009/11/unix-sed-tutorial-multi-line-file-operation-with-6-practical-examples/
 # https://www.tutorialspoint.com/unix/unix-regular-expressions.htm
-<<COMMENT1
+<<COMMENT9
 sed '{
     {
         # Removes heading space
@@ -104,4 +135,4 @@ sed '{
     #{ :a; N; $!ba; s/>\s*</></g }
     { :a; N; $!ba; s/>[[:space:]]*</></g }
 }' "$line" > "$line.bak"
-COMMENT1
+COMMENT9
