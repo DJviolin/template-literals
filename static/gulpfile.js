@@ -1,5 +1,8 @@
 'use strict';
 
+const argv = require('minimist')(process.argv.slice(2));
+//console.dir(argv);
+
 /*const gulp = require('gulp');
 const rename = require('gulp-rename');
 const cleanCSS = require('gulp-clean-css');
@@ -7,24 +10,19 @@ const uglify = require('gulp-uglify');
 const replace = require('gulp-replace');
 const htmlmin = require('gulp-htmlmin');*/
 
-const argv = require('minimist')(process.argv.slice(2));
-//console.dir(argv);
-
 if (argv['f'] !== undefined) {
   process.stdout.write(argv.f);
+} else {
+  process.exitCode = 1;
+  process.exit();
 }
 
 if (argv['t'] !== undefined) {
   process.stdout.write(argv.t);
+} else {
+  process.exitCode = 1;
+  process.exit();
 }
-
-
-
-//const filename = process.argv[2];
-//const task = process.argv[3];
-//const output = process.argv[4];
-
-//process.stdout.write(`filename === ${filename}\ntask === ${task}\noutput === ${output}`);
 
 /*gulp.task('minify', function() {
   return gulp.src('src/*.html')
