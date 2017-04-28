@@ -18,6 +18,7 @@ mkdir ./static
 
 #--quiet \
 
+# https://www.gnu.org/software/wget/manual/html_node/Exit-Status.html
 wget \
   --mirror \
   --adjust-extension \
@@ -40,9 +41,21 @@ wget \
   --header="accept-encoding: gzip" \
   --header="Accept-Charset: utf-8" \
   \
-  --directory-prefix=static \
   --no-verbose \
+  --no-use-server-timestamps \
+  --recursive \
+  --directory-prefix=static \
+  --quiet \
   127.0.0.1/public_html/lantosistvan/
+
+# To access wget's exit code
+if [ $? -ne 0 ]; then # not equel to zero
+  echo "Non-Zero exit code"
+  exit 0;
+else
+  echo "Exit code 0"
+  exit 0;
+fi
 
 echo "Hello, World!"
 
