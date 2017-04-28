@@ -43,7 +43,6 @@ function download () {
     --no-verbose \
     --no-use-server-timestamps \
     --recursive \
-    --quiet \
     --directory-prefix=static \
     127.0.0.1/public_html/lantosistvan/
 }
