@@ -8,7 +8,11 @@
 # https://blog.cloudflare.com/what-weve-been-doing-with-go/
 
 # mozjpeg
+# https://imageoptim.com/mozjpeg
 # https://github.com/mozilla/mozjpeg
+# https://joshaas.wordpress.com/2014/12/30/mozjpeg-3-0-released/
+# https://mozjpeg.codelove.de/binaries.html
+# $ cjpeg -quality 80 foo.bmp > bar.jpg
 
 # jpegtran
 # $ jpegtran -outfile out.jpg -optimise -progressive -copy none in.jpg
