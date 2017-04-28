@@ -1,6 +1,5 @@
 'use strict';
 
-const path = require('path');
 const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
 const cleanCSS = require('gulp-clean-css');
@@ -13,7 +12,7 @@ const sitename = process.argv[4];
 
 if (file !== undefined) {
 } else {
-  process.stderr.write(`ERROR (minify.js): Your ${file} file is undefined or not exist.`);
+  process.stderr.write(`ERROR (minify.js): Your ${file} file is undefined or not exist.\n`);
   process.exitCode = 1;
   process.exit();
 }
@@ -50,7 +49,7 @@ gulp.task('htmlmin', () => {
       useShortDoctype: true,
     }));
   readable.on('error', (chunk) => {
-    process.stderr.write(`ERROR (htmlmin): ${chunk}`);
+    process.stderr.write(`ERROR (htmlmin): ${chunk}\n`);
     process.exitCode = 1;
     process.exit();
   });
@@ -58,7 +57,7 @@ gulp.task('htmlmin', () => {
     // https://nodejs.org/api/stream.html#stream_event_data
     // http://stackoverflow.com/a/24470353/1442219
     //process.stdout.write(JSON.stringify(chunk.contents.toString().trim(), null, 4));
-    process.stdout.write(chunk._contents);
+    process.stdout.write(`${chunk._contents}\n`);
   });
 });
 
@@ -68,21 +67,19 @@ gulp.task('htmlmin', () => {
 // https://github.com/jakubpawlowicz/gulp-clean-css-v4-example/blob/master/gulpfile.js
 // https://github.com/jakubpawlowicz/clean-css/issues/914#issuecomment-287727453
 // https://github.com/jakubpawlowicz/clean-css#inlining-options
-const sourceDir = path.resolve('.');
 gulp.task('minify-css', () => {
-  process.chdir(sourceDir);
   const readable = gulp.src(file)
     .pipe(cleanCSS({
       compatibility: '*',
       inline: ['none'],
     }));
   readable.on('error', (chunk) => {
-    process.stderr.write(`ERROR (minify-css): ${chunk}`);
+    process.stderr.write(`ERROR (minify-css): ${chunk}\n`);
     process.exitCode = 1;
     process.exit();
   });
   readable.on('data', (chunk) => {
-    process.stdout.write(chunk._contents);
+    process.stdout.write(`${chunk._contents}\n`);
   });
 });
 
@@ -90,12 +87,12 @@ gulp.task('uglify', () => {
   const readable = gulp.src(file)
     .pipe(uglify());
   readable.on('error', (chunk) => {
-    process.stderr.write(`ERROR (uglify): ${chunk}`);
+    process.stderr.write(`ERROR (uglify): ${chunk}\n`);
     process.exitCode = 1;
     process.exit();
   });
   readable.on('data', (chunk) => {
-    process.stdout.write(chunk.contents);
+    process.stdout.write(`${chunk._contents}\n`);
   });
 });
 
@@ -106,7 +103,7 @@ if (task === 'html') {
 } else if (task === 'js') {
   gulp.series('uglify')();
 } else {
-  process.stderr.write(`ERROR (minify.js): Your ${task} task is undefined or not exist.`);
+  process.stderr.write(`ERROR (minify.js): Your ${task} task is undefined or not exist.\n`);
   process.exitCode = 1;
   process.exit();
 }
