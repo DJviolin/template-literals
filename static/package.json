@@ -10,13 +10,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "clean-css": "^4.0.12",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-clean-css": "^3.0.4",
     "gulp-htmlmin": "^3.0.0",
     "gulp-replace": "^0.5.4",
     "gulp-uglify": "^2.1.2"
-  },
-  "dependencies": {
-    "clean-css": "^4.0.12"
   }
 }
