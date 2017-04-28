@@ -41,8 +41,15 @@ wget \
   --header="Accept-Charset: utf-8" \
   \
   --directory-prefix=static \
+  --no-verbose \
   127.0.0.1/public_html/lantosistvan/
 
+echo "Hello, World!"
+
 # Website specific pre-config
-mv -v ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blank.cur.html ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blank.cur
-mv -v ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blank_google_chrome.cur.html ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blank_google_chrome.cur
+#mv -v ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blank.cur.html ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blank.cur
+#mv -v ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blank_google_chrome.cur.html ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blank_google_chrome.cur
+
+# Rename *.cur.html to *.cur
+# https://askubuntu.com/a/35994/421797
+find ./static -type f -name "*.cur.html" -exec sh -c 'mv -v "$1" "${1%.cur.html}.cur"' - {} \;
