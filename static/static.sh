@@ -44,11 +44,11 @@ function download () {
     --no-use-server-timestamps \
     --recursive \
     --directory-prefix=static \
-    127.0.0.1/public_html/lantosistvan/
+    $1
 }
 
 # http://stackoverflow.com/a/24409738/1442219
-if download; then
+if download "127.0.0.1/public_html/lantosistvan/"; then
   exit 0
 fi
 
