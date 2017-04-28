@@ -8,6 +8,7 @@
 # https://blog.cloudflare.com/what-weve-been-doing-with-go/
 
 # mozjpeg
+# https://hacks.mozilla.org/2014/08/using-mozjpeg-to-create-efficient-jpegs/
 # https://imageoptim.com/mozjpeg
 # https://github.com/mozilla/mozjpeg
 # https://joshaas.wordpress.com/2014/12/30/mozjpeg-3-0-released/

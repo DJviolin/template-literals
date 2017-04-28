@@ -85,7 +85,7 @@ loop js
 find ./static \( -iname \*.jpg -o -iname \*.jpeg \)  -type f -print0 |
     while IFS= read -r -d $'\0' line; do
         echo "$line"
-        cjpeg -quality 80 "$line" > "$line.out.jpg"
+        cjpeg -quality 80 -progressive "$line" > "$line.out.jpg"
         jpegtran -outfile "$line" -optimise -progressive -copy none "$line.out.jpg"
         rm "$line.out.jpg"
     done
