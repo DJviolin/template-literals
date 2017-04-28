@@ -5,6 +5,8 @@
 # http://www.stevenmaude.co.uk/posts/archiving-a-wordpress-site-with-wget-and-hosting-for-free
 # Why not Regex?
 # http://stackoverflow.com/a/1732454
+# Wordpress: Remove Query Strings From Static Resources
+# https://wordpress.org/plugins/remove-query-strings-from-static-resources/
 
 # set -e making the commands if they were like &&
 # set -x putting + before every line
@@ -78,3 +80,12 @@ loop () {
 loop html lantosistvan
 loop css
 loop js
+
+#find . -maxdepth 1 \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png \)  -type f -print0 |
+find ./static \( -iname \*.jpg -o -iname \*.jpeg \)  -type f -print0 |
+    while IFS= read -r -d $'\0' line; do
+        echo "$line"
+        cjpeg -quality 80 "$line" > "$line.out.jpg"
+        jpegtran -outfile "$line" -optimise -progressive -copy none "$line.out.jpg"
+        rm "$line.out.jpg"
+    done
