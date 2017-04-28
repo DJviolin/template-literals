@@ -47,6 +47,11 @@ gulp.task('htmlmin', () => {
       trimCustomFragments: true,
       useShortDoctype: true,
     }));
+  readable.on('error', (chunk) => {
+    process.stderr.write(`ERROR (htmlmin): ${chunk}`);
+    process.exitCode = 1;
+    process.exit();
+  });
   readable.on('data', (chunk) => {
     // https://nodejs.org/api/stream.html#stream_event_data
     // http://stackoverflow.com/a/24470353/1442219
@@ -60,6 +65,11 @@ gulp.task('minify-css', () => {
     .pipe(cleanCSS({
       compatibility: '*',
     }));
+  readable.on('error', (chunk) => {
+    process.stderr.write(`ERROR (minify-css): ${chunk}`);
+    process.exitCode = 1;
+    process.exit();
+  });
   readable.on('data', (chunk) => {
     //process.stdout.write(chunk.contents);
     //process.stdout.write(JSON.stringify(chunk._contents.toString().trim(), null, 4));
@@ -70,6 +80,11 @@ gulp.task('minify-css', () => {
 gulp.task('uglify', () => {
   const readable = gulp.src(file)
     .pipe(uglify());
+  readable.on('error', (chunk) => {
+    process.stderr.write(`ERROR (uglify): ${chunk}`);
+    process.exitCode = 1;
+    process.exit();
+  });
   readable.on('data', (chunk) => {
     process.stdout.write(chunk.contents);
   });
