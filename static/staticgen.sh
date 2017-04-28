@@ -64,6 +64,7 @@ fi
 # https://askubuntu.com/a/35994/421797
 find ./static -type f -name "*.cur.html" -exec sh -c 'mv -v "$1" "${1%.cur.html}.cur"' - {} \;
 
+<<COMMENT
 # Download XML sitemap
 wget \
     --mirror \
@@ -79,6 +80,7 @@ else
 fi
 # Set the URLs in the xml sitemap
 find ./static -type f -name "*.xml" -exec sed -i 's/http:\/\/127\.0\.0\.1\/public_html\/lantosistvan/http:\/\/lantosistvan\.com/g;' {} \;
+COMMENT
 
 loop () {
     #find . -maxdepth 1 -name "*.$1" -type f -print0 |
