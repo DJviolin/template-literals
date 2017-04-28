@@ -16,52 +16,51 @@ Static HTML generator for Wordpress \n\
 rm -rf ./static
 mkdir ./static
 
-#--quiet \
-
 # https://www.gnu.org/software/wget/manual/html_node/Exit-Status.html
-wget \
-  --mirror \
-  --adjust-extension \
-  --page-requisites \
-  --convert-links \
-  --span-hosts \
-  --domains=127.0.0.1 \
-  \
-  --execute robots=off \
-  --continue \
-  --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:53.0) Gecko/20100101 Firefox/53.0" \
-  --html-extension \
-  --no-host-directories \
-  --no-cookies \
-  --no-cache \
-  \
-  --content-disposition \
-  \
-  --restrict-file-names=nocontrol \
-  --header="accept-encoding: gzip" \
-  --header="Accept-Charset: utf-8" \
-  \
-  --no-verbose \
-  --no-use-server-timestamps \
-  --recursive \
-  --directory-prefix=static \
-  --quiet \
-  127.0.0.1/public_html/lantosistvan/
+function download () {
+  wget \
+    --mirror \
+    --adjust-extension \
+    --page-requisites \
+    --convert-links \
+    --span-hosts \
+    --domains=127.0.0.1 \
+    \
+    --execute robots=off \
+    --continue \
+    --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:53.0) Gecko/20100101 Firefox/53.0" \
+    --html-extension \
+    --no-host-directories \
+    --no-cookies \
+    --no-cache \
+    \
+    --content-disposition \
+    \
+    --restrict-file-names=nocontrol \
+    --header="accept-encoding: gzip" \
+    --header="Accept-Charset: utf-8" \
+    \
+    --no-verbose \
+    --no-use-server-timestamps \
+    --recursive \
+    --quiet \
+    --directory-prefix=static \
+    127.0.0.1/public_html/lantosistvan/
+}
+
+# http://stackoverflow.com/a/24409738/1442219
+if download; then
+  exit 0
+fi
 
 # To access wget's exit code
 if [ $? -ne 0 ]; then # not equel to zero
   echo "Non-Zero exit code"
-  exit 0;
 else
   echo "Exit code 0"
-  exit 0;
 fi
 
 echo "Hello, World!"
-
-# Website specific pre-config
-#mv -v ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blank.cur.html ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blank.cur
-#mv -v ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blank_google_chrome.cur.html ./static/public_html/lantosistvan/wp-content/themes/matte/css/cursors/blank_google_chrome.cur
 
 # Rename *.cur.html to *.cur
 # https://askubuntu.com/a/35994/421797
