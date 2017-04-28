@@ -17,14 +17,18 @@
 # jpegtran
 # $ jpegtran -outfile out.jpg -optimise -progressive -copy none in.jpg
 
+# Image listing with GNU find
+# $ https://unix.stackexchange.com/a/15309/120771
+
 # set -e making the commands if they were like &&
 # set -x putting + before every line
 set -e
 
-#find . -maxdepth 1 -name "*.$1" -type f -print0 |
-find ./static -name "*.$1" ! -name "*.min.$1" ! -name "*-min.$1" -type f -print0 |
+#find . -maxdepth 1 -name "*.jpg" -name "*.JPG" -name "*.jpeg" -name "*.JPEG" -type f -print0 |
+find . -maxdepth 1 \( -iname \*.jpg -o -iname \*.png \)  -type f -print0 |
+#find ./static -name "*.jpg" -name "*.JPG" -name "*.jpeg" -name "*.JPEG" -type f -print0 |
     while IFS= read -r -d $'\0' line; do
         echo "$line"
-        node ./minify.js "$line" $1 $2 > "$line.bak"
-        mv -v "$line.bak" "$line"
+        #jpegtran -outfile "$line-out" -optimise -progressive -copy none "$line"
+        #mv -v "$line.bak" "$line"
     done
