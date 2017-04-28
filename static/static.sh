@@ -52,14 +52,12 @@ if download; then
   exit 0
 fi
 
-# To access wget's exit code
+# To check wget's exit code is really 0
 if [ $? -ne 0 ]; then # not equel to zero
   echo "Non-Zero exit code"
 else
   echo "Exit code 0"
 fi
-
-echo "Hello, World!"
 
 # Rename *.cur.html to *.cur
 # https://askubuntu.com/a/35994/421797
