@@ -24,11 +24,11 @@
 # set -x putting + before every line
 set -e
 
-#find . -maxdepth 1 -name "*.jpg" -name "*.JPG" -name "*.jpeg" -name "*.JPEG" -type f -print0 |
-find . -maxdepth 1 \( -iname \*.jpg -o -iname \*.png \)  -type f -print0 |
-#find ./static -name "*.jpg" -name "*.JPG" -name "*.jpeg" -name "*.JPEG" -type f -print0 |
+#find . -maxdepth 1 \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png \)  -type f -print0 |
+find ./static \( -iname \*.jpg -o -iname \*.jpeg \)  -type f -print0 |
     while IFS= read -r -d $'\0' line; do
         echo "$line"
-        #jpegtran -outfile "$line-out" -optimise -progressive -copy none "$line"
-        #mv -v "$line.bak" "$line"
+        cjpeg -quality 80 "$line" > "$line.out.jpg"
+        jpegtran -outfile "$line" -optimise -progressive -copy none "$line.out.jpg"
+        rm "$line.out.jpg"
     done
