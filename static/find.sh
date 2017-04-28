@@ -23,4 +23,4 @@ loop () {
 
 #loop html mysite
 loop css
-#loop js
+loop js
