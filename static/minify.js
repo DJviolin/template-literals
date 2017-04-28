@@ -1,5 +1,6 @@
 'use strict';
 
+const path = require('path');
 const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
 const cleanCSS = require('gulp-clean-css');
@@ -56,15 +57,24 @@ gulp.task('htmlmin', () => {
   readable.on('data', (chunk) => {
     // https://nodejs.org/api/stream.html#stream_event_data
     // http://stackoverflow.com/a/24470353/1442219
-    process.stdout.write(chunk._contents.toString().trim());
+    //process.stdout.write(JSON.stringify(chunk.contents.toString().trim(), null, 4));
+    process.stdout.write(chunk._contents);
   });
 });
 
 // https://github.com/jakubpawlowicz/clean-css#constructor-options
+// ERROR: Ignoring local @import of "fonts.css" as resource is missing.
+// Fix the issue:
+// https://github.com/jakubpawlowicz/gulp-clean-css-v4-example/blob/master/gulpfile.js
+// https://github.com/jakubpawlowicz/clean-css/issues/914#issuecomment-287727453
+// https://github.com/jakubpawlowicz/clean-css#inlining-options
+const sourceDir = path.resolve('.');
 gulp.task('minify-css', () => {
+  process.chdir(sourceDir);
   const readable = gulp.src(file)
     .pipe(cleanCSS({
       compatibility: '*',
+      inline: ['none'],
     }));
   readable.on('error', (chunk) => {
     process.stderr.write(`ERROR (minify-css): ${chunk}`);
@@ -72,9 +82,7 @@ gulp.task('minify-css', () => {
     process.exit();
   });
   readable.on('data', (chunk) => {
-    //process.stdout.write(chunk.contents);
-    //process.stdout.write(JSON.stringify(chunk._contents.toString().trim(), null, 4));
-    process.stdout.write(chunk._contents.toString().trim());
+    process.stdout.write(chunk._contents);
   });
 });
 
