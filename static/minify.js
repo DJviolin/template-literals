@@ -34,6 +34,7 @@ gulp.task('htmlmin', () => {
       minifyCSS: true,
       minifyJS: true,
       processConditionalComments: true,
+      processConditionalComments: true,
       processScripts: ['text/html'],
       removeAttributeQuotes: true,
       removeComments: true,

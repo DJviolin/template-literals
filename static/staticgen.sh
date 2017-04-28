@@ -5,8 +5,13 @@
 # http://www.stevenmaude.co.uk/posts/archiving-a-wordpress-site-with-wget-and-hosting-for-free
 # Why not Regex?
 # http://stackoverflow.com/a/1732454
+
 # Wordpress: Remove Query Strings From Static Resources
 # https://wordpress.org/plugins/remove-query-strings-from-static-resources/
+
+# Wordpress: Relative URLs
+# https://wordpress.org/plugins/relative-url/
+# https://wordpress.org/plugins/make-paths-relative/
 
 # set -e making the commands if they were like &&
 # set -x putting + before every line
@@ -54,12 +59,6 @@ function download () {
 if download "127.0.0.1/public_html/lantosistvan/"; then
     exit 0
 fi
-# To check wget's exit code is really 0
-#if [ $? -ne 0 ]; then # not equel to zero
-#    echo "Non-Zero exit code"
-#else
-#    echo "Exit code 0"
-#fi
 
 # Rename *.cur.html to *.cur
 # https://askubuntu.com/a/35994/421797
@@ -67,14 +66,19 @@ find ./static -type f -name "*.cur.html" -exec sh -c 'mv -v "$1" "${1%.cur.html}
 
 # Download XML sitemap
 wget \
+    --mirror \
+    --no-host-directories \
     --no-verbose \
     --directory-prefix=static/public_html/lantosistvan \
     "127.0.0.1/public_html/lantosistvan/sitemap_index.xml"
-if [ $? -ne 0 ]; then # not equel to zero
+# To check wget's exit code is really 0
+if [ $? -ne 0 ]; then # Check wget's exit code is really 0 (not equal to zero)
     echo "Non-Zero exit code"
 else
     echo "Exit code 0"
 fi
+# Set the URLs in the xml sitemap
+find ./static -type f -name "*.xml" -exec sed -i 's/http:\/\/127\.0\.0\.1\/public_html\/lantosistvan/http:\/\/lantosistvan\.com/g;' {} \;
 
 loop () {
     #find . -maxdepth 1 -name "*.$1" -type f -print0 |
