@@ -12,6 +12,7 @@ const sitename = process.argv[4];
 
 if (file !== undefined) {
 } else {
+  process.stderr.write(`ERROR (minify.js): Your ${file} file is undefined or not exist.`);
   process.exitCode = 1;
   process.exit();
 }
@@ -97,6 +98,7 @@ if (task === 'html') {
 } else if (task === 'js') {
   gulp.series('uglify')();
 } else {
+  process.stderr.write(`ERROR (minify.js): Your ${task} task is undefined or not exist.`);
   process.exitCode = 1;
   process.exit();
 }
