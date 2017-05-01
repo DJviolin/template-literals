@@ -85,7 +85,15 @@ COMMENT
 #find ./static -name *.html -exec sed -i 's/http:/https:/g;' {} \;
 #find ./static -type f -print -name *.html -name *.css -name *.js -exec sed -i 's/http:/https:/g;' {} \;
 find ./static -type f -print \( -name \*.html -o -name \*.css -o -name \*.js \) -exec sed -i 's/http:/https:/g; s/http%253A/https%253A/g;' {} \;
-find ./static -type f -print -name *.html -exec sed -i 's/<script/<script async/g;' {} \;
+
+#find ./static -type f -print -name *.html -exec sed -i 's/(<script).*(?=src)/<script async/g;' {} \;
+# (<script).*(?=src)
+#find ./static -type f -print -name *.html -exec sed -i 's/(<script).*(?=src)/<script async type=\"text\/javascript\" /g;' {} \;
+#find . -maxdepth 1 -type f -print -name *.html -exec sed 's/(<script).*(?=src)/<script async type=\"text\/javascript\" /g;' {} \; > index.bak.html
+#find . -maxdepth 1 -name *.html -type f -print -exec sed -e 's/(<script).*(?=src)/<script async type=\"text\/javascript\" /g;' {} \; > index.bak.html
+#find . -maxdepth 1 -name "index.html" -type f -print0 | xargs --null sed 's/(<script).*(?=src)/<script async /g;' > index.bak.html
+# (<script type=\'text\/javascript\' ).*(?=src)
+#find . -maxdepth 1 -name "index.html" -type f -print0 | xargs --null sed "s/(<script type=\'text\/javascript\' ).*(?=src)/<script async type=\'text\/javascript\' /g;" > index.bak.html
 
 loop () {
     #find . -maxdepth 1 -name "*.$1" -type f -print0 |
