@@ -120,13 +120,20 @@ loop js
 # cjpeg -quality 75 -progressive -dc-scan-opt 2 IMG_3039-1400px.jpg > IMG_3039-1400px-20170501-out01.jpg
 # jpegtran -outfile IMG_3039-1400px-20170501-out02.jpg -optimise -progressive -copy none IMG_3039-1400px-20170501-out01.jpg
 
-# https://github.com/mozilla/mozjpeg/blob/master/usage.txt
-#find . -maxdepth 1 \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png \)  -type f -print0 |
-find ./static \( -iname \*.jpg -o -iname \*.jpeg \)  -type f -print0 |
+find ./static \( -iname \*.jpg -o -iname \*.jpeg \) -type f -size -128k -print0 |
     while IFS= read -r -d $'\0' line; do
         echo "$line"
-        #cjpeg -quality 80 -progressive "$line" > "$line.out.jpg"
-        #jpegtran -outfile "$line" -optimise -progressive -copy none "$line.out.jpg"
+        cjpeg -quality 80 -progressive -dc-scan-opt 2 "$line" > "$line.out.jpg"
+        jpegtran -outfile "$line" -optimise -progressive -copy none "$line.out.jpg"
+        rm "$line.out.jpg"
+    done
+
+# https://github.com/mozilla/mozjpeg/blob/master/usage.txt
+#find . -maxdepth 1 \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png \)  -type f -print0 |
+#find ./static \( -iname \*.jpg -o -iname \*.jpeg \) -type f -print0 |
+find ./static \( -iname \*.jpg -o -iname \*.jpeg \) -type f -size +128k -print0 |
+    while IFS= read -r -d $'\0' line; do
+        echo "$line"
         cjpeg -quality 75 -progressive -dc-scan-opt 2 "$line" > "$line.out.jpg"
         jpegtran -outfile "$line" -optimise -progressive -copy none "$line.out.jpg"
         rm "$line.out.jpg"
