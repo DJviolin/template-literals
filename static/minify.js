@@ -23,7 +23,7 @@ gulp.task('htmlmin', () => {
     .pipe(replace(/\/\/127\.0\.0\.1\/public_html\/lantosistvan/g, '.'))
     .pipe(replace(/http:\\\/\\\/127\.0\.0\.1\\\/public_html\\\/lantosistvan/g, '.'))
     .pipe(replace(/http%253A%252F%252F127\.0\.0\.1%252Fpublic_html%252Flantosistvan/g, '.'))
-    .pipe(replace(/http:/g, 'https:'))
+    //.pipe(replace(/http:/g, 'https:'))
     //.pipe(replace(/\.\/lantosistvan/g, `./${sitename}`))
     //.pipe(replace(/\.\\\/lantosistvan/g, `.\\/${sitename}`))
     //.pipe(replace(/\.%252Flantosistvan/g, `.%252F${sitename}`))
