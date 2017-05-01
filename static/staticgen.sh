@@ -97,7 +97,8 @@ loop css
 loop js
 
 #find ./static -name *.html -exec sed -i 's/http:/https:/g;' {} \;
-find ./static -type f -print \( -name \*.html -o -name \*.css -o -name \*.js \) -exec sed -i 's/http:/https:/g;' {} \;
+#find ./static -type f -print \( -name \*.html -o -name \*.css -o -name \*.js \) -exec sed -i 's/http:/https:/g;' {} \;
+find ./static -type f -print -name *.html -name *.css -name *.js -exec sed -i 's/http:/https:/g;' {} \;
 
 #find . -maxdepth 1 \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png \)  -type f -print0 |
 find ./static \( -iname \*.jpg -o -iname \*.jpeg \)  -type f -print0 |
