@@ -26,6 +26,7 @@ gulp.task('htmlmin', () => {
     //.pipe(replace(/\.\/lantosistvan/g, `./${sitename}`))
     //.pipe(replace(/\.\\\/lantosistvan/g, `.\\/${sitename}`))
     //.pipe(replace(/\.%252Flantosistvan/g, `.%252F${sitename}`))
+    .pipe(replace(/http/g, '//'))
     .pipe(htmlmin({
       collapseBooleanAttributes: true,
       collapseWhitespace: true,
