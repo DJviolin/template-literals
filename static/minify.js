@@ -19,10 +19,10 @@ if (file !== undefined) {
 
 gulp.task('htmlmin', () => {
   const readable = gulp.src(file)
-    .pipe(replace(/http:\/\/127\.0\.0\.1\/public_html\/lantosistvan/g, '.'))
+    .pipe(replace(/https:\/\/127\.0\.0\.1\/public_html\/lantosistvan/g, '.'))
     .pipe(replace(/\/\/127\.0\.0\.1\/public_html\/lantosistvan/g, '.'))
-    .pipe(replace(/http:\\\/\\\/127\.0\.0\.1\\\/public_html\\\/lantosistvan/g, '.'))
-    .pipe(replace(/http%253A%252F%252F127\.0\.0\.1%252Fpublic_html%252Flantosistvan/g, '.'))
+    .pipe(replace(/https:\\\/\\\/127\.0\.0\.1\\\/public_html\\\/lantosistvan/g, '.'))
+    .pipe(replace(/https%253A%252F%252F127\.0\.0\.1%252Fpublic_html%252Flantosistvan/g, '.'))
     //.pipe(replace(/http:/g, 'https:'))
     //.pipe(replace(/\.\/lantosistvan/g, `./${sitename}`))
     //.pipe(replace(/\.\\\/lantosistvan/g, `.\\/${sitename}`))

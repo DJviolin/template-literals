@@ -82,6 +82,11 @@ fi
 find ./static -type f -name "*.xml" -exec sed -i 's/http:\/\/127\.0\.0\.1\/public_html\/lantosistvan/http:\/\/lantosistvan\.com/g;' {} \;
 COMMENT
 
+#find ./static -name *.html -exec sed -i 's/http:/https:/g;' {} \;
+#find ./static -type f -print -name *.html -name *.css -name *.js -exec sed -i 's/http:/https:/g;' {} \;
+find ./static -type f -print \( -name \*.html -o -name \*.css -o -name \*.js \) -exec sed -i 's/http:/https:/g; s/http%253A/https%253A/g;' {} \;
+find ./static -type f -print -name *.html -exec sed -i 's/<script/<script async/g;' {} \;
+
 loop () {
     #find . -maxdepth 1 -name "*.$1" -type f -print0 |
     find ./static -name "*.$1" ! -name "*.min.$1" ! -name "*-min.$1" -type f -print0 |
@@ -96,9 +101,13 @@ loop html lantosistvan
 loop css
 loop js
 
-#find ./static -name *.html -exec sed -i 's/http:/https:/g;' {} \;
-#find ./static -type f -print \( -name \*.html -o -name \*.css -o -name \*.js \) -exec sed -i 's/http:/https:/g;' {} \;
-find ./static -type f -print -name *.html -name *.css -name *.js -exec sed -i 's/http:/https:/g;' {} \;
+# Google image optimization guide
+# https://developers.google.com/speed/pagespeed/
+# https://developers.google.com/speed/docs/insights/OptimizeImages
+# https://www.imagemagick.org/script/convert.php
+# $ convert IMG_3039-1400px.jpg -sampling-factor 4:2:0 -strip -quality 85 -interlace JPEG -colorspace RGB IMG_3039-1400px_converted.jpg
+# $ jpegtran -outfile "IMG_3039-1400px_converted2.jpg" -optimise -progressive -copy none "IMG_3039-1400px_converted.jpg"
+# https://testmysite.thinkwithgoogle.com/
 
 #find . -maxdepth 1 \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png \)  -type f -print0 |
 find ./static \( -iname \*.jpg -o -iname \*.jpeg \)  -type f -print0 |
