@@ -21,7 +21,8 @@ find ./static \( -iname \*.jpg -o -iname \*.jpeg \) -type f -print0 |
             # 1100 + 733 = 1833
             #echo "$result is bigger or equal than 1667 | $line"
             echo "$line"
-            cjpeg -quality 72 -progressive -dc-scan-opt 2 -smooth 5 "$line" > "$line.out.jpg"
+            #cjpeg -quality 72 -progressive -dc-scan-opt 2 -smooth 5 "$line" > "$line.out.jpg"
+            cjpeg -quality 76 -progressive -dc-scan-opt 2 "$line" > "$line.out.jpg"
             jpegtran -outfile "$line" -optimise -progressive -copy none "$line.out.jpg"
             rm "$line.out.jpg"
         else
