@@ -9,10 +9,10 @@
 
 find ./static \( -iname \*.jpg -o -iname \*.jpeg \) -type f -print0 |
     while IFS= read -r -d $'\0' line; do
-        result=$(file "$line" | sed -E 's/(.*jpg): .* ([0-9]*)x([0-9]*).*/\1\t\2\t\3/' | awk '{print int($2+$3)}')
-        if (( $result >= 500 )); then
-            echo "$result is bigger or equal than 500"
+        result=$(file "$line" | sed -E 's/(.*jpg): .* ([0-9]*)x([0-9]*).*/\1\t\2\t\3/' | awk '{print int($2*$3)}')
+        if (( $result >= 100000 )); then
+            echo "$result is bigger or equal than 100000 | $line"
         else
-            echo "$result is less than 500"
+            echo "$result is less than 100000 | $line"
         fi
     done
