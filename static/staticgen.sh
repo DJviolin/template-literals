@@ -120,6 +120,7 @@ loop js
 # cjpeg -quality 75 -progressive -dc-scan-opt 2 IMG_3039-1400px.jpg > IMG_3039-1400px-20170501-out01.jpg
 # jpegtran -outfile IMG_3039-1400px-20170501-out02.jpg -optimise -progressive -copy none IMG_3039-1400px-20170501-out01.jpg
 
+<<COMMENT2
 find ./static \( -iname \*.jpg -o -iname \*.jpeg \) -type f -size -128k -print0 |
     while IFS= read -r -d $'\0' line; do
         echo "$line"
@@ -138,3 +139,4 @@ find ./static \( -iname \*.jpg -o -iname \*.jpeg \) -type f -size +128k -print0 
         jpegtran -outfile "$line" -optimise -progressive -copy none "$line.out.jpg"
         rm "$line.out.jpg"
     done
+COMMENT2
