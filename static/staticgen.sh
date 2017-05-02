@@ -13,6 +13,8 @@
 # https://wordpress.org/plugins/relative-url/
 # https://wordpress.org/plugins/make-paths-relative/
 
+# dig djviolin.github.io +noall +answer
+
 # set -e making the commands if they were like &&
 # set -x putting + before every line
 set -e
